@@ -1,7 +1,6 @@
 OauthServer::Application.routes.draw do
-  get "authorization/new"
-
-  get "authorization/create"
+  match "/oauth/authorize", :via => :get, :to => "authorization#new"
+  match "/oauth/authorize", :via => :post, :to => "authorization#create"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
