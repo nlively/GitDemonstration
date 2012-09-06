@@ -1,4 +1,8 @@
 OauthServer::Application.routes.draw do
+  get "home/index"
+
+  mount Doorkeeper::Engine => '/oauth'
+
   match "/oauth/authorize", :via => :get, :to => "authorization#new"
   match "/oauth/authorize", :via => :post, :to => "authorization#create"
 
@@ -52,6 +56,8 @@ OauthServer::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+
+  root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 
