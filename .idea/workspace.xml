@@ -28,10 +28,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="doorkeeper.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="doorkeeper.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/initializers/doorkeeper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="33" selection-start="446" selection-end="446" vertical-scroll-proportion="0.1836969">
+            <state line="10" column="33" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20120906231215_devise_create_users.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20120906231215_devise_create_users.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="22" selection-start="371" selection-end="371" vertical-scroll-proportion="0.18845701">
               <folding />
             </state>
           </provider>
@@ -40,7 +49,7 @@
       <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="2" selection-start="1730" selection-end="1730" vertical-scroll-proportion="0.0">
+            <state line="63" column="2" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -109,6 +118,7 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/config/initializers/doorkeeper.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20120906231215_devise_create_users.rb" />
       </list>
     </option>
   </component>
@@ -628,13 +638,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="72" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/authorization_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="44" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
@@ -707,7 +710,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="2" selection-start="1730" selection-end="1730" vertical-scroll-proportion="0.0">
+        <state line="63" column="2" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -735,7 +738,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/doorkeeper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="33" selection-start="446" selection-end="446" vertical-scroll-proportion="0.1836969">
+        <state line="10" column="33" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120906231215_devise_create_users.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="22" selection-start="371" selection-end="371" vertical-scroll-proportion="0.18845701">
           <folding />
         </state>
       </provider>
