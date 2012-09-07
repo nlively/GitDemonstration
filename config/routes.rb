@@ -4,6 +4,8 @@ OauthServer::Application.routes.draw do
   devise_for :users
 
   get "home/index"
+  match "myappredirect" => 'home#myappredirect'
+  match "after_oauth" => 'home#index'
 
   mount Doorkeeper::Engine => '/oauth'
 
