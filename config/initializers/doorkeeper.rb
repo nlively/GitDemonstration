@@ -1,6 +1,6 @@
 Doorkeeper.configure do
   resource_owner_from_credentials do |routes|
-    User.authenticate!(params[:username], params[:password])
+    result = User.authenticate!(params[:username], params[:password])
   end
 
   # If you want to restrict the access to the web interface for
@@ -16,7 +16,7 @@ Doorkeeper.configure do
 
   # Access token expiration time (default 2 hours).
   # If you want to disable expiration, set this to nil.
-  access_token_expires_in 3.minutes
+  access_token_expires_in 2.hours
 
   # Issue access tokens with refresh token (disabled by default)
   use_refresh_token
