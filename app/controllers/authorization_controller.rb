@@ -1,4 +1,6 @@
+
 class AuthorizationController < ApplicationController
+  require 'oauth2'
   include OAuth2::Provider::Rack::AuthorizationCodesSupport
 
   before_filter :authenticate_user!
