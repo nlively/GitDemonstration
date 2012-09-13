@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba73a366-61a3-4955-9c8c-6a01cbb985da" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/doorkeeper.rb" afterPath="$PROJECT_DIR$/config/initializers/doorkeeper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
     </list>
     <ignored path="oauth_server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,10 +30,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="doorkeeper.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="doorkeeper.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/initializers/doorkeeper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="33" selection-start="759" selection-end="759" vertical-scroll-proportion="0.49913344">
+            <state line="18" column="33" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="18" selection-start="607" selection-end="607" vertical-scroll-proportion="0.06923077">
               <folding />
             </state>
           </provider>
@@ -121,7 +128,6 @@
       <list>
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/app/controllers/authorization_controller.rb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
@@ -132,6 +138,7 @@
         <option value="$PROJECT_DIR$/app/controllers/check_ins_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/config/initializers/doorkeeper.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -725,11 +732,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="66" selection-start="277" selection-end="277" vertical-scroll-proportion="0.2048894" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="100" selection-start="613" selection-end="613" vertical-scroll-proportion="0.2825607" />
@@ -820,7 +822,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/doorkeeper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="33" selection-start="759" selection-end="759" vertical-scroll-proportion="0.49913344">
+        <state line="18" column="33" selection-start="759" selection-end="759" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="18" selection-start="607" selection-end="607" vertical-scroll-proportion="0.06923077">
           <folding />
         </state>
       </provider>
