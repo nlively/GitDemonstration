@@ -8,6 +8,7 @@ gem 'rails', '3.2.0'
 gem 'mysql2'
 
 gem 'oauth2'
+
 gem 'doorkeeper', '~> 0.4.2'
 
 gem 'devise'
