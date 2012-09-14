@@ -1,4 +1,7 @@
 class CheckInsController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def create
 
     @checkin = CheckIn.create! :user_id => params[:user_id], :latitude => params[:latitude], :longitude => params[:longitude]
