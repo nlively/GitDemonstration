@@ -4,7 +4,19 @@ OauthServer::Application.routes.draw do
 
   namespace :api do
       namespace :v1 do
-        resources :check_ins, :only => [:index, :create]
+        resources :photos, :only => :create
+        resources :notes, :only => :create
+        resources :account, :only => :index
+        resources :care_recipients, :only => :show
+
+        match 'account/password', :via => :post
+        get 'account/history'
+
+        get 'care-recipients/:id' => 'care_recipients#show'
+        get 'care-recipients/:id/history' => 'care_recipients#history'
+
+        match 'geo/clients', :via => [:get, :post]
+
       end
     end
 

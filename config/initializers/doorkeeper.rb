@@ -1,4 +1,9 @@
 Doorkeeper.configure do
+
+  resource_owner_authenticator do |routes|
+    current_user || warden.authenticate!(:scope => :user)
+  end
+
   resource_owner_from_credentials do |routes|
     result = User.authenticate!(params[:username], params[:password])
   end
