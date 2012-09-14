@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120914004314) do
+ActiveRecord::Schema.define(:version => 20120914004607) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20120914004314) do
     t.decimal  "longitude",  :precision => 10, :scale => 0
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "notes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "care_recipient_id"
+    t.text     "note"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "oauth_access_grants", :force => true do |t|
@@ -89,6 +97,18 @@ ActiveRecord::Schema.define(:version => 20120914004314) do
   end
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
+
+  create_table "photos", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "care_recipient_id"
+    t.integer  "note_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name",              :limit => 40
