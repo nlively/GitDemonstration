@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    acl9 (0.12.0)
     actionmailer (3.2.0)
       actionpack (= 3.2.0)
       mail (~> 2.4.0)
@@ -135,6 +136,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acl9
   coffee-rails (~> 3.2.1)
   devise
   doorkeeper (~> 0.4.2)
