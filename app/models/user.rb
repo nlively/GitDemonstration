@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
 
   acts_as_authorization_subject  :association_name => :roles, :join_table_name => :roles_users
 
+  has_many :photos
+  has_many :notes
+  has_many :check_ins
 
   def self.authenticate!(username, password)
     return nil if username.blank? || password.blank?
