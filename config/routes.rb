@@ -8,6 +8,7 @@ OauthServer::Application.routes.draw do
         resources :notes, :only => :create
         resources :account, :only => :index
         resources :care_recipients, :only => :show
+        resources :check_ins, :only => [:create, :index]
 
         match 'account/password', :via => :post
         get 'account/history'

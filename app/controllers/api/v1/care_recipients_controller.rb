@@ -1,5 +1,5 @@
 module Api::V1
-  class ProvidersController < ApiController
+  class CareRecipientsController < ApiController
 
     doorkeeper_for :all
     respond_to :json
