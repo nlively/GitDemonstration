@@ -12,6 +12,8 @@ gem 'acl9'
 
 gem 'uuid'
 
+gem 'rails_admin'
+
 gem 'doorkeeper', '~> 0.4.2'
 
 gem 'devise'
