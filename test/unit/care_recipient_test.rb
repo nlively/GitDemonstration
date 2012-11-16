@@ -13,6 +13,7 @@
 #  profile_photo_content_type :string(255)
 #  profile_photo_file_size    :integer
 #  profile_photo_updated_at   :datetime
+#  agency_id                  :integer
 #
 
 require 'test_helper'

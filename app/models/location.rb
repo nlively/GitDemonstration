@@ -15,12 +15,15 @@
 #  outside_photo_content_type :string(255)
 #  outside_photo_file_size    :integer
 #  outside_photo_updated_at   :datetime
+#  agency_id                  :integer
 #
 
 class Location < ActiveRecord::Base
   has_many :check_ins
   has_many :care_recipients_locations, :class_name =>'CareRecipientsLocations', :foreign_key => :care_recipient_id
   has_many :care_recipients, :through => :care_recipients_locations
+
+  belongs_to :agency
 
   has_attached_file :outside_photo, :styles => {
     :profile => "93x93>"

@@ -13,12 +13,15 @@
 #  profile_photo_content_type :string(255)
 #  profile_photo_file_size    :integer
 #  profile_photo_updated_at   :datetime
+#  agency_id                  :integer
 #
 
 class CareRecipient < ActiveRecord::Base
   has_many :photos
   has_many :notes
   has_many :check_ins
+
+  belongs_to :agency
   belongs_to :default_location, :class_name => 'Location', :foreign_key => :default_location_id
 
   has_many :care_recipients_locations, :class_name =>'CareRecipientsLocations', :foreign_key => :care_recipient_id

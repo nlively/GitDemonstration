@@ -15,6 +15,7 @@
 #  outside_photo_content_type :string(255)
 #  outside_photo_file_size    :integer
 #  outside_photo_updated_at   :datetime
+#  agency_id                  :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

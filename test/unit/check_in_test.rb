@@ -12,6 +12,7 @@
 #  in_out            :boolean
 #  care_recipient_id :integer
 #  location_id       :integer
+#  agency_id         :integer
 #
 
 require 'test_helper'

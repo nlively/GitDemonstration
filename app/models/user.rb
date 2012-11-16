@@ -23,6 +23,7 @@
 #  profile_photo_content_type :string(255)
 #  profile_photo_file_size    :integer
 #  profile_photo_updated_at   :datetime
+#  agency_id                  :integer
 #
 
 class User < ActiveRecord::Base
@@ -41,6 +42,7 @@ class User < ActiveRecord::Base
   has_many :photos
   has_many :notes
   has_many :check_ins
+  belongs_to :agency
 
   has_attached_file :profile_photo, :styles => {
     :profile => "93x93>"

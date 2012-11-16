@@ -12,12 +12,14 @@
 #  in_out            :boolean
 #  care_recipient_id :integer
 #  location_id       :integer
+#  agency_id         :integer
 #
 
 class CheckIn < ActiveRecord::Base
   belongs_to :care_recipient
   belongs_to :location
   belongs_to :user
+  belongs_to :agency
 
 
   def in_out_str

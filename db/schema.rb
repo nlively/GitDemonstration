@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115231848) do
+ActiveRecord::Schema.define(:version => 20121116181744) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20121115231848) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
+    t.integer  "agency_id"
   end
 
   create_table "care_recipients_locations", :force => true do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20121115231848) do
     t.boolean  "in_out"
     t.integer  "care_recipient_id"
     t.integer  "location_id"
+    t.integer  "agency_id"
   end
 
   create_table "locations", :force => true do |t|
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20121115231848) do
     t.string   "outside_photo_content_type"
     t.integer  "outside_photo_file_size"
     t.datetime "outside_photo_updated_at"
+    t.integer  "agency_id"
   end
 
   create_table "notes", :force => true do |t|
@@ -165,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20121115231848) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
+    t.integer  "agency_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
