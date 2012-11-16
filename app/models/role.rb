@@ -2,12 +2,12 @@
 #
 # Table name: roles
 #
-#  id                :integer(4)      not null, primary key
+#  id                :integer          not null, primary key
 #  name              :string(40)
 #  authorizable_type :string(40)
-#  authorizable_id   :integer(4)
-#  created_at        :datetime
-#  updated_at        :datetime
+#  authorizable_id   :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 
 class Role < ActiveRecord::Base

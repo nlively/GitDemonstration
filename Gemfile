@@ -13,6 +13,7 @@ gem 'acl9'
 gem 'uuid'
 
 gem 'rails_admin'
+gem 'annotate'
 
 gem 'doorkeeper', '~> 0.4.2'
 

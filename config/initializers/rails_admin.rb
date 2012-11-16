@@ -1,4 +1,4 @@
-# RailsAdmin config file. Generated on November 14, 2012 16:59
+# RailsAdmin config file. Generated on November 15, 2012 14:41
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
@@ -27,10 +27,10 @@ RailsAdmin.config do |config|
   # config.default_items_per_page = 20
 
   # Exclude specific models (keep the others):
-  # config.excluded_models = ['Agency', 'CareRecipient', 'CheckIn', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Photo', 'Role', 'User']
+  # config.excluded_models = ['Agency', 'CareRecipient', 'CareRecipientsLocations', 'CheckIn', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Photo', 'Role', 'User']
 
   # Include specific models (exclude the others):
-  # config.included_models = ['Agency', 'CareRecipient', 'CheckIn', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Photo', 'Role', 'User']
+  # config.included_models = ['Agency', 'CareRecipient', 'CareRecipientsLocations', 'CheckIn', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Photo', 'Role', 'User']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
@@ -60,18 +60,19 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :users, :has_many_association 
+  #     configure :location, :belongs_to_association
+  #     configure :users, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :location_id, :integer 
-  #     configure :administrative_contact, :string 
-  #     configure :website, :string 
-  #     configure :email, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :location_id, :integer         # Hidden
+  #     configure :administrative_contact, :string
+  #     configure :website, :string
+  #     configure :email, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -101,29 +102,29 @@ RailsAdmin.config do |config|
 
   ###  CareRecipient  ###
 
-  # config.model 'CareRecipient' do
+  config.model 'CareRecipient' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your care_recipient.rb model definition
 
   #   # Found associations:
 
-  #     configure :photos, :has_many_association 
-  #     configure :notes, :has_many_association 
-  #     configure :check_ins, :has_many_association 
+  #     configure :photos, :has_many_association
+  #     configure :notes, :has_many_association
+  #     configure :check_ins, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :first_name, :string 
-  #     configure :last_name, :string 
-  #     configure :dob, :datetime 
-  #     configure :default_location_id, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :first_name, :string
+  #     configure :last_name, :string
+  #     configure :dob, :datetime
+  #     configure :default_location_id, :integer
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  object_label_method :full_name # Name of the method called for pretty printing an *instance* of ModelName
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
   #     # label_plural 'My models'      # Same, plural
   #     # weight 0                      # Navigation priority. Bigger is higher.
@@ -144,33 +145,80 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
+
+
+  ###  CareRecipientsLocations  ###
+
+  #config.model 'CareRecipientsLocations' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your care_recipients_locations.rb model definition
+
+  #   # Found associations:
+
+  #     configure :care_recipient, :belongs_to_association
+  #     configure :location, :belongs_to_association
+
+  #   # Found columns:
+
+  #     configure :care_recipient_id, :integer         # Hidden
+  #     configure :location_id, :integer         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+      # list do
+         # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+         # items_per_page 100    # Override default_items_per_page
+        # sort_by :location_id           # Sort column (default is primary key)
+         # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+      # end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  #end
 
 
   ###  CheckIn  ###
 
-  # config.model 'CheckIn' do
+  config.model 'CheckIn' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your check_in.rb model definition
 
   #   # Found associations:
 
-
+  #     configure :care_recipient, :belongs_to_association
+  #     configure :location, :belongs_to_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :user_id, :integer 
-  #     configure :latitude, :integer 
-  #     configure :longitude, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :session_guid, :string 
-  #     configure :in_out, :boolean 
+  #     configure :id, :integer
+  #     configure :user_id, :integer
+  #     configure :latitude, :integer
+  #     configure :longitude, :integer
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :session_guid, :string
+  #     configure :in_out, :boolean
+  #     configure :care_recipient_id, :integer         # Hidden
+  #     configure :location_id, :integer         # Hidden
 
   #   # Cross-section configuration:
 
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  object_label_method :label     # Name of the method called for pretty printing an *instance* of ModelName
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
   #     # label_plural 'My models'      # Same, plural
   #     # weight 0                      # Navigation priority. Bigger is higher.
@@ -191,7 +239,7 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
 
 
   ###  Doorkeeper::AccessGrant  ###
@@ -202,19 +250,19 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :application, :belongs_to_association 
+  #     configure :application, :belongs_to_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :resource_owner_id, :integer 
-  #     configure :application_id, :integer         # Hidden 
-  #     configure :token, :string 
-  #     configure :expires_in, :integer 
-  #     configure :redirect_uri, :string 
-  #     configure :created_at, :datetime 
-  #     configure :revoked_at, :datetime 
-  #     configure :scopes, :string 
+  #     configure :id, :integer
+  #     configure :resource_owner_id, :integer
+  #     configure :application_id, :integer         # Hidden
+  #     configure :token, :string
+  #     configure :expires_in, :integer
+  #     configure :redirect_uri, :string
+  #     configure :created_at, :datetime
+  #     configure :revoked_at, :datetime
+  #     configure :scopes, :string
 
   #   # Cross-section configuration:
 
@@ -250,19 +298,19 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :application, :belongs_to_association 
+  #     configure :application, :belongs_to_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :resource_owner_id, :integer 
-  #     configure :application_id, :integer         # Hidden 
-  #     configure :token, :string 
-  #     configure :refresh_token, :string 
-  #     configure :expires_in, :integer 
-  #     configure :revoked_at, :datetime 
-  #     configure :created_at, :datetime 
-  #     configure :scopes, :string 
+  #     configure :id, :integer
+  #     configure :resource_owner_id, :integer
+  #     configure :application_id, :integer         # Hidden
+  #     configure :token, :string
+  #     configure :refresh_token, :string
+  #     configure :expires_in, :integer
+  #     configure :revoked_at, :datetime
+  #     configure :created_at, :datetime
+  #     configure :scopes, :string
 
   #   # Cross-section configuration:
 
@@ -298,20 +346,20 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :access_grants, :has_many_association 
-  #     configure :access_tokens, :has_many_association 
-  #     configure :authorized_tokens, :has_many_association 
-  #     configure :authorized_applications, :has_many_association 
+  #     configure :access_grants, :has_many_association
+  #     configure :access_tokens, :has_many_association
+  #     configure :authorized_tokens, :has_many_association
+  #     configure :authorized_applications, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :uid, :string 
-  #     configure :secret, :string 
-  #     configure :redirect_uri, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :uid, :string
+  #     configure :secret, :string
+  #     configure :redirect_uri, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -341,34 +389,34 @@ RailsAdmin.config do |config|
 
   ###  Location  ###
 
-  # config.model 'Location' do
+  config.model 'Location' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your location.rb model definition
 
   #   # Found associations:
 
-
+  #     configure :check_ins, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :street, :string 
-  #     configure :city, :string 
-  #     configure :state, :string 
-  #     configure :zip, :string 
-  #     configure :latitude, :integer 
-  #     configure :longitude, :integer 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :street, :string
+  #     configure :city, :string
+  #     configure :state, :string
+  #     configure :zip, :string
+  #     configure :latitude, :integer
+  #     configure :longitude, :integer
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
-  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
-  #     # label_plural 'My models'      # Same, plural
-  #     # weight 0                      # Navigation priority. Bigger is higher.
-  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
-  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+       object_label_method :street     # Name of the method called for pretty printing an *instance* of ModelName
+       # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+       # label_plural 'My models'      # Same, plural
+       # weight 0                      # Navigation priority. Bigger is higher.
+       # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+       # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
 
   #   # Section specific configuration:
 
@@ -384,7 +432,7 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
 
 
   ###  Note  ###
@@ -395,18 +443,18 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :user, :belongs_to_association 
-  #     configure :care_recipient, :belongs_to_association 
-  #     configure :photo, :has_one_association 
+  #     configure :user, :belongs_to_association
+  #     configure :care_recipient, :belongs_to_association
+  #     configure :photo, :has_one_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :care_recipient_id, :integer         # Hidden 
-  #     configure :note, :text 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :user_id, :integer         # Hidden
+  #     configure :care_recipient_id, :integer         # Hidden
+  #     configure :note, :text
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -442,23 +490,23 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :user, :belongs_to_association 
-  #     configure :care_recipient, :belongs_to_association 
-  #     configure :note, :belongs_to_association 
+  #     configure :user, :belongs_to_association
+  #     configure :care_recipient, :belongs_to_association
+  #     configure :note, :belongs_to_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :user_id, :integer         # Hidden 
-  #     configure :care_recipient_id, :integer         # Hidden 
-  #     configure :note_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :photo_file_name, :string         # Hidden 
-  #     configure :photo_content_type, :string         # Hidden 
-  #     configure :photo_file_size, :integer         # Hidden 
-  #     configure :photo_updated_at, :datetime         # Hidden 
-  #     configure :photo, :paperclip 
+  #     configure :id, :integer
+  #     configure :user_id, :integer         # Hidden
+  #     configure :care_recipient_id, :integer         # Hidden
+  #     configure :note_id, :integer         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :photo_file_name, :string         # Hidden
+  #     configure :photo_content_type, :string         # Hidden
+  #     configure :photo_file_size, :integer         # Hidden
+  #     configure :photo_updated_at, :datetime         # Hidden
+  #     configure :photo, :paperclip
 
   #   # Cross-section configuration:
 
@@ -494,17 +542,17 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :authorizable, :polymorphic_association         # Hidden 
-  #     configure :users, :has_and_belongs_to_many_association 
+  #     configure :authorizable, :polymorphic_association         # Hidden
+  #     configure :users, :has_and_belongs_to_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :name, :string 
-  #     configure :authorizable_type, :string         # Hidden 
-  #     configure :authorizable_id, :integer         # Hidden 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :name, :string
+  #     configure :authorizable_type, :string         # Hidden
+  #     configure :authorizable_id, :integer         # Hidden
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
@@ -534,41 +582,41 @@ RailsAdmin.config do |config|
 
   ###  User  ###
 
-  # config.model 'User' do
+  config.model 'User' do
 
   #   # You can copy this to a 'rails_admin do ... end' block inside your user.rb model definition
 
   #   # Found associations:
 
-  #     configure :roles, :has_and_belongs_to_many_association 
-  #     configure :photos, :has_many_association 
-  #     configure :notes, :has_many_association 
-  #     configure :check_ins, :has_many_association 
+  #     configure :roles, :has_and_belongs_to_many_association
+  #     configure :photos, :has_many_association
+  #     configure :notes, :has_many_association
+  #     configure :check_ins, :has_many_association
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :email, :string 
-  #     configure :password, :password         # Hidden 
-  #     configure :password_confirmation, :password         # Hidden 
-  #     configure :reset_password_token, :string         # Hidden 
-  #     configure :first_name, :string 
-  #     configure :last_name, :string 
-  #     configure :date_of_birth, :datetime 
-  #     configure :gender, :string 
-  #     configure :reset_password_sent_at, :datetime 
-  #     configure :remember_created_at, :datetime 
-  #     configure :sign_in_count, :integer 
-  #     configure :current_sign_in_at, :datetime 
-  #     configure :last_sign_in_at, :datetime 
-  #     configure :current_sign_in_ip, :string 
-  #     configure :last_sign_in_ip, :string 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
+  #     configure :id, :integer
+  #     configure :email, :string
+  #     configure :password, :password         # Hidden
+  #     configure :password_confirmation, :password         # Hidden
+  #     configure :reset_password_token, :string         # Hidden
+  #     configure :first_name, :string
+  #     configure :last_name, :string
+  #     configure :date_of_birth, :datetime
+  #     configure :gender, :string
+  #     configure :reset_password_sent_at, :datetime
+  #     configure :remember_created_at, :datetime
+  #     configure :sign_in_count, :integer
+  #     configure :current_sign_in_at, :datetime
+  #     configure :last_sign_in_at, :datetime
+  #     configure :current_sign_in_ip, :string
+  #     configure :last_sign_in_ip, :string
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
 
   #   # Cross-section configuration:
 
-  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  object_label_method :label     # Name of the method called for pretty printing an *instance* of ModelName
   #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
   #     # label_plural 'My models'      # Same, plural
   #     # weight 0                      # Navigation priority. Bigger is higher.
@@ -589,6 +637,6 @@ RailsAdmin.config do |config|
   #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
   #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
   #     # using `field` instead of `configure` will exclude all other fields and force the ordering
-  # end
+  end
 
 end

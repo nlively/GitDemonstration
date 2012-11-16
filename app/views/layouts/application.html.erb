@@ -8,10 +8,44 @@
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
-<%= yield %>
+<div id="page">
+  <div id="page-inner">
+    <div id="header" class="">
+      <div id="header-inner">
+        <%= render 'layouts/header' %>
+      </div>
+    </div>
+
+    <div id="main" class="">
+      <div id="main-inner">
+
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+
+        <div id="content">
+          <div id="content-inner">
+            <%= yield %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="footer" class="">
+      <div id="footer-inner">
+      </div>
+    </div>
+
+
+    <%= render 'layouts/copyright' %>
+
+    <%=  render 'layouts/tracking' %>
+
+
+  </div>
+</div>
+
 
 </body>
 </html>
