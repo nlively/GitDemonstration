@@ -1,0 +1,7 @@
+<h1><%= @care_recipient.full_name %>'s Assigned Caregivers</h1>
+
+<table>
+  <% @care_recipient.users.each do |user| %>
+  <%=  render 'shared/employee_row', :employee => user %>
+  <% end %>
+</table>

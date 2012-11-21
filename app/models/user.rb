@@ -44,6 +44,9 @@ class User < ActiveRecord::Base
   has_many :check_ins
   belongs_to :agency
 
+  has_many :care_recipients_users
+  has_many :care_recipients, :through => :care_recipients_users
+
   has_attached_file :profile_photo, :styles => {
     :profile => "93x93>"
   }

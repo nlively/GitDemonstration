@@ -1,5 +1,5 @@
 module Dashboard
-  class EmployeesController  < DashboardController
+  class VisitsController  < DashboardController
 
     def index
 

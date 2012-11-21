@@ -1,0 +1,7 @@
+<h1>Clients</h1>
+
+<table>
+<% @care_recipients.each do |care_recipient| %>
+  <%=  render 'shared/client_row', :care_recipient =>care_recipient %>
+<% end %>
+</table>

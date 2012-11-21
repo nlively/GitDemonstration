@@ -25,8 +25,21 @@
     <div id="main" class="">
       <div id="main-inner">
 
+        <div id="navigation">
+
+
+
+          <%= render 'layouts/dashboard_top_menu' %>
+        </div>
+
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
+
+        <div id="sidebar-first" class="sidebar">
+          <div id="sidebar-first-inner" class="sidebar-inner">
+            <%= render 'layouts/dashboard_sidebar_menu' %>
+          </div>
+        </div>
 
         <div id="content">
           <div id="content-inner">

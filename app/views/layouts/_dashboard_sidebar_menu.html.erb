@@ -1,0 +1,11 @@
+<% if controller.is_a? Dashboard::ClientsController %>
+    <%=  render 'dashboard/clients/sidebar_menu' %>
+<% elsif controller.is_a? Dashboard::EmployeesController %>
+    <%=  render 'dashboard/employees/sidebar_menu' %>
+<% elsif controller.is_a? Dashboard::ReportsController %>
+    <%=  render 'dashboard/reports/sidebar_menu' %>
+<% elsif controller.is_a? Dashboard::VisitsController %>
+    <%=  render 'dashboard/visits/sidebar_menu' %>
+<% elsif controller.is_a? Dashboard::SettingsController %>
+    <%=  render 'dashboard/settings/sidebar_menu' %>
+<% end %>

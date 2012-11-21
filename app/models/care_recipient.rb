@@ -27,11 +27,18 @@ class CareRecipient < ActiveRecord::Base
   has_many :care_recipients_locations, :class_name =>'CareRecipientsLocations', :foreign_key => :care_recipient_id
   has_many :locations, :through => :care_recipients_locations
 
+  has_many :care_recipients_users
+  has_many :users, :through => :care_recipients_users
+
   has_attached_file :profile_photo, :styles => {
     :profile => "93x93>"
   }
 
   def full_name
     return sprintf '%s %s', first_name, last_name
+  end
+
+  def full_name_last_first
+    return sprintf '%s, %s', last_name, first_name
   end
 end
