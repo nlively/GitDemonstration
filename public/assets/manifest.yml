@@ -1,6 +1,7 @@
 ---
 rails.png: rails-be8732dac73d845ac5b142c8fb5f9fb0.png
 auto_include/application.js: auto_include/application-c22cda082782cd25a656cbdf1be81cee.js
+modernizr-2.6.2.min.js: modernizr-2.6.2.min-2d02bc98c82672121a5e9002136cce56.js
 application.css: application-eb8def74c323e460022942b628ade2d2.css
 doorkeeper/application.js: doorkeeper/application-ccab98dc1abdf097c0af693e20aed861.js
 doorkeeper/application.css: doorkeeper/application-c15195d41f3c95b8cb39e530a9b83296.css
