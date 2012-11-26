@@ -4,6 +4,7 @@ module Dashboard
     def index
 
       # possible filter params: letter, name
+      @employees = User.caregivers
 
     end
 

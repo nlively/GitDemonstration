@@ -41,4 +41,21 @@ class CareRecipient < ActiveRecord::Base
   def full_name_last_first
     return sprintf '%s, %s', last_name, first_name
   end
+
+
+
+  def web_service_format url_base
+
+    return {
+      :first_name => first_name,
+      :last_name => last_name,
+      :full_name =>full_name,
+      :full_name_last_first =>full_name_last_first,
+      :photo_url => "#{url_base}#{profile_photo.url(:profile)}",
+      :id => id,
+      :dob => dob
+    }
+
+  end
+
 end

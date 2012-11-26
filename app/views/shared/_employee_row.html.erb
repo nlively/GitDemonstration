@@ -1,0 +1,20 @@
+<tr class="client-row">
+  <td>
+    <%= employee.full_name_last_first %>
+  </td>
+  <td>
+    <%= link_to 'Profile', dashboard_employees_profile_path(employee) %>
+  </td>
+  <td>
+    <%= link_to 'Clients', dashboard_employees_clients_path(employee) %>
+  </td>
+  <td>
+    <%= link_to 'Visits', dashboard_employees_visits_path(employee) %>
+  </td>
+  <td>
+    <%= link_to 'Notes/Photos', dashboard_employees_notes_path(employee) %>
+  </td>
+  <td>
+    <%= link_to 'Payroll', dashboard_employees_payroll_path(employee) %>
+  </td>
+</tr>

@@ -1,1 +1,7 @@
 <h1>Employees</h1>
+
+<table>
+<% @employees.each do |employee| %>
+  <%=  render 'shared/employee_row', :employee => employee %>
+<% end %>
+</table>

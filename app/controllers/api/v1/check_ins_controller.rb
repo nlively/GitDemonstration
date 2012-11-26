@@ -7,7 +7,7 @@ module Api::V1
 
     def create
 
-      @checkin = CheckIn.new :user_id => params[:user_id], :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
+      @checkin = CheckIn.new :user_id => current_resource_owner.id, :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
 
       if @checkin.in_out
         @checkin.session_guid = UUID.generate

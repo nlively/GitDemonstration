@@ -1,15 +1,5 @@
 OauthServer::Application.routes.draw do
 
-
-
-
-
-
-
-
-
-
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :check_ins, :only => [:index, :create]
@@ -24,6 +14,7 @@ OauthServer::Application.routes.draw do
 
       match 'account/password', :via => :post
       get 'account/history'
+      get 'account/clients'
 
       get 'care-recipients/:id' => 'care_recipients#show'
       get 'care-recipients/:id/history' => 'care_recipients#history'
@@ -41,6 +32,14 @@ OauthServer::Application.routes.draw do
     match 'clients' => 'clients#index'
     match 'reports' => 'reports#index'
     match 'settings' => 'settings#index'
+
+    namespace :employees do
+      match ':id/profile' => 'profile#index', :as => :profile
+      match ':id/clients' => 'clients#index', :as => :clients
+      match ':id/notes' => 'notes#index', :as => :notes
+      match ':id/visits' => 'visits#index', :as => :visits
+      match ':id/payroll' => 'payroll#index', :as => :payroll
+    end
 
     namespace :clients do
       match ':id/profile' => 'profile#index', :as => :profile

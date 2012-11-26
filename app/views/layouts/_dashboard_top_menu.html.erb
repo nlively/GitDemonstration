@@ -1,21 +1,7 @@
-<%
 
-   items = [
-           {:label => 'Home', :path => dashboard_path, :class => 'home'},
-           {:label => 'Visits', :path => dashboard_visits_path, :class => 'home'},
-           {:label => 'Employees', :path => dashboard_employees_path, :class => 'home'},
-           {:label => 'Clients', :path => dashboard_clients_path, :class => 'home'},
-           {:label => 'Reports', :path => dashboard_reports_path, :class => 'home'},
-           {:label => 'Settings', :path => dashboard_settings_path, :class => 'home'},
-   ]
-
-%>
 <nav id="dashboard-top-menu">
-  <ul>
-    <% items.each do |i| %>
-      <li class="<%= i[:class] %>">
-        <%= link_to i[:label], i[:path] %>
-      </li>
-    <% end %>
-  </ul>
+
+
+<%= render_navigation :level => 2 %>
+
 </nav>

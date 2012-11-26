@@ -65,8 +65,41 @@ class User < ActiveRecord::Base
     return sprintf("%s %s", first_name, last_name)
   end
 
+  def full_name_last_first
+    return sprintf '%s, %s', last_name, first_name
+  end
+
   def label
     return (first_name.nil?) ? email : full_name
+  end
+
+  def web_service_format
+
+    return {
+      :full_name =>full_name,
+      :photo_url => profile_photo.url(:profile),
+      :id => id,
+      :email => email
+    }
+
+  end
+
+
+
+  # Find and return all admin-level users
+  def self.administrators
+    self.find_by_role(:administrator)
+  end
+
+  # Find and return all caregivers
+  def self.caregivers
+    self.find_by_role(:caregiver)
+  end
+
+  # Find and return all users matching the given role
+  def self.find_by_role(role)
+    r = Role.find_by_name(role)
+    r.users unless r.nil?
   end
 
 end

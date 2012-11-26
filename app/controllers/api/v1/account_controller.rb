@@ -14,6 +14,10 @@ module Api::V1
       current_resource_owner.update_with_password params
     end
 
+    def clients
+      render json: current_resource_owner.care_recipients.map {|u| u.web_service_format(root_url)}
+    end
+
     # GET /api/v1/account/history
     def history
 

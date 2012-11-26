@@ -33,4 +33,5 @@ class CheckIn < ActiveRecord::Base
     return str
   end
 
+
 end

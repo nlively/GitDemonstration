@@ -15,6 +15,8 @@ gem 'uuid'
 gem 'rails_admin'
 gem 'annotate'
 
+gem 'simple-navigation'
+
 gem 'doorkeeper', '~> 0.4.2'
 
 gem 'devise'
