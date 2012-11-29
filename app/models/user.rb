@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 
   has_many :photos
   has_many :notes
-  has_many :check_ins
+  has_many :visits
   belongs_to :agency
 
   has_many :care_recipients_users

@@ -2,6 +2,6 @@
 
 <table>
   <% @care_recipient.users.each do |user| %>
-  <%=  render 'shared/employee_row', :employee => user %>
+  <%=  render 'shared/row_employee', :employee => user %>
   <% end %>
 </table>

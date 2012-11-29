@@ -19,7 +19,7 @@
 #
 
 class Location < ActiveRecord::Base
-  has_many :check_ins
+  has_many :visits
   has_many :care_recipients_locations, :class_name =>'CareRecipientsLocations', :foreign_key => :care_recipient_id
   has_many :care_recipients, :through => :care_recipients_locations
 
@@ -28,5 +28,9 @@ class Location < ActiveRecord::Base
   has_attached_file :outside_photo, :styles => {
     :profile => "93x93>"
   }
+
+  def label
+    return street
+  end
 
 end

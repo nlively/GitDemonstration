@@ -1,0 +1,33 @@
+<tr class="visit-row">
+  <td class="employee" rel="<%= visit.user_id %>">
+    <%= visit.employee_label %>
+  </td>
+  <td class="payrate">
+    TBD
+  </td>
+  <td class="client" rel="<%= visit.care_recipient_id %>">
+    <%= visit.client_label %>
+  </td>
+  <td class="billrate">
+    TBD
+  </td>
+  <td class="in-time">
+    <%= visit.in_time_formatted %>
+  </td>
+  <% if type != :pending %>
+      <td class="out-time">
+        <%= visit.out_time_formatted %>
+      </td>
+      <td class="duration">
+        <%= visit.duration_formatted %>
+      </td>
+  <% end %>
+  <td class="location">
+    <%= visit.location_label %>
+  </td>
+  <% if type == :completed %>
+      <td class="approve">
+        <%= check_box_tag :approve %>
+      </td>
+  <% end %>
+</tr>

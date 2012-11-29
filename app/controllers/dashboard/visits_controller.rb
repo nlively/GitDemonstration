@@ -5,6 +5,9 @@ module Dashboard
 
       # possible filter params: letter, name
 
+      @completed = Visit.completed
+      @pending = Visit.pending
+
     end
 
 

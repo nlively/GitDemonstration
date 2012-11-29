@@ -1,8 +1,9 @@
 table {
   width: 100%;
 
-  td {
+  td, th {
     padding: 8px;
     vertical-align: top;
+    text-align: left;
   }
 }

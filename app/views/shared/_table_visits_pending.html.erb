@@ -1,0 +1,18 @@
+<h3>Pending Visits</h3>
+<% unless visits.empty? %>
+    <table id="pending-visits">
+      <tr>
+              <th>Employee</th>
+              <th>Pay Rate</th>
+              <th>Client</th>
+              <th>Bill Rate</th>
+              <th>In</th>
+              <th>Location</th>
+            </tr>
+      <% visits.each do |visit| %>
+          <%=  render 'shared/row_visit', :visit => visit, :type => :pending %>
+      <% end %>
+    </table>
+<% else %>
+    <p>There are no pending visits to be processed.</p>
+<% end %>

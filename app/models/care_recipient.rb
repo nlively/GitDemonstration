@@ -19,7 +19,7 @@
 class CareRecipient < ActiveRecord::Base
   has_many :photos
   has_many :notes
-  has_many :check_ins
+  has_many :visits
 
   belongs_to :agency
   belongs_to :default_location, :class_name => 'Location', :foreign_key => :default_location_id
@@ -42,7 +42,16 @@ class CareRecipient < ActiveRecord::Base
     return sprintf '%s, %s', last_name, first_name
   end
 
+   def first_location
+     return locations.first unless locations.empty?
+   end
 
+  def address1
+    return first_location.street unless first_location.nil?
+  end
+  def address2
+    return sprintf("%s, %s %s",first_location.city, first_location.state, first_location.zip) unless first_location.nil?
+  end
 
   def web_service_format url_base
 
@@ -53,7 +62,9 @@ class CareRecipient < ActiveRecord::Base
       :full_name_last_first =>full_name_last_first,
       :photo_url => "#{url_base}#{profile_photo.url(:profile)}",
       :id => id,
-      :dob => dob
+      :dob => dob,
+      :address1 => address1,
+      :address2 => address2
     }
 
   end

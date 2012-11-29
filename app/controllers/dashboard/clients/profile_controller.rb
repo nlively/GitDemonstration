@@ -6,7 +6,7 @@ module Dashboard::Clients
     end
 
     def index
-
+        @name="Jerry Springer"
     end
 
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121164057) do
+ActiveRecord::Schema.define(:version => 20121128185235) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -53,15 +53,12 @@ ActiveRecord::Schema.define(:version => 20121121164057) do
 
   create_table "check_ins", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "latitude"
-    t.integer  "longitude"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.string   "session_guid",      :limit => 32
+    t.decimal  "latitude",   :precision => 11, :scale => 8
+    t.decimal  "longitude",  :precision => 11, :scale => 8
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.boolean  "in_out"
-    t.integer  "care_recipient_id"
-    t.integer  "location_id"
-    t.integer  "agency_id"
+    t.integer  "visit_id"
   end
 
   create_table "locations", :force => true do |t|
@@ -180,5 +177,17 @@ ActiveRecord::Schema.define(:version => 20121121164057) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "visits", :force => true do |t|
+    t.datetime "in_time"
+    t.datetime "out_time"
+    t.boolean  "approved"
+    t.integer  "user_id"
+    t.integer  "care_recipient_id"
+    t.integer  "location_id"
+    t.integer  "agency_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
 end

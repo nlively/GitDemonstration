@@ -10,9 +10,15 @@ module Api::V1
       @checkin = CheckIn.new :user_id => current_resource_owner.id, :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
 
       if @checkin.in_out
-        @checkin.session_guid = UUID.generate
+        @visit = Visit.create! :user_id => @checkin.user_id, :in_time => DateTime.current
+
+        @checkin.visit = @visit
       else
-        @checkin.session_guid = params[:session_guid]
+        @visit = Visit.find params[:visit_id]
+        @visit.out_time = DateTime.current
+        @visit.save!
+        @checkin.visit = @visit
+
       end
 
       @checkin.save!

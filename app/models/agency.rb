@@ -14,7 +14,7 @@
 
 class Agency < ActiveRecord::Base
   has_many :users
-  has_many :check_ins
+  has_many :visits
   has_many :care_recipients
   has_many :locations
 
