@@ -15,25 +15,52 @@ module Api::V1
 
     # GET /api/v1/care-recipients/:id/notes
     def notes
+      sort_string = sort_string_from_params
+
       @client = CareRecipient.find params[:id]
-      if (@client.users.include? current_resource_owner)
-        render json: @client.notes
+      if @client.users.include? current_resource_owner
+        if filter_by_my_own
+          @notes = @client.notes.where(:user_id => current_resource_owner.id).order(sort_string)
+        else
+          @notes = @client.notes.order(sort_string)
+        end
+
+        render json: @notes
+
       end
     end
 
     # GET /api/v1/care-recipients/:id/photos
     def photos
+      sort_string = sort_string_from_params
+
       @client = CareRecipient.find params[:id]
-      if (@client.users.include? current_resource_owner)
-        render json: @client.photos
+      if @client.users.include? current_resource_owner
+        if filter_by_my_own
+          @photos = @client.photos.where(:user_id => current_resource_owner.id).order(sort_string)
+        else
+          @photos = @client.photos.order(sort_string)
+        end
+
+        render json: @photos
+
       end
     end
 
-    # GET /api/v1/care-recipients/:id/history
-    def history
+    # GET /api/v1/care-recipients/:id/visits
+    def visits
+      sort_string = sort_string_from_params
+
       @client = CareRecipient.find params[:id]
-      if (@client.users.include? current_resource_owner)
-        render json: @client.visits
+      if @client.users.include? current_resource_owner
+        if filter_by_my_own
+          @visits = @client.visits.where(:user_id => current_resource_owner.id).order(sort_string)
+        else
+          @visits = @client.visits.order(sort_string)
+        end
+
+        render json: @visits
+
       end
     end
 

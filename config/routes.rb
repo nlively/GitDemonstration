@@ -19,13 +19,13 @@ OauthServer::Application.routes.draw do
 
       post 'account' => 'account#update'
       post 'account/password'
-      get 'account/history'
+      get 'account/visits'
       get 'account/clients'
       get 'account/notes'
       get 'account/photos'
 
       get 'care-recipients/:id' => 'care_recipients#show'
-      get 'care-recipients/:id/history' => 'care_recipients#history'
+      get 'care-recipients/:id/visits' => 'care_recipients#visits'
       get 'care-recipients/:id/notes' => 'care_recipients#notes'
       get 'care-recipients/:id/photos' => 'care_recipients#photos'
 

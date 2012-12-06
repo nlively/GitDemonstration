@@ -40,24 +40,48 @@ module Api::V1
 
     # GET /api/v1/account/photos
     def photos
-      @photos = Photo.find_all_by_user_id current_resource_owner.id
+      sort_string = sort_string_from_params
+
+      if params[:care_recipient_id].blank?
+        @photos = Photo.order(sort_string).find_all_by_user_id(current_resource_owner.id)
+      else
+        @photos = Photo.order(sort_string).find_all_by_care_recipient_id_and_user_id(params[:care_recipient_id], current_resource_owner.id)
+      end
+
       render json: @photos
     end
 
     # GET /api/v1/account/notes
     def notes
-      @notes = Note.find_all_by_user_id current_resource_owner.id
+      sort_string = sort_string_from_params
+
+      if params[:care_recipient_id].blank?
+        @notes = Note.order(sort_string).find_all_by_user_id(current_resource_owner.id)
+      else
+        @notes = Note.order(sort_string).find_all_by_care_recipient_id_and_user_id(params[:care_recipient_id], current_resource_owner.id)
+      end
+
       render json: @notes
     end
 
     # GET /api/v1/account/clients
     def clients
-      render json: current_resource_owner.care_recipients.map {|u| u.web_service_format(root_url)}
+      sort_string = sort_string_from_params
+
+      if params[:name].blank?
+        @clients = current_resource_owner.care_recipients.order(sort_string)
+      else
+        fuzzy = '%' + params[:name] + '%'
+        @clients = current_resource_owner.care_recipients.order(sort_string).where("first_name LIKE ? OR last_name LIKE ?", fuzzy, fuzzy)
+      end
+
+      render json: @clients
     end
 
-    # GET /api/v1/account/history
-    def history
-      render json: current_resource_owner.visits
+    # GET /api/v1/account/visits
+    def visits
+      sort_string = sort_string_from_params
+      render json: current_resource_owner.visits.order(sort_string)
     end
 
   end
