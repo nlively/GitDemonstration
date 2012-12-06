@@ -37,6 +37,10 @@ gem 'jquery-rails'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
+gem "geokit-rails3"
+gem "timezone" #timezone
+gem 'chronic'
+
 group :production do
   gem 'thin', '1.3.1'
 end

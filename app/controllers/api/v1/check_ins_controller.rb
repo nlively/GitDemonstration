@@ -10,7 +10,7 @@ module Api::V1
       @checkin = CheckIn.new :user_id => current_resource_owner.id, :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
 
       if @checkin.in_out
-        @visit = Visit.create! :user_id => @checkin.user_id, :in_time => DateTime.current
+        @visit = Visit.create! :user_id => @checkin.user_id, :in_time => DateTime.current, :care_recipient_id => params[:care_recipient_id], :location_id => params[:location_id]
 
         @checkin.visit = @visit
       else
@@ -22,6 +22,12 @@ module Api::V1
       end
 
       @checkin.save!
+
+
+      unless params[:note].empty?
+        Note.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :note => params[:note]
+      end
+
 
       respond_to do |format|
         format.html { redirect_to 'index' }

@@ -25,12 +25,60 @@ class Location < ActiveRecord::Base
 
   belongs_to :agency
 
+  before_save :geocode
+
   has_attached_file :outside_photo, :styles => {
     :profile => "93x93>"
   }
 
   def label
     return street
+  end
+  def to_lat_long_string
+    return sprintf "%f, %f", latitude, longitude
+  end
+
+  def to_lat_long_hash
+    assign_latlong
+
+    return {
+      'latitude' => latitude,
+      'longitude' => longitude
+    }
+  end
+
+  def to_address_string
+    label = ""
+    label += street unless street.blank?
+    label += ", " + city unless city.blank?
+    label += ", " + state unless state.blank?
+    label += " " + zip unless zip.blank?
+
+    return label
+  end
+
+  def to_html
+    label = ""
+    label += street + "<br />" unless street.blank?
+    label += city unless city.blank?
+    label += ", " + state unless state.blank?
+    label += " " + zip unless zip.blank?
+
+    return label
+  end
+
+
+
+  def geocode
+    #if self.latitude.nil? or self.latitude.empty?
+    geo = Geokit::Geocoders::GoogleGeocoder.geocode to_address_string
+    Rails.logger.debug to_address_string
+    Rails.logger.debug geo.inspect
+    if geo.success then
+      self.latitude = geo.lat
+      self.longitude =  geo.lng
+    end
+    #end
   end
 
 end

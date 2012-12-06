@@ -46,6 +46,10 @@ class CareRecipient < ActiveRecord::Base
      return locations.first unless locations.empty?
    end
 
+  def first_location_id
+    return first_location.id unless first_location.nil?
+  end
+
   def address1
     return first_location.street unless first_location.nil?
   end
@@ -63,6 +67,7 @@ class CareRecipient < ActiveRecord::Base
       :photo_url => "#{url_base}#{profile_photo.url(:profile)}",
       :id => id,
       :dob => dob,
+      :location_id => first_location_id,
       :address1 => address1,
       :address2 => address2
     }

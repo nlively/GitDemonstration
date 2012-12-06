@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128185235) do
+ActiveRecord::Schema.define(:version => 20121206162844) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(:version => 20121128185235) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
-    t.decimal  "latitude",                   :precision => 10, :scale => 0
-    t.decimal  "longitude",                  :precision => 10, :scale => 0
+    t.decimal  "latitude",                   :precision => 11, :scale => 8
+    t.decimal  "longitude",                  :precision => 11, :scale => 8
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
     t.string   "outside_photo_file_name"
