@@ -10,10 +10,11 @@ module Api::V1
       @recipients_formatted = @recipients.map do |r|
         logger.debug r.inspect
         recipient = CareRecipient.find r['care_recipient_id']
-        result = recipient.web_service_format(root_url)
+        location = Location.find r['location_id']
+        result = recipient.web_service_format(root_url, location)
         result[:distance] = r['distance']
 
-        result
+        result # return the result
       end
       render json: @recipients_formatted
     end
@@ -26,7 +27,7 @@ module Api::V1
 
       search_origin = {"lat" => params[:latitude], "long" => params[:longitude]}
 
-      query_sql = "SELECT cr.id as care_recipient_id, l.latitude, l.longitude, 3956 * 2 * ASIN(SQRT( POWER(SIN((:origin_lat -
+      query_sql = "SELECT cr.id as care_recipient_id, l.id as location_id, l.latitude, l.longitude, 3956 * 2 * ASIN(SQRT( POWER(SIN((:origin_lat -
           abs(l.latitude)) * pi()/180 / 2),2) + COS(:origin_lat * pi()/180 ) *
           COS(abs(l.latitude) *  pi()/180) * POWER(SIN((:origin_long - l.longitude) *  pi()/180 / 2), 2) )) as distance
       FROM locations l

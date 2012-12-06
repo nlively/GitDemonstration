@@ -8,6 +8,7 @@
 #  note              :text
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  visit_id          :integer
 #
 
 class Note < ActiveRecord::Base

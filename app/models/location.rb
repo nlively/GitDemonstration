@@ -7,8 +7,8 @@
 #  city                       :string(255)
 #  state                      :string(255)
 #  zip                        :string(255)
-#  latitude                   :integer
-#  longitude                  :integer
+#  latitude                   :decimal(11, 8)
+#  longitude                  :decimal(11, 8)
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  outside_photo_file_name    :string(255)
@@ -36,6 +36,13 @@ class Location < ActiveRecord::Base
   end
   def to_lat_long_string
     return sprintf "%f, %f", latitude, longitude
+  end
+
+  def formatted_line1
+    return street
+  end
+  def formatted_line2
+    return sprintf("%s, %s %s",city, state, zip)
   end
 
   def to_lat_long_hash

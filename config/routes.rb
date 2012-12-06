@@ -12,12 +12,24 @@ OauthServer::Application.routes.draw do
       resources :care_recipients, :only => :show
       resources :check_ins, :only => [:create, :index]
 
+      namespace :session do
+        post 'photo'
+        post 'note'
+        get 'notes/client' => '#client_notes'
+        get 'notes/user' =>'#user_notes'
+        get 'photos/client' => '#client_photos'
+      end
+
       match 'account/password', :via => :post
       get 'account/history'
       get 'account/clients'
 
+
+
       get 'care-recipients/:id' => 'care_recipients#show'
       get 'care-recipients/:id/history' => 'care_recipients#history'
+      get 'care-recipients/:id/notes' => 'care_recipients#notes'
+      get 'care-recipients/:id/photos' => 'care_recipients#photos'
 
       match 'geo/clients', :via => [:get, :post]
 

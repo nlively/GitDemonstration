@@ -7,8 +7,8 @@
 #  city                       :string(255)
 #  state                      :string(255)
 #  zip                        :string(255)
-#  latitude                   :integer
-#  longitude                  :integer
+#  latitude                   :decimal(11, 8)
+#  longitude                  :decimal(11, 8)
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  outside_photo_file_name    :string(255)

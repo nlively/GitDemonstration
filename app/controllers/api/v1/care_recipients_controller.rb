@@ -13,6 +13,16 @@ module Api::V1
 
     end
 
+    # GET /api/v1/care-recipients/:id/notes
+    def notes
+
+    end
+
+    # GET /api/v1/care-recipients/:id/photos
+    def photos
+
+    end
+
     # GET /api/v1/care-recipients/:id/history
     def history
 

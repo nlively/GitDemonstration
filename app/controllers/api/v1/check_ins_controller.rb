@@ -5,6 +5,7 @@ module Api::V1
     respond_to :json
 
 
+    # POST /api/v1/check_ins
     def create
 
       @checkin = CheckIn.new :user_id => current_resource_owner.id, :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
@@ -24,7 +25,7 @@ module Api::V1
       @checkin.save!
 
 
-      unless params[:note].empty?
+      unless params[:note].nil? or params[:note].empty?
         Note.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :note => params[:note]
       end
 
@@ -36,6 +37,7 @@ module Api::V1
 
     end
 
+    # GET /api/v1/check_ins
     def index
 
       @checkins = CheckIn.all

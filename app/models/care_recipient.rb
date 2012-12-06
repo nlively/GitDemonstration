@@ -42,35 +42,40 @@ class CareRecipient < ActiveRecord::Base
     return sprintf '%s, %s', last_name, first_name
   end
 
-   def first_location
-     return locations.first unless locations.empty?
-   end
-
-  def first_location_id
-    return first_location.id unless first_location.nil?
+  def first_location
+    return locations.first unless locations.empty?
   end
 
   def address1
-    return first_location.street unless first_location.nil?
+    return first_location.formatted_line1 unless first_location.nil?
   end
   def address2
-    return sprintf("%s, %s %s",first_location.city, first_location.state, first_location.zip) unless first_location.nil?
+    return first_location.formatted_line2 unless first_location.nil?
   end
 
-  def web_service_format url_base
+  def web_service_format url_base, location=nil
+    location = first_location if location.nil?
 
-    return {
+    hash = {
       :first_name => first_name,
       :last_name => last_name,
       :full_name =>full_name,
       :full_name_last_first =>full_name_last_first,
       :photo_url => "#{url_base}#{profile_photo.url(:profile)}",
       :id => id,
-      :dob => dob,
-      :location_id => first_location_id,
-      :address1 => address1,
-      :address2 => address2
+      :dob => dob
     }
+
+    unless location.nil?
+      hash[:location_id] = location.id
+      hash[:latitude] = location.latitude
+      hash[:longitude] = location.longitude
+      hash[:address_string] = location.to_address_string
+      hash[:address1] = location.formatted_line1
+      hash[:address2] = location.formatted_line2
+    end
+
+    return hash
 
   end
 
