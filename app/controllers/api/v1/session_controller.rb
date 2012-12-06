@@ -4,23 +4,6 @@ module Api::V1
     doorkeeper_for :all
     respond_to :json
 
-    # POST /api/v1/session/notes/user
-    def user_notes
-      @notes = Note.find_by_user_id current_resource_owner.id
-
-      render json: @notes
-    end
-
-    # POST /api/v1/session/notes/client
-    def client_notes
-
-    end
-
-    # POST /api/v1/session/photos/client
-    def client_photos
-
-    end
-
     # POST /api/v1/session/note
     def note
 

@@ -6,23 +6,20 @@ OauthServer::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :photos, :only => :create
-      resources :notes, :only => :create
-      resources :account, :only => :index
-      resources :care_recipients, :only => :show
-      resources :check_ins, :only => [:create, :index]
+      resources :photos, :only => :show
+      resources :notes, :only => :show
+      resources :account, :only => [:index,:update]
+      resources :check_ins, :only => [:create]
 
       namespace :session do
         post 'photo'
         post 'note'
-        get 'notes/client' => '#client_notes'
-        get 'notes/user' =>'#user_notes'
-        get 'photos/client' => '#client_photos'
       end
 
-      match 'account/password', :via => :post
+      post 'account/password'
       get 'account/history'
       get 'account/clients'
+      get 'account/notes'
 
 
 

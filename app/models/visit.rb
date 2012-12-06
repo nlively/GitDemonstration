@@ -20,6 +20,7 @@ class Visit < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   belongs_to :agency
+  belongs_to :approved_by_user, :class_name => 'User', :foreign_key => :approved_by_user_id
 
   has_many :check_ins
 

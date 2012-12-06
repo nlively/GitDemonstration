@@ -39,9 +39,12 @@ class User < ActiveRecord::Base
 
   acts_as_authorization_subject  :association_name => :roles, :join_table_name => :roles_users
 
+  serialize :settings, Hash
+
   has_many :photos
   has_many :notes
   has_many :visits
+  has_many :approved_visits, :class_name => 'Visit', :foreign_key => :approved_by_user_id
   belongs_to :agency
 
   has_many :care_recipients_users

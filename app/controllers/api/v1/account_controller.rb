@@ -4,14 +4,43 @@ module Api::V1
     doorkeeper_for :all
     respond_to :json
 
-    # POST /api/v1/account
-    def show
-        render json: current_resource_owner
+    # GET /api/v1/account
+    def index
+      render json: current_resource_owner
+    end
+
+    # POST/api/v1/account
+    def update
+      filtered_params = {
+        :first_name => params[:first_name],
+        :last_name =>params[:last_name],
+      }
+
+      if current_resource_owner.update_attributes filtered_params
+        render json: {:result => true, :message => "Profile has been updated"}
+      else
+        render json: {:result => false, :message => "Profile could not be updated"}
+      end
     end
 
     # POST /api/v1/account/password
     def password
-      current_resource_owner.update_with_password params
+      filtered_params = {
+        :current_password => params[:current_password],
+        :password =>params[:password],
+        :password_confirmation => params[:password_confirmation]
+      }
+      if current_resource_owner.update_with_password filtered_params
+        render json: {:result => true, :message => "Password has been changed"}
+      else
+        render json: {:result => false, :message => "Failed to change password"}
+      end
+
+    end
+
+    def notes
+      @notes = Note.find_by_user_id current_resource_owner.id
+      render json: @notes
     end
 
     def clients
@@ -20,30 +49,7 @@ module Api::V1
 
     # GET /api/v1/account/history
     def history
-
-    end
-
-    # POST /api/v1/account/check-in
-    def check_in
-      session_guid = UUID.new
-
-      @checkin = CheckIn.new params
-      @checkin.in_out=true
-      @checkin.session_guid=session_guid
-      @checkin.create!
-
-      render json: @checkin
-    end
-
-    # POST /api/v1/account/check-out
-    def check_out
-
-      @checkout = CheckIn.new params
-      @checkout.in_out=false
-      @checkout.create!
-
-      render json: @checkout
-
+      render json: current_resource_owner.visits
     end
 
   end

@@ -15,17 +15,26 @@ module Api::V1
 
     # GET /api/v1/care-recipients/:id/notes
     def notes
-
+      @client = CareRecipient.find params[:id]
+      if (@client.users.include? current_resource_owner)
+        render json: @client.notes
+      end
     end
 
     # GET /api/v1/care-recipients/:id/photos
     def photos
-
+      @client = CareRecipient.find params[:id]
+      if (@client.users.include? current_resource_owner)
+        render json: @client.photos
+      end
     end
 
     # GET /api/v1/care-recipients/:id/history
     def history
-
+      @client = CareRecipient.find params[:id]
+      if (@client.users.include? current_resource_owner)
+        render json: @client.visits
+      end
     end
 
 

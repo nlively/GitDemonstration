@@ -19,5 +19,9 @@ module Api::V1
 
     end
 
+    def show
+
+    end
+
   end
 end
