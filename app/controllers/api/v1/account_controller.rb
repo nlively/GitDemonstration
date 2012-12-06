@@ -9,7 +9,7 @@ module Api::V1
       render json: current_resource_owner
     end
 
-    # POST/api/v1/account
+    # POST /api/v1/account
     def update
       filtered_params = {
         :first_name => params[:first_name],
@@ -38,11 +38,19 @@ module Api::V1
 
     end
 
+    # GET /api/v1/account/photos
+    def photos
+      @photos = Photo.find_all_by_user_id current_resource_owner.id
+      render json: @photos
+    end
+
+    # GET /api/v1/account/notes
     def notes
-      @notes = Note.find_by_user_id current_resource_owner.id
+      @notes = Note.find_all_by_user_id current_resource_owner.id
       render json: @notes
     end
 
+    # GET /api/v1/account/clients
     def clients
       render json: current_resource_owner.care_recipients.map {|u| u.web_service_format(root_url)}
     end

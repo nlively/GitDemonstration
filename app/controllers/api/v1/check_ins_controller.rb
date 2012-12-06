@@ -37,16 +37,5 @@ module Api::V1
 
     end
 
-    # GET /api/v1/check_ins
-    def index
-
-      @checkins = CheckIn.all
-
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @checkins }
-      end
-
-    end
   end
 end

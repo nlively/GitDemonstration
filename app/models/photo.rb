@@ -13,6 +13,7 @@
 #  photo_file_size    :integer
 #  photo_updated_at   :datetime
 #  visit_id           :integer
+#  caption            :string(255)
 #
 
 class Photo < ActiveRecord::Base

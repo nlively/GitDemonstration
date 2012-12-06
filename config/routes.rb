@@ -22,13 +22,14 @@ OauthServer::Application.routes.draw do
       get 'account/history'
       get 'account/clients'
       get 'account/notes'
+      get 'account/photos'
 
       get 'care-recipients/:id' => 'care_recipients#show'
       get 'care-recipients/:id/history' => 'care_recipients#history'
       get 'care-recipients/:id/notes' => 'care_recipients#notes'
       get 'care-recipients/:id/photos' => 'care_recipients#photos'
 
-      match 'geo/clients', :via => [:get, :post]
+      post 'geo/clients'
 
     end
   end

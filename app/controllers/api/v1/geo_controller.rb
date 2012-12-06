@@ -4,7 +4,7 @@ module Api::V1
     doorkeeper_for :all
     respond_to :json
 
-    # GET,POST /api/v1/geo/clients
+    # POST /api/v1/geo/clients
     def clients
       @recipients = get_care_recipients
       @recipients_formatted = @recipients.map do |r|
