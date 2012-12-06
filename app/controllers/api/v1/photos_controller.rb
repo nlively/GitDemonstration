@@ -4,23 +4,11 @@ module Api::V1
     doorkeeper_for :all
     respond_to :json
 
-    # POST /api/v1/photos
-    def create
-      #@photo = Photo.new(params)
-      #
-      #if @photo.save
-      #  render json: @photo, status: :created, note: @photo
-      #else
-      #  render json: @photo.errors, status: :unprocessable_entity
-      #end
-
-      # just a stub
-      render json: true
-
-    end
-
+    # GET /api/v1/photos/:id
     def show
-
+      @photo = Photo.find params[:id]
+      # clean up this security later
+      render json: @photo
     end
 
   end

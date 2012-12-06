@@ -24,6 +24,8 @@
 #  profile_photo_file_size    :integer
 #  profile_photo_updated_at   :datetime
 #  agency_id                  :integer
+#  settings                   :text
+#  default_pay_rate           :decimal(11, 2)
 #
 
 class User < ActiveRecord::Base

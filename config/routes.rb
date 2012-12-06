@@ -8,7 +8,8 @@ OauthServer::Application.routes.draw do
     namespace :v1 do
       resources :photos, :only => :show
       resources :notes, :only => :show
-      resources :account, :only => [:index,:update]
+      resources :visits, :only => :show
+      resources :account, :only => [:index]
       resources :check_ins, :only => [:create]
 
       namespace :session do
@@ -16,12 +17,11 @@ OauthServer::Application.routes.draw do
         post 'note'
       end
 
+      post 'account' => 'account#update'
       post 'account/password'
       get 'account/history'
       get 'account/clients'
       get 'account/notes'
-
-
 
       get 'care-recipients/:id' => 'care_recipients#show'
       get 'care-recipients/:id/history' => 'care_recipients#history'

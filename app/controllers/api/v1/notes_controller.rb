@@ -4,19 +4,11 @@ module Api::V1
     doorkeeper_for :all
     respond_to :json
 
-    # POST /api/v1/notes
-    def create
-      @note = Note.new(params)
-
-      if @note.save
-        render json: @note, status: :created, note: @note
-      else
-        render json: @note.errors, status: :unprocessable_entity
-      end
-    end
-
+    # GET /api/v1/notes/:id
     def show
-
+      @note = Note.find params[:id]
+      # clean up this security later
+      render json: @note
     end
 
   end
