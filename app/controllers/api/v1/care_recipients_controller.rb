@@ -42,7 +42,7 @@ module Api::V1
           @photos = @client.photos.order(sort_string)
         end
 
-        render json: @photos
+        render json: @photos.map {|m| m.web_service_format(root_url) }
 
       end
     end
@@ -59,7 +59,7 @@ module Api::V1
           @visits = @client.visits.order(sort_string)
         end
 
-        render json: @visits
+        render json: @visits.map {|m| m.web_service_format(root_url)}
 
       end
     end

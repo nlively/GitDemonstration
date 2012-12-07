@@ -48,7 +48,7 @@ module Api::V1
         @photos = Photo.order(sort_string).find_all_by_care_recipient_id_and_user_id(params[:care_recipient_id], current_resource_owner.id)
       end
 
-      render json: @photos
+      render json: @photos.map {|m| m.web_service_format(root_url)}
     end
 
     # GET /api/v1/account/notes
@@ -61,7 +61,7 @@ module Api::V1
         @notes = Note.order(sort_string).find_all_by_care_recipient_id_and_user_id(params[:care_recipient_id], current_resource_owner.id)
       end
 
-      render json: @notes
+      render json: @notes.map {|m| m.web_service_format(root_url)}
     end
 
     # GET /api/v1/account/clients
@@ -81,7 +81,14 @@ module Api::V1
     # GET /api/v1/account/visits
     def visits
       sort_string = sort_string_from_params
-      render json: current_resource_owner.visits.order(sort_string)
+      @visits = current_resource_owner.visits.order(sort_string)
+      render json: @visits.map {|c| c.web_service_format(root_url)}
+    end
+
+    def visits_completed
+      sort_string = sort_string_from_params
+      @visits = Visit.where('out_time IS NOT NULL AND user_id = ?', current_resource_owner.id).order(sort_string)
+      render json: @visits.map {|c| c.web_service_format(root_url)}
     end
 
   end

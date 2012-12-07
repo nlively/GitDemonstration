@@ -1,6 +1,3 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 formats = {
   :dow => "%A",
   :yyyymmdd => "%Y%m%d",
@@ -24,7 +21,9 @@ formats = {
   :mysql_format => '%Y-%m-%d',
   :mysql_time_format => '%H:%M:%S',
   :mysql_date_time_format => '%Y-%m-%d %H:%M:%S',
-  :invoice_datetime => "%A %B %d, %Y %I:%M %p"
+  :invoice_datetime => "%A %B %d, %Y %I:%M %p",
+  :month_abbrev => '%b',
+  :day_only => '%-d'
 }
 
 formats.each_pair do |key,val|

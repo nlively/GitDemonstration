@@ -8,7 +8,7 @@ module Api::V1
     def show
       @note = Note.find params[:id]
       # clean up this security later
-      render json: @note
+      render json: @note.web_service_format(root_url)
     end
 
   end

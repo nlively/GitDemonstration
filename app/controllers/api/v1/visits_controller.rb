@@ -9,7 +9,7 @@ module Api::V1
       @visit = Visit.find params[:id]
       # clean up this security later
       if @visit.user == current_resource_owner
-        render json: @visit
+        render json: @visit.web_service_format(root_url)
       end
     end
 

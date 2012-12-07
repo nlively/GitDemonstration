@@ -19,6 +19,8 @@
 
 class Visit < ActiveRecord::Base
 
+  include ActionView::Helpers::DateHelper
+
   belongs_to :care_recipient
   belongs_to :user
   belongs_to :location
@@ -35,20 +37,48 @@ class Visit < ActiveRecord::Base
     return (care_recipient.nil?) ? 'N/A' : care_recipient.full_name_last_first
   end
 
-  def in_time_formatted
-
+  def completed?
+    return !out_time.blank?
   end
 
-  def out_time_formatted
-
+  def total_hours
+    return (out_time - in_time) / 1.hour
   end
 
   def duration
     return out_time - in_time
   end
 
-  def duration_formatted
+  def duration_string
+    distance_of_time_in_words duration
+  end
 
+  def date_string
+    in_time.to_formatted_s(:mdy)
+  end
+
+  def start_to_stop
+    in_time.to_formatted_s(:hour_with_minute_meridian) + ' to ' + out_time.to_formatted_s(:hour_with_minute_meridian)
+  end
+
+  def full_date_string
+    in_time.to_formatted_s(:full_date)
+  end
+
+  def time_string
+    sprintf '%s %s-%s', in_time.to_formatted_s(:month_slash_date), in_time.to_formatted_s(:hour_with_minute_meridian_no_space), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
+  end
+
+  def month_name_day_string
+    self.in_time.to_formatted_s(:month_name_day)
+  end
+
+  def is_over?
+    self.out_time < Time.now
+  end
+
+  def is_future?
+    self.in_time > Time.now
   end
 
   def location_label
@@ -84,8 +114,18 @@ class Visit < ActiveRecord::Base
       :care_recipient_id => care_recipient.id,
       :care_recipient_full_name => care_recipient.full_name,
       :care_recipient_photo_url => "#{url_base}#{care_recipient.profile_photo.url(:profile)}",
-      :location_id => location_id
+      :location_id => location_id,
+      :month => in_time.to_formatted_s(:month_abbrev),
+      :day => in_time.to_formatted_s(:day_only),
+      :bill_rate => bill_rate,
+      :pay_rate => pay_rate
     }
+
+    if completed?
+      hash[:timespan_fmt] = start_to_stop
+      hash[:duration_fmt] = duration_string
+      hash[:money_made] = pay_rate * total_hours
+    end
 
     unless location.nil?
       hash[:location_id] = location.id

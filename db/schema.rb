@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121206224255) do
+ActiveRecord::Schema.define(:version => 20121207221103) do
 
   create_table "agencies", :force => true do |t|
     t.string   "name"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(:version => 20121206224255) do
     t.string   "last_name"
     t.datetime "dob"
     t.integer  "default_location_id"
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
     t.integer  "agency_id"
-    t.decimal  "default_bill_rate",          :precision => 11, :scale => 2
+    t.decimal  "default_bill_rate",          :precision => 11, :scale => 2, :default => 0.0
   end
 
   create_table "care_recipients_locations", :force => true do |t|
@@ -156,8 +156,8 @@ ActiveRecord::Schema.define(:version => 20121206224255) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                     :default => "", :null => false
-    t.string   "encrypted_password",                                        :default => "", :null => false
+    t.string   "email",                                                     :default => "",  :null => false
+    t.string   "encrypted_password",                                        :default => "",  :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.datetime "date_of_birth"
@@ -170,15 +170,18 @@ ActiveRecord::Schema.define(:version => 20121206224255) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                                :null => false
-    t.datetime "updated_at",                                                                :null => false
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
     t.integer  "agency_id"
     t.text     "settings"
-    t.decimal  "default_pay_rate",           :precision => 11, :scale => 2
+    t.decimal  "default_pay_rate",           :precision => 11, :scale => 2, :default => 0.0
+    t.string   "middle_name"
+    t.string   "phone"
+    t.string   "sms"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -192,10 +195,10 @@ ActiveRecord::Schema.define(:version => 20121206224255) do
     t.integer  "care_recipient_id"
     t.integer  "location_id"
     t.integer  "agency_id"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
-    t.decimal  "bill_rate",           :precision => 11, :scale => 2
-    t.decimal  "pay_rate",            :precision => 11, :scale => 2
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+    t.decimal  "bill_rate",           :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "pay_rate",            :precision => 11, :scale => 2, :default => 0.0
     t.integer  "approved_by_user_id"
   end
 

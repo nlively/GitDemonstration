@@ -8,7 +8,7 @@ module Api::V1
     def show
       @photo = Photo.find params[:id]
       # clean up this security later
-      render json: @photo
+      render json: @photo.web_service_format(root_url)
     end
 
   end

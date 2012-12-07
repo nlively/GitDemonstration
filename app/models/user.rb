@@ -80,12 +80,22 @@ class User < ActiveRecord::Base
 
   def web_service_format
 
-    return {
-      :full_name =>full_name,
-      :photo_url => profile_photo.url(:profile),
+    hash = {
       :id => id,
-      :email => email
+      :full_name => full_name,
+      :first_name => first_name,
+      :middle_name => middle_name,
+      :photo_url => profile_photo.url(:profile),
+      :email => email,
+      :phone => phone,
+      :sms   => sms
     }
+
+    unless agency.nil?
+      hash[:agency_name] = agency.name
+    end
+
+    hash
 
   end
 

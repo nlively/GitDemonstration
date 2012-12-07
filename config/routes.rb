@@ -20,6 +20,7 @@ OauthServer::Application.routes.draw do
       post 'account' => 'account#update'
       post 'account/password'
       get 'account/visits'
+      get 'account/visits/completed' => 'account#visits_completed'
       get 'account/clients'
       get 'account/notes'
       get 'account/photos'
