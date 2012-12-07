@@ -29,11 +29,7 @@ module Api::V1
         Note.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :note => params[:note]
       end
 
-
-      respond_to do |format|
-        format.html { redirect_to 'index' }
-        format.json { render json: @checkin }
-      end
+      render json: @visit.web_service_format(root_url)
 
     end
 

@@ -71,6 +71,34 @@ class Visit < ActiveRecord::Base
     Visit.where :out_time => nil
   end
 
+  def web_service_format url_base, location=nil
+
+    hash = {
+      :id => id,
+      :in_time => in_time,
+      :in_time_fmt_date => in_time.to_formatted_s(:mdy),
+      :in_time_fmt_time => in_time.to_formatted_s(:hour_with_minute_meridian),
+      :user_id => user.id,
+      :user_full_name => user.full_name,
+      :user_photo_url => "#{url_base}#{user.profile_photo.url(:profile)}",
+      :care_recipient_id => care_recipient.id,
+      :care_recipient_full_name => care_recipient.full_name,
+      :care_recipient_photo_url => "#{url_base}#{care_recipient.profile_photo.url(:profile)}",
+      :location_id => location_id
+    }
+
+    unless location.nil?
+      hash[:location_id] = location.id
+      hash[:latitude] = location.latitude
+      hash[:longitude] = location.longitude
+      hash[:address_string] = location.to_address_string
+      hash[:address1] = location.formatted_line1
+      hash[:address2] = location.formatted_line2
+    end
+
+    return hash
+
+  end
 
 
 end

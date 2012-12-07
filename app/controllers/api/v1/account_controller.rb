@@ -75,7 +75,7 @@ module Api::V1
         @clients = current_resource_owner.care_recipients.order(sort_string).where("first_name LIKE ? OR last_name LIKE ?", fuzzy, fuzzy)
       end
 
-      render json: @clients
+      render json: @clients.map {|c| c.web_service_format(root_url)}
     end
 
     # GET /api/v1/account/visits

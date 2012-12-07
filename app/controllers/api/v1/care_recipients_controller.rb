@@ -25,7 +25,7 @@ module Api::V1
           @notes = @client.notes.order(sort_string)
         end
 
-        render json: @notes
+        render json: @notes.map {|m| m.web_service_format(root_url) }
 
       end
     end
