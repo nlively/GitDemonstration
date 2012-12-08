@@ -78,14 +78,14 @@ class User < ActiveRecord::Base
     return (first_name.nil?) ? email : full_name
   end
 
-  def web_service_format
+  def web_service_format url_base
 
     hash = {
       :id => id,
       :full_name => full_name,
       :first_name => first_name,
       :middle_name => middle_name,
-      :photo_url => profile_photo.url(:profile),
+      :photo_url => "#{url_base}#{profile_photo.url(:profile)}",
       :email => email,
       :phone => phone,
       :sms   => sms

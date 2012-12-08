@@ -6,7 +6,7 @@ module Api::V1
 
     # GET /api/v1/account
     def index
-      render json: current_resource_owner
+      render json: current_resource_owner.web_service_format(root_url)
     end
 
     # POST /api/v1/account
