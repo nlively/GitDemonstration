@@ -26,11 +26,11 @@ module Api::V1
 
       @note = nil
 
-      unless params[:note].nil? or params[:note].empty?
+      unless params[:note].blank?
         @note = Note.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :note => params[:note], :visit_id => @visit.id
       end
 
-      unless params[:photo].nil? or params[:photo].empty?
+      unless params[:photo].blank?
         @photo = Photo.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :photo => params[:photo], :visit_id => @visit.id, :note => @note
       end
 
