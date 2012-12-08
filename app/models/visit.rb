@@ -101,7 +101,7 @@ class Visit < ActiveRecord::Base
     Visit.where :out_time => nil
   end
 
-  def web_service_format url_base, location=nil
+  def web_service_format url_base
 
     hash = {
       :id => id,
