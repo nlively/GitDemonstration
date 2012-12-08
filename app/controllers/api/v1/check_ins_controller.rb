@@ -24,9 +24,14 @@ module Api::V1
 
       @checkin.save!
 
+      @note = nil
 
       unless params[:note].nil? or params[:note].empty?
-        Note.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :note => params[:note]
+        @note = Note.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :note => params[:note], :visit_id => @visit.id
+      end
+
+      unless params[:photo].nil? or params[:photo].empty?
+        @photo = Photo.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :photo => params[:photo], :visit_id => @visit.id, :note => @note
       end
 
       render json: @visit.web_service_format(root_url)

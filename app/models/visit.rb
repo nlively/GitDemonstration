@@ -28,6 +28,7 @@ class Visit < ActiveRecord::Base
   belongs_to :approved_by_user, :class_name => 'User', :foreign_key => :approved_by_user_id
 
   has_many :check_ins
+  has_many :photos
 
   def employee_label
     return (user.nil?) ? 'N/A' : user.full_name_last_first
