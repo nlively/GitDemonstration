@@ -37,7 +37,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :first_name, :last_name, :date_of_birth, :gender, :profile_photo
+    :first_name, :middle_name, :last_name, :date_of_birth, :gender, :profile_photo,
+    :phone, :sms, :default_pay_rate, :settings, :agency_id
 
   acts_as_authorization_subject  :association_name => :roles, :join_table_name => :roles_users
 
