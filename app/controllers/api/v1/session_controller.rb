@@ -17,11 +17,24 @@ module Api::V1
 
       @note.save!
 
-      render json: @note
+      render json: @note.web_service_format(root_url)
     end
 
     # POST /api/v1/session/photo
     def photo
+      logger.debug params.inspect
+
+      @photo = Photo.new :user_id => current_resource_owner.id, :photo => params[:photo]
+
+        unless params[:visit_id].nil? or params[:visit_id].blank?
+          @visit = Visit.find params[:visit_id]
+          @photo.visit_id = @visit.id
+          @photo.care_recipient_id = @visit.care_recipient_id
+        end
+
+      @photo.save!
+
+      render json: @photo.web_service_format(root_url)
 
     end
 
