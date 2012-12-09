@@ -1,9 +1,9 @@
-<h1><%= @care_recipient.full_name %>'s Visit History</h1>
+<h1><%= @employee.full_name %>'s Visit History</h1>
 
 <% unless @visits.empty? %>
     <table id="pending-visits">
       <tr>
-        <th>Employee</th>
+        <th>Client</th>
         <th>Pay Rate</th>
         <th>Bill Rate</th>
         <th>In</th>
@@ -13,8 +13,8 @@
       </tr>
       <% @visits.each do |visit| %>
           <tr class="visit-row">
-            <td class="employee" rel="<%= visit.user_id %>">
-              <%= visit.employee_label %>
+            <td class="client" rel="<%= visit.care_recipient_id %>">
+              <%= visit.client_label %>
             </td>
             <td class="payrate">
               <%= visit.pay_rate %>
@@ -38,5 +38,5 @@
       <% end %>
     </table>
 <% else %>
-    <p>There are no visits in <%= @care_recipient.full_name %>'s history.</p>
+    <p>There are no visits in <%= @employee.full_name %>'s work history.</p>
 <% end %>

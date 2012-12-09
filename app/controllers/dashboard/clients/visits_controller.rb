@@ -6,8 +6,8 @@ module Dashboard::Clients
     end
 
     def index
-
-    end
+      @visits = @care_recipient.visits.order('in_time desc')
+      end
 
   end
 end

@@ -1,12 +1,13 @@
 module Dashboard::Employees
-  class ProfileController < Dashboard::EmployeesController
+  class VisitsController < Dashboard::EmployeesController
 
     before_filter do
       @employee = User.find params[:id]
     end
 
     def index
-    end
+      @visits = @employee.visits.order('in_time desc')
+      end
 
   end
 end

@@ -38,6 +38,14 @@ class Visit < ActiveRecord::Base
     return (care_recipient.nil?) ? 'N/A' : care_recipient.full_name_last_first
   end
 
+  def in_time_formatted
+    in_time.to_formatted_s(:mdy_with_time) unless in_time.blank?
+  end
+
+  def out_time_formatted
+    out_time.to_formatted_s(:mdy_with_time) unless out_time.blank?
+  end
+
   def completed?
     return !out_time.blank?
   end
@@ -47,11 +55,11 @@ class Visit < ActiveRecord::Base
   end
 
   def duration
-    return out_time - in_time
+    return (out_time.blank?) ? nil : out_time - in_time
   end
 
   def duration_string
-    distance_of_time_in_words duration
+    distance_of_time_in_words(duration) unless duration.nil?
   end
 
   def date_string
@@ -86,6 +94,18 @@ class Visit < ActiveRecord::Base
     return (location.nil?) ? 'N/A' : location.label
   end
 
+  def self.pending_by_agency_and_date_range agency_id, start, stop
+    pending.where('agency_id = ? AND in_time BETWEEN ? AND ?', agency_id, start, stop)
+  end
+
+  def self.completed_by_agency_and_date_range agency_id, start, stop
+    completed.where('agency_id = ? AND in_time BETWEEN ? AND ?', agency_id, start, stop)
+  end
+
+  def self.pending
+    Visit.where :out_time => nil
+  end
+
   def self.completed
     Visit.where("out_time IS NOT NULL")
   end
@@ -96,10 +116,6 @@ class Visit < ActiveRecord::Base
 
   def self.unapproved
     Visit.where :approved => false
-  end
-
-  def self.pending
-    Visit.where :out_time => nil
   end
 
   def web_service_format url_base

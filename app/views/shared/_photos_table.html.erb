@@ -1,0 +1,8 @@
+<ul class="three-columns">
+
+<% photos.each do |photo| %>
+     <li>
+       <%= image_tag photo.photo.url(:profile) %>
+     </li>
+<% end %>
+</ul>

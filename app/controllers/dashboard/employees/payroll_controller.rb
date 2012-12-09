@@ -1,5 +1,5 @@
 module Dashboard::Employees
-  class ProfileController < Dashboard::EmployeesController
+  class PayrollController < Dashboard::EmployeesController
 
     before_filter do
       @employee = User.find params[:id]

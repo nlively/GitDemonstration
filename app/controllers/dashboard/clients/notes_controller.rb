@@ -6,7 +6,8 @@ module Dashboard::Clients
     end
 
     def index
-
+      @notes = @care_recipient.notes.order('created_at desc')
+      @photos = @care_recipient.photos.order('created_at desc')
     end
 
   end
