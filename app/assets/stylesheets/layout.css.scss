@@ -98,3 +98,11 @@
 #content {
   float: left;
 }
+
+ul, ol {
+  &.three-columns {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
+}

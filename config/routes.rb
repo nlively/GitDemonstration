@@ -44,6 +44,13 @@ OauthServer::Application.routes.draw do
     match 'reports' => 'reports#index'
     match 'settings' => 'settings#index'
 
+    namespace :visits do
+      match 'today'
+      match 'this-week', :action => :this_week, :as => :this_week
+      match 'this-month', :action => :this_month, :as => :this_month
+      match 'custom'
+    end
+
     namespace :employees do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/clients' => 'clients#index', :as => :clients

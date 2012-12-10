@@ -2,7 +2,13 @@
   <% notes.each do |note| %>
       <tr>
         <td>
-          <%= note.note %>
+          <%=  note.photo.photo.url(:profile) unless note.photo.blank? %>
+        </td>
+        <td>
+          <%= note.note.truncate(90) %>
+        </td>
+        <td>
+          <%= note.created_at.to_formatted_s :mdy %>
         </td>
       </tr>
   <% end %>
