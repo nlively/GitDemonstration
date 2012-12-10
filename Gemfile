@@ -34,6 +34,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 

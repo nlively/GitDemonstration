@@ -106,3 +106,36 @@ ul, ol {
     column-count: 3;
   }
 }
+
+tr.visit-row {
+  td {
+    &.employee, &.client {
+      width: 120px;
+    }
+
+    &.payrate, &.billrate {
+       width: 70px;
+
+      input[type="text"] {
+        width: 50px;
+      }
+    }
+
+    &.in-time, &.out-time {
+       width: 100px;
+    }
+
+    &.duration {
+      width: 70px;
+    }
+
+    &.wrapper {
+      padding: 0;
+      text-align: left;
+
+      table {
+        width:100%;
+      }
+    }
+  }
+}

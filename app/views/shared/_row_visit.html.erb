@@ -1,20 +1,20 @@
-<tr class="visit-row">
+<tr class="visit-row editable" data-type="<%= type %>" date-remote="true" data-id="<%= visit.id %>">
   <td class="employee" rel="<%= visit.user_id %>">
     <%= visit.employee_label %>
   </td>
   <td class="payrate">
-    TBD
+    <%= visit.pay_rate%>
   </td>
   <td class="client" rel="<%= visit.care_recipient_id %>">
     <%= visit.client_label %>
   </td>
   <td class="billrate">
-    TBD
+    <%= visit.bill_rate%>
   </td>
   <td class="in-time">
     <%= visit.in_time_formatted %>
   </td>
-  <% if type != :pending %>
+  <% if type == :completed or type == 'completed' %>
       <td class="out-time">
         <%= visit.out_time_formatted %>
       </td>
@@ -25,7 +25,7 @@
   <td class="location">
     <%= visit.location_label %>
   </td>
-  <% if type == :completed %>
+  <% if type == :completed or type == 'completed' %>
       <td class="approve">
         <%= check_box_tag :approve %>
       </td>

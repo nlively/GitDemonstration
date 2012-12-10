@@ -203,6 +203,7 @@ DEPENDENCIES
   doorkeeper (~> 0.4.2)
   geokit-rails3
   jquery-rails
+  jquery-ui-rails
   mysql2
   oauth2
   paperclip!

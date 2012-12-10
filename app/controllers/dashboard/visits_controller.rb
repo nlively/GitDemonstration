@@ -8,6 +8,7 @@ module Dashboard
       @completed = Visit.completed
       @pending = Visit.pending
 
+      render :today
     end
 
     def today
@@ -35,8 +36,29 @@ module Dashboard
     end
 
     def custom
-      @completed = Visit.completed
-      @pending = Visit.pending
+      @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
+      @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
+
+      @completed = Visit.completed_by_agency_and_date_range current_user.id, @start, @stop
+      @pending = Visit.pending_by_agency_and_date_range current_user.id, @start, @stop
+    end
+
+
+    # GET /dashboard/visits/:id
+    def edit_visit
+      @visit = Visit.find params[:id]
+      @type = params[:type]
+    end
+
+    # PUT /dashboard/visits/:id
+    def update_visit
+      @visit = Visit.find params[:id]
+      @type = params[:type]
+
+      if @visit.update_attributes(params[:visit])
+        render
+      end
+
     end
 
 

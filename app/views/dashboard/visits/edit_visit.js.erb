@@ -1,0 +1,5 @@
+<%
+  partial = (@type == 'pending') ? 'visit_row_form_pending' :'visit_row_form_completed'
+%>
+
+$('tr[data-id="' + <%= @visit.id %> +'"]').replaceWith("<%= escape_javascript(render(partial, :visit => @visit, :type => @type)) %>");

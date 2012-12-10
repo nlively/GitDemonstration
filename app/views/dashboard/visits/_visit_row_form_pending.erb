@@ -1,0 +1,32 @@
+<tr class="visit-row" date-remote="true" data-id="<%= visit.id %>">
+  <td colspan="6" class="wrapper">
+    <%= form_for visit, :url => dashboard_visit_path(visit), :remote => true  do |f| %>
+        <%= hidden_field_tag :type, 'pending' %>
+        <table><tr>
+          <td class="employee" rel="<%= visit.user_id %>">
+            <%= visit.employee_label %>
+          </td>
+          <td class="payrate">
+            $ <%= f.text_field :pay_rate, :size => 3 %>
+          </td>
+          <td class="client" rel="<%= visit.care_recipient_id %>">
+            <%= visit.client_label %>
+          </td>
+          <td class="billrate">
+            $ <%= f.text_field :bill_rate, :size => 3 %>
+          </td>
+          <td class="in-time">
+            <%= visit.in_time_formatted %>
+          </td>
+          <td class="location">
+            <%= visit.location_label %>
+          </td>
+
+          <td class="actions">
+            <%= link_to 'Save', 'javascript:void(0);', :id => 'save-link' %>
+          </td>
+        </tr>
+        </table>
+    <% end %>
+  </td>
+</tr>

@@ -51,6 +51,9 @@ OauthServer::Application.routes.draw do
       match 'custom'
     end
 
+    get 'visits/:id' => 'visits#edit_visit',   :as => :visit
+    put 'visits/:id' => 'visits#update_visit', :as => :visit
+
     namespace :employees do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/clients' => 'clients#index', :as => :clients
