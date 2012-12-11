@@ -1,0 +1,20 @@
+<%
+
+   if @more_items
+     more_items_css = "display:inline"
+   else
+     more_items_css = "display:none"
+   end
+
+%>
+
+<%= javascript_include_tag 'dashboard/home' %>
+<div id="activity-stream-wrapper" data-oldest-item="<%= @oldest_item_id %>" data-newest-item="<%= @newest_item_id %>">
+  <div class="items">
+
+    <% @activity_streams.each do |item| %>
+        <%= render 'shared/row_activity_stream', :item => item, :css_class => 'html' %>
+    <% end %>
+  </div>
+  <%= link_to 'older items', 'javascript:void(0)', :id => 'more-items-link', :style => more_items_css %>
+</div>

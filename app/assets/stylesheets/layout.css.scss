@@ -118,7 +118,7 @@ tr.visit-row {
     }
 
     &.payrate, &.billrate {
-       width: 70px;
+      width: 70px;
 
       input[type="text"] {
         width: 50px;
@@ -126,7 +126,7 @@ tr.visit-row {
     }
 
     &.in-time, &.out-time {
-       width: 100px;
+      width: 100px;
     }
 
     &.duration {
@@ -142,4 +142,32 @@ tr.visit-row {
       }
     }
   }
+}
+
+#activity-stream-wrapper {
+  .activity-stream-item {
+
+    margin: 10px 0;
+
+    div.icon {
+      float: left;
+      width: 75px;
+      height:75px;
+      margin-right: 10px;
+    }
+
+    h3 {
+      font-size: 1.2em;
+    }
+
+    div.time {
+      font-size: 0.85em;
+      font-style: italic;
+    }
+
+    &.js {
+      display: none;
+    }
+  }
+
 }

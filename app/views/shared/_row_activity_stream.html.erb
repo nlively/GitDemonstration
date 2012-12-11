@@ -1,0 +1,15 @@
+<%
+   classes = []
+   classes << item.stream_type
+   unless css_class.blank?
+     classes << css_class
+   end
+   %>
+<div class="activity-stream-item <%= classes.join ' ' %>" data-id="<%= item.id %>">
+  <div class="icon">
+  <%= item.icon %>
+  </div>
+  <h3><%= item.label %></h3>
+
+  <div class="time"><%=  time_ago_in_words item.created_at %> ago</div>
+</div>

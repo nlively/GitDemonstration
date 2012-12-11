@@ -1,0 +1,17 @@
+<% unless @activity_streams.empty? %>
+$('#activity-stream-wrapper').attr('data-oldest-item', <%= @oldest_item_id %>);
+
+var stream_item;
+<% @activity_streams.each do |item| %>
+stream_item = $("<%= escape_javascript(render('shared/row_activity_stream', :item => item, :css_class => 'js')) %>");
+$('#activity-stream-wrapper .items').append(stream_item);
+stream_item.fadeIn();
+
+<% end %>
+<% end %>
+
+<% if @more_items %>
+$('#activity-stream-wrapper #more-items-link').show();
+<% else %>
+$('#activity-stream-wrapper #more-items-link').hide();
+<% end %>

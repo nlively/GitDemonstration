@@ -13,6 +13,7 @@
 #
 
 class Agency < ActiveRecord::Base
+  has_many :activity_streams
   has_many :users
   has_many :visits
   has_many :care_recipients

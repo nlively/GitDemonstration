@@ -3,6 +3,10 @@ class ActivityStream < ActiveRecord::Base
   belongs_to :care_recipient
   belongs_to :agency
 
+  def icon
+    'icon here'
+  end
+
   def self.create_from_visit! visit, check_in=true
 
     label_template = (check_in) ? '%s checked in with %s' : '%s checked out with %s'

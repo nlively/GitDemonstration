@@ -1,0 +1,9 @@
+$('#activity-stream-wrapper').attr('data-newest-item', <%= @newest_item_id %>);
+
+var stream_item;
+<% @activity_streams.each do |item| %>
+stream_item = $("<%= escape_javascript(render('shared/row_activity_stream', :item => item, :css_class => 'js')) %>");
+$('#activity-stream-wrapper .items').prepend(stream_item);
+stream_item.fadeIn();
+
+<% end %>

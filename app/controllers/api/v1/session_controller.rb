@@ -17,7 +17,7 @@ module Api::V1
 
       @note.save!
 
-      ActivityStream.create_from_photo! @photo
+      ActivityStream.create_from_note! @note
 
       render json: @note.web_service_format(root_url)
     end
