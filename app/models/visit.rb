@@ -20,6 +20,7 @@
 class Visit < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
+  include VisitsHelper
 
   belongs_to :care_recipient
   belongs_to :user
@@ -27,6 +28,7 @@ class Visit < ActiveRecord::Base
   belongs_to :agency
   belongs_to :approved_by_user, :class_name => 'User', :foreign_key => :approved_by_user_id
 
+  has_many :activity_streams
   has_many :check_ins
   has_many :photos
 
@@ -46,6 +48,10 @@ class Visit < ActiveRecord::Base
     out_time.to_formatted_s(:mdy_with_time) unless out_time.blank?
   end
 
+  def type
+    (completed?) ? :completed : :pending
+  end
+
   def completed?
     return !out_time.blank?
   end
@@ -59,7 +65,8 @@ class Visit < ActiveRecord::Base
   end
 
   def duration_string
-    distance_of_time_in_words(duration) unless duration.nil?
+    #distance_of_time_in_words(duration) unless duration.nil?
+    duration_in_hours in_time, out_time
   end
 
   def date_string

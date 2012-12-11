@@ -1,15 +1,19 @@
-<table>
-  <% notes.each do |note| %>
-      <tr>
-        <td>
-          <%=  note.photo.photo.url(:profile) unless note.photo.blank? %>
-        </td>
-        <td>
-          <%= note.note.truncate(90) %>
-        </td>
-        <td>
-          <%= note.created_at.to_formatted_s :mdy %>
-        </td>
-      </tr>
-  <% end %>
-</table>
+<% if notes.empty?%>
+    n/a
+<% else %>
+    <table>
+      <% notes.each do |note| %>
+          <tr>
+            <td>
+              <%=  note.photo.photo.url(:profile) unless note.photo.blank? %>
+            </td>
+            <td>
+              <%= note.note.truncate(90) %>
+            </td>
+            <td>
+              <%= note.created_at.to_formatted_s :mdy %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+<% end %>

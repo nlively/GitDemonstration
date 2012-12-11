@@ -8,6 +8,10 @@ module Dashboard
 
     end
 
+    def show
+      @care_recipient = CareRecipient.find params[:id]
+    end
+
 
   end
 end

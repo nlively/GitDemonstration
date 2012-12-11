@@ -8,6 +8,10 @@ module Dashboard
 
     end
 
+    def show
+      @employee = User.find params[:id]
+    end
+
 
   end
 end

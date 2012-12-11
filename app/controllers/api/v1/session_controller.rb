@@ -17,6 +17,8 @@ module Api::V1
 
       @note.save!
 
+      ActivityStream.create_from_photo! @photo
+
       render json: @note.web_service_format(root_url)
     end
 
@@ -33,6 +35,8 @@ module Api::V1
         end
 
       @photo.save!
+
+      ActivityStream.create_from_photo! @photo
 
       render json: @photo.web_service_format(root_url)
 

@@ -48,12 +48,14 @@ OauthServer::Application.routes.draw do
       match 'today'
       match 'this-week', :action => :this_week, :as => :this_week
       match 'this-month', :action => :this_month, :as => :this_month
-      match 'custom'
     end
 
-    get 'visits/:id' => 'visits#edit_visit',   :as => :visit
+    get 'visits/:id' => 'visits#show_visit',   :as => :visit
+    get 'visits/:id/edit' => 'visits#edit_visit',   :as => :edit_visit
+    post 'visits/:id/approve' => 'visits#approve_visit',   :as => :approve_visit
     put 'visits/:id' => 'visits#update_visit', :as => :visit
 
+    match 'employees/:id' => 'employees#show', :as => :employee
     namespace :employees do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/clients' => 'clients#index', :as => :clients
@@ -62,6 +64,7 @@ OauthServer::Application.routes.draw do
       match ':id/payroll' => 'payroll#index', :as => :payroll
     end
 
+    match 'clients/:id' => 'clients#show', :as => :client
     namespace :clients do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/caregivers' => 'caregivers#index', :as => :caregivers

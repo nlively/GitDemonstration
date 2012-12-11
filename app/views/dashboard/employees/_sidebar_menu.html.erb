@@ -4,3 +4,7 @@
     <li>Add New Employee</li>
   </ul>
 </nav>
+
+<% unless @employee.blank? %>
+    <%= render_navigation :level => 4 %>
+<% end %>

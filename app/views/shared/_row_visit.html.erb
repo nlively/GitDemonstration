@@ -1,4 +1,9 @@
-<tr class="visit-row editable" data-type="<%= type %>" date-remote="true" data-id="<%= visit.id %>">
+<%
+   classes = []
+
+   classes << 'approved' if visit.approved
+%>
+<tr class="visit-row editable <%= classes.join ' ' %>" data-type="<%= type %>" date-remote="true" data-id="<%= visit.id %>">
   <td class="employee" rel="<%= visit.user_id %>">
     <%= visit.employee_label %>
   </td>
@@ -27,7 +32,9 @@
   </td>
   <% if type == :completed or type == 'completed' %>
       <td class="approve">
-        <%= check_box_tag :approve %>
+        <% unless visit.approved? %>
+            <%= check_box_tag :approve, '1', false, :class => 'approve' %>
+        <% end %>
       </td>
   <% end %>
 </tr>

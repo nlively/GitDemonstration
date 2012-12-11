@@ -108,6 +108,10 @@ ul, ol {
 }
 
 tr.visit-row {
+  &.approved {
+    background: #ccffcc;
+  }
+
   td {
     &.employee, &.client {
       width: 120px;

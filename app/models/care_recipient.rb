@@ -18,6 +18,7 @@
 #
 
 class CareRecipient < ActiveRecord::Base
+  has_many :activity_streams
   has_many :photos
   has_many :notes
   has_many :visits

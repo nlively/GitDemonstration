@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
 
   serialize :settings, Hash
 
+  has_many :activity_streams
   has_many :photos
   has_many :notes
   has_many :visits

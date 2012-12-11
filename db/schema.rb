@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207221103) do
+ActiveRecord::Schema.define(:version => 20121211004326) do
+
+  create_table "activity_streams", :force => true do |t|
+    t.integer  "agency_id"
+    t.integer  "user_id"
+    t.integer  "care_recipient_id"
+    t.string   "stream_type"
+    t.string   "label"
+    t.integer  "reference_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "agencies", :force => true do |t|
     t.string   "name"

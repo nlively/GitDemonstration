@@ -1,8 +1,8 @@
 <nav id="dashboard-visits-menu" class="dashboard-sidebar-menu">
   <ul>
-    <li><%= link_to 'Today', dashboard_visits_today_path %></li>
-    <li><%= link_to 'This Week', dashboard_visits_this_week_path %></li>
-    <li><%= link_to 'This Month', dashboard_visits_this_month_path %></li>
-    <li><%= link_to 'Custom View', dashboard_visits_custom_path %></li>
+    <li><%= link_to_unless_current 'Custom View', dashboard_visits_path %></li>
+    <li><%= link_to_unless_current 'Today', dashboard_visits_today_path %></li>
+    <li><%= link_to_unless_current 'This Week', dashboard_visits_this_week_path %></li>
+    <li><%= link_to_unless_current 'This Month', dashboard_visits_this_month_path %></li>
   </ul>
 </nav>

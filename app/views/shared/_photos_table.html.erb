@@ -1,8 +1,11 @@
-<ul class="three-columns">
-
-<% photos.each do |photo| %>
-     <li>
-       <%= image_tag photo.photo.url(:profile) %>
-     </li>
+<% if photos.empty?%>
+    n/a
+<% else %>
+    <ul class="three-columns">
+      <% photos.each do |photo| %>
+          <li>
+            <%= image_tag photo.photo.url(:profile) %>
+          </li>
+      <% end %>
+    </ul>
 <% end %>
-</ul>

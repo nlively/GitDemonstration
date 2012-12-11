@@ -34,6 +34,10 @@ module Api::V1
         @photo = Photo.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :photo => params[:photo], :visit_id => @visit.id, :note => @note
       end
 
+
+      ActivityStream.create_from_visit! @visit, @checkin.in_out
+
+
       render json: @visit.web_service_format(root_url)
 
     end
