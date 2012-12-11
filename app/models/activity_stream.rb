@@ -5,14 +5,14 @@ class ActivityStream < ActiveRecord::Base
 
   def self.create_from_visit! visit, check_in=true
 
-    label_template = (check_in) ? '%s checked in' : '%s checked out'
+    label_template = (check_in) ? '%s checked in with %s' : '%s checked out with %s'
 
     self.create!({
       :user => visit.user,
       :care_recipient => visit.care_recipient,
       :agency => visit.user.agency,
       :stream_type => (check_in) ? :check_in : :check_out,
-      :label => sprintf(label_template, visit.user.full_name)
+      :label => sprintf(label_template, visit.user.full_name, visit.care_recipient.full_name)
     })
   end
 
