@@ -12,7 +12,7 @@ class ActivityStream < ActiveRecord::Base
       :care_recipient => visit.care_recipient,
       :agency => visit.user.agency,
       :stream_type => (check_in) ? :check_in : :check_out,
-      :label => sprintf(label_template, user.full_name)
+      :label => sprintf(label_template, visit.user.full_name)
     })
   end
 
@@ -22,7 +22,7 @@ class ActivityStream < ActiveRecord::Base
       :care_recipient => photo.care_recipient,
       :agency => photo.user.agency,
       :stream_type => :photo,
-      :label => sprintf('%s uploaded a photo', user.full_name)
+      :label => sprintf('%s uploaded a photo', photo.user.full_name)
     })
   end
 
@@ -32,7 +32,7 @@ class ActivityStream < ActiveRecord::Base
       :care_recipient => note.care_recipient,
       :agency => note.user.agency,
       :stream_type => :note,
-      :label => sprintf('%s added a note', user.full_name)
+      :label => sprintf('%s added a note', note.user.full_name)
     })
   end
 
