@@ -4,7 +4,7 @@ $(function(){
 
   var row_Click = function() {
     var row = $(this).parents('tr');
-    var id =  $(this).attr('data-id');
+    var id =  row.attr('data-id');
     $.get(
         url + '/' + id + '/edit.js',
         {
