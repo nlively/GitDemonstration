@@ -1,4 +1,12 @@
 ---
+camera-32.png: camera-32-52a2a70c06b5c01d20322db74f00d12c.png
+camera-48.png: camera-48-bb4d34ecb1e05f916c3a6e0d677cf66f.png
+check-in-32.png: check-in-32-2b9aa047d5ba4a3eaede96dd1c40efcd.png
+check-in-48.png: check-in-48-6b5867aba86fda0b34352b0737799f3d.png
+check-out-32.png: check-out-32-8ffeb78ef5537ee9d23a71d25e381727.png
+check-out-48.png: check-out-48-02f75ba27d5d4781df009ab0a9d4066f.png
+note-32.png: note-32-61b5057e058fd12d8d5f10d32bb599dc.png
+note-48.png: note-48-3e88de58013215019e269bc482af9496.png
 rails.png: rails-be8732dac73d845ac5b142c8fb5f9fb0.png
 application.js: application-6dc71e1ccc92d21aded52dc40dce3c82.js
 main.js: main-71c9eaf3c06bffedf041f8d52c511254.js
