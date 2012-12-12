@@ -2,7 +2,7 @@ module Api::V1
   class ApiController < ::ApplicationController
     def current_resource_owner
       if doorkeeper_token
-        logger.debug 'Current user id for api request: ' + doorkeeper_token.resource_owner_id
+        logger.debug sprintf('Current user id for api request: %d', doorkeeper_token.resource_owner_id)
         User.find(doorkeeper_token.resource_owner_id)
       end
     end
