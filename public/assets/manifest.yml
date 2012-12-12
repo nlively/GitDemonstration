@@ -1,6 +1,9 @@
 ---
 rails.png: rails-be8732dac73d845ac5b142c8fb5f9fb0.png
 application.js: application-6dc71e1ccc92d21aded52dc40dce3c82.js
+main.js: main-71c9eaf3c06bffedf041f8d52c511254.js
+modernizr-2.6.2.min.js: modernizr-2.6.2.min-2d02bc98c82672121a5e9002136cce56.js
+plugins.js: plugins-6858b6e18b53fa9463b687e045647ddc.js
 application.css: application-d5b2d499137b35f0edd562a9bdb62692.css
 doorkeeper/application.js: doorkeeper/application-ccab98dc1abdf097c0af693e20aed861.js
 doorkeeper/application.css: doorkeeper/application-c15195d41f3c95b8cb39e530a9b83296.css
