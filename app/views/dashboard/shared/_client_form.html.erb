@@ -1,0 +1,23 @@
+<%= form_for care_recipient, :url => dashboard_clients_path(care_recipient) do |f| %>
+
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :first_name %>
+      </div>
+      <div class="field">
+        <%= f.text_field :first_name %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :last_name %>
+      </div>
+      <div class="field">
+        <%= f.text_field :last_name %>
+      </div>
+    </div>
+
+    <%= f.submit %>
+<% end %>

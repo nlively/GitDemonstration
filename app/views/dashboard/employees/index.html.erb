@@ -1,7 +1,7 @@
 <h1>Employees</h1>
 
-<table>
-<% @employees.each do |employee| %>
-  <%=  render 'shared/row_employee', :employee => employee %>
-<% end %>
-</table>
+<%= render 'dashboard/shared/employee_search_form' %>
+
+<div id="employees-wrapper">
+  <%= render 'dashboard/shared/employees_table' %>
+</div>

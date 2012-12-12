@@ -1,0 +1,47 @@
+<%= form_for user, :url => dashboard_employees_path(user) do |f| %>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :email %>
+      </div>
+      <div class="field">
+        <%= f.text_field :email %>
+      </div>
+    </div>
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :password %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password %>
+      </div>
+    </div>
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :password_confirmation %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password_confirmation %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :first_name %>
+      </div>
+      <div class="field">
+        <%= f.text_field :first_name %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :last_name %>
+      </div>
+      <div class="field">
+        <%= f.text_field :last_name %>
+      </div>
+    </div>
+
+    <%= f.submit %>
+<% end %>

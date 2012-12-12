@@ -1,7 +1,7 @@
 <h1>Clients</h1>
 
-<table>
-<% @care_recipients.each do |care_recipient| %>
-  <%=  render 'shared/row_client', :care_recipient =>care_recipient %>
-<% end %>
-</table>
+<%= render 'dashboard/shared/client_search_form' %>
+
+<div id="clients-wrapper">
+  <%= render 'dashboard/shared/clients_table' %>
+</div>

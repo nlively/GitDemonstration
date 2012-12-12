@@ -1,0 +1,10 @@
+<% case item.stream_type.to_sym %>
+<% when :photo %>
+    <%= image_tag 'camera-32.png' %>
+<% when :note %>
+    <%= image_tag 'note-32.png' %>
+<% when :check_in %>
+    <%= image_tag 'check-in-32.png' %>
+<% when :check_out %>
+    <%= image_tag 'check-out-32.png' %>
+<% end %>

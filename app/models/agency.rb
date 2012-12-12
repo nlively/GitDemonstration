@@ -20,4 +20,10 @@ class Agency < ActiveRecord::Base
   has_many :locations
 
   belongs_to :location
+
+
+  def caregivers
+    users.find_by_role(:caregiver)
+  end
+
 end

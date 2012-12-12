@@ -38,9 +38,10 @@ OauthServer::Application.routes.draw do
   namespace :dashboard do
     resources :locations
 
+    resources :employees, :only => [:index, :show, :new, :create]
+    resources :clients, :only => [:index, :show, :new, :create]
+
     match 'visits' => 'visits#index'
-    match 'employees' => 'employees#index'
-    match 'clients' => 'clients#index'
     match 'reports' => 'reports#index'
     match 'settings' => 'settings#index'
 
@@ -55,7 +56,7 @@ OauthServer::Application.routes.draw do
     post 'visits/:id/approve' => 'visits#approve_visit',   :as => :approve_visit
     put 'visits/:id' => 'visits#update_visit', :as => :visit
 
-    match 'employees/:id' => 'employees#show', :as => :employee
+    post 'employees/search' => 'employees#search', :as => :employees_search
     namespace :employees do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/clients' => 'clients#index', :as => :clients
@@ -64,7 +65,7 @@ OauthServer::Application.routes.draw do
       match ':id/payroll' => 'payroll#index', :as => :payroll
     end
 
-    match 'clients/:id' => 'clients#show', :as => :client
+    post 'clients/search' => 'clients#search', :as => :clients_search
     namespace :clients do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/caregivers' => 'caregivers#index', :as => :caregivers

@@ -1,0 +1,9 @@
+<%= form_tag dashboard_employees_search_path, :method => :post, :remote => true do %>
+
+    <%= label_tag :search_phrase, 'Search' %>
+    <%= text_field_tag :search_phrase, @search_phrase, :placeholder => 'First or last name' %>
+
+    <%= submit_tag 'Go'%>
+    <%= link_to 'reset', dashboard_employees_path, :remote => true %>
+
+<% end %>

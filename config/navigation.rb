@@ -56,7 +56,7 @@ SimpleNavigation::Configuration.run do |navigation|
       # Add an item to the sub navigation (same params again)
       sub_nav.item :home, 'Home', dashboard_path
       sub_nav.item :clients, 'Clients', dashboard_clients_path, :highlights_on => :subpath  do |client|
-              unless @care_recipient.blank?
+              unless @care_recipient.blank? or @care_recipient.id.blank?
                 client.item :employee, @care_recipient.try(:full_name), dashboard_client_path(@care_recipient), :highlights_on => /dashboard\/clients\/[0-9]+/ do |client_sub|
                   client_sub.item :profile, 'Profile', dashboard_clients_profile_path(@care_recipient), :highlights_on => :subpath
                   client_sub.item :caregivers, 'Caregivers', dashboard_employees_clients_path(@care_recipient), :highlights_on => :subpath
@@ -66,7 +66,7 @@ SimpleNavigation::Configuration.run do |navigation|
               end
             end
       sub_nav.item :employees, 'Employees', dashboard_employees_path, :highlights_on => :subpath  do |employee|
-        unless @employee.blank?
+        unless @employee.blank? or @employee.id.blank?
           employee.item :employee, @employee.try(:full_name), dashboard_employee_path(@employee), :highlights_on => /dashboard\/employees\/[0-9]+/ do |emp_sub|
             emp_sub.item :profile, 'Profile', dashboard_employees_profile_path(@employee), :highlights_on => :subpath
             emp_sub.item :clients, 'Clients', dashboard_employees_clients_path(@employee), :highlights_on => :subpath

@@ -1,7 +1,6 @@
 <nav id="dashboard-clients-menu" class="dashboard-sidebar-menu">
   <ul>
-    <li>Search</li>
-    <li>Add New Client</li>
+    <li><%= link_to_unless_current 'Add New Client', new_dashboard_client_path %></li>
   </ul>
 </nav>
 
