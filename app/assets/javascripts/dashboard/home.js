@@ -1,17 +1,19 @@
 $(function(){
   var wrapper = $('#activity-stream-wrapper');
+  if (wrapper.length >0) {
 
-  var refreshActivity = function() {
-    var last_id = $('#activity-stream-wrapper').attr('data-newest-item');
-    $.get('/dashboard/activity_since.js', {last_id:last_id});
-  };
+    var refreshActivity = function() {
+      var last_id = $('#activity-stream-wrapper').attr('data-newest-item');
+      $.get('/dashboard/activity_since.js', {last_id:last_id});
+    };
 
-  var moreItemsLink_Click = function() {
-    var last_id = $('#activity-stream-wrapper').attr('data-oldest-item');
-    $.get('/dashboard.js', {last_id:last_id});
-  };
+    var moreItemsLink_Click = function() {
+      var last_id = $('#activity-stream-wrapper').attr('data-oldest-item');
+      $.get('/dashboard.js', {last_id:last_id});
+    };
 
-  var i = setInterval(refreshActivity, 10 * 1000);
+    var i = setInterval(refreshActivity, 10 * 1000);
 
-  $('#more-items-link', wrapper).click(moreItemsLink_Click);
+    $('#more-items-link', wrapper).click(moreItemsLink_Click);
+  }
 });
