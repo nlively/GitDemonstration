@@ -171,3 +171,19 @@ tr.visit-row {
   }
 
 }
+
+form {
+  .form-field {
+    margin: 20px 10px;
+
+    div.label {
+      label {
+        font-weight: bold;
+      }
+    }
+
+    div.field {
+
+    }
+  }
+}

@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: activity_streams
+#
+#  id                :integer          not null, primary key
+#  agency_id         :integer
+#  user_id           :integer
+#  care_recipient_id :integer
+#  stream_type       :string(255)
+#  label             :string(255)
+#  reference_id      :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
 class ActivityStream < ActiveRecord::Base
   belongs_to :user
   belongs_to :care_recipient

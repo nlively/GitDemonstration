@@ -6,7 +6,7 @@
         <%= f.label :first_name %>
       </div>
       <div class="field">
-        <%= f.text_field :first_name %>
+        <%= f.text_field :first_name, :size => 20 %>
       </div>
     </div>
 
@@ -15,7 +15,34 @@
         <%= f.label :last_name %>
       </div>
       <div class="field">
-        <%= f.text_field :last_name %>
+        <%= f.text_field :last_name, :size => 20 %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :dob, 'Date of Birth' %>
+      </div>
+      <div class="field">
+        <%= f.date_select :dob, :start_year => Time.now.year - 110, :end_year => Time.now.year %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :profile_photo %>
+      </div>
+      <div class="field">
+        <%= f.file_field :profile_photo %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :default_bill_rate %>
+      </div>
+      <div class="field">
+        $ <%= f.text_field :default_bill_rate, :size=>5 %> USD
       </div>
     </div>
 

@@ -12,8 +12,8 @@
 #  agency_id           :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  bill_rate           :decimal(11, 2)
-#  pay_rate            :decimal(11, 2)
+#  bill_rate           :decimal(11, 2)   default(0.0)
+#  pay_rate            :decimal(11, 2)   default(0.0)
 #  approved_by_user_id :integer
 #
 

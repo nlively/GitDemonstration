@@ -14,7 +14,7 @@
 #  profile_photo_file_size    :integer
 #  profile_photo_updated_at   :datetime
 #  agency_id                  :integer
-#  default_bill_rate          :decimal(11, 2)
+#  default_bill_rate          :decimal(11, 2)   default(0.0)
 #
 
 class CareRecipient < ActiveRecord::Base

@@ -25,7 +25,10 @@
 #  profile_photo_updated_at   :datetime
 #  agency_id                  :integer
 #  settings                   :text
-#  default_pay_rate           :decimal(11, 2)
+#  default_pay_rate           :decimal(11, 2)   default(0.0)
+#  middle_name                :string(255)
+#  phone                      :string(255)
+#  sms                        :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

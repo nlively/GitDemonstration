@@ -43,8 +43,11 @@ OauthServer::Application.configure do
     :s3_protocol => 'http',
     :s3_credentials => {
       :bucket => 'boomr2_dev',
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      :access_key_id => 'AKIAINANPBLTPN3H2TIA',
+      :secret_access_key => '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'
     }
   }
+
+  Paperclip.options[:command_path] = '/opt/local/bin'
+
 end
