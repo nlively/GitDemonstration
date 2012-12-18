@@ -28,4 +28,16 @@ class PayrollLineItem < ActiveRecord::Base
   def pay_rate_formatted
     number_to_currency( pay_rate, :unit => "$", :precision => 2 )
   end
+
+  def self.create_from_visit! visit
+    line_item = self.create!({
+      :visit => visit, :bill_rate => visit.bill_rate, :pay_rate => visit.pay_rate,
+      :original_bill_rate => visit.bill_rate, :original_pay_rate => visit.pay_rate,
+      :care_recipient_id => visit.care_recipient_id, :user_id => visit.user_id,
+      :pay_status => 0
+    })
+
+    return line_item
+  end
+
 end
