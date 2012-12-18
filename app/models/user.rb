@@ -32,6 +32,8 @@
 #
 
 class User < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -81,6 +83,10 @@ class User < ActiveRecord::Base
 
   def label
     return (first_name.nil?) ? email : full_name
+  end
+
+  def default_pay_rate_formatted
+    number_to_currency( default_pay_rate, :unit => "$", :precision => 2 )
   end
 
   def web_service_format url_base

@@ -1,5 +1,10 @@
-<h3>Completed Visits</h3>
-<% unless visits.empty? %>
+<h1>New Payroll Batch</h1>
+
+
+
+<h3>Included Visits</h3>
+
+<% unless @visits.empty? %>
     <table id="completed-visits" class="visits-table">
       <tr>
         <th>Employee</th>
@@ -10,10 +15,9 @@
         <th>Out</th>
         <th>Duration</th>
         <th>Location</th>
-        <th>Approve</th>
       </tr>
-      <% visits.each do |visit| %>
-          <%=  render 'shared/row_visit', :visit => visit, :type => :completed, :show_approve => true %>
+      <% @visits.each do |visit| %>
+          <%=  render 'shared/row_visit', :visit => visit, :type => :completed %>
       <% end %>
     </table>
 <% else %>

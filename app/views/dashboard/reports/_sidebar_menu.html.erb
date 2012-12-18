@@ -1,7 +1,7 @@
 <nav id="dashboard-reports-menu" class="dashboard-sidebar-menu">
   <ul>
     <li>Billing Status</li>
-    <li>Payroll</li>
+    <li><%= link_to_unless_current 'Payroll', dashboard_reports_payroll_path %></li>
     <li>Saved Reports</li>
   </ul>
 </nav>

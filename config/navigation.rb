@@ -60,8 +60,8 @@ SimpleNavigation::Configuration.run do |navigation|
                 client.item :employee, @care_recipient.try(:full_name), dashboard_client_path(@care_recipient), :highlights_on => /dashboard\/clients\/[0-9]+/ do |client_sub|
                   client_sub.item :profile, 'Profile', dashboard_clients_profile_path(@care_recipient), :highlights_on => :subpath
                   client_sub.item :caregivers, 'Caregivers', dashboard_employees_clients_path(@care_recipient), :highlights_on => :subpath
-                  client_sub.item :caregivers, 'Notes/Photos', dashboard_employees_notes_path(@care_recipient), :highlights_on => :subpath
-                  client_sub.item :caregivers, 'Visits', dashboard_employees_visits_path(@care_recipient), :highlights_on => :subpath
+                  client_sub.item :notes, 'Notes/Photos', dashboard_employees_notes_path(@care_recipient), :highlights_on => :subpath
+                  client_sub.item :visits, 'Visits', dashboard_employees_visits_path(@care_recipient), :highlights_on => :subpath
                 end
               end
             end
@@ -70,14 +70,19 @@ SimpleNavigation::Configuration.run do |navigation|
           employee.item :employee, @employee.try(:full_name), dashboard_employee_path(@employee), :highlights_on => /dashboard\/employees\/[0-9]+/ do |emp_sub|
             emp_sub.item :profile, 'Profile', dashboard_employees_profile_path(@employee), :highlights_on => :subpath
             emp_sub.item :clients, 'Clients', dashboard_employees_clients_path(@employee), :highlights_on => :subpath
-            emp_sub.item :clients, 'Notes/Photos', dashboard_employees_notes_path(@employee), :highlights_on => :subpath
-            emp_sub.item :clients, 'Visits', dashboard_employees_visits_path(@employee), :highlights_on => :subpath
-            emp_sub.item :clients, 'Payroll', dashboard_employees_payroll_path(@employee), :highlights_on => :subpath
+            emp_sub.item :notes, 'Notes/Photos', dashboard_employees_notes_path(@employee), :highlights_on => :subpath
+            emp_sub.item :visits, 'Visits', dashboard_employees_visits_path(@employee), :highlights_on => :subpath
+            emp_sub.item :payroll, 'Payroll', dashboard_employees_payroll_path(@employee), :highlights_on => :subpath
           end
         end
       end
       sub_nav.item :visits, 'Visits', dashboard_visits_path, :highlights_on => :subpath
-      sub_nav.item :reports, 'Reports', dashboard_reports_path, :highlights_on => :subpath
+      sub_nav.item :reports, 'Reports', dashboard_reports_path, :highlights_on => :subpath do |report|
+        report.item :payroll, 'Payroll', dashboard_reports_payroll_path, :highlights_on => :subpath do |payroll|
+          payroll.item :unbatched, 'Unbatched Visits', dashboard_reports_payroll_unbatched_path, :highlights_on => :subpath
+          payroll.item :batches, 'Settled Batches', dashboard_reports_payroll_batches_path, :highlights_on => :subpath
+        end
+      end
       sub_nav.item :settings, 'Settings', dashboard_settings_path, :highlights_on => :subpath
     end
 

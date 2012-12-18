@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121211004326) do
+ActiveRecord::Schema.define(:version => 20121215182313) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -137,6 +137,29 @@ ActiveRecord::Schema.define(:version => 20121211004326) do
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
 
+  create_table "payroll_batches", :force => true do |t|
+    t.integer  "agency_id"
+    t.datetime "batch_date"
+    t.text     "notes"
+    t.date     "period_start"
+    t.date     "period_end"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "payroll_line_items", :force => true do |t|
+    t.integer  "payroll_batch_id"
+    t.integer  "care_recipient_id"
+    t.integer  "user_id"
+    t.decimal  "bill_rate",          :precision => 11, :scale => 2
+    t.decimal  "pay_rate",           :precision => 11, :scale => 2
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
+    t.integer  "pay_status",                                        :default => 0, :null => false
+    t.decimal  "original_bill_rate", :precision => 11, :scale => 2
+    t.decimal  "original_pay_rate",  :precision => 11, :scale => 2
+  end
+
   create_table "photos", :force => true do |t|
     t.integer  "user_id"
     t.integer  "care_recipient_id"
@@ -206,11 +229,13 @@ ActiveRecord::Schema.define(:version => 20121211004326) do
     t.integer  "care_recipient_id"
     t.integer  "location_id"
     t.integer  "agency_id"
-    t.datetime "created_at",                                                          :null => false
-    t.datetime "updated_at",                                                          :null => false
-    t.decimal  "bill_rate",           :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "pay_rate",            :precision => 11, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
+    t.decimal  "bill_rate",            :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "pay_rate",             :precision => 11, :scale => 2, :default => 0.0
     t.integer  "approved_by_user_id"
+    t.integer  "payroll_line_item_id"
+    t.boolean  "billable",                                            :default => true, :null => false
   end
 
 end

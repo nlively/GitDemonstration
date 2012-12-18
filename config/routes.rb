@@ -45,6 +45,17 @@ OauthServer::Application.routes.draw do
     match 'reports' => 'reports#index'
     match 'settings' => 'settings#index'
 
+    namespace :reports do
+      get 'payroll' => 'payroll#index'
+
+      namespace :payroll do
+        get 'unbatched'
+        get 'batches'
+        match 'batch/new', :action => :new_batch
+        match 'batch/create', :action => :create_batch
+      end
+    end
+
     namespace :visits do
       match 'today'
       match 'this-week', :action => :this_week, :as => :this_week

@@ -1,0 +1,32 @@
+
+
+<% unless visits.empty? %>
+    <%= javascript_include_tag 'dashboard/reports/payroll/unbatched' %>
+    <%= form_tag dashboard_reports_payroll_batch_new_path, :method => :post do %>
+        <table id="unbatched-visits">
+          <tr>
+            <th><%= check_box_tag :select_all, 'all', false, :id => 'select-all' %></th>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Employee</th>
+            <th>Duration</th>
+            <th>Bill Rate</th>
+            <th>Pay Rate</th>
+          </tr>
+          <% visits.each do |visit| %>
+              <tr>
+                <td><%= check_box_tag 'visit[]', visit.id, false, :class => 'visit' %></td>
+                <td><%= visit.time_string %></td>
+                <td><%= visit.client_label %></td>
+                <td><%= visit.employee_label %></td>
+                <td><%= visit.duration_string %></td>
+                <td><%= visit.bill_rate_formatted %></td>
+                <td><%= visit.pay_rate_formatted %></td>
+              </tr>
+          <% end %>
+        </table>
+        <%= submit_tag "Post selected to new batch" %>
+    <% end %>
+<% else %>
+    There are no unbatched visits to view.
+<% end %>

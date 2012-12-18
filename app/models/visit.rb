@@ -2,24 +2,27 @@
 #
 # Table name: visits
 #
-#  id                  :integer          not null, primary key
-#  in_time             :datetime
-#  out_time            :datetime
-#  approved            :boolean
-#  user_id             :integer
-#  care_recipient_id   :integer
-#  location_id         :integer
-#  agency_id           :integer
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  bill_rate           :decimal(11, 2)   default(0.0)
-#  pay_rate            :decimal(11, 2)   default(0.0)
-#  approved_by_user_id :integer
+#  id                   :integer          not null, primary key
+#  in_time              :datetime
+#  out_time             :datetime
+#  approved             :boolean
+#  user_id              :integer
+#  care_recipient_id    :integer
+#  location_id          :integer
+#  agency_id            :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  bill_rate            :decimal(11, 2)   default(0.0)
+#  pay_rate             :decimal(11, 2)   default(0.0)
+#  approved_by_user_id  :integer
+#  payroll_line_item_id :integer
+#  billable             :boolean          default(TRUE), not null
 #
 
 class Visit < ActiveRecord::Base
 
   include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::NumberHelper
   include VisitsHelper
 
   belongs_to :care_recipient
@@ -27,6 +30,9 @@ class Visit < ActiveRecord::Base
   belongs_to :location
   belongs_to :agency
   belongs_to :approved_by_user, :class_name => 'User', :foreign_key => :approved_by_user_id
+  belongs_to :payroll_line_item
+
+  delegate :payroll_batch, :to => :payroll_line_item, :allow_nil => true
 
   has_many :activity_streams
   has_many :check_ins
@@ -38,6 +44,14 @@ class Visit < ActiveRecord::Base
 
   def client_label
     return (care_recipient.nil?) ? 'N/A' : care_recipient.full_name_last_first
+  end
+
+  def bill_rate_formatted
+    number_to_currency( bill_rate, :unit => "$", :precision => 2 )
+  end
+
+  def pay_rate_formatted
+    number_to_currency( pay_rate, :unit => "$", :precision => 2 )
   end
 
   def in_time_formatted

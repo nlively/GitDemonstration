@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: payroll_batches
+#
+#  id           :integer          not null, primary key
+#  agency_id    :integer
+#  batch_date   :datetime
+#  notes        :text
+#  period_start :date
+#  period_end   :date
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  agency_id: 1
+  batch_date: 2012-12-15 09:23:18
+  notes: MyText
+  period_start: 2012-12-15
+  period_end: 2012-12-15
+
+two:
+  agency_id: 1
+  batch_date: 2012-12-15 09:23:18
+  notes: MyText
+  period_start: 2012-12-15
+  period_end: 2012-12-15

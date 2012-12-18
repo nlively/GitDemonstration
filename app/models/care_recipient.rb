@@ -18,6 +18,8 @@
 #
 
 class CareRecipient < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+
   has_many :activity_streams
   has_many :photos
   has_many :notes
@@ -35,6 +37,10 @@ class CareRecipient < ActiveRecord::Base
   has_attached_file :profile_photo, :styles => {
     :profile => "93x93>"
   }
+
+  def default_bill_rate_formatted
+    number_to_currency( default_bill_rate, :unit => "$", :precision => 2 )
+  end
 
   def full_name
     return sprintf '%s %s', first_name, last_name
