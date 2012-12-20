@@ -1,5 +1,60 @@
 <%= form_for user, :url => dashboard_employees_path(user) do |f| %>
 
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :first_name %>
+      </div>
+      <div class="field">
+        <%= f.text_field :first_name %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :middle_name %>
+      </div>
+      <div class="field">
+        <%= f.text_field :middle_name %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :last_name %>
+      </div>
+      <div class="field">
+        <%= f.text_field :last_name %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :profile_photo %>
+      </div>
+      <div class="field">
+        <%= f.file_field :profile_photo %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :default_pay_rate %>
+      </div>
+      <div class="field">
+        $ <%= f.text_field :default_pay_rate, :size=>5 %> USD
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :phone, 'Phone Number' %>
+      </div>
+      <div class="field">
+        <%= f.phone_field :phone %>
+      </div>
+    </div>
+
     <div class="form-field">
       <div class="label">
         <%= f.label :email %>
@@ -25,23 +80,6 @@
       </div>
     </div>
 
-    <div class="form-field">
-      <div class="label">
-        <%= f.label :first_name %>
-      </div>
-      <div class="field">
-        <%= f.text_field :first_name %>
-      </div>
-    </div>
-
-    <div class="form-field">
-      <div class="label">
-        <%= f.label :last_name %>
-      </div>
-      <div class="field">
-        <%= f.text_field :last_name %>
-      </div>
-    </div>
 
     <%= f.submit %>
 <% end %>

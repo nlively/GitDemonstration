@@ -16,17 +16,9 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "modernizr-2.6.2.min" %>
 
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<div id="top-bar">
-  <% unless current_user.nil? or current_user.agency.nil? %>
-      You are signed in to <%= current_user.agency.name %>.
-      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-  <% end %>
-</div>
 
 <div id="page">
   <div id="page-inner">
@@ -40,9 +32,6 @@
       <div id="main-inner">
 
         <div id="navigation">
-
-
-
           <%= render 'layouts/dashboard_top_menu' %>
         </div>
 
@@ -64,6 +53,12 @@
             <%= yield %>
           </div>
         </div>
+
+        <div id="sidebar-second" class="sidebar">
+                 <div id="sidebar-second-inner" class="sidebar-inner">
+                   <%= render 'layouts/dashboard_sidebar_menu' %>
+                 </div>
+               </div>
 
       </div>
     </div>

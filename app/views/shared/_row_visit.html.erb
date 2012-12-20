@@ -3,7 +3,7 @@
 
    classes << 'approved' if visit.approved
 
-   show_approve = false unless defined? show_approved
+   show_approve = false unless defined? show_approve
 
 
 %>
@@ -34,10 +34,12 @@
   <td class="location">
     <%= visit.location_label %>
   </td>
-  <% if show_approve == true %>
+  <% if show_approve %>
       <td class="approve">
         <% unless visit.approved? %>
             <%= check_box_tag :approve, '1', false, :class => 'approve' %>
+            <% else %>
+        <em>approved</em>
         <% end %>
       </td>
   <% end %>
