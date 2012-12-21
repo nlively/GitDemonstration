@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: agency_invoice_payments
+#
+#  id                :integer          not null, primary key
+#  agency_invoice_id :integer
+#  payment_method    :string(255)
+#  amount            :decimal(11, 2)   default(0.0)
+#  date              :datetime
+#  status            :integer
+#  token             :string(255)
+#  notes             :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  agency_invoice_id: 1
+  payment_method: MyString
+  amount: 9.99
+  date: 2012-12-20 17:26:21
+  status: 1
+  token: MyString
+  notes: MyText
+
+two:
+  agency_invoice_id: 1
+  payment_method: MyString
+  amount: 9.99
+  date: 2012-12-20 17:26:21
+  status: 1
+  token: MyString
+  notes: MyText

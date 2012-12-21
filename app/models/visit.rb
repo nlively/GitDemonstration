@@ -38,6 +38,12 @@ class Visit < ActiveRecord::Base
   has_many :check_ins
   has_many :photos
 
+  has_many :visits_patient_statuses
+  has_many :patient_statuses, :through => :visits_patient_statuses
+
+  has_many :visits_caregiver_tasks
+  has_many :caregiver_tasks, :through => :visits_caregiver_tasks
+
   def employee_label
     return (user.nil?) ? 'N/A' : user.full_name_last_first
   end

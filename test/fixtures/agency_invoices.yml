@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: agency_invoices
+#
+#  id                :integer          not null, primary key
+#  agency_id         :integer
+#  total             :decimal(11, 2)   default(0.0)
+#  invoice_date      :date
+#  due_date          :date
+#  auto_billing_date :date
+#  notes             :text
+#  status            :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  agency_id: 1
+  total: 
+  invoice_date: 2012-12-20
+  due_date: 2012-12-20
+  auto_billing_date: 2012-12-20
+  notes: MyText
+  status: 1
+
+two:
+  agency_id: 1
+  total: 
+  invoice_date: 2012-12-20
+  due_date: 2012-12-20
+  auto_billing_date: 2012-12-20
+  notes: MyText
+  status: 1

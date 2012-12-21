@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: visits_patient_statuses
+#
+#  id                :integer          not null, primary key
+#  visit_id          :integer
+#  patient_status_id :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  visit_id: 1
+  patient_status_id: 1
+
+two:
+  visit_id: 1
+  patient_status_id: 1

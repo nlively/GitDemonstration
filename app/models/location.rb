@@ -16,6 +16,7 @@
 #  outside_photo_file_size    :integer
 #  outside_photo_updated_at   :datetime
 #  agency_id                  :integer
+#  line2                      :string(255)
 #
 
 class Location < ActiveRecord::Base

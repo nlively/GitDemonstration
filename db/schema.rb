@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215182313) do
+ActiveRecord::Schema.define(:version => 20121221012621) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -30,8 +30,54 @@ ActiveRecord::Schema.define(:version => 20121215182313) do
     t.string   "administrative_contact"
     t.string   "website"
     t.string   "email"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+    t.text     "bio"
+    t.string   "phone"
+    t.integer  "status"
+    t.integer  "subscription_tier_id"
+    t.date     "next_billing_date"
+    t.decimal  "monthly_price_override", :precision => 11, :scale => 2
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.integer  "billing_location_id"
+  end
+
+  create_table "agency_invoice_payments", :force => true do |t|
+    t.integer  "agency_invoice_id"
+    t.string   "payment_method"
+    t.decimal  "amount",            :precision => 11, :scale => 2, :default => 0.0
+    t.datetime "date"
+    t.integer  "status"
+    t.string   "token"
+    t.text     "notes"
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
+  end
+
+  create_table "agency_invoice_rows", :force => true do |t|
+    t.integer  "agency_invoice_id"
+    t.string   "label"
+    t.integer  "quantity",                                         :default => 1
+    t.decimal  "unit_price",        :precision => 11, :scale => 2, :default => 0.0
+    t.string   "notes"
+    t.string   "status"
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
+  end
+
+  create_table "agency_invoices", :force => true do |t|
+    t.integer  "agency_id"
+    t.decimal  "total",             :precision => 11, :scale => 2, :default => 0.0
+    t.date     "invoice_date"
+    t.date     "due_date"
+    t.date     "auto_billing_date"
+    t.text     "notes"
+    t.integer  "status"
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
   end
 
   create_table "care_recipients", :force => true do |t|
@@ -63,6 +109,12 @@ ActiveRecord::Schema.define(:version => 20121215182313) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "caregiver_tasks", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "check_ins", :force => true do |t|
     t.integer  "user_id"
     t.decimal  "latitude",   :precision => 11, :scale => 8
@@ -87,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20121215182313) do
     t.integer  "outside_photo_file_size"
     t.datetime "outside_photo_updated_at"
     t.integer  "agency_id"
+    t.string   "line2"
   end
 
   create_table "notes", :force => true do |t|
@@ -136,6 +189,12 @@ ActiveRecord::Schema.define(:version => 20121215182313) do
   end
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
+
+  create_table "patient_statuses", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "payroll_batches", :force => true do |t|
     t.integer  "agency_id"
@@ -189,6 +248,14 @@ ActiveRecord::Schema.define(:version => 20121215182313) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "subscription_tiers", :force => true do |t|
+    t.string   "label"
+    t.decimal  "monthly_fee", :precision => 11, :scale => 2, :default => 0.0
+    t.integer  "max_users",                                  :default => 0
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                                     :default => "",  :null => false
     t.string   "encrypted_password",                                        :default => "",  :null => false
@@ -236,6 +303,20 @@ ActiveRecord::Schema.define(:version => 20121215182313) do
     t.integer  "approved_by_user_id"
     t.integer  "payroll_line_item_id"
     t.boolean  "billable",                                            :default => true, :null => false
+  end
+
+  create_table "visits_caregiver_tasks", :force => true do |t|
+    t.integer  "visit_id"
+    t.integer  "caregiver_task_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "visits_patient_statuses", :force => true do |t|
+    t.integer  "visit_id"
+    t.integer  "patient_status_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
 end
