@@ -1,9 +1,8 @@
 <nav id="dashboard-employees-menu" class="dashboard-sidebar-menu">
-  <ul>
-    <li><%= link_to_unless_current 'Add New Employee', new_dashboard_employee_path %></li>
-  </ul>
-</nav>
+  <% if @employee.blank? or @employee.id.blank? %>
+        <%= render_navigation :level => 3 %>
+    <% else %>
+        <%= render_navigation :level => 4 %>
+    <% end %>
 
-<% unless @employee.blank? %>
-    <%= render_navigation :level => 4 %>
-<% end %>
+</nav>

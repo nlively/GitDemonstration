@@ -1,6 +1,8 @@
+@import 'sass';
+
 body {
   font-family: Helvetica, sans-serif;
-  color: #727474;
+  color: $bodyText;
   background: #bfbfbf;
   font-size: 13px;
 }

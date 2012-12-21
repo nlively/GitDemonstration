@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require_tree ./auto_include/.
-//= require_tree ./dashboard/.

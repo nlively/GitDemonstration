@@ -1,9 +1,9 @@
 <nav id="dashboard-clients-menu" class="dashboard-sidebar-menu">
-  <ul>
-    <li><%= link_to_unless_current 'Add New Client', new_dashboard_client_path %></li>
-  </ul>
-</nav>
 
-<% unless @care_recipient.blank? %>
-    <%= render_navigation :level => 4 %>
-<% end %>
+  <% if @care_recipient.blank? or @care_recipient.id.blank? %>
+      <%= render_navigation :level => 3 %>
+  <% else %>
+      <%= render_navigation :level => 4 %>
+  <% end %>
+
+</nav>

@@ -14,6 +14,7 @@
   <title>Boomr Web Portal</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "dashboard" %>
   <%= javascript_include_tag "modernizr-2.6.2.min" %>
 
   <%= csrf_meta_tags %>
@@ -35,47 +36,61 @@
           <%= render 'layouts/dashboard_top_menu' %>
         </div>
 
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
 
-
-        <div id="sidebar-first" class="sidebar">
-          <div id="sidebar-first-inner" class="sidebar-inner">
+        <div id="sidebar-first" class="sidebar main-col">
+          <div id="sidebar-first-inner" class="sidebar-inner main-col-inner inner">
             <%= render 'layouts/dashboard_sidebar_menu' %>
           </div>
         </div>
 
-        <div id="content">
-          <div id="content-inner">
+        <div id="content" class="main-col">
+          <div id="content-inner" class="inner main-col-inner">
 
             <%= render 'shared/breadcrumb' %>
 
+            <% if content_for? :title %>
+              <h1 class="title"><%= yield :title %></h1>
+            <% end %>
+
+
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+
             <%= yield %>
+
           </div>
         </div>
 
-        <div id="sidebar-second" class="sidebar">
-                 <div id="sidebar-second-inner" class="sidebar-inner">
-                   <%= render 'layouts/dashboard_sidebar_menu' %>
-                 </div>
-               </div>
+        <div id="sidebar-second" class="sidebar main-col">
+          <div id="sidebar-second-inner" class="sidebar-inner main-col-inner inner">
+            <% if content_for? :sidebar_second %>
+                <%= yield :sidebar_second %>
+            <% else %>
+                <%= render 'dashboard/shared/sidebar_second_default' %>
+            <% end %>
+          </div>
+        </div>
 
       </div>
     </div>
 
     <div id="footer" class="">
       <div id="footer-inner">
+
+
       </div>
     </div>
 
 
-    <%= render 'layouts/copyright' %>
 
-    <%=  render 'layouts/tracking' %>
 
 
   </div>
 </div>
+
+
+<%= render 'layouts/copyright' %>
+<%=  render 'layouts/tracking' %>
 
 
 </body>

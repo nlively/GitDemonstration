@@ -1,0 +1,35 @@
+$bodyText: #727474;
+$navText: #727474;
+$shadowBottom: 0 3px 6px -6px #000;
+$shadowSides:  -2px -2px 12px rgba(0, 0, 0, 0.67);
+
+@mixin bold-font {
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+@mixin three-d-border {
+  border-top: solid 1px #98cacb;
+  border-left: solid 1px #d8d8d8;
+  border-right: none;
+  border-bottom: none;
+}
+
+@mixin shadow-bottom {
+  -webkit-box-shadow: $shadowBottom;
+  -moz-box-shadow: $shadowBottom;
+  box-shadow: $shadowBottom;
+}
+
+@mixin shadow-sides {
+  -webkit-box-shadow: $shadowSides;
+  -moz-box-shadow: $shadowSides;
+  box-shadow: $shadowSides;
+}
+
+@mixin reset-list {
+  list-style-type: none;
+  list-style-position: outside;
+  margin: 0;
+  padding: 0;
+}

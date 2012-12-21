@@ -57,6 +57,7 @@ OauthServer::Application.routes.draw do
     end
 
     namespace :visits do
+      match 'custom'
       match 'today'
       match 'this-week', :action => :this_week, :as => :this_week
       match 'this-month', :action => :this_month, :as => :this_month

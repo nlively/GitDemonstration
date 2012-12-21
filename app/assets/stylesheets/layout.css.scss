@@ -1,192 +1,61 @@
+@import 'sass';
 
 #page {
   width: 1030px;
   margin: 0 auto;
   background:#fff;
-}
+  @include shadow-sides;
 
-#header, #main, #footer {
-  width: 100%;
-  overflow: auto;
-}
 
-#header {
-  background: #f7f8f8;
-  #header-inner {
-  padding: 10px;
+  #header, #main, #footer {
+    width: 100%;
+    overflow: auto;
   }
-}
 
-#navigation {
-  background: #87d8d8;
-  -webkit-box-shadow: 0 8px 6px -6px #a8c9c7;
-  -moz-box-shadow: 0 8px 6px -6px #a8c9c7;
-  box-shadow: 0 8px 6px -6px #a8c9c7;
-
-  #top-bar {
-    padding: 5px 15px;
-    text-align: center;
-    color:#fff;
-
-    a {
-      color: yellow;
+  #header {
+    background: #f7f8f8;
+    #header-inner {
+      padding: 10px;
     }
   }
+
+  #main {
+
+    .main-col-inner {
+      padding: 8px 8px 60px 8px;
+    }
+
+    #sidebar-first {
+      float: left;
+      width: 168px;
+      border-right: 2px solid #dfe1e1;
+      min-height: 400px;
+      background: #f7f7f8;
+
+      .main-col-inner {
+        padding: 0;
+        padding-bottom: 60px;
+      }
+    }
+    #sidebar-second {
+      float: left;
+      width: 208px;
+      border-left: 2px solid #dfe1e1;
+      min-height: 400px;
+      background: #f6f9fb;
+    }
+
+    #content {
+      float: left;
+      width: 650px;
+    }
+
+  }
+
 }
 
 #copyright {
   font-size: 0.8em;
   text-align: center;
   margin-top: 40px;
-}
-
-#top-menu {
-  ul, li {
-    list-style-type: none;
-    list-style-position: outside;
-  }
-
-  text-align: right;
-
-  li {
-    display: inline-block;
-    margin: 3px 10px;
-  }
-
-}
-
-#dashboard-top-menu {
-  ul, li {
-    list-style-type: none;
-    list-style-position: outside;
-    margin: 0;
-  }
-
-  li {
-    display: inline-block;
-
-    a {
-      display: inline-block;
-      min-width: 155px;
-
-      text-align: center;
-      padding: 10px 0px;
-
-      border: 1px solid #333;
-      color: #333;
-      text-decoration: none;
-
-      &:hover {
-      }
-    }
-  }
-}
-
-#sidebar-first {
-  float: left;
-  width: 168px;
-  border-right: 2px solid #dfe1e1;
-  min-height: 400px;
-  background: #f7f7f8;
-}
-#sidebar-second {
-  float: left;
-  width: 198px;
-  border-left: 2px solid #dfe1e1;
-  min-height: 400px;
-  background: #f6f9fb;
-}
-
-#content {
-  float: left;
-  width: 650px;
-}
-
-ul, ol {
-  &.three-columns {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-    column-count: 3;
-  }
-}
-
-tr.visit-row {
-  &.approved {
-    background: #ccffcc;
-  }
-
-  td {
-    &.employee, &.client {
-      width: 120px;
-    }
-
-    &.payrate, &.billrate {
-      width: 70px;
-
-      input[type="text"] {
-        width: 50px;
-      }
-    }
-
-    &.in-time, &.out-time {
-      width: 100px;
-    }
-
-    &.duration {
-      width: 70px;
-    }
-
-    &.wrapper {
-      padding: 0;
-      text-align: left;
-
-      table {
-        width:100%;
-      }
-    }
-  }
-}
-
-#activity-stream-wrapper {
-  .activity-stream-item {
-
-    margin: 10px 0;
-
-    div.icon {
-      float: left;
-      width: 75px;
-      height:75px;
-      margin-right: 10px;
-    }
-
-    h3 {
-      font-size: 1.2em;
-    }
-
-    div.time {
-      font-size: 0.85em;
-      font-style: italic;
-    }
-
-    &.js {
-      display: none;
-    }
-  }
-
-}
-
-form {
-  .form-field {
-    margin: 20px 10px;
-
-    div.label {
-      label {
-        font-weight: bold;
-      }
-    }
-
-    div.field {
-
-    }
-  }
 }

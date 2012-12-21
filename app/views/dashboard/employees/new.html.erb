@@ -1,1 +1,12 @@
+<% content_for :sidebar_second do %>
+    <h3>Add a new employee here.</h3>
+
+    <p>
+      The new employee can then log in to their account on their smartphone or tablet. A notification will be sent to
+      their email address.
+    </p>
+<% end %>
+<% content_for :title do %>
+    Add a New Employee
+<% end %>
 <%= render 'dashboard/shared/employee_form', :user => @user %>

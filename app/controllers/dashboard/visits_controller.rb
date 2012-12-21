@@ -1,6 +1,10 @@
 module Dashboard
   class VisitsController  < DashboardController
 
+    def custom
+      index
+    end
+
     def index
 
       # possible filter params: letter, name
