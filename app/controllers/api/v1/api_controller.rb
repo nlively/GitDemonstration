@@ -11,7 +11,19 @@ module Api::V1
       return (params[:own] == "1")
     end
 
-    def sort_string_from_params default_field='id', default_order='desc'
+    def sort_string_from_params options={}
+
+      defaults = {
+        :sort_field => 'id',
+        :sort_order => 'desc',
+        :prefix => nil
+      }
+
+      defaults.merge! options
+
+      unless defaults[:prefix].blank?
+        defaults[:sort_field] = sprintf('%s.%s', defaults[:prefix], defaults[:sort_field])
+      end
 
       # Give precedence to the "sort_string" request parameter, which would allow sorting
       # on multiple fields if specified by the app
@@ -19,8 +31,8 @@ module Api::V1
 
       # Now configure the sort field and sort order, giving precedence to the request
       # parameters, but falling through to defaults if needed
-      sort_field = (params[:sort_field].blank?) ? default_field : params[:sort_field]
-      sort_order = (params[:sort_order].blank?) ? default_order : params[:sort_order]
+      sort_field = (params[:sort_field].blank?) ? defaults[:sort_field] : params[:sort_field]
+      sort_order = (params[:sort_order].blank?) ? defaults[:sort_order] : params[:sort_order]
 
       return sprintf("%s %s", sort_field, sort_order)
     end

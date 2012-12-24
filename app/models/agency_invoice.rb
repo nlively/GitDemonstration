@@ -16,4 +16,6 @@
 
 class AgencyInvoice < ActiveRecord::Base
   belongs_to :agency
+  has_many :agency_invoice_rows
+  has_many :agency_invoice_payments
 end

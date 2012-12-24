@@ -15,4 +15,5 @@
 #
 
 class AgencyInvoicePayment < ActiveRecord::Base
+  belongs_to :agency_invoice
 end

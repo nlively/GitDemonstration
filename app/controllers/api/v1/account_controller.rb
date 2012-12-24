@@ -85,9 +85,25 @@ module Api::V1
       render json: @visits.map {|c| c.web_service_format(root_url)}
     end
 
+    # GET /api/v1/account/visits/completed
     def visits_completed
-      sort_string = sort_string_from_params
-      @visits = Visit.where('out_time IS NOT NULL AND user_id = ?', current_resource_owner.id).order(sort_string)
+      sort_string = sort_string_from_params :prefix => 'visits'
+
+      case params[:filter_field]
+        when 'date'
+          # to do: fix for timezone
+          start_date = DateTime.parse(params[:date]).to_date
+          end_date = start_date + 1.day
+          @visits = current_resource_owner.completed_visits.where("in_time BETWEEN ? AND ?", start_date, end_date)
+        when 'name'
+          fuzzy = '%' + params[:name] + '%'
+          @visits = current_resource_owner.completed_visits.includes(:care_recipient).where("care_recipients.first_name LIKE ? OR care_recipients.last_name LIKE ?", fuzzy, fuzzy).order(sort_string)
+        when 'client'
+          @visits = current_resource_owner.completed_visits.where("care_recipient_id = ?", params[:client]).order(sort_string)
+        else
+          @visits = current_resource_owner.completed_visits.order(sort_string)
+      end
+
       render json: @visits.map {|c| c.web_service_format(root_url)}
     end
 

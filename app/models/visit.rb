@@ -24,6 +24,9 @@ class Visit < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
   include ActionView::Helpers::NumberHelper
   include VisitsHelper
+  include ResourcesHelper
+
+  before_save :process_pre_save
 
   belongs_to :care_recipient
   belongs_to :user
@@ -34,15 +37,31 @@ class Visit < ActiveRecord::Base
 
   delegate :payroll_batch, :to => :payroll_line_item, :allow_nil => true
 
-  has_many :activity_streams
   has_many :check_ins
   has_many :photos
+  has_one :note
 
   has_many :visits_patient_statuses
   has_many :patient_statuses, :through => :visits_patient_statuses
 
   has_many :visits_caregiver_tasks
   has_many :caregiver_tasks, :through => :visits_caregiver_tasks
+
+  def process_pre_save
+    if (self.bill_rate.blank? or self.bill_rate == 0) and not care_recipient.blank?
+      self.bill_rate = care_recipient.default_bill_rate
+    end
+
+    if (self.pay_rate.blank? or self.pay_rate == 0) and not user.blank?
+      self.pay_rate = user.default_pay_rate
+    end
+
+    if completed?
+      self.break_minutes = 0 if self.break_minutes.blank?
+      self.duration_minutes = rounded_for_billing calculate_duration_minutes(self.in_time, self.out_time)
+      self.billable_duration_minutes = self.duration_minutes - rounded_for_billing(self.break_minutes)
+    end
+  end
 
   def employee_label
     return (user.nil?) ? 'N/A' : user.full_name_last_first
@@ -77,7 +96,7 @@ class Visit < ActiveRecord::Base
   end
 
   def total_hours
-    return (out_time - in_time) / 1.hour
+    billable_duration_minutes.to_f / 60.0
   end
 
   def duration
@@ -85,8 +104,7 @@ class Visit < ActiveRecord::Base
   end
 
   def duration_string
-    #distance_of_time_in_words(duration) unless duration.nil?
-    duration_in_hours in_time, out_time
+    duration_in_hours duration_minutes
   end
 
   def date_string
@@ -154,10 +172,10 @@ class Visit < ActiveRecord::Base
       :in_time_fmt_time => in_time.to_formatted_s(:hour_with_minute_meridian),
       :user_id => user.id,
       :user_full_name => user.full_name,
-      :user_photo_url => "#{url_base}#{user.profile_photo.url(:profile)}",
+      :user_photo_url => full_url(url_base, user.profile_photo.url(:profile)),
       :care_recipient_id => care_recipient.id,
       :care_recipient_full_name => care_recipient.full_name,
-      :care_recipient_photo_url => "#{url_base}#{care_recipient.profile_photo.url(:profile)}",
+      :care_recipient_photo_url => full_url(url_base, care_recipient.profile_photo.url(:profile)),
       :location_id => location_id,
       :month => in_time.to_formatted_s(:month_abbrev),
       :day => in_time.to_formatted_s(:day_only),
@@ -165,10 +183,14 @@ class Visit < ActiveRecord::Base
       :pay_rate => pay_rate
     }
 
+    unless note.nil?
+      hash[:note] = note.note
+    end
+
     if completed?
       hash[:timespan_fmt] = start_to_stop
       hash[:duration_fmt] = duration_string
-      hash[:money_made] = pay_rate * total_hours
+      hash[:money_made] = (pay_rate * total_hours).round(2)
     end
 
     unless location.nil?

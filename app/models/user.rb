@@ -33,6 +33,7 @@
 
 class User < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+  include ResourcesHelper
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -96,7 +97,7 @@ class User < ActiveRecord::Base
       :full_name => full_name,
       :first_name => first_name,
       :middle_name => middle_name,
-      :photo_url => "#{url_base}#{profile_photo.url(:profile)}",
+      :photo_url => full_url(url_base, profile_photo.url(:profile)),
       :email => email,
       :phone => phone,
       :sms   => sms
@@ -110,6 +111,9 @@ class User < ActiveRecord::Base
 
   end
 
+  def completed_visits
+    visits.where 'visits.out_time IS NOT NULL'
+  end
 
 
   # Find and return all admin-level users

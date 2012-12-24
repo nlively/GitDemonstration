@@ -17,6 +17,8 @@
 #
 
 class Photo < ActiveRecord::Base
+  include ResourcesHelper
+
   belongs_to :note
   belongs_to :user
   belongs_to :care_recipient
@@ -37,8 +39,8 @@ class Photo < ActiveRecord::Base
       :created_at_fmt_time => created_at.to_formatted_s(:hour_with_minute_meridian),
       :caption => caption,
       :file_name => photo_file_name,
-      :thumbnail_url => "#{url_base}#{photo.url(:profile)}",
-      :full_url => "#{url_base}#{photo.url}",
+      :thumbnail_url => full_url(url_base, photo.url(:profile)),
+      :full_url =>full_url(url_base, photo.url),
       :visit_id => visit_id,
       :note_id => note_id,
       :user_id => user_id,
@@ -47,12 +49,12 @@ class Photo < ActiveRecord::Base
 
     unless user.blank?
       hash[:user_full_name] = user.full_name
-      hash[:user_photo_url] = "#{url_base}#{user.profile_photo.url(:profile)}"
+      hash[:user_photo_url] = full_url(url_base, user.profile_photo.url(:profile))
     end
 
     unless care_recipient.blank?
       hash[:care_recipient_full_name] = care_recipient.full_name
-      hash[:care_recipient_photo_url] = "#{url_base}#{care_recipient.profile_photo.url(:profile)}"
+      hash[:care_recipient_photo_url] = full_url(url_base, care_recipient.profile_photo.url(:profile))
     end
 
     hash

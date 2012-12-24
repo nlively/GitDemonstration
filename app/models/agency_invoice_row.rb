@@ -14,4 +14,5 @@
 #
 
 class AgencyInvoiceRow < ActiveRecord::Base
+  belongs_to :agency_invoice
 end

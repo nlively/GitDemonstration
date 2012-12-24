@@ -19,6 +19,7 @@
 
 class CareRecipient < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+  include ResourcesHelper
 
   has_many :activity_streams
   has_many :photos
@@ -69,7 +70,7 @@ class CareRecipient < ActiveRecord::Base
       :last_name => last_name,
       :full_name =>full_name,
       :full_name_last_first =>full_name_last_first,
-      :photo_url => "#{url_base}#{profile_photo.url(:profile)}",
+      :photo_url => full_url(url_base, profile_photo.url(:profile)),
       :id => id,
       :dob => dob
     }
@@ -83,8 +84,12 @@ class CareRecipient < ActiveRecord::Base
       hash[:address2] = location.formatted_line2
     end
 
-    return hash
+    hash
 
+  end
+
+  def completed_visits
+    visits.where 'out_time IS NOT NULL'
   end
 
 end

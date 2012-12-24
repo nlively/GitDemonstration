@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221012621) do
+ActiveRecord::Schema.define(:version => 20121224171220) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -296,13 +296,17 @@ ActiveRecord::Schema.define(:version => 20121221012621) do
     t.integer  "care_recipient_id"
     t.integer  "location_id"
     t.integer  "agency_id"
-    t.datetime "created_at",                                                            :null => false
-    t.datetime "updated_at",                                                            :null => false
-    t.decimal  "bill_rate",            :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "pay_rate",             :precision => 11, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
+    t.decimal  "bill_rate",                 :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "pay_rate",                  :precision => 11, :scale => 2, :default => 0.0
     t.integer  "approved_by_user_id"
     t.integer  "payroll_line_item_id"
-    t.boolean  "billable",                                            :default => true, :null => false
+    t.boolean  "billable",                                                 :default => true, :null => false
+    t.integer  "break_minutes",                                            :default => 0
+    t.integer  "duration_minutes",                                         :default => 0
+    t.integer  "billable_duration_minutes",                                :default => 0
+    t.string   "guid"
   end
 
   create_table "visits_caregiver_tasks", :force => true do |t|

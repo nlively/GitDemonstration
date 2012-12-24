@@ -12,6 +12,8 @@
 #
 
 class Note < ActiveRecord::Base
+  include ResourcesHelper
+
   has_one :photo
   belongs_to :user
   belongs_to :care_recipient
@@ -29,10 +31,10 @@ class Note < ActiveRecord::Base
       :note_trimmed => note.truncate(150),
       :user_id => user.id,
       :user_full_name => user.full_name,
-      :user_photo_url => "#{url_base}#{user.profile_photo.url(:profile)}",
+      :user_photo_url => full_url(url_base, user.profile_photo.url(:profile)),
       :care_recipient_id => care_recipient.id,
       :care_recipient_full_name => care_recipient.full_name,
-      :care_recipient_photo_url => "#{url_base}#{care_recipient.profile_photo.url(:profile)}",
+      :care_recipient_photo_url => full_url(url_base, care_recipient.profile_photo.url(:profile)),
     }
 
     return hash
