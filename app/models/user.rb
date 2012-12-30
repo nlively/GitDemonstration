@@ -96,6 +96,7 @@ class User < ActiveRecord::Base
       :id => id,
       :full_name => full_name,
       :first_name => first_name,
+      :last_name => last_name,
       :middle_name => middle_name,
       :photo_url => full_url(url_base, profile_photo.url(:profile)),
       :email => email,
