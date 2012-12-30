@@ -190,7 +190,7 @@ class Visit < ActiveRecord::Base
     if completed?
       hash[:timespan_fmt] = start_to_stop
       hash[:duration_fmt] = duration_string
-      hash[:money_made] = (pay_rate * total_hours).round(2)
+      hash[:money_made] = (pay_rate.blank? or total_hours.blank?) ? 0.0 : (pay_rate * total_hours).round(2)
     end
 
     unless location.nil?
