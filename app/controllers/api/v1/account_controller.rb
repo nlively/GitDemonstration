@@ -14,9 +14,18 @@ module Api::V1
       filtered_params = {
         :first_name => params[:first_name],
         :last_name =>params[:last_name],
+        :phone => params[:phone]
       }
 
+
       if current_resource_owner.update_attributes filtered_params
+
+        unless params[:photo].blank?
+          #@photo = Photo.create! :user_id => current_resource_owner.id, :photo => params[:photo]
+          current_resource_owner.profile_photo = params[:photo]
+          current_resource_owner.save!
+        end
+
         render json: {:result => true, :message => "Profile has been updated"}
       else
         render json: {:result => false, :message => "Profile could not be updated"}
