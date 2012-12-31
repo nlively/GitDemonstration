@@ -89,14 +89,14 @@ module Api::V1
 
     # GET /api/v1/account/visits
     def visits
-      sort_string = sort_string_from_params
+      sort_string = sort_string_from_params :sort_field => 'in_time'
       @visits = current_resource_owner.visits.order(sort_string)
       render json: @visits.map {|c| c.web_service_format(root_url)}
     end
 
     # GET /api/v1/account/visits/completed
     def visits_completed
-      sort_string = sort_string_from_params :prefix => 'visits'
+      sort_string = sort_string_from_params :sort_field => 'in_time', :prefix => 'visits'
 
       case params[:filter_field]
         when 'date'

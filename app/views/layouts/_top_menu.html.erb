@@ -4,7 +4,7 @@
         <% if current_user.nil? %>
               <%= link_to "Sign In", new_user_session_path, :id => 'sign-in' %>
 
-              &nbsp;|&nbsp;
+              &nbsp;
 
               <%= link_to "Create an Account", new_user_registration_path, :id => 'new-account' %>
         <% else %>

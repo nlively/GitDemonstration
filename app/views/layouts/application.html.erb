@@ -16,16 +16,9 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "modernizr-2.6.2.min" %>
 
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<div id="top-bar">
-  <% unless current_user.nil? or current_user.agency.nil? %>
-      You are signed in to <%= current_user.agency.name %>
-  <% end %>
-</div>
+<body class="main">
 
 <div id="page">
   <div id="page-inner">
@@ -38,15 +31,26 @@
     <div id="main" class="">
       <div id="main-inner">
 
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <div id="navigation">
+          <%= render 'layouts/dashboard_top_menu' %>
+        </div>
 
-        <div id="content">
-          <div id="content-inner">
+
+        <div id="content" class="main-col">
+          <div id="content-inner" class="inner main-col-inner">
 
             <%= render 'shared/breadcrumb' %>
 
+            <% if content_for? :title %>
+                <h1 class="title"><%= yield :title %></h1>
+            <% end %>
+
+
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+
             <%= yield %>
+
           </div>
         </div>
 
@@ -55,17 +59,18 @@
 
     <div id="footer" class="">
       <div id="footer-inner">
+
+
       </div>
     </div>
 
 
-    <%= render 'layouts/copyright' %>
-
-    <%=  render 'layouts/tracking' %>
-
-
   </div>
 </div>
+
+
+<%= render 'layouts/copyright' %>
+<%=  render 'layouts/tracking' %>
 
 
 </body>

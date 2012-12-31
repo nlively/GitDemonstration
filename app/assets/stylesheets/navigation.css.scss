@@ -30,6 +30,7 @@ nav {
       float: left;
       @include three-d-border;
       width: 170px;
+      text-align: center;
 
       a {
         border: none;

@@ -1,5 +1,11 @@
 @import 'sass';
 
+body.main {
+  #content {
+    width: 100%;
+  }
+}
+
 #page {
   width: 1030px;
   margin: 0 auto;
