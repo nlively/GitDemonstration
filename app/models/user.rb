@@ -61,7 +61,8 @@ class User < ActiveRecord::Base
   has_many :care_recipients, :through => :care_recipients_users
 
   has_attached_file :profile_photo, :styles => {
-    :profile => "93x93>"
+    :profile => "93x93>",
+    :tiny => "50x50>"
   }
 
   def self.authenticate!(username, password)
