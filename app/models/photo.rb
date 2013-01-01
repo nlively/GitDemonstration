@@ -29,6 +29,17 @@ class Photo < ActiveRecord::Base
     :shift_preview => "25x25>"
   }
 
+  def web_service_format_minimal url_base
+    hash = {
+          :id => id,
+          :created_at => created_at,
+          :created_at_fmt_date => created_at.to_formatted_s(:mdy),
+          :created_at_fmt_time => created_at.to_formatted_s(:hour_with_minute_meridian),
+          :caption => caption,
+          :thumbnail_url => full_url(url_base, photo.url(:profile)),
+          :full_url =>full_url(url_base, photo.url),
+        }
+  end
 
   def web_service_format url_base
 

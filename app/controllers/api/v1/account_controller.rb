@@ -18,15 +18,11 @@ module Api::V1
       }
 
       unless params[:photo].blank?
-        #@photo = Photo.create! :user_id => current_resource_owner.id, :photo => params[:photo]
-        current_resource_owner.profile_photo = params[:photo]
-        current_resource_owner.save!
+        logger.debug params[:photo].inspect
+        filtered_params[:profile_photo] = params[:photo]
       end
 
       if current_resource_owner.update_attributes filtered_params
-
-
-
         render json: {:result => true, :message => "Profile has been updated"}
       else
         render json: {:result => false, :message => "Profile could not be updated"}
