@@ -1,4 +1,7 @@
-<%= form_for care_recipient, :url => dashboard_client_path(care_recipient) do |f| %>
+<%
+   form_action = (care_recipient.id.blank?) ? dashboard_clients_path(care_recipient) : dashboard_client_path(care_recipient)
+%>
+<%= form_for care_recipient, :url => form_action do |f| %>
 
     <div class="form-field">
       <div class="label">

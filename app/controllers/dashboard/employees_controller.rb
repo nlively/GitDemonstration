@@ -26,7 +26,7 @@ module Dashboard
       @employee = User.find params[:id]
 
       respond_to do |format|
-        if @employee.update_attributes(params[:user])
+        if @employee.update_attributes! params[:user]
           format.html { redirect_to dashboard_employees_profile_path(@employee), notice: 'Employee was successfully updated.' }
           format.json { head :no_content }
         else

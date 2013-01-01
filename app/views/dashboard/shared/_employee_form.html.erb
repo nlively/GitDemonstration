@@ -1,5 +1,7 @@
-<%= form_for user, :url => dashboard_employee_path(user) do |f| %>
-
+<%
+   form_action = (user.id.blank?) ? dashboard_employees_path(user) : dashboard_employee_path(user)
+%>
+<%= form_for user, :url => form_action do |f| %>
 
     <div class="form-field">
       <div class="label">
@@ -68,22 +70,24 @@
         <%= f.text_field :email %>
       </div>
     </div>
-    <div class="form-field">
-      <div class="label">
-        <%= f.label :password %>
-      </div>
-      <div class="field">
-        <%= f.password_field :password %>
-      </div>
-    </div>
-    <div class="form-field">
-      <div class="label">
-        <%= f.label :password_confirmation %>
-      </div>
-      <div class="field">
-        <%= f.password_field :password_confirmation %>
-      </div>
-    </div>
+    <% if user.id.blank? %>
+        <div class="form-field">
+          <div class="label">
+            <%= f.label :password %>
+          </div>
+          <div class="field">
+            <%= f.password_field :password %>
+          </div>
+        </div>
+        <div class="form-field">
+          <div class="label">
+            <%= f.label :password_confirmation %>
+          </div>
+          <div class="field">
+            <%= f.password_field :password_confirmation %>
+          </div>
+        </div>
+    <% end %>
 
 
     <%= f.submit %>
