@@ -5,13 +5,17 @@
       <% notes.each do |note| %>
           <tr>
             <td>
-              <%=  note.photo.photo.url(:profile) unless note.photo.blank? %>
+              <%= image_tag note.photo.photo.url(:profile) unless note.photo.blank? %>
             </td>
             <td>
               <%= note.note.truncate(90) %>
             </td>
             <td>
               <%= note.created_at.to_formatted_s :mdy %>
+            </td>
+            <td>
+              <% link_path = (defined? @employee) ? dashboard_employees_note_path(@employee, note) : dashboard_clients_note_path(@care_recpiient, note) %>
+              <%= link_to 'View', link_path %>
             </td>
           </tr>
       <% end %>

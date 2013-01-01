@@ -73,6 +73,7 @@ OauthServer::Application.routes.draw do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/clients' => 'clients#index', :as => :clients
       match ':id/notes' => 'notes#index', :as => :notes
+      match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
       match ':id/payroll' => 'payroll#index', :as => :payroll
     end
@@ -83,6 +84,7 @@ OauthServer::Application.routes.draw do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/caregivers' => 'caregivers#index', :as => :caregivers
       match ':id/notes' => 'notes#index', :as => :notes
+      match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
     end
 
