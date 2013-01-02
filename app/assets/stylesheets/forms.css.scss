@@ -4,6 +4,11 @@ form {
   .form-field {
     margin: 20px 10px;
 
+    &.dob {
+      width:100%;
+      overflow: auto;
+    }
+
     div.label {
       label {
         font-weight: bold;
@@ -12,6 +17,47 @@ form {
 
     div.field {
 
+    }
+  }
+}
+
+.selectbox {
+  float: left;
+  margin: 0 10px 0 6px !important;
+
+  .text {
+    font-size: 12px;
+    color: $bodyText;
+    text-shadow: 0 1px 2px white;
+
+    float: left;
+
+    @include bold-font;
+
+    color: #414141;
+    text-shadow: 0 1px 2px white;
+    margin: 0;
+    padding-right: 26px;
+    height: 27px;
+    overflow: hidden;
+    background: transparent url(dd-select.png) no-repeat right -27px;
+
+    em {
+      display: none;
+      position: absolute;
+      margin: 6px 0 0 10px;
+      width: 16px;
+      height: 16px;
+      background: transparent url(loading.gif) no-repeat center center;
+    }
+
+    span {
+      margin: 0;
+      padding: 6px 0 0 10px;
+      background: transparent url(dd-select.png) no-repeat left top;
+      display:block;
+      height: 28px;
+      color: $bodyText;
     }
   }
 }
