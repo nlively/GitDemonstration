@@ -1,5 +1,9 @@
 OauthServer::Application.routes.draw do
 
+  get "general/client_statuses"
+
+  get "general/daily_activities"
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :check_ins, :only => [:index, :create]
@@ -15,6 +19,11 @@ OauthServer::Application.routes.draw do
       namespace :session do
         post 'photo'
         post 'note'
+      end
+
+      namespace :general do
+        get 'client_statuses'
+        get 'daily_activities'
       end
 
       post 'account' => 'account#update'
