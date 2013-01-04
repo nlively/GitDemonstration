@@ -13,6 +13,20 @@ module Api::V1
       if @checkin.in_out
         @visit = Visit.create! :user_id => @checkin.user_id, :in_time => DateTime.current, :care_recipient_id => params[:care_recipient_id], :location_id => params[:location_id], :agency_id => current_resource_owner.agency_id
 
+        unless params[:activities].blank?
+          activities = params[:activities].split(',')
+          activities.each do |key|
+            @visit.caregiver_tasks << CaregiverTask.find(key)
+          end
+        end
+
+        unless params[:client_statuses].blank?
+          client_statuses = params[:client_statuses].split(',')
+          client_statuses.each do |key|
+            @visit.patient_statuses << PatientStatus.find(key)
+          end
+        end
+
         @checkin.visit = @visit
       else
         @visit = Visit.find params[:visit_id]
