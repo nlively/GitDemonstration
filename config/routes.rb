@@ -1,5 +1,9 @@
 OauthServer::Application.routes.draw do
 
+  get "general/client_statuses"
+
+  get "general/daily_activities"
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :check_ins, :only => [:index, :create]
@@ -15,6 +19,11 @@ OauthServer::Application.routes.draw do
       namespace :session do
         post 'photo'
         post 'note'
+      end
+
+      namespace :general do
+        get 'client_statuses'
+        get 'daily_activities'
       end
 
       post 'account' => 'account#update'
@@ -38,8 +47,8 @@ OauthServer::Application.routes.draw do
   namespace :dashboard do
     resources :locations
 
-    resources :employees, :only => [:index, :show, :new, :create]
-    resources :clients, :only => [:index, :show, :new, :create]
+    resources :employees, :only => [:index, :show, :new, :create, :update]
+    resources :clients, :only => [:index, :show, :new, :create, :update]
 
     match 'visits' => 'visits#index'
     match 'reports' => 'reports#index'
@@ -73,15 +82,18 @@ OauthServer::Application.routes.draw do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/clients' => 'clients#index', :as => :clients
       match ':id/notes' => 'notes#index', :as => :notes
+      match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
       match ':id/payroll' => 'payroll#index', :as => :payroll
     end
 
     post 'clients/search' => 'clients#search', :as => :clients_search
+    #put 'clients/:id' => 'clients#update'
     namespace :clients do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/caregivers' => 'caregivers#index', :as => :caregivers
       match ':id/notes' => 'notes#index', :as => :notes
+      match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
     end
 

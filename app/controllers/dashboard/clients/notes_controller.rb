@@ -10,5 +10,9 @@ module Dashboard::Clients
       @photos = @care_recipient.photos.order('created_at desc')
     end
 
+    def show
+      @note = Note.where('id = ? and care_recipient_id = ?', params[:note_id], params[:id]).first
+    end
+
   end
 end

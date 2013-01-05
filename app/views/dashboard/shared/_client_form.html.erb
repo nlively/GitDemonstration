@@ -1,5 +1,7 @@
-<%= form_for care_recipient, :url => dashboard_clients_path(care_recipient) do |f| %>
-
+<%
+   form_action = (care_recipient.id.blank?) ? dashboard_clients_path(care_recipient) : dashboard_client_path(care_recipient)
+%>
+<%= form_for care_recipient, :url => form_action do |f| %>
 
     <div class="form-field">
       <div class="label">
@@ -19,7 +21,7 @@
       </div>
     </div>
 
-    <div class="form-field">
+    <div class="form-field dob">
       <div class="label">
         <%= f.label :dob, 'Date of Birth' %>
       </div>
@@ -28,11 +30,18 @@
       </div>
     </div>
 
+
+
     <div class="form-field">
       <div class="label">
         <%= f.label :profile_photo %>
       </div>
       <div class="field">
+
+        <% unless care_recipient.profile_photo.blank? %>
+            <%= image_tag care_recipient.profile_photo.url(:tiny) %>
+        <% end %>
+
         <%= f.file_field :profile_photo %>
       </div>
     </div>

@@ -20,6 +20,21 @@ module Dashboard
 
     def show
       @care_recipient = CareRecipient.find params[:id]
+
+    end
+
+    def update
+      @care_recipient = CareRecipient.find params[:id]
+
+      respond_to do |format|
+        if @care_recipient.update_attributes(params[:care_recipient])
+          format.html { redirect_to dashboard_clients_profile_path(@care_recipient), notice: 'Client was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @care_recipient.errors, status: :unprocessable_entity }
+        end
+      end
     end
 
     def new

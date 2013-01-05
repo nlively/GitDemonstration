@@ -36,7 +36,8 @@ class CareRecipient < ActiveRecord::Base
   has_many :users, :through => :care_recipients_users
 
   has_attached_file :profile_photo, :styles => {
-    :profile => "93x93>"
+    :profile => "93x93>",
+    :tiny => "50x50>"
   }
 
   def default_bill_rate_formatted

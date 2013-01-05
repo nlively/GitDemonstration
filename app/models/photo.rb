@@ -26,9 +26,21 @@ class Photo < ActiveRecord::Base
   has_attached_file :photo, :styles => {
     :profile => "93x93>",
     :search_result => "45x45>",
-    :shift_preview => "25x25>"
+    :shift_preview => "25x25>",
+    :tiny => "50x50>"
   }
 
+  def web_service_format_minimal url_base
+    hash = {
+      :id => id,
+      :created_at => created_at,
+      :created_at_fmt_date => created_at.to_formatted_s(:mdy),
+      :created_at_fmt_time => created_at.to_formatted_s(:hour_with_minute_meridian),
+      :caption => caption,
+      :thumbnail_url => full_url(url_base, photo.url(:profile)),
+      :full_url =>full_url(url_base, photo.url),
+    }
+  end
 
   def web_service_format url_base
 

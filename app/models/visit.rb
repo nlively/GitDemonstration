@@ -183,8 +183,15 @@ class Visit < ActiveRecord::Base
       :month => in_time.to_formatted_s(:month_abbrev),
       :day => in_time.to_formatted_s(:day_only),
       :bill_rate => bill_rate,
-      :pay_rate => pay_rate
+      :pay_rate => pay_rate,
+      :photos => []
     }
+
+    unless self.photos.empty?
+      self.photos.each do |p|
+        hash[:photos] << p.web_service_format_minimal(url_base)
+      end
+    end
 
     unless note.nil?
       hash[:note] = note.note

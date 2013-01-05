@@ -59,20 +59,28 @@ SimpleNavigation::Configuration.run do |navigation|
         if @care_recipient.blank? or @care_recipient.id.blank?
           client.item :new_client, 'Add a New Client', new_dashboard_client_path, :highlights_on => :subpath
         else
-          client.item :employee, @care_recipient.try(:full_name), dashboard_client_path(@care_recipient), :highlights_on => /dashboard\/clients\/[0-9]+/ do |client_sub|
+          client.item :employee, @care_recipient.try(:full_name), dashboard_clients_profile_path(@care_recipient), :highlights_on => /dashboard\/clients\/[0-9]+/ do |client_sub|
             client_sub.item :profile, 'Profile', dashboard_clients_profile_path(@care_recipient), :highlights_on => :subpath
-            client_sub.item :caregivers, 'Caregivers', dashboard_employees_clients_path(@care_recipient), :highlights_on => :subpath
-            client_sub.item :notes, 'Notes/Photos', dashboard_employees_notes_path(@care_recipient), :highlights_on => :subpath
-            client_sub.item :visits, 'Visits', dashboard_employees_visits_path(@care_recipient), :highlights_on => :subpath
+            client_sub.item :caregivers, 'Caregivers', dashboard_clients_caregivers_path(@care_recipient), :highlights_on => :subpath
+            client_sub.item :notes, 'Notes/Photos', dashboard_clients_notes_path(@care_recipient), :highlights_on => :subpath do |note_sub|
+              unless @note.blank?
+                note_sub.item :view, 'View Note', dashboard_clients_note_path(@care_recipient, @note), :highlights_on => :subpath
+              end
+            end
+            client_sub.item :visits, 'Visits', dashboard_clients_visits_path(@care_recipient), :highlights_on => :subpath
           end
         end
       end
       sub_nav.item :employees, 'Employees', dashboard_employees_path, :highlights_on => :subpath  do |employee|
         unless @employee.blank? or @employee.id.blank?
-          employee.item :employee, @employee.try(:full_name), dashboard_employee_path(@employee), :highlights_on => /dashboard\/employees\/[0-9]+/ do |emp_sub|
+          employee.item :employee, @employee.try(:full_name), dashboard_employees_profile_path(@employee), :highlights_on => /dashboard\/employees\/[0-9]+/ do |emp_sub|
             emp_sub.item :profile, 'Profile', dashboard_employees_profile_path(@employee), :highlights_on => :subpath
             emp_sub.item :clients, 'Clients', dashboard_employees_clients_path(@employee), :highlights_on => :subpath
-            emp_sub.item :notes, 'Notes/Photos', dashboard_employees_notes_path(@employee), :highlights_on => :subpath
+            emp_sub.item :notes, 'Notes/Photos', dashboard_employees_notes_path(@employee), :highlights_on => :subpath do |note_sub|
+              unless @note.blank?
+                note_sub.item :view, 'View Note', dashboard_employees_note_path(@employee, @note), :highlights_on => :subpath
+              end
+            end
             emp_sub.item :visits, 'Visits', dashboard_employees_visits_path(@employee), :highlights_on => :subpath
             emp_sub.item :payroll, 'Payroll', dashboard_employees_payroll_path(@employee), :highlights_on => :subpath
           end

@@ -1,0 +1,18 @@
+---
+:User:
+  :profile_photo:
+  - :profile
+  - :tiny
+:CareRecipient:
+  :profile_photo:
+  - :profile
+  - :tiny
+:Location:
+  :outside_photo:
+  - :profile
+:Photo:
+  :photo:
+  - :profile
+  - :search_result
+  - :shift_preview
+  - :tiny
