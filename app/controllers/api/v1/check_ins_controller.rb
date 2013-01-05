@@ -49,7 +49,8 @@ module Api::V1
       end
 
 
-      ActivityStream.create_from_visit! @visit, @checkin.in_out
+      activity = ActivityStream.create_from_visit! @visit, @checkin.in_out
+      send_activity_stream_to_node_server activity
 
 
       render json: @visit.web_service_format(root_url)
