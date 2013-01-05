@@ -48,6 +48,9 @@ class Visit < ActiveRecord::Base
   has_many :caregiver_tasks, :through => :visits_caregiver_tasks
 
   def process_pre_save
+
+    self.guid = UUID.generate if self.guid.blank?
+
     if (self.bill_rate.blank? or self.bill_rate == 0) and not care_recipient.blank?
       self.bill_rate = care_recipient.default_bill_rate
     end
