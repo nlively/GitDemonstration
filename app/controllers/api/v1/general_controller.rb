@@ -8,5 +8,6 @@ module Api::V1
     def daily_activities
       render json: CaregiverTask.order('label ASC').all.map{|s| {id:s.id,label:s.label}}
     end
+
   end
 end

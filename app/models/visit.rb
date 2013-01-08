@@ -27,6 +27,7 @@ class Visit < ActiveRecord::Base
   include ResourcesHelper
 
   before_save :process_pre_save
+  after_save :process_after_save
 
   belongs_to :care_recipient
   belongs_to :user
@@ -61,6 +62,22 @@ class Visit < ActiveRecord::Base
       self.duration_minutes = rounded_for_billing calculate_duration_minutes(self.in_time, self.out_time)
       self.billable_duration_minutes = self.duration_minutes - rounded_for_billing(self.break_minutes)
     end
+  end
+
+  def process_after_save
+    if self.approved_changed? and self.approved
+
+      if self.spans_two_days?
+
+        self.split_days!
+
+      end
+
+    end
+  end
+
+  def after_approve
+
   end
 
   def employee_label
@@ -134,6 +151,35 @@ class Visit < ActiveRecord::Base
   def is_future?
     self.in_time > Time.now
   end
+
+  def spans_two_days?
+    not self.in_time.blank? and not self.out_time.blank? and self.in_time.beginning_of_day != self.out_time.beginning_of_day
+  end
+
+  def split_days!
+    days = (self.out_time.beginning_of_day - self.in_time.beginning_of_day) / 1.day
+
+    (0..days).each do |offset|
+      new_in_time = self.in_time.beginning_of_day + offset.days
+      new_out_time = self.in_time.end_of_day + offset.days
+
+      if offset == 0
+        self.out_time = new_out_time
+        self.save!
+
+      else
+        v = self.dup
+        v.in_time = new_in_time
+        v.out_time = new_out_time
+        v.save!
+      end
+
+
+    end
+
+  end
+
+
 
   def location_label
     return (location.nil?) ? 'N/A' : location.label

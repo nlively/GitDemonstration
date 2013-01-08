@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121224171220) do
+ActiveRecord::Schema.define(:version => 20130107165526) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -111,8 +111,9 @@ ActiveRecord::Schema.define(:version => 20121224171220) do
 
   create_table "caregiver_tasks", :force => true do |t|
     t.string   "label"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "weight",     :default => 0
   end
 
   create_table "check_ins", :force => true do |t|
@@ -192,8 +193,9 @@ ActiveRecord::Schema.define(:version => 20121224171220) do
 
   create_table "patient_statuses", :force => true do |t|
     t.string   "label"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "weight",     :default => 0
   end
 
   create_table "payroll_batches", :force => true do |t|
