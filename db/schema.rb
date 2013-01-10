@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110230035) do
+ActiveRecord::Schema.define(:version => 20130110233154) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -212,15 +212,15 @@ ActiveRecord::Schema.define(:version => 20130110230035) do
   create_table "payroll_line_items", :force => true do |t|
     t.integer  "payroll_batch_id"
     t.integer  "user_id"
-    t.decimal  "bill_rate",             :precision => 11, :scale => 2
     t.datetime "created_at",                                                            :null => false
     t.datetime "updated_at",                                                            :null => false
     t.integer  "pay_status",                                           :default => 0,   :null => false
-    t.decimal  "original_bill_rate",    :precision => 11, :scale => 2
     t.decimal  "regular_hours_worked",  :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "overtime_hours_worked", :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "overtime_rate",         :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "adjustments",           :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "pay_rate",              :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "original_pay_rate",     :precision => 11, :scale => 2, :default => 0.0
   end
 
   create_table "photos", :force => true do |t|

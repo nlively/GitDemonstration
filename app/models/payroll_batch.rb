@@ -17,4 +17,15 @@ class PayrollBatch < ActiveRecord::Base
 
   has_many :payroll_line_items
   has_many :visits, :through => :payroll_line_items
+
+  # Deletes a batch and its associated data
+  def back_out!
+
+    self.visits.each {|v| v.payroll_line_item_id = nil; v.save!}
+    self.payroll_line_items.each {|d| d.delete}
+
+    self.delete
+
+  end
+
 end

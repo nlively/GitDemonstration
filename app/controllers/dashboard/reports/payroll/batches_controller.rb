@@ -26,7 +26,7 @@ module Dashboard::Reports::Payroll
       @batch = PayrollBatch.create! :agency_id =>@agency.id, :period_start => @start, :period_end => @stop, :batch_date =>DateTime.current
 
 
-      @visits = a.unbatched_visits_by_date_range @start, @stop
+      @visits = @agency.unbatched_visits_by_date_range @start, @stop
       @visits.sort_by! { |e| e.in_time }
 
       @visits_by_employee = {}
@@ -44,9 +44,9 @@ module Dashboard::Reports::Payroll
         line_item = PayrollLineItem.create!({
           :payroll_batch_id => @batch.id,
           :user_id => id,
-          :regular_hours_worked => calculations[:normal_hours],
-          :overtime_hours_worked =>calculations[:overtime_hours],
-          :bill_rate => employee.default_bill_rate,
+          :regular_hours_worked => calculations['totals'][:normal_hours],
+          :overtime_hours_worked =>calculations['totals'][:overtime_hours],
+          :pay_rate => employee.default_pay_rate,
           :overtime_rate => employee.default_overtime_rate,
           :adjustments => 0.0
         })

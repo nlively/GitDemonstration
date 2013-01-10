@@ -1,6 +1,4 @@
 
-<% unless @batch.empty? %>
-
 <h3>Payroll Report</h3>
 
 
@@ -23,7 +21,7 @@
     <tr>
       <td><%= employee.full_name %></td>
       <td><%= item.regular_hours_worked %></td>
-      <td><%= item.bill_rate_formatted %></td>
+      <td><%= item.pay_rate_formatted %></td>
       <td><%= item.overtime_hours_worked %></td>
       <td><%= item.overtime_rate_formatted %></td>
       <td><%= item.adjustments_formatted %></td>
@@ -34,4 +32,3 @@
   <% end %>
 </table>
 
-<% end %>
