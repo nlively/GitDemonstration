@@ -1,54 +1,10 @@
 <h1>Payroll Summary</h1>
 
 
-<%= form_tag dashboard_reports_payroll_path, :method => :get, :id => 'payroll-report-form' do %>
+<%= form_tag dashboard_reports_payroll_batches_path, :method => :post, :id => 'payroll-batch-form' do %>
     Start date: <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
     &nbsp;
     End date: <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
 
-    <%= submit_tag 'Go' %>
+    <%= submit_tag 'Create Batch' %>
 <% end %>
-
-<h3>Weeks: <%= @weeks %></h3>
-
-<hr>
-
-<h3> First and last</h3>
-
-First visit, week of: <%= @visits.first.in_time.beginning_of_week :sunday %>
-<br>
-Last visit, week of: <%= @visits.last.in_time.beginning_of_week :sunday %>
-
-<hr>
-<h3>Time calculations (minutes)</h3>
-
-<pre>
-<%= @calculated.to_yaml %>
-</pre>
-
-<hr>
-<h3>All visits in record set</h3>
-
-<table>
-  <thead>
-  <tr>
-    <td>ID</td>
-    <td>In</td>
-    <td>Out</td>
-    <td>Billable minutes</td>
-    <td>Overtime minutes</td>
-    <td>Break minutes</td>
-  </tr>
-  </thead>
-  <% @visits.each do |visit| %>
-    <tr>
-      <td><%= visit.id %></td>
-      <td><%= visit.in_time %></td>
-      <td><%= visit.out_time %></td>
-      <td><%= visit.billable_duration_minutes %></td>
-      <td><%= visit.billable_overtime_minutes %></td>
-      <td><%= visit.break_minutes %></td>
-
-    </tr>
-  <% end %>
-</table>

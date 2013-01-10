@@ -92,6 +92,10 @@ class User < ActiveRecord::Base
     number_to_currency( default_pay_rate, :unit => "$", :precision => 2 )
   end
 
+  def default_overtime_rate
+    default_pay_rate * agency.overtime_multiplier
+  end
+
   def web_service_format url_base
 
     hash = {

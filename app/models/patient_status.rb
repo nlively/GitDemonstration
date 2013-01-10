@@ -6,6 +6,7 @@
 #  label      :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  weight     :integer          default(0)
 #
 
 class PatientStatus < ActiveRecord::Base

@@ -1,0 +1,37 @@
+
+<% unless @batch.empty? %>
+
+<h3>Payroll Report</h3>
+
+
+<table>
+  <thead>
+  <tr>
+    <td>Employee Name</td>
+    <td>Regular Hours Worked</td>
+    <td>Rate</td>
+    <td>OT Hours Worked</td>
+    <td>Rate</td>
+    <td>Adjustments</td>
+    <td>Total</td>
+    <td>Edit/Freeze/Delete</td>
+  </tr>
+  </thead>
+  <% @batch.payroll_line_items.each do |item|
+    employee = item.user
+  %>
+    <tr>
+      <td><%= employee.full_name %></td>
+      <td><%= item.regular_hours_worked %></td>
+      <td><%= item.bill_rate_formatted %></td>
+      <td><%= item.overtime_hours_worked %></td>
+      <td><%= item.overtime_rate_formatted %></td>
+      <td><%= item.adjustments_formatted %></td>
+      <td><%= item.total_formatted %></td>
+      <td><%= 'n/a' %></td>
+
+    </tr>
+  <% end %>
+</table>
+
+<% end %>

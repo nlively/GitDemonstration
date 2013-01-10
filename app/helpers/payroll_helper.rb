@@ -69,7 +69,11 @@ module PayrollHelper
         :total_minutes => week_total_minutes,
         :normal_minutes => week_normal_minutes,
         :overtime_minutes => week_overtime_minutes,
-        :break_minutes => week_break_minutes
+        :break_minutes => week_break_minutes,
+        :total_hours => week_total_minutes.to_f / 60,
+        :normal_hours => week_normal_minutes.to_f / 60,
+        :overtime_hours => week_overtime_minutes.to_f / 60,
+        :break_hours => week_break_minutes.to_f / 60
       }
 
     end
@@ -78,7 +82,11 @@ module PayrollHelper
       :total_minutes => total_minutes,
       :normal_minutes => normal_minutes,
       :overtime_minutes => overtime_minutes,
-      :break_minutes => break_minutes
+      :break_minutes => break_minutes,
+      :total_hours => total_minutes.to_f / 60,
+      :normal_hours => normal_minutes.to_f / 60,
+      :overtime_hours => overtime_minutes.to_f / 60,
+      :break_hours => break_minutes.to_f / 60
     }
 
 

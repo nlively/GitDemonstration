@@ -3,9 +3,14 @@ class DashboardController < ::ApplicationController
   layout 'dashboard'
   before_filter :authenticate_user!
   before_filter :setup_default_sidebar
+  before_filter :get_agency
 
   access_control do
     allow :agency_administrator, :administrator
+  end
+
+  def get_agency
+    @agency = current_user.agency
   end
 
   def setup_default_sidebar

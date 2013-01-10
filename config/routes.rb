@@ -60,9 +60,12 @@ OauthServer::Application.routes.draw do
 
       namespace :payroll do
         get 'unbatched'
-        get 'batches'
-        match 'batch/new', :action => :new_batch
-        match 'batch/create', :action => :create_batch
+
+        resources :batches, :except => [:destroy, :edit]
+
+        #get 'batches'
+        #match 'batch/new', :action => :new_batch
+        #match 'batch/create', :action => :create_batch
       end
     end
 
