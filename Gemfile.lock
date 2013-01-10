@@ -1,9 +1,4 @@
 GIT
-  remote: git://github.com/carlhuda/bundler.git
-  revision: 6f9292d485fcf44bb4f9f21790188883cc40e8e7
-  specs:
-
-GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: adddf87cf30d416d71c7b2a80a004d170d10dc2c
   specs:
@@ -217,7 +212,6 @@ DEPENDENCIES
   acl9
   annotate
   aws-sdk
-  bundler!
   chronic
   coffee-rails (~> 3.2.1)
   devise

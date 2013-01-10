@@ -2,6 +2,18 @@
 <h3>Payroll Report</h3>
 
 
+<div class="batch-summary">
+  <h3>Batch Number: <%=  @batch.batch_number %></h3>
+  <div class="dates">
+    From <%= @batch.period_start.to_formatted_s(:mdy) %> to <%= @batch.period_end.to_formatted_s(:mdy) %>
+  </div>
+
+  <div class="actions">
+    <%= link_to 'Delete', dashboard_reports_payroll_batch_path(@batch), :method => :delete, :confirm => 'Are you sure you want to delete this batch?' %>
+  </div>
+
+</div>
+
 <table>
   <thead>
   <tr>

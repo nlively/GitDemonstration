@@ -1,1 +1,25 @@
 <h1>Payroll Batches</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Batch Number</th>
+    <th>Pay Period</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <% @batches.each do |batch| %>
+      <tr>
+        <td><%= batch.batch_number %></td>
+        <td><%= batch.period_start.to_formatted_s :mdy %> to <%= batch.period_end.to_formatted_s :mdy %></td>
+        <td><%= link_to 'View/Edit', dashboard_reports_payroll_batch_path(batch) %></td>
+
+      </tr>
+
+  <% end %>
+
+
+  </tbody>
+</table>

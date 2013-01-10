@@ -8,6 +8,8 @@ module Dashboard::Reports::Payroll
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
 
+      @batches = @agency.payroll_batches
+
     end
 
     # GET /dashboard/reports/payroll/batches/new
@@ -75,6 +77,13 @@ module Dashboard::Reports::Payroll
       @batch = PayrollBatch.find params[:id]
     end
 
+    # DELETE /dashboard/reports/payroll/batches/:id
+    def destroy
+      @batch = PayrollBatch.find params[:id]
+      @batch.back_out!
+
+      redirect_to dashboard_reports_payroll_batches_path
+    end
 
   end
 end
