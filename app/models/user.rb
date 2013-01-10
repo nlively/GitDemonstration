@@ -34,6 +34,7 @@
 class User < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ResourcesHelper
+  include Boomr::HasManyVisitsHelper
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -111,10 +112,6 @@ class User < ActiveRecord::Base
 
     hash
 
-  end
-
-  def completed_visits
-    visits.where 'visits.out_time IS NOT NULL'
   end
 
 

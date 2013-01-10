@@ -1,9 +1,11 @@
-source 'https://rubygems.org'
+source :rubygems
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+gem 'bundler', :git => 'git://github.com/carlhuda/bundler.git'
 
 gem 'mysql2'
 

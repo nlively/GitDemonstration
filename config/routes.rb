@@ -56,6 +56,7 @@ OauthServer::Application.routes.draw do
 
     namespace :reports do
       get 'payroll' => 'payroll#index'
+      get 'billing' => 'billing#index'
 
       namespace :payroll do
         get 'unbatched'

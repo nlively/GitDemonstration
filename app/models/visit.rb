@@ -48,6 +48,8 @@ class Visit < ActiveRecord::Base
   has_many :visits_caregiver_tasks
   has_many :caregiver_tasks, :through => :visits_caregiver_tasks
 
+  @recalculate_duration = false
+
   def process_pre_save
 
     self.guid = UUID.generate if self.guid.blank?
@@ -60,7 +62,7 @@ class Visit < ActiveRecord::Base
       self.pay_rate = user.default_pay_rate
     end
 
-    if completed?
+    if completed? or recalculate_duration?
       self.break_minutes = 0 if self.break_minutes.blank?
       self.duration_minutes = rounded_for_billing calculate_duration_minutes(self.in_time, self.out_time)
       self.billable_duration_minutes = self.duration_minutes - rounded_for_billing(self.break_minutes)
@@ -115,6 +117,18 @@ class Visit < ActiveRecord::Base
     return !out_time.blank?
   end
 
+  def billable_overtime_minutes
+    if total_hours > 8
+      billable_duration_minutes - (8.hours / 60)
+    else
+      0
+    end
+  end
+
+  def billable_overtime_hours
+    billable_overtime_minutes.to_f / 60.0
+  end
+
   def total_hours
     billable_duration_minutes.to_f / 60.0
   end
@@ -161,6 +175,7 @@ class Visit < ActiveRecord::Base
 
   def split_days!
     days = (self.out_time.beginning_of_day - self.in_time.beginning_of_day) / 1.day
+    original_out_time = self.out_time
 
     (0..days).each do |offset|
       new_in_time = self.in_time.beginning_of_day + offset.days
@@ -168,18 +183,28 @@ class Visit < ActiveRecord::Base
 
       if offset == 0
         self.out_time = new_out_time
+        self.recalculate_duration=true
         self.save!
 
       else
         v = self.dup
         v.in_time = new_in_time
-        v.out_time = new_out_time
+        self.recalculate_duration=true
+        v.out_time = (offset == days) ? original_out_time : new_out_time
         v.save!
       end
 
 
     end
 
+  end
+
+  def recalculate_duration= value
+    @recalculate_duration = value
+  end
+
+  def recalculate_duration?
+    @recalculate_duration
   end
 
 
@@ -211,6 +236,8 @@ class Visit < ActiveRecord::Base
   def self.unapproved
     Visit.where :approved => false
   end
+
+
 
   def web_service_format url_base
 

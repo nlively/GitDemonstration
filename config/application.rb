@@ -17,6 +17,8 @@ module OauthServer
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -30,6 +32,8 @@ module OauthServer
     # config.time_zone = 'Central Time (US & Canada)'      # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     config.time_zone = 'Pacific Time (US & Canada)'
 
+    config.week_start = :sunday
+
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
@@ -39,6 +43,7 @@ module OauthServer
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,

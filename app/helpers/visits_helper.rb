@@ -23,4 +23,5 @@ module VisitsHelper
   def rounded_for_billing minutes
     (minutes / 5).round(0) * 5
   end
+
 end
