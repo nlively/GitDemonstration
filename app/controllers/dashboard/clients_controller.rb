@@ -1,9 +1,13 @@
 module Dashboard
   class ClientsController  < DashboardController
 
+    before_filter do
+      @care_recipient = CareRecipient.find params[:id]  unless params[:id].blank?
+    end
+
     def index
 
-      @care_recipients = CareRecipient.all
+      @care_recipients = @agency.care_recipients
       # possible filter params: letter, name
 
     end
@@ -14,7 +18,7 @@ module Dashboard
 
       unless @search_phrase.blank?
         fuzzy = '%' + @search_phrase + '%'
-        @care_recipients = current_user.agency.care_recipients.where('first_name like ? OR last_name like ?', fuzzy, fuzzy).order('last_name asc')
+        @care_recipients = @agency.care_recipients.where('first_name like ? OR last_name like ?', fuzzy, fuzzy).order('last_name asc')
       end
     end
 

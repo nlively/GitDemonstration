@@ -2,10 +2,6 @@ module Dashboard::Reports
   class PayrollController < Dashboard::ReportsController
     include PayrollHelper
 
-    before_filter do
-      @agency = current_user.agency
-    end
-
     def index
 
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')

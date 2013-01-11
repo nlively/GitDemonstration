@@ -1,43 +1,38 @@
 module Dashboard
   class VisitsController  < DashboardController
 
+
+    def fetch_visits
+      @completed = @agency.completed_visits_by_date_range @start, @stop
+      @pending = @agency.pending_visits_by_date_range @start, @stop
+    end
+
     def custom
       index
     end
 
     def index
-
-      # possible filter params: letter, name
-
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
-
-      @completed = Visit.completed_by_agency_and_date_range current_user.id, @start, @stop
-      @pending = Visit.pending_by_agency_and_date_range current_user.id, @start, @stop
+      fetch_visits
     end
 
     def today
-      start = Date.today.to_datetime
-      stop = start + 1.day - 1.second
-
-      @completed = Visit.completed_by_agency_and_date_range current_user.id, start, stop
-      @pending = Visit.pending_by_agency_and_date_range current_user.id, start, stop
+      @start = Date.today.to_datetime
+      @stop = start + 1.day - 1.second
+      fetch_visits
     end
 
     def this_week
-      start = Date.today.beginning_of_week
-      stop = DateTime.current
-
-      @completed = Visit.completed_by_agency_and_date_range current_user.id, start, stop
-      @pending = Visit.pending_by_agency_and_date_range current_user.id, start, stop
+      @start = Date.today.beginning_of_week
+      @stop = DateTime.current
+      fetch_visits
     end
 
     def this_month
-      start = Date.today.beginning_of_month
-      stop = DateTime.current
-
-      @completed = Visit.completed_by_agency_and_date_range current_user.id, start, stop
-      @pending = Visit.pending_by_agency_and_date_range current_user.id, start, stop
+      @start = Date.today.beginning_of_month
+      @stop = DateTime.current
+      fetch_visits
     end
 
 

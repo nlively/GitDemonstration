@@ -1,9 +1,13 @@
 module Dashboard
   class EmployeesController  < DashboardController
 
+    before_filter do
+          @employee = User.find params[:id] unless params[:id].blank?
+        end
+
     def index
       # possible filter params: letter, name
-      @employees = User.caregivers.order('last_name asc')
+      @employees = @agency.caregivers.order('last_name asc')
 
       @search_phrase = (params[:search_phrase].blank?) ? '' : params[:search_phrase]
     end
@@ -14,7 +18,7 @@ module Dashboard
 
       unless @search_phrase.blank?
         fuzzy = '%' + @search_phrase + '%'
-        @employees = current_user.agency.caregivers.where('first_name like ? OR last_name like ?', fuzzy, fuzzy).order('last_name asc')
+        @employees = @agency.caregivers.where('first_name like ? OR last_name like ?', fuzzy, fuzzy).order('last_name asc')
       end
     end
 
