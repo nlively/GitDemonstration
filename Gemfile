@@ -40,7 +40,7 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
 
 gem "geokit-rails3"
-gem "timezone" #timezone
+gem "timezone"
 gem 'chronic'
 
 group :production do
