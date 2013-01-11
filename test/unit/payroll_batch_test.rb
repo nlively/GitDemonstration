@@ -10,6 +10,7 @@
 #  period_end   :date
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  status       :string(255)      default("pending")
 #
 
 require 'test_helper'

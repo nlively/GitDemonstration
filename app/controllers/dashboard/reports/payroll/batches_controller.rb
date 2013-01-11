@@ -70,6 +70,7 @@ module Dashboard::Reports::Payroll
     # GET /dashboard/reports/payroll/batches/:id
     def show
       @batch = PayrollBatch.find params[:id]
+      @batches = @agency.payroll_batches
     end
 
     # POST /dashboard/reports/payroll/batches/:id

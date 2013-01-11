@@ -96,8 +96,8 @@ SimpleNavigation::Configuration.run do |navigation|
       end
       sub_nav.item :reports, 'Reports', dashboard_reports_path, :highlights_on => :subpath do |report|
         report.item :payroll, 'Payroll', dashboard_reports_payroll_path, :highlights_on => :subpath do |payroll|
-          payroll.item :unbatched, 'Unbatched Visits', dashboard_reports_payroll_unbatched_path, :highlights_on => :subpath
-          payroll.item :batches, 'Settled Batches', dashboard_reports_payroll_batches_path, :highlights_on => :subpath
+          #payroll.item :unbatched, 'Unbatched Visits', dashboard_reports_payroll_unbatched_path, :highlights_on => :subpath
+          payroll.item :batches, 'Payroll Batches', dashboard_reports_payroll_batches_path, :highlights_on => :subpath
         end
         report.item :billing, 'Billing', dashboard_reports_billing_path, :highlights_on => :subpath do |billing|
 

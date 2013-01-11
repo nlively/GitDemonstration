@@ -1,10 +1,3 @@
-<h1>Payroll Summary</h1>
-
-
-<%= form_tag dashboard_reports_payroll_batches_path, :method => :post, :id => 'payroll-batch-form' do %>
-    Start date: <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
-    &nbsp;
-    End date: <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
-
-    <%= submit_tag 'Create Batch' %>
-<% end %>
+<ul>
+  <li><%= link_to 'Payroll Batches', dashboard_reports_payroll_batches_path %></li>
+</ul>

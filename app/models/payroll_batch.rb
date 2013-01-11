@@ -10,9 +10,11 @@
 #  period_end   :date
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  status       :string(255)      default("pending")
 #
 
 class PayrollBatch < ActiveRecord::Base
+  include ApplicationHelper
   belongs_to :agency
 
   has_many :payroll_line_items
@@ -20,6 +22,10 @@ class PayrollBatch < ActiveRecord::Base
 
   def batch_number
     id.to_s.rjust 4, '0'
+  end
+
+  def status_formatted
+      batch_statuses[status.to_sym] #unless status.nil?
   end
 
   # Deletes a batch and its associated data
