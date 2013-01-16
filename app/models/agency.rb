@@ -22,6 +22,7 @@
 #  logo_updated_at        :datetime
 #  billing_location_id    :integer
 #  overtime_multiplier    :decimal(11, 2)   default(1.5)
+#  account_number         :integer
 #
 
 class Agency < ActiveRecord::Base
@@ -40,6 +41,24 @@ class Agency < ActiveRecord::Base
 
   belongs_to :location
   belongs_to :subscription_tier
+
+  before_save :ensure_account_number
+
+
+  def ensure_account_number
+    if account_number.blank?
+      self.account_number = Agency.generate_unique_account_number
+    end
+  end
+
+  def self.generate_unique_account_number
+    account_number = nil
+    begin
+      account_number = Random.new.rand(1111111..9999999)
+    end while Agency.find_all_by_account_number(account_number).count > 0
+
+    account_number
+  end
 
 
   def caregivers

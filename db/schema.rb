@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111011824) do
+ActiveRecord::Schema.define(:version => 20130116160106) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20130111011824) do
     t.datetime "logo_updated_at"
     t.integer  "billing_location_id"
     t.decimal  "overtime_multiplier",    :precision => 11, :scale => 2, :default => 1.5
+    t.integer  "account_number"
   end
 
   create_table "agency_invoice_payments", :force => true do |t|
