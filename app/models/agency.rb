@@ -46,6 +46,13 @@ class Agency < ActiveRecord::Base
     users.find_by_role(:caregiver)
   end
 
+  def max_users
+    if subscription_tier.blank?
+      5
+    else
+      subscription_tier.max_users
+    end
+  end
 
 
 end

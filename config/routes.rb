@@ -54,6 +54,11 @@ OauthServer::Application.routes.draw do
     match 'reports' => 'reports#index'
     match 'settings' => 'settings#index'
 
+    namespace :settings do
+      match 'agency'
+      match 'users'
+    end
+
     namespace :reports do
       get 'payroll' => 'payroll#index'
       get 'billing' => 'billing#index'

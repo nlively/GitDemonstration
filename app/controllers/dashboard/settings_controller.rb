@@ -7,6 +7,13 @@ module Dashboard
 
     end
 
+    def agency
+
+    end
+
+    def users
+
+    end
 
   end
 end

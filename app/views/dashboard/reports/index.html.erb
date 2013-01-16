@@ -1,6 +1,8 @@
-<h1>Reports</h1>
+<% content_for :title do %>
+    Reports
+<% end %>
 
 <ul>
-  <li><%= link_to 'Payroll', dashboard_reports_payroll_path %></li>
-  <li><%= link_to 'Billing', dashboard_reports_billing_path %></li>
+  <li><%= link_to 'Agency', dashboard_settings_agency_path %></li>
+  <li><%= link_to 'Users', dashboard_settings_users_path %></li>
 </ul>

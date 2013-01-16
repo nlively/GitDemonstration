@@ -103,7 +103,10 @@ SimpleNavigation::Configuration.run do |navigation|
 
         end
       end
-      sub_nav.item :settings, 'Settings', dashboard_settings_path, :highlights_on => :subpath
+      sub_nav.item :settings, 'Settings', dashboard_settings_path, :highlights_on => :subpath do |settings|
+        settings.item :agency, 'Agency', dashboard_settings_agency_path, :highlights_on => :subpath
+        settings.item :users, 'Users', dashboard_settings_users_path, :highlights_on => :subpath
+      end
     end
 
     # You can also specify a condition-proc that needs to be fullfilled to display an item.

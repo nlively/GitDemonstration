@@ -1,0 +1,26 @@
+<% content_for :title do %>
+    Users
+<% end %>
+
+<%= render 'shared/agency_user_count' %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Employee Name</th>
+    <th>Last Check-In</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @agency.caregivers.each do |caregiver| %>
+  <tr>
+    <td><%= caregiver.full_name %></td>
+    <td><%= caregiver.last_check_in_formatted %></td>
+    <td>Delete</td>
+    <td>Freeze</td>
+    <td>Reset Password</td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

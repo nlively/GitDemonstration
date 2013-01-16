@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
 
   has_many :activity_streams
   has_many :photos
+  has_many :check_ins
   has_many :notes
   has_many :visits
   has_many :approved_visits, :class_name => 'Visit', :foreign_key => :approved_by_user_id
@@ -86,6 +87,14 @@ class User < ActiveRecord::Base
 
   def label
     return (first_name.nil?) ? email : full_name
+  end
+
+  def last_check_in
+    CheckIn.where(:user_id => self.id).order('created_at DESC').first
+  end
+
+  def last_check_in_formatted
+    last_check_in.created_at.to_formatted_s :mdy_with_time unless last_check_in.blank?
   end
 
   def default_pay_rate_formatted
