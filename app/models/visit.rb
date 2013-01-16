@@ -109,6 +109,18 @@ class Visit < ActiveRecord::Base
     in_time.to_formatted_s(:mdy_with_time) unless in_time.blank?
   end
 
+  def date_only_formatted
+    in_time.to_formatted_s :mdy unless in_time.blank?
+  end
+
+  def in_time_time_only
+    in_time.to_formatted_s :hour_with_minute_meridian unless in_time.blank?
+  end
+
+  def out_time_time_only
+    out_time.to_formatted_s :hour_with_minute_meridian unless out_time.blank?
+  end
+
   def out_time_formatted
     out_time.to_formatted_s(:mdy_with_time) unless out_time.blank?
   end

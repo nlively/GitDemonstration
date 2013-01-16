@@ -1,5 +1,30 @@
+@import 'sass';
+@import 'compass';
+
 body.dashboard {
 
+  &.visits {
+    #page {
+      #main {
+
+      }
+    }
+  }
+
+  table {
+    thead {
+      td, th {
+        @include gradient-table-header;
+        border: 1px solid  #d4d4d4;
+        border-radius: 2px;
+      }
+    }
+    tbody {
+      td {
+
+      }
+    }
+  }
 
   table.batch-history {
     tr.batch-details {

@@ -1,7 +1,9 @@
 <h3>Completed Visits</h3>
 <% unless visits.empty? %>
     <table id="completed-visits" class="visits-table">
+      <thead>
       <tr>
+        <th>Date</th>
         <th>Employee</th>
         <th>Pay Rate</th>
         <th>Client</th>
@@ -12,9 +14,12 @@
         <th>Location</th>
         <th>Approve</th>
       </tr>
+      </thead>
+      <tbody>
       <% visits.each do |visit| %>
           <%=  render 'shared/row_visit', :visit => visit, :type => :completed, :show_approve => true %>
       <% end %>
+      </tbody>
     </table>
 <% else %>
     <p>There are no completed visits to be processed.</p>

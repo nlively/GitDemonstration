@@ -19,7 +19,7 @@ module Dashboard
 
     def today
       @start = Date.today.to_datetime
-      @stop = start + 1.day - 1.second
+      @stop = @start + 1.day - 1.second
       fetch_visits
     end
 

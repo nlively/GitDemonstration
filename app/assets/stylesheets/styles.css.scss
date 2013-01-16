@@ -20,19 +20,19 @@ tr.visit-row {
     }
 
     &.payrate, &.billrate {
-      width: 70px;
+      width: 60px;
 
       input[type="text"] {
-        width: 50px;
+        width: 30px;
       }
     }
 
     &.in-time, &.out-time {
-      width: 100px;
+      width: 65px;
     }
 
     &.duration {
-      width: 70px;
+      width: 60px;
     }
 
     &.wrapper {
@@ -42,6 +42,10 @@ tr.visit-row {
       table {
         width:100%;
       }
+    }
+
+    &.approve {
+      text-align: center;
     }
   }
 }

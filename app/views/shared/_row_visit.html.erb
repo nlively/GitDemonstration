@@ -8,24 +8,27 @@
 
 %>
 <tr class="visit-row editable <%= classes.join ' ' %>" data-type="<%= type %>" date-remote="true" data-id="<%= visit.id %>">
+  <td class="date">
+    <%= visit.date_only_formatted %>
+  </td>
   <td class="employee" rel="<%= visit.user_id %>">
     <%= visit.employee_label %>
   </td>
   <td class="payrate">
-    <%= visit.pay_rate%>
+    <%= visit.pay_rate_formatted %>
   </td>
   <td class="client" rel="<%= visit.care_recipient_id %>">
     <%= visit.client_label %>
   </td>
   <td class="billrate">
-    <%= visit.bill_rate%>
+    <%= visit.bill_rate_formatted %>
   </td>
   <td class="in-time">
-    <%= visit.in_time_formatted %>
+    <%= visit.in_time_time_only %>
   </td>
   <% if type == :completed or type == 'completed' %>
       <td class="out-time">
-        <%= visit.out_time_formatted %>
+        <%= visit.out_time_time_only %>
       </td>
       <td class="duration">
         <%= visit.duration_string %>

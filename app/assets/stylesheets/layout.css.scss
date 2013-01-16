@@ -6,6 +6,28 @@ body.main {
   }
 }
 
+body.with-sidebar-second {
+  #page {
+
+    #main {
+      #sidebar-second {
+            float: left;
+            width: 208px;
+            border-left: 2px solid #dfe1e1;
+            min-height: 400px;
+            background: #f6f9fb;
+          }
+
+          #content {
+            float: left;
+            width: 650px;
+          }
+    }
+
+  }
+
+}
+
 #page {
   width: 1030px;
   margin: 0 auto;
@@ -43,17 +65,10 @@ body.main {
         padding-bottom: 60px;
       }
     }
-    #sidebar-second {
-      float: left;
-      width: 208px;
-      border-left: 2px solid #dfe1e1;
-      min-height: 400px;
-      background: #f6f9fb;
-    }
 
     #content {
       float: left;
-      width: 650px;
+      width: 860px;
     }
 
   }
