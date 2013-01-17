@@ -23,6 +23,7 @@
 #  billing_location_id    :integer
 #  overtime_multiplier    :decimal(11, 2)   default(1.5)
 #  account_number         :integer
+#  braintree_customer_id  :text
 #
 
 require 'test_helper'

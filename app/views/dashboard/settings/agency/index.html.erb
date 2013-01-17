@@ -1,0 +1,56 @@
+<% content_for :title do %>
+    Agency
+<% end %>
+
+<%= form_for @agency, :url => dashboard_settings_agency_path, :method => :post do |f| %>
+
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :name, 'Agency Name' %>
+      </div>
+      <div class="field">
+        <%= f.text_field :name, :size => 20 %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= label_tag 'Account Number' %>
+      </div>
+      <div class="field">
+        <%= label_tag @agency.account_number %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= label_tag 'Subscription Package' %>
+      </div>
+      <div class="field">
+        <%= label_tag @agency.subscription_label_extended %>       <%=  render 'shared/agency_subscription_link' %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= label_tag 'Billing Info' %>
+      </div>
+      <div class="field">
+        <% if @agency.next_billing_date.blank? %>
+
+            You do not have a billing subscription set up.
+
+        <% else  %>
+
+            Your next monthly bill will be on <%= @agency.next_billing_date.to_formatted_s :mdy %>.
+
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <%= f.submit 'Save settings' %>
+
+<% end %>

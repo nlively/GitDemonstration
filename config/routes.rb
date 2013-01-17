@@ -55,8 +55,17 @@ OauthServer::Application.routes.draw do
     match 'settings' => 'settings#index'
 
     namespace :settings do
-      match 'agency'
-      match 'users'
+      get 'agency' => 'agency#index'
+      post 'agency' => 'agency#update'
+
+      namespace :agency do
+        get 'subscription'
+        post 'subscription', :action => :subscription_update
+
+        match 'subscription/change_to/:id', :action => :subscription_change, :as => :subscription_change
+      end
+
+      get 'users' => 'users#index'
     end
 
     namespace :reports do

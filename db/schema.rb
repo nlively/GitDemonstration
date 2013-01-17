@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116160106) do
+ActiveRecord::Schema.define(:version => 20130117230404) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130116160106) do
     t.integer  "billing_location_id"
     t.decimal  "overtime_multiplier",    :precision => 11, :scale => 2, :default => 1.5
     t.integer  "account_number"
+    t.text     "braintree_customer_id"
   end
 
   create_table "agency_invoice_payments", :force => true do |t|
@@ -260,6 +261,7 @@ ActiveRecord::Schema.define(:version => 20130116160106) do
     t.integer  "max_users",                                  :default => 0
     t.datetime "created_at",                                                  :null => false
     t.datetime "updated_at",                                                  :null => false
+    t.text     "description"
   end
 
   create_table "users", :force => true do |t|
