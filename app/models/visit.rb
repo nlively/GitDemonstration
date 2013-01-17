@@ -21,6 +21,7 @@
 #  duration_minutes          :integer          default(0)
 #  billable_duration_minutes :integer          default(0)
 #  guid                      :string(255)
+#  billing_line_item_id      :integer
 #
 
 class Visit < ActiveRecord::Base
@@ -39,8 +40,10 @@ class Visit < ActiveRecord::Base
   belongs_to :agency
   belongs_to :approved_by_user, :class_name => 'User', :foreign_key => :approved_by_user_id
   belongs_to :payroll_line_item
+  belongs_to :billing_line_item
 
   delegate :payroll_batch, :to => :payroll_line_item, :allow_nil => true
+  delegate :billing_batch, :to => :billing_line_item, :allow_nil => true
 
   has_many :check_ins
   has_many :photos

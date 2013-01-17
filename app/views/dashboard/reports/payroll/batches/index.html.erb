@@ -3,10 +3,17 @@
 
 <h2>Create a New Batch</h2>
 
+
+
 <%= form_tag dashboard_reports_payroll_batches_path, :method => :post, :id => 'payroll-batch-form' do %>
-    Start date: <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
-    &nbsp;
-    End date: <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
+
+    <h3>Select the time period you would like to process payroll for</h3>
+
+    <div class="date-range">
+      Start date: <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
+      &nbsp;
+      End date: <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
+    </div>
 
     <%= submit_tag 'Create Batch' %>
 <% end %>

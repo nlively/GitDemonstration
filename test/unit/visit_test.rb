@@ -21,6 +21,7 @@
 #  duration_minutes          :integer          default(0)
 #  billable_duration_minutes :integer          default(0)
 #  guid                      :string(255)
+#  billing_line_item_id      :integer
 #
 
 require 'test_helper'
