@@ -1,6 +1,6 @@
 module Dashboard::Reports
   class PayrollController < Dashboard::ReportsController
-    include PayrollHelper
+    include PayrollAndBillingHelper
 
     def index
 

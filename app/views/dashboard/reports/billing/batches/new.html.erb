@@ -1,0 +1,60 @@
+<h1>New Billing Batch</h1>
+
+<%= javascript_include_tag 'dashboard/reports/payroll/new_batch' %>
+<%= form_for @batch, :url => dashboard_reports_payroll_batch_create_path, :id => 'new-batch-form' do |f| %>
+
+    <%= hidden_field_tag :visits, @visit_ids.join(',') %>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :period_start %>
+      </div>
+      <div class="field">
+        <%= f.text_field :period_start, :size => 10 %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :period_end %>
+      </div>
+      <div class="field">
+        <%= f.text_field :period_end, :size => 10 %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :notes %>
+      </div>
+      <div class="field">
+        <%= f.text_area :notes %>
+      </div>
+    </div>
+
+    <%= f.submit %>
+
+<% end %>
+
+
+<h3>Included Visits</h3>
+
+<% unless @visits.empty? %>
+    <table id="completed-visits" class="visits-table">
+      <tr>
+        <th>Employee</th>
+        <th>Pay Rate</th>
+        <th>Client</th>
+        <th>Bill Rate</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Duration</th>
+        <th>Location</th>
+      </tr>
+      <% @visits.each do |visit| %>
+          <%=  render 'shared/row_visit', :visit => visit, :type => :completed %>
+      <% end %>
+    </table>
+<% else %>
+    <p>There are no completed visits to be processed.</p>
+<% end %>

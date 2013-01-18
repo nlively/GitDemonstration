@@ -1,0 +1,53 @@
+
+<h3>Payroll Report</h3>
+
+
+<div class="batch-summary">
+  <h3>Batch Number: <%=  @batch.batch_number %></h3>
+  <div class="dates">
+    From <%= @batch.period_start.to_formatted_s(:mdy) %> to <%= @batch.period_end.to_formatted_s(:mdy) %>
+  </div>
+
+  <div class="actions">
+    <%= link_to 'Delete', dashboard_reports_payroll_batch_path(@batch), :method => :delete, :confirm => 'Are you sure you want to delete this batch?' %>
+  </div>
+
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <td>Employee Name</td>
+    <td>Regular Hours Worked</td>
+    <td>Rate</td>
+    <td>OT Hours Worked</td>
+    <td>Rate</td>
+    <td>Adjustments</td>
+    <td>Total</td>
+    <td>Edit/Freeze/Delete</td>
+  </tr>
+  </thead>
+  <% @batch.payroll_line_items.each do |item|
+    employee = item.user
+  %>
+    <tr>
+      <td><%= employee.full_name %></td>
+      <td><%= item.regular_hours_worked %></td>
+      <td><%= item.pay_rate_formatted %></td>
+      <td><%= item.overtime_hours_worked %></td>
+      <td><%= item.overtime_rate_formatted %></td>
+      <td><%= item.adjustments_formatted %></td>
+      <td><%= item.total_formatted %></td>
+      <td><%= 'n/a' %></td>
+
+    </tr>
+  <% end %>
+</table>
+
+
+<hr />
+
+<h3>History</h3>
+
+
+<%= render 'dashboard/shared/batch_history', :batches => @batches %>

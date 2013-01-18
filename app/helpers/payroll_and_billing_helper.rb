@@ -1,4 +1,4 @@
-module PayrollHelper
+module PayrollAndBillingHelper
 
 
   def weeks_spanned_by_range visits
