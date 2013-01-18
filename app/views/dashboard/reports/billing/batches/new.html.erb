@@ -1,7 +1,7 @@
 <h1>New Billing Batch</h1>
 
 <%= javascript_include_tag 'dashboard/reports/payroll/new_batch' %>
-<%= form_for @batch, :url => dashboard_reports_payroll_batch_create_path, :id => 'new-batch-form' do |f| %>
+<%= form_for @batch, :url => dashboard_reports_billing_batch_create_path, :id => 'new-batch-form' do |f| %>
 
     <%= hidden_field_tag :visits, @visit_ids.join(',') %>
 

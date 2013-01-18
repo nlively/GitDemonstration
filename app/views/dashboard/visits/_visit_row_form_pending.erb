@@ -24,7 +24,8 @@
 
           <td class="actions">
             <%= link_to 'Save', 'javascript:void(0);', :id => 'save-link' %>
-            <%= link_to 'Cancel', dashboard_visit_path(visit), :remote => true %>
+            <br>
+            <%= link_to 'Cancel', dashboard_visit_path(visit, :type => :pending), :remote => true %>
           </td>
         </tr>
         </table>

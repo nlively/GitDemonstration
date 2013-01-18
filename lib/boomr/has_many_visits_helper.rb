@@ -4,8 +4,8 @@ module Boomr::HasManyVisitsHelper
     approved_visits.where('payroll_line_item_id IS NULL AND billable = ?', true)
   end
 
-  def visits_by_batch batch_id
-    visits.where :batch_id => batch_id
+  def unbilled_visits
+    approved_visits.where('billing_line_item_id IS NULL AND billable = ?', true)
   end
 
   def pending_visits
@@ -37,7 +37,11 @@ module Boomr::HasManyVisitsHelper
   end
 
   def unbatched_visits_by_date_range start, stop
-    approved_visits.where 'payroll_line_item_id IS NULL AND billable = ? AND in_time BETWEEN ? AND ?', true, start, stop
+    approved_visits.where 'billing_line_item_id IS NULL AND billable = ? AND in_time BETWEEN ? AND ?', true, start, stop
+  end
+
+  def unbilled_visits_by_date_range start, stop
+    approved_visits.where 'billing_line_item_id IS NULL AND billable = ? AND in_time BETWEEN ? AND ?', true, start, stop
   end
 
   def completed_visits_by_week week_of
@@ -50,5 +54,9 @@ module Boomr::HasManyVisitsHelper
 
   def unbatched_visits_by_week week_of
     unbatched_visits_by_date_range week_of.beginning_of_week, week_of.end_of_week
+  end
+
+  def unbilled_visits_by_week week_of
+    unbilled_visits_by_date_range week_of.beginning_of_week, week_of.end_of_week
   end
 end

@@ -31,6 +31,7 @@ class Agency < ActiveRecord::Base
   include Boomr::BraintreeCustomer
 
   has_many :payroll_batches
+  has_many :billing_batches
   has_many :activity_streams
   has_many :users
   has_many :visits

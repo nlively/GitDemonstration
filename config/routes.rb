@@ -73,13 +73,10 @@ OauthServer::Application.routes.draw do
       get 'billing' => 'billing#index'
 
       namespace :payroll do
-        get 'unbatched'
-
         resources :batches, :except => [:edit]
-
-        #get 'batches'
-        #match 'batch/new', :action => :new_batch
-        #match 'batch/create', :action => :create_batch
+      end
+      namespace :billing do
+        resources :batches, :except => [:edit]
       end
     end
 

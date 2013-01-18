@@ -28,7 +28,7 @@ module Dashboard::Reports::Billing
       @batch = BillingBatch.create! :agency_id =>@agency.id, :period_start => @start, :period_end => @stop, :batch_date =>DateTime.current
 
 
-      @visits = @agency.unbatched_visits_by_date_range @start, @stop
+      @visits = @agency.unbilled_visits_by_date_range @start, @stop
       @visits.sort_by! { |e| e.in_time }
 
       @visits_by_employee = {}

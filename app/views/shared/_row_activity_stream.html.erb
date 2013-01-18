@@ -4,12 +4,26 @@
    unless css_class.blank?
      classes << css_class
    end
-   %>
+%>
 <div class="activity-stream-item <%= classes.join ' ' %>" data-id="<%= item.id %>">
   <div class="icon">
-  <%= render 'shared/activity_stream_icon', :item => item %>
+
+    <%= render 'shared/activity_stream_icon', :item => item %>
   </div>
-  <h3><%= item.label %></h3>
+  <h3>
+    <% case item.stream_type.to_sym %>
+    <% when :check_in %>
+        <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> checked in with <%= link_to item.care_recipient.full_name, dashboard_clients_profile_path(item.care_recipient) %>
+    <% when :check_out %>
+        <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> checked out with <%= link_to item.care_recipient.full_name, dashboard_clients_profile_path(item.care_recipient) %>
+    <% when :note %>
+          <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> added a note
+    <% when :photo %>
+              <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> added a photo
+    <% else %>
+        n/a
+    <% end %>
+  </h3>
 
   <div class="time"><%=  time_ago_in_words item.created_at %> ago</div>
 </div>

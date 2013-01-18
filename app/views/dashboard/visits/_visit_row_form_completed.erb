@@ -38,6 +38,8 @@
 
               <div class="actions">
                 <%= link_to 'Save', 'javascript:void(0);', :id => 'save-link' %>
+                <br>
+                <%= link_to 'Cancel', dashboard_visit_path(visit, :type => :completed), :remote => true %>
               </div>
 
             </td>

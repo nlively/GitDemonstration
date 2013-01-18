@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117234634) do
+ActiveRecord::Schema.define(:version => 20130118011010) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(:version => 20130117234634) do
     t.text     "notes"
     t.date     "period_start"
     t.date     "period_end"
-    t.string   "status"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "status",       :default => "pending"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   create_table "billing_line_items", :force => true do |t|
