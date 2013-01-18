@@ -8,7 +8,7 @@
 #  notes        :text
 #  period_start :date
 #  period_end   :date
-#  status       :string(255)
+#  status       :string(255)      default("pending")
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
