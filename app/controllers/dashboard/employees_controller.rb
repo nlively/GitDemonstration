@@ -63,5 +63,31 @@ module Dashboard
 
 
 
+
+
+
+
+    def delete_user
+
+    end
+
+    def freeze_user
+
+    end
+
+    def freeze_user_update
+
+    end
+
+    def reset_password
+
+    end
+
+    def reset_password_update
+
+    end
+
+
+
   end
 end

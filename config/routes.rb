@@ -47,8 +47,8 @@ OauthServer::Application.routes.draw do
   namespace :dashboard do
     resources :locations
 
-    resources :employees, :only => [:index, :show, :new, :create, :update]
-    resources :clients, :only => [:index, :show, :new, :create, :update]
+    resources :employees, :only => [:index, :show, :new, :create, :update, :destroy]
+    resources :clients, :only => [:index, :show, :new, :create, :update, :destroy]
 
     match 'visits' => 'visits#index'
     match 'reports' => 'reports#index'
@@ -100,6 +100,14 @@ OauthServer::Application.routes.draw do
       match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
       match ':id/payroll' => 'payroll#index', :as => :payroll
+
+
+      get ':id/delete', :action => :delete_user
+      get ':id/freeze', :action => :freeze_user
+      post ':id/freeze', :action => :freeze_user_update
+      get ':id/reset-password', :action => :reset_password
+      post ':id/reset-password', :action => :reset_password_update
+
     end
 
     post 'clients/search' => 'clients#search', :as => :clients_search

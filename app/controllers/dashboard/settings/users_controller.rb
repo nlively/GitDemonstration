@@ -5,6 +5,5 @@ module Dashboard::Settings
 
     end
 
-
   end
 end
