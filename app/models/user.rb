@@ -77,6 +77,10 @@ class User < ActiveRecord::Base
     nil
   end
 
+  def active_for_authentication?
+    self.is_active?
+  end
+
   def full_name
     return sprintf("%s %s", first_name, last_name)
   end
@@ -143,5 +147,9 @@ class User < ActiveRecord::Base
     r = Role.find_by_name(role)
     r.users unless r.nil?
   end
+
+  def self.valid_password? password
+      true unless password.blank? or password.length < 6
+    end
 
 end

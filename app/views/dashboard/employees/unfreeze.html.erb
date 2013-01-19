@@ -1,0 +1,11 @@
+<% content_for :title do %>
+    Unfreeze Account for <%=@employee.full_name %>
+    <% end %>
+
+<%= form_for @employee, :url => dashboard_employees_unfreeze_path(@employee), :method => :post do |f| %>
+
+    <p>Are you sure you want to re-activate this account?  Once you do, <%= @employee.full_name %> will have full access to their Boomr account.</p>
+
+    <%= f.submit 'Yes, re-activate the account' %>
+
+<% end %>

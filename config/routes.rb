@@ -102,11 +102,13 @@ OauthServer::Application.routes.draw do
       match ':id/payroll' => 'payroll#index', :as => :payroll
 
 
-      get ':id/delete', :action => :delete_user
-      get ':id/freeze', :action => :freeze_user
-      post ':id/freeze', :action => :freeze_user_update
-      get ':id/reset-password', :action => :reset_password
-      post ':id/reset-password', :action => :reset_password_update
+      get ':id/delete', :action => :delete, :as => :delete
+      get ':id/freeze', :action => :freeze, :as => :freeze
+      post ':id/freeze', :action => :freeze_update, :as => :freeze
+      get ':id/unfreeze', :action => :unfreeze, :as => :unfreeze
+      post ':id/unfreeze', :action => :unfreeze_update, :as => :unfreeze
+      get ':id/reset-password', :action => :reset_password, :as => :reset_password
+      post ':id/reset-password', :action => :reset_password_update, :as => :reset_password
 
     end
 

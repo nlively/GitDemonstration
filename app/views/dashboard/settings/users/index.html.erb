@@ -15,11 +15,11 @@
   <tbody>
   <% @agency.caregivers.each do |caregiver| %>
   <tr>
-    <td><%= caregiver.full_name %></td>
+    <td><%= link_to caregiver.full_name, dashboard_employee_path(caregiver) %></td>
     <td><%= caregiver.last_check_in_formatted %></td>
-    <td>Delete</td>
-    <td>Freeze</td>
-    <td>Reset Password</td>
+    <td><%= link_to 'Delete', dashboard_employees_delete_path(caregiver, :destination => request.fullpath) %></td>
+    <td><%= render 'dashboard/shared/employee_freeze_link', :employee => caregiver %></td>
+    <td><%= link_to 'Reset Password', dashboard_employees_reset_password_path(caregiver, :destination => request.fullpath) %></td>
   </tr>
   <% end %>
   </tbody>

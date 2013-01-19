@@ -1,0 +1,11 @@
+<% content_for :title do %>
+    Freeze Account for <%=@employee.full_name %>
+    <% end %>
+
+<%= form_for @employee, :url => dashboard_employees_freeze_path(@employee), :method => :post do |f| %>
+
+    <p>Are you sure you want to freeze this account?  If you do, <%= @employee.full_name %> will not be able to sign in or use Boomr while their account is frozen.</p>
+
+    <%= f.submit 'Yes, freeze the account' %>
+
+<% end %>

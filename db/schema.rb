@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118011010) do
+ActiveRecord::Schema.define(:version => 20130118234010) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -290,8 +290,8 @@ ActiveRecord::Schema.define(:version => 20130118011010) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                     :default => "",  :null => false
-    t.string   "encrypted_password",                                        :default => "",  :null => false
+    t.string   "email",                                                     :default => "",   :null => false
+    t.string   "encrypted_password",                                        :default => "",   :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.datetime "date_of_birth"
@@ -304,8 +304,8 @@ ActiveRecord::Schema.define(:version => 20130118011010) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                                                 :null => false
-    t.datetime "updated_at",                                                                 :null => false
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
@@ -316,6 +316,7 @@ ActiveRecord::Schema.define(:version => 20130118011010) do
     t.string   "middle_name"
     t.string   "phone"
     t.string   "sms"
+    t.boolean  "is_active",                                                 :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

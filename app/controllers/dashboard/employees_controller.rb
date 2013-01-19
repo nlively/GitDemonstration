@@ -2,8 +2,8 @@ module Dashboard
   class EmployeesController  < DashboardController
 
     before_filter do
-          @employee = User.find params[:id] unless params[:id].blank?
-        end
+      @employee = User.find params[:id] unless params[:id].blank?
+    end
 
     def index
       # possible filter params: letter, name
@@ -67,16 +67,32 @@ module Dashboard
 
 
 
-    def delete_user
+    def delete
 
     end
 
-    def freeze_user
+    def unfreeze
 
     end
 
-    def freeze_user_update
+    def unfreeze_update
+      @employee.is_active = true
+      @employee.save!
 
+      redirect_to redirect_destination(:back), :notice => 'Account has been re-activated for ' + @employee.full_name
+    end
+
+    def freeze
+
+    end
+
+    def freeze_update
+      @employee.is_active = false
+      @employee.save!
+
+      logger.debug request.env['HTTP_REFERER']
+
+      redirect_to redirect_destination(:back), :notice => 'Account has been frozen for ' + @employee.full_name
     end
 
     def reset_password
@@ -84,6 +100,22 @@ module Dashboard
     end
 
     def reset_password_update
+
+      logger.debug request.env['HTTP_REFERER']
+
+      if params[:user][:password] != params[:user][:confirm_password]
+        flash[:error] = "Your passwords do not match"
+        render action: 'reset_password'
+      elsif ! User.valid_password? params[:user][:password]
+        flash[:error] = "Your password needs to be at least 6 characters long"
+        render action: 'reset_password'
+      else
+        @employee.password = params[:user][:password]
+        @employee.save!
+
+        redirect_to redirect_destination(:back), :notice => 'Password has been changed for ' + @employee.full_name
+      end
+
 
     end
 

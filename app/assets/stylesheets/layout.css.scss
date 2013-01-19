@@ -35,8 +35,9 @@ body.with-sidebar-second {
   @include shadow-sides;
 
 
-  #header, #footer {
+  #header, #main, #footer {
     width: 100%;
+    overflow: auto;
   }
 
   #header {
