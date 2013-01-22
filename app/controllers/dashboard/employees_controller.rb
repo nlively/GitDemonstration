@@ -25,7 +25,8 @@ module Dashboard
 
     # GET /dashboard/employees/:id
     def show
-      @employee = User.find params[:id]
+      #@employee = User.find params[:id]
+      redirect_to dashboard_employees_profile_path(params[:id])
     end
 
     # PUT /dashboard/employees/:id

@@ -1,7 +1,20 @@
-<h1><%= @care_recipient.full_name %>'s Assigned Caregivers</h1>
+<% content_for :title do %>
+    <%= @care_recipient.full_name %>
+<% end %>
+
+<% content_for :sidebar_second do %>
+    <h3>View all of the client's assigned caregivers here.</h3>
+
+    <p>If you make an edit, make sure to click the "Save Changes" button.</p>
+<% end  %>
 
 <table>
+  <caption>
+    Assigned Caregivers
+  </caption>
+  <tbody>
   <% @care_recipient.users.each do |user| %>
-  <%=  render 'shared/row_employee', :employee => user %>
+      <%=  render 'shared/row_employee', :employee => user %>
   <% end %>
+  </tbody>
 </table>

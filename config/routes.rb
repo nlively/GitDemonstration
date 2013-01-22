@@ -45,7 +45,6 @@ OauthServer::Application.routes.draw do
   end
 
   namespace :dashboard do
-    resources :locations
 
     resources :employees, :only => [:index, :show, :new, :create, :update, :destroy]
     resources :clients, :only => [:index, :show, :new, :create, :update, :destroy]
