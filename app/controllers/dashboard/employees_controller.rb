@@ -5,6 +5,7 @@ module Dashboard
       @employee = User.find params[:id] unless params[:id].blank?
     end
 
+    # GET /dashboard/employees
     def index
       # possible filter params: letter, name
       @employees = @agency.caregivers.order('last_name asc')
@@ -22,10 +23,12 @@ module Dashboard
       end
     end
 
+    # GET /dashboard/employees/:id
     def show
       @employee = User.find params[:id]
     end
 
+    # PUT /dashboard/employees/:id
     def update
       @employee = User.find params[:id]
 
@@ -40,10 +43,12 @@ module Dashboard
       end
     end
 
+    # GET /dashboard/employees/new
     def new
       @user = User.new
     end
 
+    # POST /dashboard/employees
     def create
       @user = User.new(params[:user])
 
@@ -66,15 +71,25 @@ module Dashboard
 
 
 
-
+    # GET /dashboard/employees/:id/delete
     def delete
 
     end
 
+    # DELETE /dashboard/employees/:id
+    def destroy
+      @employee.deleted = true
+      @employee.is_active = false
+      @employee.save!
+      redirect_to redirect_destination(:back), :notice => 'Account has been deleted for ' + @employee.full_name
+    end
+
+    # GET /dashboard/employees/:id/unfreeze
     def unfreeze
 
     end
 
+    # POST /dashboard/employees/:id/unfreeze
     def unfreeze_update
       @employee.is_active = true
       @employee.save!
@@ -82,10 +97,12 @@ module Dashboard
       redirect_to redirect_destination(:back), :notice => 'Account has been re-activated for ' + @employee.full_name
     end
 
+    # GET /dashboard/employees/:id/freeze
     def freeze
 
     end
 
+    # POST /dashboard/employees/:id/freeze
     def freeze_update
       @employee.is_active = false
       @employee.save!
@@ -95,10 +112,12 @@ module Dashboard
       redirect_to redirect_destination(:back), :notice => 'Account has been frozen for ' + @employee.full_name
     end
 
+    # GET /dashboard/employees/:id/reset-password
     def reset_password
 
     end
 
+    # POST /dashboard/employees/:id/reset-password
     def reset_password_update
 
       logger.debug request.env['HTTP_REFERER']

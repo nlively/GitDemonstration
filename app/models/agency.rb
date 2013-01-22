@@ -108,7 +108,7 @@ class Agency < ActiveRecord::Base
 
 
   def caregivers
-    users.find_by_role(:caregiver)
+    users.find_by_role(:caregiver).where(:deleted => false)
   end
 
   def max_users

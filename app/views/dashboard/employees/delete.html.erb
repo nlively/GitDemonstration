@@ -1,0 +1,11 @@
+<% content_for :title do %>
+    Delete Account for <%=@employee.full_name %>
+    <% end %>
+
+<%= form_for @employee, :url => dashboard_employee_path(@employee), :method => :delete do |f| %>
+
+    <p>Are you sure you want to delete this account?  Once you do, <%= @employee.full_name %> will be removed permanently.  This action cannot be undone.</p>
+
+    <%= f.submit 'Yes, delete the account' %>
+
+<% end %>

@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
   end
 
   def active_for_authentication?
-    self.is_active?
+    self.is_active? and not self.deleted?
   end
 
   def full_name
