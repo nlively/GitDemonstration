@@ -4,13 +4,15 @@
     <p>You can view notes and photos in live feed format or filter the page to find what you are looking for. Click on "view" to see the note or photo in detail.</p>
 <% end %>
 
-<%=content_for :title do %>
+<% content_for :title do %>
     <%= @care_recipient.full_name %>
 <% end %>
 
+<% content_for :page_caption do %>
+    Notes &amp; Photos
+<% end %>
 
 <table>
-  <caption>Notes &amp; Photos</caption>
 
 </table>
 

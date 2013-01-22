@@ -5,8 +5,13 @@
       If you make an edit, make sure to click the "Save Changes" button.
     </p>
 <% end %>
+
 <% content_for :title do %>
-    <h1><%= @employee.full_name %>'s Profile</h1>
+    <h1><%= @employee.full_name %></h1>
+<% end %>
+
+<% content_for :page_caption do %>
+    Profile
 <% end %>
 
 <%= render 'dashboard/shared/employee_form', :user => @employee %>

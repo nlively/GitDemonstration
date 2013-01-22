@@ -1,6 +1,6 @@
 <% content_for :title do %>
     Delete Account for <%=@employee.full_name %>
-    <% end %>
+<% end %>
 
 <%= form_for @employee, :url => dashboard_employee_path(@employee), :method => :delete do |f| %>
 

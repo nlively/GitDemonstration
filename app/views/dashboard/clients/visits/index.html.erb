@@ -1,7 +1,14 @@
-<h1><%= @care_recipient.full_name %>'s Visit History</h1>
+<% content_for :title do %>
+    <%= @care_recipient.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Visits History
+<% end %>
 
 <% unless @visits.empty? %>
     <table id="pending-visits">
+      <thead>
       <tr>
         <th>Employee</th>
         <th>Pay Rate</th>
@@ -11,6 +18,8 @@
         <th>Duration</th>
         <th>Location</th>
       </tr>
+      </thead>
+      <tbody>
       <% @visits.each do |visit| %>
           <tr class="visit-row">
             <td class="employee" rel="<%= visit.user_id %>">
@@ -36,6 +45,7 @@
             </td>
           </tr>
       <% end %>
+      </tbody>
     </table>
 <% else %>
     <p>There are no visits in <%= @care_recipient.full_name %>'s history.</p>

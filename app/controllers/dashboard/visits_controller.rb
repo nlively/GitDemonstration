@@ -8,13 +8,16 @@ module Dashboard
     end
 
     def custom
-      index
-    end
-
-    def index
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
       fetch_visits
+    end
+
+    def index
+      #@start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
+      #@stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
+      #fetch_visits
+      redirect_to dashboard_visits_today_path
     end
 
     def today

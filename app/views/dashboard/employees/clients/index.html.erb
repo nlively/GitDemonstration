@@ -1,7 +1,20 @@
-<h1><%= @employee.full_name %>'s Clients</h1>
+<% content_for :sidebar_second do %>
+    <h3>View all of the employee's clients here.</h3>
+    <p>You can also add a client to this employee's client list from this section.</p>
+<% end %>
+
+<% content_for :title do %>
+    <%= @employee.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Clients
+<% end %>
 
 <table>
+  <tbody>
   <% @clients.each do |care_recipient| %>
-  <%=  render 'shared/row_client', :care_recipient => care_recipient %>
+      <%=  render 'shared/row_client', :care_recipient => care_recipient %>
   <% end %>
+  </tbody>
 </table>

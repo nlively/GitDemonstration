@@ -1,5 +1,20 @@
-<h1><%= @employee.full_name %>'s Notes and Photos</h1>
+<% content_for :sidebar_second do %>
+    <h3>View all of the employee's notes and photos here.</h3>
 
+    <p>You can view notes and photos in live feed format or filter the page to find what you are looking for. Click on "view" to see the note or photo in detail.</p>
+<% end %>
+
+<% content_for :title do %>
+    <%= @employee.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Notes &amp; Photos
+<% end %>
+
+<table>
+
+</table>
 
 <h3>Notes</h3>
 <%= render 'shared/notes_table', :notes => @notes %>

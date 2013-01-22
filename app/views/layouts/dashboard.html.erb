@@ -63,10 +63,12 @@
                 <h1 class="title"><%= yield :title %></h1>
             <% end %>
 
-
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
 
+            <% if content_for? :page_caption %>
+                <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>
+            <% end %>
 
             <%= yield %>
 

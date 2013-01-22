@@ -1,4 +1,6 @@
-<h1>Visits by Date Range</h1>
+<% content_for :title do %>
+    Custom View
+    <% end %>
 
 <%= javascript_include_tag 'dashboard/visits/custom' %>
 <%= javascript_include_tag 'dashboard/visits/visits_table' %>
@@ -10,6 +12,7 @@
 
     <%= submit_tag 'Go' %>
 <% end %>
+
 
 
 <%=  render 'shared/table_visits_completed', :visits => @completed %>

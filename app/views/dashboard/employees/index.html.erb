@@ -1,4 +1,12 @@
-<h1>Employees</h1>
+<% content_for :sidebar_second do %>
+    <h3>View all employees from this page.</h3>
+
+    <p>Search by name or browse through your database.</p>
+<% end %>
+
+<% content_for :title do %>
+    Employees
+<% end %>
 
 <%= render 'dashboard/shared/employee_search_form' %>
 
