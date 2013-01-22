@@ -2,6 +2,11 @@
     Users
 <% end %>
 
+<% content_for :sidebar_second do %>
+    <h3>Manage users</h3>
+    <p>If a user has not checked-in in the last 30 days, their account is automatically flagged on this page for review by the Admin.</p>
+<% end %>
+
 <%= render 'shared/agency_user_count' %>
 
 <table>
@@ -14,13 +19,13 @@
   </thead>
   <tbody>
   <% @agency.caregivers.each do |caregiver| %>
-  <tr>
-    <td><%= link_to caregiver.full_name, dashboard_employee_path(caregiver) %></td>
-    <td><%= caregiver.last_check_in_formatted %></td>
-    <td><%= link_to 'Delete', dashboard_employees_delete_path(caregiver, :destination => request.fullpath) %></td>
-    <td><%= render 'dashboard/shared/employee_freeze_link', :employee => caregiver %></td>
-    <td><%= link_to 'Reset Password', dashboard_employees_reset_password_path(caregiver, :destination => request.fullpath) %></td>
-  </tr>
+      <tr>
+        <td><%= link_to caregiver.full_name, dashboard_employee_path(caregiver) %></td>
+        <td><%= caregiver.last_check_in_formatted %></td>
+        <td><%= link_to 'Delete', dashboard_employees_delete_path(caregiver, :destination => request.fullpath) %></td>
+        <td><%= render 'dashboard/shared/employee_freeze_link', :employee => caregiver %></td>
+        <td><%= link_to 'Reset Password', dashboard_employees_reset_password_path(caregiver, :destination => request.fullpath) %></td>
+      </tr>
   <% end %>
   </tbody>
 </table>
