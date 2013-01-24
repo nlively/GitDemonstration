@@ -11,16 +11,22 @@ body.with-sidebar-second {
 
     #main {
       #sidebar-second {
-            float: left;
-            width: 208px;
-            border-left: 1px solid $borderColor;
-            min-height: 400px;
-            background: #f6f9fb;
-          }
+        float: left;
+        width: 208px;
+        border-left: 1px solid $borderColor;
+        min-height: 400px;
+        background: #f6f9fb;
 
-          #content {
-            width: 650px;
-          }
+
+        .main-col-inner {
+          padding: 8px 8px 60px 8px;
+        }
+      }
+
+
+      #content {
+        width: 650px;
+      }
     }
 
   }
@@ -55,12 +61,12 @@ body.with-sidebar-second {
 
 
     #top-bar {
-        #greeting {
-          float: right;
-          margin-right: 50px;
-          font-size: 15.53px;
-          margin-top: 15px;
-        }
+      #greeting {
+        float: right;
+        margin-right: 50px;
+        font-size: 15.53px;
+        margin-top: 15px;
+      }
     }
 
   }
@@ -68,7 +74,7 @@ body.with-sidebar-second {
   #main {
 
     .main-col-inner {
-      padding: 8px 8px 60px 8px;
+      padding: 8px 0px 60px 0px;
     }
 
     #sidebar-first {

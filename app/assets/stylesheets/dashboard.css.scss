@@ -4,11 +4,44 @@
 body.dashboard {
 
   .title-wrapper {
+    width: 100%;
+    overflow: auto;
 
     border-bottom: 1px solid $borderColor;
 
     h1 {
       font-weight: normal;
+      float: left;
+      margin-right: 50px;
+      margin-top: 1.05em;
+    }
+
+    #page-top {
+      margin-top: 1.5em;
+      float: left;
+
+      form {
+
+
+        div.field {
+          float: left;
+          margin-right: 15px;
+
+          &.search-field {
+            @include light-shade-with-border;
+            height: 30px;
+            padding-top: 4px;
+            margin-right: 0px;
+
+            input[type="text"] {
+              border: 0;
+            }
+          }
+        }
+
+
+
+      }
     }
 
   }
@@ -21,19 +54,34 @@ body.dashboard {
         .page-caption {
           margin-left: -20px;
           background: #f7f7f7;
+          text-transform: uppercase;
+          border-top: 1px solid #eae9ea;
+          border-bottom: 1px solid #eae9ea;
+          padding: 4px 15px;
+          color: $bodyText;
+          font-size: 14px;
+
+
 
         }
       }
     }
   }
 
+  // Dashboard home page
+  &.dashboard-main.index {
+    .title-wrapper {
+      margin-bottom: 50px;
+    }
+  }
 
+  // Dashboard visits section
   &.visits {
     #page {
       #main {
-         #content {
+        #content {
 
-         }
+        }
       }
     }
   }

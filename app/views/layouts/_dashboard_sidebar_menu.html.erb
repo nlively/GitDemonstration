@@ -10,4 +10,8 @@
     <%=  render 'dashboard/visits/sidebar_menu' %>
 <% elsif controller.is_a? Dashboard::SettingsController %>
     <%=  render 'dashboard/settings/sidebar_menu' %>
+<% elsif controller.is_a? Dashboard::ObservationsController %>
+    <%=  render 'dashboard/observations/sidebar_menu' %>
+<% elsif controller.is_a? DashboardController %>
+    <%=  render 'dashboard/sidebar_menu' %>
 <% end %>

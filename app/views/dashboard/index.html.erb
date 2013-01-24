@@ -3,6 +3,23 @@
 <% end %>
 
 
+<% content_for :page_top do %>
+
+    <%= form_tag dashboard_search_path do %>
+
+        <div class="filter-field field">
+        <%= select_tag 'filter', options_from_collection_for_select(@filter_options, :first, :last) %>
+        </div>
+
+        <div class="search-field field">
+            <%= text_field_tag 'search', '', :placeholder => 'search the live feed...' %>
+        </div>
+        <div class="submit-button field">
+          <%= image_submit_tag 'search-go-btn.png' %>
+        </div>
+    <% end %>
+<% end %>
+
 <% content_for :page_caption do %>
     Feed
 <% end %>

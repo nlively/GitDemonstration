@@ -21,12 +21,10 @@ input[type="number"],
 input[type="password"],
 input[type="email"],
 textarea {
-  background: #eaeaea;
-  border: 1px solid #999898;
+  @include light-shade-with-border;
   border-radius: 2px;
   padding: 5px 8px;
 
-  @include shadow-bottom;
 }
 
 select {

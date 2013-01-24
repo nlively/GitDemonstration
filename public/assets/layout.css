@@ -12,11 +12,15 @@ body.with-sidebar-second #page #main #sidebar-second {
   background: #f6f9fb;
 }
 /* line 21, ../../app/assets/stylesheets/layout.css.scss */
+body.with-sidebar-second #page #main #sidebar-second .main-col-inner {
+  padding: 8px 8px 60px 8px;
+}
+/* line 27, ../../app/assets/stylesheets/layout.css.scss */
 body.with-sidebar-second #page #main #content {
   width: 650px;
 }
 
-/* line 30, ../../app/assets/stylesheets/layout.css.scss */
+/* line 36, ../../app/assets/stylesheets/layout.css.scss */
 #page {
   width: 1030px;
   margin: 0 auto;
@@ -25,16 +29,16 @@ body.with-sidebar-second #page #main #content {
   -moz-box-shadow: -2px -2px 12px rgba(0, 0, 0, 0.67);
   box-shadow: -2px -2px 12px rgba(0, 0, 0, 0.67);
 }
-/* line 40, ../../app/assets/stylesheets/layout.css.scss */
+/* line 46, ../../app/assets/stylesheets/layout.css.scss */
 #page #header {
   background: url(top-toolbar-bg.jpg) repeat-x;
   height: 55px;
 }
-/* line 44, ../../app/assets/stylesheets/layout.css.scss */
+/* line 50, ../../app/assets/stylesheets/layout.css.scss */
 #page #header #header-inner {
   padding: 10px 20px;
 }
-/* line 48, ../../app/assets/stylesheets/layout.css.scss */
+/* line 54, ../../app/assets/stylesheets/layout.css.scss */
 #page #header h1 {
   margin: 0;
   margin-top: 11px;
@@ -42,18 +46,18 @@ body.with-sidebar-second #page #main #content {
   color: #727474;
   float: left;
 }
-/* line 58, ../../app/assets/stylesheets/layout.css.scss */
+/* line 64, ../../app/assets/stylesheets/layout.css.scss */
 #page #header #top-bar #greeting {
   float: right;
   margin-right: 50px;
   font-size: 15.53px;
   margin-top: 15px;
 }
-/* line 70, ../../app/assets/stylesheets/layout.css.scss */
+/* line 76, ../../app/assets/stylesheets/layout.css.scss */
 #page #main .main-col-inner {
-  padding: 8px 8px 60px 8px;
+  padding: 8px 0px 60px 0px;
 }
-/* line 74, ../../app/assets/stylesheets/layout.css.scss */
+/* line 80, ../../app/assets/stylesheets/layout.css.scss */
 #page #main #sidebar-first {
   float: left;
   width: 168px;
@@ -61,19 +65,19 @@ body.with-sidebar-second #page #main #content {
   min-height: 400px;
   background: #fff;
 }
-/* line 81, ../../app/assets/stylesheets/layout.css.scss */
+/* line 87, ../../app/assets/stylesheets/layout.css.scss */
 #page #main #sidebar-first .main-col-inner {
   padding: 0;
   padding-bottom: 60px;
 }
-/* line 87, ../../app/assets/stylesheets/layout.css.scss */
+/* line 93, ../../app/assets/stylesheets/layout.css.scss */
 #page #main #content {
   float: left;
   width: 860px;
   background: #fff;
 }
 
-/* line 97, ../../app/assets/stylesheets/layout.css.scss */
+/* line 103, ../../app/assets/stylesheets/layout.css.scss */
 #copyright {
   font-size: 0.8em;
   text-align: center;

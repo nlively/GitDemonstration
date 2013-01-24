@@ -1,26 +1,63 @@
 /* line 6, ../../app/assets/stylesheets/dashboard.css.scss */
 body.dashboard .title-wrapper {
+  width: 100%;
+  overflow: auto;
   border-bottom: 1px solid #d5d5d5;
 }
-/* line 10, ../../app/assets/stylesheets/dashboard.css.scss */
+/* line 12, ../../app/assets/stylesheets/dashboard.css.scss */
 body.dashboard .title-wrapper h1 {
   font-weight: normal;
+  float: left;
+  margin-right: 50px;
+  margin-top: 1.05em;
 }
-/* line 18, ../../app/assets/stylesheets/dashboard.css.scss */
+/* line 19, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top {
+  margin-top: 1.5em;
+  float: left;
+}
+/* line 26, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top form div.field {
+  float: left;
+  margin-right: 15px;
+}
+/* line 30, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top form div.field.search-field {
+  background: #f7f7f7;
+  border: 1px solid #eae9ea;
+  height: 30px;
+  padding-top: 4px;
+  margin-right: 0px;
+}
+/* line 36, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top form div.field.search-field input[type="text"] {
+  border: 0;
+}
+/* line 51, ../../app/assets/stylesheets/dashboard.css.scss */
 body.dashboard #page #main #content-inner {
   margin-left: 20px;
 }
-/* line 21, ../../app/assets/stylesheets/dashboard.css.scss */
+/* line 54, ../../app/assets/stylesheets/dashboard.css.scss */
 body.dashboard #page #main #content-inner .page-caption {
   margin-left: -20px;
   background: #f7f7f7;
+  text-transform: uppercase;
+  border-top: 1px solid #eae9ea;
+  border-bottom: 1px solid #eae9ea;
+  padding: 4px 15px;
+  color: #727474;
+  font-size: 14px;
 }
-/* line 43, ../../app/assets/stylesheets/dashboard.css.scss */
+/* line 73, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard.dashboard-main.index .title-wrapper {
+  margin-bottom: 50px;
+}
+/* line 91, ../../app/assets/stylesheets/dashboard.css.scss */
 body.dashboard table thead td, body.dashboard table thead th {
   border: 1px solid #d4d4d4;
   border-radius: 2px;
 }
-/* line 57, ../../app/assets/stylesheets/dashboard.css.scss */
+/* line 105, ../../app/assets/stylesheets/dashboard.css.scss */
 body.dashboard table.batch-history tr.batch-details {
   display: none;
 }

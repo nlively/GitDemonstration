@@ -87,3 +87,8 @@ $breadcrumbInactiveText: #999999;
   text-shadow:
     $shadowColor $size $size 0;
 }
+
+@mixin light-shade-with-border {
+  background: #f7f7f7;
+  border: 1px solid #eae9ea;
+}

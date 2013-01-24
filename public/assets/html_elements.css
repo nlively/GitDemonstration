@@ -22,16 +22,13 @@ input[type="number"],
 input[type="password"],
 input[type="email"],
 textarea {
-  background: #eaeaea;
-  border: 1px solid #999898;
+  background: #f7f7f7;
+  border: 1px solid #eae9ea;
   border-radius: 2px;
   padding: 5px 8px;
-  -webkit-box-shadow: 0 3px 6px -6px black;
-  -moz-box-shadow: 0 3px 6px -6px black;
-  box-shadow: 0 3px 6px -6px black;
 }
 
-/* line 32, ../../app/assets/stylesheets/html_elements.css.scss */
+/* line 30, ../../app/assets/stylesheets/html_elements.css.scss */
 select {
   display: block;
   opacity: 0.0;
@@ -39,7 +36,7 @@ select {
   z-index: 2;
 }
 
-/* line 39, ../../app/assets/stylesheets/html_elements.css.scss */
+/* line 37, ../../app/assets/stylesheets/html_elements.css.scss */
 button, input[type="button"], input[type="submit"] {
   border: 1px solid #6191f2;
   border-radius: 5px;

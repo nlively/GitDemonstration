@@ -21,7 +21,19 @@ class DashboardController < ::ApplicationController
     @newest_item_id = (@activity_streams.empty?) ? params[:last_id] : @activity_streams.first.id
   end
 
+  def feed_search_filter
+
+  end
+
   def index
+
+    @filter_options = {
+        '' => 'Filter By',
+        :check_in => 'Check-ins',
+        :check_out => 'Check-outs',
+        :photo => 'Photos',
+        :observation => 'Observations'
+    }
 
     limit = (params[:limit].blank?) ? 5 : params[:limit]
 

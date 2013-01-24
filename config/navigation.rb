@@ -54,7 +54,9 @@ SimpleNavigation::Configuration.run do |navigation|
     # Add an item which has a sub navigation (same params, but with block)
     primary.item :dashboard, 'Dashboard', dashboard_path, :if => Proc.new{ !current_user.nil? }, :highlights_on => :subpath do |sub_nav|
       # Add an item to the sub navigation (same params again)
-      sub_nav.item :home, 'Home', dashboard_path
+      sub_nav.item :home, 'Home', dashboard_path do |home|
+        home.item :live_feed, 'Live Feed', dashboard_path, :highlights_on => :subpath
+      end
       sub_nav.item :clients, 'Clients', dashboard_clients_path, :highlights_on => :subpath  do |client|
         if @care_recipient.blank? or @care_recipient.id.blank?
           client.item :new_client, 'Add a New Client', new_dashboard_client_path, :highlights_on => :subpath
