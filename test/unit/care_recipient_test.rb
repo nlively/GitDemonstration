@@ -15,6 +15,10 @@
 #  profile_photo_updated_at   :datetime
 #  agency_id                  :integer
 #  default_bill_rate          :decimal(11, 2)   default(0.0)
+#  middle_name                :string(255)
+#  gender                     :string(255)
+#  phone                      :string(255)
+#  sms                        :string(255)
 #
 
 require 'test_helper'

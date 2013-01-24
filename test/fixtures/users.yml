@@ -29,6 +29,9 @@
 #  middle_name                :string(255)
 #  phone                      :string(255)
 #  sms                        :string(255)
+#  is_active                  :boolean          default(TRUE)
+#  deleted                    :boolean          default(FALSE)
+#  location_id                :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

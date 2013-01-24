@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122002549) do
+ActiveRecord::Schema.define(:version => 20130124234047) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -119,6 +119,10 @@ ActiveRecord::Schema.define(:version => 20130122002549) do
     t.datetime "profile_photo_updated_at"
     t.integer  "agency_id"
     t.decimal  "default_bill_rate",          :precision => 11, :scale => 2, :default => 0.0
+    t.string   "middle_name"
+    t.string   "gender"
+    t.string   "phone"
+    t.string   "sms"
   end
 
   create_table "care_recipients_locations", :force => true do |t|
@@ -318,6 +322,7 @@ ActiveRecord::Schema.define(:version => 20130122002549) do
     t.string   "sms"
     t.boolean  "is_active",                                                 :default => true
     t.boolean  "deleted",                                                   :default => false
+    t.integer  "location_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

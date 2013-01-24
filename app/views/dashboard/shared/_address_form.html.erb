@@ -1,0 +1,43 @@
+<%= fields_for @location do |l| %>
+    <div class="form-address">
+
+      <div class="street">
+        <div class="form-field">
+          <div class="label">
+            <%= l.label :street, 'Street Address' %>
+          </div>
+          <div class="field">
+            <%= l.text_field :street %>
+          </div>
+        </div>
+      </div>
+
+      <div class="csz">
+        <div class="form-field city">
+          <div class="label">
+            <%= l.label :city %>
+          </div>
+          <div class="field">
+            <%= l.text_field :city %>
+          </div>
+        </div>
+        <div class="form-field state">
+          <div class="label">
+            <%= l.label :state %>
+          </div>
+          <div class="field">
+            <%= l.text_field :state %>
+          </div>
+        </div>
+        <div class="form-field zip">
+          <div class="label">
+            <%= l.label :zip %>
+          </div>
+          <div class="field">
+            <%= l.text_field :zip %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+<% end %>

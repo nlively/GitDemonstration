@@ -29,6 +29,9 @@
 #  middle_name                :string(255)
 #  phone                      :string(255)
 #  sms                        :string(255)
+#  is_active                  :boolean          default(TRUE)
+#  deleted                    :boolean          default(FALSE)
+#  location_id                :integer
 #
 
 class User < ActiveRecord::Base
@@ -58,6 +61,7 @@ class User < ActiveRecord::Base
   has_many :visits
   has_many :approved_visits, :class_name => 'Visit', :foreign_key => :approved_by_user_id
   belongs_to :agency
+  belongs_to :location
 
   has_many :care_recipients_users
   has_many :care_recipients, :through => :care_recipients_users

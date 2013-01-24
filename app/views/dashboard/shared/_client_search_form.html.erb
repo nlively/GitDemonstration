@@ -1,9 +1,7 @@
-<%= form_tag dashboard_clients_search_path, :method => :post, :remote => true do %>
+<%= form_tag dashboard_clients_search_path, :method => :post, :remote => true, :class => 'search-form' do %>
 
-    <%= label_tag :search_phrase, 'Search' %>
-    <%= text_field_tag :search_phrase, @search_phrase, :placeholder => 'First or last name' %>
+    <%= text_field_tag :search_phrase, @search_phrase, :placeholder => 'Search by name...' %>
 
-    <%= submit_tag 'Go'%>
-    <%= link_to 'reset', dashboard_clients_path, :remote => true %>
+    <%= image_submit_tag 'search-go-btn.png' %>
 
 <% end %>

@@ -6,19 +6,20 @@ body.dashboard {
   .title-wrapper {
     width: 100%;
     overflow: auto;
+    margin-bottom: 50px;
 
     border-bottom: 1px solid $borderColor;
 
     h1 {
       font-weight: normal;
-      float: left;
+      //float: left;
       margin-right: 50px;
       margin-top: 1.05em;
     }
 
     #page-top {
-      margin-top: 1.5em;
-      float: left;
+      margin: 1.5em 0;
+      //float: left;
 
       form {
 
@@ -28,14 +29,8 @@ body.dashboard {
           margin-right: 15px;
 
           &.search-field {
-            @include light-shade-with-border;
-            height: 30px;
-            padding-top: 4px;
             margin-right: 0px;
 
-            input[type="text"] {
-              border: 0;
-            }
           }
         }
 

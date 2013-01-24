@@ -92,3 +92,8 @@ $breadcrumbInactiveText: #999999;
   background: #f7f7f7;
   border: 1px solid #eae9ea;
 }
+
+@mixin container-with-floats {
+  width: 100%;
+  overflow: auto;
+}

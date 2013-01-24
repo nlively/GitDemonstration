@@ -26,6 +26,10 @@ class DashboardController < ::ApplicationController
   end
 
   def index
+    redirect_to dashboard_feed_path
+  end
+
+  def feed
 
     @filter_options = {
         '' => 'Filter By',

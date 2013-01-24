@@ -26,9 +26,10 @@ textarea {
   border: 1px solid #eae9ea;
   border-radius: 2px;
   padding: 5px 8px;
+  height: 24px;
 }
 
-/* line 30, ../../app/assets/stylesheets/html_elements.css.scss */
+/* line 31, ../../app/assets/stylesheets/html_elements.css.scss */
 select {
   display: block;
   opacity: 0.0;
@@ -36,7 +37,7 @@ select {
   z-index: 2;
 }
 
-/* line 37, ../../app/assets/stylesheets/html_elements.css.scss */
+/* line 38, ../../app/assets/stylesheets/html_elements.css.scss */
 button, input[type="button"], input[type="submit"] {
   border: 1px solid #6191f2;
   border-radius: 5px;

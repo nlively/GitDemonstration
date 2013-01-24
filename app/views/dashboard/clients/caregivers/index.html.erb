@@ -8,10 +8,11 @@
     <p>If you make an edit, make sure to click the "Save Changes" button.</p>
 <% end  %>
 
-<table>
-  <caption>
+<% content_for :page_caption do %>
     Assigned Caregivers
-  </caption>
+    <% end %>
+
+<table>
   <tbody>
   <% @care_recipient.users.each do |user| %>
       <%=  render 'shared/row_employee', :employee => user %>

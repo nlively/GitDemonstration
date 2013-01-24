@@ -3,6 +3,7 @@ module Dashboard
 
     before_filter do
       @care_recipient = CareRecipient.find params[:id]  unless params[:id].blank?
+      @location = @care_recipient.default_location unless @care_recipient.nil?
     end
 
     def index
@@ -43,12 +44,16 @@ module Dashboard
 
     def new
       @care_recipient = CareRecipient.new
+      @location = Location.new
     end
 
     def create
       @care_recipient = CareRecipient.new(params[:care_recipient])
+      @location = Location.create(params[:location])
 
       @care_recipient.agency = current_user.agency
+      @care_recipient.default_location = @location
+      @care_recipient.locations << @location
 
       respond_to do |format|
         if @care_recipient.save

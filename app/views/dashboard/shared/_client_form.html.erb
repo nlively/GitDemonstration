@@ -21,6 +21,19 @@
       </div>
     </div>
 
+
+   <%=  render 'dashboard/shared/address_form' %>
+
+
+    <div class="form-field">
+      <div class="label">
+        <%= f.label :phone, 'Phone Number' %>
+      </div>
+      <div class="field">
+        <%= f.phone_field :phone %>
+      </div>
+    </div>
+
     <div class="form-field dob">
       <div class="label">
         <%= f.label :dob, 'Date of Birth' %>
@@ -54,6 +67,9 @@
         $ <%= f.text_field :default_bill_rate, :size=>5 %> USD
       </div>
     </div>
+
+
+
 
     <%= f.submit 'Save changes' %>
 <% end %>

@@ -2,7 +2,7 @@
 
 form {
   .form-field {
-    margin: 20px 10px;
+    margin: 20px 0px;
 
     &.dob {
       width:100%;
@@ -19,11 +19,59 @@ form {
 
     }
   }
+
+  &.search-form {
+    * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+
+  .form-address {
+
+    .street {
+        input {
+          width: 180px;
+        }
+    }
+
+    .csz {
+
+      @include container-with-floats;
+
+      div.form-field {
+        float: left;
+        margin-right: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        &.city {
+          input {
+            width: 80px;
+          }
+        }
+        &.state {
+          input {
+            width: 30px;
+          }
+        }
+        &.zip {
+          input {
+            width: 40px;
+          }
+        }
+      }
+
+    }
+
+  }
+
 }
 
 .selectbox {
   float: left;
-  margin: 0 10px 0 6px !important;
+  margin: 0 15px 0 0px !important;
 
   .text {
     font-size: 12px;

@@ -3,6 +3,7 @@ module Dashboard
 
     before_filter do
       @employee = User.find params[:id] unless params[:id].blank?
+      @location = @employee.location unless @employee.nil?
     end
 
     # GET /dashboard/employees
@@ -47,13 +48,16 @@ module Dashboard
     # GET /dashboard/employees/new
     def new
       @user = User.new
+      @location = Location.new
     end
 
     # POST /dashboard/employees
     def create
       @user = User.new(params[:user])
+      @location = Location.create(params[:location])
 
       @user.agency = current_user.agency
+      @user.location = @location
 
       respond_to do |format|
         if @user.save

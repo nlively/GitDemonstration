@@ -23,6 +23,7 @@ class Location < ActiveRecord::Base
   has_many :visits
   has_many :care_recipients_locations, :class_name =>'CareRecipientsLocations', :foreign_key => :care_recipient_id
   has_many :care_recipients, :through => :care_recipients_locations
+  has_many :users
 
   belongs_to :agency
 
