@@ -7,6 +7,9 @@ gem 'rails', '3.2.11'
 
 gem 'mysql2'
 
+gem 'rest-client'
+#gem 'socketio-client'
+
 gem 'oauth2'
 gem 'acl9'
 

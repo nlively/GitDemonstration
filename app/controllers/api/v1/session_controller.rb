@@ -17,7 +17,8 @@ module Api::V1
 
       @note.save!
 
-      ActivityStream.create_from_note! @note
+      activity = ActivityStream.create_from_note! @note
+      send_activity_stream_to_node_server activity
 
       render json: @note.web_service_format(root_url)
     end
@@ -36,7 +37,8 @@ module Api::V1
 
       @photo.save!
 
-      ActivityStream.create_from_photo! @photo
+      activity = ActivityStream.create_from_photo! @photo
+      send_activity_stream_to_node_server activity
 
       render json: @photo.web_service_format(root_url)
 
