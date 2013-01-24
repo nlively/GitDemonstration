@@ -1,11 +1,20 @@
+@import "compass/css3/images";
+
 $bodyText: #727474;
 $navText: #727474;
 $aqua: #6dc7ca;
+$lightAqua: #98d4e1;
 $shadowBottom: 0 3px 6px -6px #000;
 $shadowSides:  -2px -2px 12px rgba(0, 0, 0, 0.67);
+$borderColor: #d5d5d5;
+$baseFont: Helvetica, sans-serif;
+$leftNavText: #6293f3;
+$leftSidebarWidth: 168px;
+$breadcrumbInactiveText: #999999;
+
 
 @mixin bold-font {
-  font-family: Helvetica, sans-serif;
+  font-family: $baseFont;
   font-weight: bold;
 }
 
@@ -35,8 +44,46 @@ $shadowSides:  -2px -2px 12px rgba(0, 0, 0, 0.67);
   padding: 0;
 }
 
+@mixin border-radius($size) {
+  border-radius: $size;
+  -webkit-border-radius: $size;
+  -moz-border-radius: $size;
+}
+
 @mixin gradient-table-header {
-  background-color: #f9f9f9; // Old browsers
-  @include filter-gradient(#f9f9f9, #eaeaea, vertical); // IE6-9
-  @include background-image(linear-gradient(top,  #f9f9f9 0%,#f9f9f9 70%,#eaeaea 100%));
+//background-color: #f9f9f9; // Old browsers
+//@include filter-gradient(#f9f9f9, #eaeaea, vertical); // IE6-9
+//@include background-image(linear-gradient(top,  #f9f9f9 0%,#f9f9f9 70%,#eaeaea 100%));
+}
+
+@mixin boomr-button($topColor, $bottomColor, $strokeColor, $textColor, $shadowColor) {
+  border: 1px solid $strokeColor;
+  @include border-radius(5px);
+  background-color: $topColor; // Old browsers
+  @include filter-gradient($topColor, $bottomColor, vertical); // IE6-9
+  @include background-image(linear-gradient(top,  $topColor 0%,$bottomColor 50%));
+  color: $textColor;
+  @include text-stroke(1px, transparent);
+  text-shadow: $shadowColor -1px -1px;
+  font-family: $baseFont;
+  font-weight: bold;
+}
+
+@mixin gradient-blue-button {
+  @include boomr-button(#6d9dfe, #6191f2, #6191f2, #fff, #537ac7);
+}
+@mixin gradient-red-button {
+  @include boomr-button(#fe776c, #f26b61, #dd564b, #fff, #e0655c);
+}
+
+@mixin text-stroke($size, $color) {
+  -moz-text-stroke: $size $color;
+  -webkit-text-stroke: $size $color;
+  text-stroke: $size $color;
+}
+
+@mixin text-stroke-with-shadow($size, $strokeColor, $shadowColor) {
+  @include text-stroke($size,$strokeColor);
+  text-shadow:
+    $shadowColor $size $size 0;
 }

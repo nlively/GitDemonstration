@@ -4,12 +4,19 @@
 
 <div id="top-bar">
   <h1>
-  <% unless current_user.nil? or current_user.agency.nil? %>
-     <%= current_user.agency.name %>
-        <% else %>
-    Boomr
-  <% end %>
+    <% unless current_user.nil? or current_user.agency.nil? %>
+        <%= current_user.agency.name %>
+    <% else %>
+        Boomr
+    <% end %>
   </h1>
+
+  <% unless current_user.nil? %>
+      <div id="greeting">
+        <span>Hi, <%= current_user.first_name %></span>
+      </div>
+  <% end %>
+
 </div>
 
 

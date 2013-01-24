@@ -52,6 +52,7 @@ OauthServer::Application.routes.draw do
     match 'visits' => 'visits#index'
     match 'reports' => 'reports#index'
     match 'settings' => 'settings#index'
+    match 'observations' => 'observations#index'
 
     namespace :settings do
       get 'agency' => 'agency#index'

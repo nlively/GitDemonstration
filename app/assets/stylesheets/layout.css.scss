@@ -13,13 +13,12 @@ body.with-sidebar-second {
       #sidebar-second {
             float: left;
             width: 208px;
-            border-left: 2px solid #dfe1e1;
+            border-left: 1px solid $borderColor;
             min-height: 400px;
             background: #f6f9fb;
           }
 
           #content {
-            float: left;
             width: 650px;
           }
     }
@@ -36,15 +35,34 @@ body.with-sidebar-second {
 
 
   #header, #main, #footer {
-    width: 100%;
-    overflow: auto;
   }
 
   #header {
-    background: #f7f8f8;
+    background: url(top-toolbar-bg.jpg) repeat-x;
+    height: 55px;
+
     #header-inner {
-      padding: 10px;
+      padding: 10px 20px;
     }
+
+    h1 {
+      margin: 0;
+      margin-top: 11px;
+      font-size: 21px;
+      color: #727474;
+      float: left;
+    }
+
+
+    #top-bar {
+        #greeting {
+          float: right;
+          margin-right: 50px;
+          font-size: 15.53px;
+          margin-top: 15px;
+        }
+    }
+
   }
 
   #main {
@@ -55,10 +73,10 @@ body.with-sidebar-second {
 
     #sidebar-first {
       float: left;
-      width: 168px;
-      border-right: 2px solid #dfe1e1;
+      width: $leftSidebarWidth;
+      border-right: 1px solid $borderColor;
       min-height: 400px;
-      background: #f7f7f8;
+      background: #fff;
 
       .main-col-inner {
         padding: 0;
@@ -69,6 +87,7 @@ body.with-sidebar-second {
     #content {
       float: left;
       width: 860px;
+      background: #fff;
     }
 
   }

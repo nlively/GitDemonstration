@@ -61,7 +61,18 @@
             <%= render 'shared/breadcrumb' %>
 
             <% if content_for? :title %>
-                <h1 class="title"><%= yield :title %></h1>
+                <div class="title-wrapper">
+                  <h1 class="title"><%= yield :title %></h1>
+
+                  <% if content_for? :page_top %>
+                      <div id="page-top">
+                        <div id="page-top-inner">
+                           <%= yield :page_top %>
+                        </div>
+                      </div>
+                  <% end %>
+
+                </div>
             <% end %>
 
             <p class="notice"><%= notice %></p>
@@ -83,6 +94,9 @@
               </div>
             </div>
         <% end %>
+
+
+        <div style="clear:both"></div>
 
       </div>
     </div>

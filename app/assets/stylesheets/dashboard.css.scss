@@ -3,10 +3,37 @@
 
 body.dashboard {
 
+  .title-wrapper {
+
+    border-bottom: 1px solid $borderColor;
+
+    h1 {
+      font-weight: normal;
+    }
+
+  }
+
+  #page {
+    #main {
+      #content-inner {
+        margin-left: 20px;
+
+        .page-caption {
+          margin-left: -20px;
+          background: #f7f7f7;
+
+        }
+      }
+    }
+  }
+
+
   &.visits {
     #page {
       #main {
+         #content {
 
+         }
       }
     }
   }

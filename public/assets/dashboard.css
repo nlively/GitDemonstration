@@ -1,0 +1,26 @@
+/* line 6, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard .title-wrapper {
+  border-bottom: 1px solid #d5d5d5;
+}
+/* line 10, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard .title-wrapper h1 {
+  font-weight: normal;
+}
+/* line 18, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard #page #main #content-inner {
+  margin-left: 20px;
+}
+/* line 21, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard #page #main #content-inner .page-caption {
+  margin-left: -20px;
+  background: #f7f7f7;
+}
+/* line 43, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard table thead td, body.dashboard table thead th {
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+}
+/* line 57, ../../app/assets/stylesheets/dashboard.css.scss */
+body.dashboard table.batch-history tr.batch-details {
+  display: none;
+}

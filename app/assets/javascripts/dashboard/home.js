@@ -6,7 +6,7 @@ $(function(){
     if (wrapper.length >0) {
         var moreItemsLink_Click = function() {
             var last_id = $('#activity-stream-wrapper').attr('data-oldest-item');
-            $.get('/dashboard.js', {last_id:last_id});
+            //$.get('/dashboard.js', {last_id:last_id});
         };
 
         $('#more-items-link', wrapper).click(moreItemsLink_Click);
