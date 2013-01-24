@@ -1,4 +1,4 @@
-require 'socketIO'
+require 'SocketIO'
 
 module Api::V1
   class ApiController < ::ApplicationController
