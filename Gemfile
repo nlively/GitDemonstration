@@ -43,6 +43,8 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'airbrake'
+
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
 
