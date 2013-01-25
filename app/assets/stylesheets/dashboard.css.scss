@@ -88,7 +88,105 @@ body.dashboard {
         }
       }
     }
+
+    #calendar-wrapper {
+      width: 386px;
+      margin: 30px 10px 10px 20px;
+      background: $rowHighlight;
+      @include border-radius(5px);
+
+      #calendar-inner {
+        padding: 10px;
+      }
+    }
+
+    #calendar {
+      margin: 0 auto;
+      position: relative;
+
+      .ui-datepicker-header {
+        height: 40px;
+      }
+
+      .ui-datepicker-title {
+        font-size: 1.5em;
+        text-align: center;
+        font-weight: bold;
+        @include text-stroke-with-shadow(1px, transparent, #fff);
+      }
+
+      .ui-datepicker-prev, .ui-datepicker-next {
+        position: absolute;
+        top: -2px;
+        width: 27px;
+        height: 27px;
+        span {
+          visibility: hidden;
+        }
+      }
+
+      .ui-datepicker-prev {
+        left: 0px;
+        background: url(month-arrow-left.png) no-repeat;
+      }
+
+      .ui-datepicker-next {
+        right: 0px;
+        background: url(month-arrow-right.png) no-repeat;
+      }
+
+      th {
+        border-right: none;
+        border-left: none;
+        background-color: #eaeaea; // Old browsers
+        @include filter-gradient(#eaeaea, #cacaca, vertical); // IE6-9
+        @include background-image(linear-gradient(top,  #eaeaea 0%,#eaeaea 80%,#dadada 100%));
+        text-align: center;
+        font-size: 1.2em;
+      }
+
+      td {
+        @include gradient-table-header;
+        border: 1px solid  #d4d4d4;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-shadow: #fff 1px 1px;
+        height: 30px;
+        position: relative;
+
+        &.current {
+          background: $buttonBlue !important;
+          color: #fff;
+          -moz-box-shadow: inset 0 0 5px #336;
+          -webkit-box-shadow: inset 0 0 5px #336;
+          box-shadow: inner 0 0 3px #336  ;
+
+          a {
+            color: #fff;
+            text-shadow: #000 1px 1px;;
+          }
+        }
+
+        &.has-visits {
+          .mini-dot {
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            width: 9px;
+            height: 9px;
+            background: url(red-tiny.png) no-repeat;
+          }
+        }
+
+        a {
+          color: $bodyText;
+          text-decoration: none;
+        }
+      }
+    }
   }
+
 
   table {
     thead {

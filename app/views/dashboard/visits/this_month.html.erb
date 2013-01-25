@@ -1,7 +1,29 @@
-<h1>This Month's Visits</h1>
+<% content_for :title do %>
+    This Month's Visits
+<% end %>
+
+<% content_for :page_caption do %>
+    Completed Visits this Month
+<% end %>
+
+<script type="text/javascript">
+    var calendarDays = <%= raw @days.to_json %>;
+    var monthURL = "<%= request.path %>";
+    var calendarCurrent = "<%= params[:day] %>";
+    var earliestDate = "<%= @earliest_date_available.to_formatted_s :mysql_format %>";
+    var endOfMonth = "<%= @end_of_month.to_formatted_s :mysql_format %>";
+</script>
+
+<div id="calendar-wrapper">
+  <div id="calendar-inner">
+    <div id="calendar">
+
+    </div>
+  </div>
+</div>
 
 
-<%=  render 'shared/table_visits_completed', :visits => @completed %>
-<%=  render 'shared/table_visits_pending', :visits => @pending %>
-
+<% if @current_visits %>
+    <%=  render 'shared/table_visits_completed', :visits => @current_visits %>
+<% end %>
 

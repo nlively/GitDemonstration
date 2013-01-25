@@ -54,9 +54,42 @@ module Dashboard
     end
 
     def this_month
+      @start_of_month = Date.today.beginning_of_month
+      @end_of_month = @start_of_month.end_of_month
+
+      @earliest_date_available = @start_of_month - 2.months
+      days_back = (@start_of_month -  @earliest_date_available).to_i
+
       @start = Date.today.beginning_of_month
       @stop = DateTime.current
-      fetch_visits
+
+
+      unless params[:day].blank?
+        @current = Date.parse(params[:day]) unless params[:day].blank?
+        @current_visits = @agency.completed_visits_by_date_range @current, @current + 1.day
+      end
+
+      @visits_by_month = @agency.unapproved_visits_by_date_range @earliest_date_available, @end_of_month
+
+
+      @days = {}
+
+
+      ((0-days_back)..(@end_of_month.day-1)).each do |offset|
+        date = @start_of_month + offset.days
+        @days[date] = 0
+      end
+
+
+      @visits_by_month.each do |visit|
+        day = visit.in_time.beginning_of_day.to_date
+        @days[day] += 1
+      end
+
+
+      logger.debug @days.inspect
+
+
     end
 
 
