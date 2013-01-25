@@ -1,6 +1,13 @@
-<h1>Today's Visits</h1>
 
-<%=  render 'shared/table_visits_completed', :visits => @completed %>
-<%=  render 'shared/table_visits_pending', :visits => @pending %>
+<% content_for :title do %>
+    <%= @start.to_formatted_s :full_date_with_dow %>
+<% end %>
 
+<% content_for :page_caption do %>
+    Completed Visits for Today
+<% end %>
 
+<div class="fill-page">
+  <%=  render 'shared/table_visits_completed', :visits => @completed %>
+  <%=  render 'shared/table_visits_pending', :visits => @pending %>
+</div>

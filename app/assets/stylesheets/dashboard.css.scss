@@ -3,10 +3,15 @@
 
 body.dashboard {
 
+  #breadcrumb {
+    margin-left: 20px;
+  }
+
   .title-wrapper {
     width: 100%;
     overflow: auto;
     margin-bottom: 50px;
+    margin-left: 20px;
 
     border-bottom: 1px solid $borderColor;
 
@@ -47,10 +52,10 @@ body.dashboard {
   #page {
     #main {
       #content-inner {
-        margin-left: 20px;
+        margin-left: 0px;
 
         .page-caption {
-          margin-left: -20px;
+          margin-left: 0px;
           background: #f7f7f7;
           text-transform: uppercase;
           border-top: 1px solid #eae9ea;
@@ -58,9 +63,10 @@ body.dashboard {
           padding: 4px 15px;
           color: $bodyText;
           font-size: 14px;
+        }
 
-
-
+        p {
+          margin: 1em 20px;
         }
       }
     }

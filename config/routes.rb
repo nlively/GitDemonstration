@@ -90,10 +90,10 @@ OauthServer::Application.routes.draw do
       match 'this-month', :action => :this_month, :as => :this_month
     end
 
-    get 'visits/:id' => 'visits#show_visit',   :as => :visit
-    get 'visits/:id/edit' => 'visits#edit_visit',   :as => :edit_visit
-    post 'visits/:id/approve' => 'visits#approve_visit',   :as => :approve_visit
-    put 'visits/:id' => 'visits#update_visit', :as => :visit
+    get 'visits/:id' => 'visits#show',   :as => :visit
+    get 'visits/:id/edit' => 'visits#edit',   :as => :edit_visit
+    post 'visits/:id/approve' => 'visits#approve',   :as => :approve_visit
+    put 'visits/:id' => 'visits#update', :as => :visit
 
     post 'employees/search' => 'employees#search', :as => :employees_search
     namespace :employees do

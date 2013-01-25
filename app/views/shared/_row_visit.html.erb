@@ -37,6 +37,9 @@
   <td class="location">
     <%= visit.location_label %>
   </td>
+  <td class="data">
+    <%= link_to 'view', dashboard_visit_path(visit) %>
+  </td>
   <% if show_approve %>
       <td class="approve">
         <% unless visit.approved? %>

@@ -1,10 +1,10 @@
 
 
 <tr class="visit-row" date-remote="true" data-id="<%= visit.id %>">
-  <td colspan="10">
+  <td colspan="11">
     <%= form_for visit, :url => dashboard_visit_path(visit), :remote => true  do |f| %>
         <%= hidden_field_tag :type, 'completed' %>
-        <table>
+        <table class="edit-mode">
           <tr>
             <td class="date">
               <%= visit.date_only_formatted %>

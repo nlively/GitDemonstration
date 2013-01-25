@@ -1,0 +1,50 @@
+<% content_for :title do %>
+    Data from Visit
+<% end %>
+
+
+<div class="visit-summary">
+  <%= render 'shared/table_visits_read_only', :visits => [@visit], :mode => :both, :show_data => false %>
+</div>
+
+<%= render 'dashboard/shared/page_caption', :caption => 'Collected Data from Visit' %>
+
+
+<div class="visit-data">
+
+  <div class="visit-data-section patient-status">
+    <div class="heading">
+      Client Status
+    </div>
+    <ul class="">
+      <% @visit.patient_statuses.each do |status| %>
+          <li><%= status.label %></li>
+      <% end %>
+    </ul>
+  </div>
+
+
+  <div class="visit-data-section caregiver-tasks">
+    <div class="heading">
+      Daily Activities
+    </div>
+    <ul class="">
+      <% @visit.caregiver_tasks.each do |task| %>
+          <li><%= task.label %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="visit-data-section observations">
+    <div class="heading">
+      Observations
+    </div>
+    <ul class="">
+      <% @visit.observations.each do |observation| %>
+          <li><%= observation.label %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= render 'dashboard/shared/page_caption', :caption => 'Photos' %>

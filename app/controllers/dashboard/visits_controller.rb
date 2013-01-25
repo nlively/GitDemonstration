@@ -27,9 +27,30 @@ module Dashboard
     end
 
     def this_week
-      @start = Date.today.beginning_of_week
-      @stop = DateTime.current
-      fetch_visits
+      @start_of_week = Date.today.beginning_of_week :sunday
+      @end_of_week = @start_of_week.end_of_week :sunday
+
+
+      unless params[:day].blank?
+        @current = Date.parse(params[:day]) unless params[:day].blank?
+        @current_visits = @agency.completed_visits_by_date_range @current, @current + 1.day
+      end
+
+      @visits_by_week = @agency.unapproved_visits_by_week @start_of_week
+
+
+      @days = {}
+
+      (0..6).each do |offset|
+        date = @start_of_week + offset.days
+        @days[date] = 0
+      end
+
+      @visits_by_week.each do |visit|
+        day = visit.in_time.beginning_of_day.to_date
+        @days[day] += 1
+      end
+
     end
 
     def this_month
@@ -40,19 +61,19 @@ module Dashboard
 
 
     # GET /dashboard/visits/:id
-    def show_visit
+    def show
       @visit = Visit.find params[:id]
       @type = @visit.type
     end
 
     # GET /dashboard/visits/:id/edit
-    def edit_visit
+    def edit
       @visit = Visit.find params[:id]
       @type = params[:type]
     end
 
     # POST /dashboard/visits/:id/approve
-    def approve_visit
+    def approve
       @visit = Visit.find params[:id]
       @type = @visit.type
 
@@ -60,7 +81,7 @@ module Dashboard
     end
 
     # PUT /dashboard/visits/:id
-    def update_visit
+    def update
       @visit = Visit.find params[:id]
       @type = params[:type]
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125000449) do
+ActiveRecord::Schema.define(:version => 20130125073446) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -234,7 +234,7 @@ ActiveRecord::Schema.define(:version => 20130125000449) do
     t.datetime "updated_at",                :null => false
   end
 
-  create_table "observations_diagnoses", :force => true do |t|
+  create_table "observations_diagnosis", :force => true do |t|
     t.integer  "observation_id"
     t.integer  "diagnosis_id"
     t.datetime "created_at",     :null => false
@@ -375,6 +375,13 @@ ActiveRecord::Schema.define(:version => 20130125000449) do
     t.integer  "caregiver_task_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "visits_observations", :force => true do |t|
+    t.integer  "visit_id"
+    t.integer  "observation_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "visits_patient_statuses", :force => true do |t|

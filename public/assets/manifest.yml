@@ -11,6 +11,8 @@ check-out-32.png: check-out-32-39d10c779cf8e98fcc12e1dcb00c3e4d.png
 check-out-32/index.png: check-out-32-39d10c779cf8e98fcc12e1dcb00c3e4d.png
 check-out-48.png: check-out-48-3e87cae7dadcfd1ac531143c6f249eee.png
 check-out-48/index.png: check-out-48-3e87cae7dadcfd1ac531143c6f249eee.png
+checkbox.png: checkbox-7270c2e361ff132e5591fc730abd3c0f.png
+checkbox/index.png: checkbox-7270c2e361ff132e5591fc730abd3c0f.png
 dd-select.png: dd-select-f7fa4d8aae4755fca47e46c4e27209a5.png
 dd-select/index.png: dd-select-f7fa4d8aae4755fca47e46c4e27209a5.png
 loading.gif: loading-e768865f171787876e86b520868808ac.gif
@@ -21,6 +23,10 @@ note-48.png: note-48-6374eeac8dae139bc9570c639faaa913.png
 note-48/index.png: note-48-6374eeac8dae139bc9570c639faaa913.png
 rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
+red-sm.png: red-sm-f16d6f1ae1e04e9b5070e4ddad70923d.png
+red-sm/index.png: red-sm-f16d6f1ae1e04e9b5070e4ddad70923d.png
+red.png: red-1396138d9632a25d516836d2dcfa0ce5.png
+red/index.png: red-1396138d9632a25d516836d2dcfa0ce5.png
 search-go-btn.png: search-go-btn-c7c8276565344cdfc80824bffdd9aead.png
 search-go-btn/index.png: search-go-btn-c7c8276565344cdfc80824bffdd9aead.png
 top-toolbar-bg.jpg: top-toolbar-bg-2e57733b7883b3ed68c4cd4ed7e46f23.jpg
@@ -33,8 +39,8 @@ modernizr-2.6.2.min.js: modernizr-2.6.2.min-6125f471a5b370c452de332a1bceea90.js
 modernizr-2/index.6.2.min.js: modernizr-2.6.2.min-6125f471a5b370c452de332a1bceea90.js
 plugins.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
 plugins/index.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
-application.css: application-03ceb1bb371f1500b5d38234e296964c.css
-application/index.css: application-03ceb1bb371f1500b5d38234e296964c.css
+application.css: application-b9a258fff9343bac8ed1a8dd4a8c0bdc.css
+application/index.css: application-b9a258fff9343bac8ed1a8dd4a8c0bdc.css
 doorkeeper/application.js: doorkeeper/application-23e0dc4aeeff30c6e2327681045066a1.js
 doorkeeper/application/index.js: doorkeeper/application-23e0dc4aeeff30c6e2327681045066a1.js
 doorkeeper/application.css: doorkeeper/application-d596bf68965096b2adedc513c3b4c498.css

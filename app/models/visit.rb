@@ -55,6 +55,9 @@ class Visit < ActiveRecord::Base
   has_many :visits_caregiver_tasks
   has_many :caregiver_tasks, :through => :visits_caregiver_tasks
 
+  has_many :visits_observations
+  has_many :observations, :through => :visits_observations
+
   @recalculate_duration = false
 
   def process_pre_save

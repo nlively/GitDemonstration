@@ -1,7 +1,48 @@
-<h1>This Week's Visits</h1>
+<% content_for :title do %>
+    <%= @start_of_week.to_formatted_s :short_ordinal %> - <%= @end_of_week.to_formatted_s :short_ordinal %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Completed Visits this Week
+<% end %>
+
+<div class="fill-page">
+  <table class="visits-week-summary">
+    <tbody>
+    <tr class="dow">
+      <% @days.each do |day,count| %>
+          <td>
+            <%= day.to_formatted_s :dow_short %>
+          </td>
+      <% end %>
+    </tr>
+
+    <tr class="data">
+
+      <% @days.each do |day,count| %>
+          <%
+             classes = ['day-of-week']
+             classes << 'current' if day == @current
+          %>
+          <td class="<%= classes.join ' ' %>">
+            <%= link_to day.to_formatted_s(:day_ordinal), dashboard_visits_this_week_path(:day => day) %>
+            <% if count > 0 %>
+                <div class="count">
+                  <span><%= link_to count, dashboard_visits_this_week_path(:day => day) %></span>
+                </div>
+            <% end %>
+          </td>
+
+      <% end %>
+
+    </tr>
+    </tbody>
+  </table>
 
 
-<%=  render 'shared/table_visits_completed', :visits => @completed %>
-<%=  render 'shared/table_visits_pending', :visits => @pending %>
+  <% if @current_visits %>
+      <%=  render 'shared/table_visits_completed', :visits => @current_visits %>
+  <% end %>
 
 
+</div>

@@ -1,8 +1,9 @@
 <tr class="visit-row" date-remote="true" data-id="<%= visit.id %>">
-  <td colspan="6" class="wrapper">
+  <td colspan="7" class="wrapper">
     <%= form_for visit, :url => dashboard_visit_path(visit), :remote => true  do |f| %>
         <%= hidden_field_tag :type, 'pending' %>
-        <table><tr>
+        <table class="edit-mode">
+          <tr>
           <td class="employee" rel="<%= visit.user_id %>">
             <%= visit.employee_label %>
           </td>

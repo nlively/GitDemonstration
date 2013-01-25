@@ -11,7 +11,7 @@ ul, ol {
 
 tr.visit-row {
   &.approved {
-    background: #ccffcc;
+    background: $rowHighlight;
   }
 
   td {
@@ -114,7 +114,7 @@ table.assignment-selection {
 }
 
 div.fill-page {
-  margin-left: -20px;
+  margin-left: 0px;
 }
 
 table.client-table, table.employee-table {
@@ -134,8 +134,110 @@ table.client-table, table.employee-table {
   }
 }
 
+table.edit-mode {
+  tbody {
+    tr, td {
+      border-bottom: none !important;
+    }
+  }
+}
+
 table.visits {
   td.date {
     width: 80px;
+  }
+}
+
+table.visits-table {
+  margin: 40px 0;
+}
+
+table.visits-week-summary {
+
+  td {
+    width: (100% / 7);
+    text-align: center;
+    position: relative;
+  }
+
+  tr.dow {
+    font-size: 1.4em;
+  }
+  tr.data {
+    @include gradient-table-header;
+
+    font-size: 1.2em;
+
+    td {
+      border: 1px solid  #d4d4d4;
+
+      &.current {
+        background: $rowHighlight;
+      }
+
+      a {
+        color: $bodyText;
+        text-decoration: none;
+      }
+
+      div.day {
+        font-weight: bold;
+      }
+
+      div.count {
+        display: block;
+        background: url(red-sm.png) no-repeat;
+        color: #fff;
+        width: 17px;
+        height: 17px;
+        text-align: center;
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        font-size: 0.7em;
+
+        span {
+          display: block;
+          padding-top: 1px;
+
+          a {
+            color: #fff;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
+.visit-summary {
+  margin-bottom: 40px;
+}
+.visit-data {
+  .visit-data-section {
+    width: 100%;
+    overflow: auto;
+    margin-top: 40px;
+
+    .heading {
+      width: 160px;
+      float: left;
+      text-align: left;
+      font-size: 1.2em;
+      margin-left: 30px;
+    }
+
+    ul {
+      margin-top: 0;
+      padding-top: 0;
+      float: left;
+
+      li {
+        list-style-image: url(checkbox.png);
+        // 20px x 17px
+      }
+    }
+
   }
 }

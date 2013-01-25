@@ -20,14 +20,13 @@ $(document).ready(function(){
             $.post(url + '/' + id + '/approve.js');
         }
 
-        if ($('a#save-link').length > 0) {
-            $('a#save-link').live('click', function(){
-                var form = $(this).parents('form');
-                form.submit();
-            });
-        }
+        var saveLink_Click = function () {
+            var form = $(this).parents('form');
+            form.submit();
+        };
 
-        $('tr.editable td:not(.approve)', table).live('click', row_Click);
-        $('input.approve', table).live('click', approve_Click);
+        $(table).on('click', 'a#save-link', saveLink_Click);
+        $(table).on('click', 'tr.editable td:not(.approve)', row_Click);
+        $(table).on('click', 'input.approve', approve_Click);
     }
 });
