@@ -2,19 +2,14 @@ module Dashboard::Reports
   class PayrollController < Dashboard::ReportsController
     include PayrollAndBillingHelper
 
+    before_filter do
+      @report_section = :payroll
+    end
+
     def index
 
-      @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
-      @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
+      redirect_to dashboard_reports_payroll_batches_path
 
-    end
-
-    def unbatched
-      @visits = @agency.unbatched_visits
-    end
-
-    def batches
-      @batches  = @agency.payroll_batches
     end
 
   end

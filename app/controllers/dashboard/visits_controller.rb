@@ -36,7 +36,7 @@ module Dashboard
         @current_visits = @agency.completed_visits_by_date_range @current, @current + 1.day
       end
 
-      @visits_by_week = @agency.unapproved_visits_by_week @start_of_week
+      @visits_by_week = @agency.completed_visits_by_week @start_of_week
 
 
       @days = {}
@@ -69,7 +69,7 @@ module Dashboard
         @current_visits = @agency.completed_visits_by_date_range @current, @current + 1.day
       end
 
-      @visits_by_month = @agency.unapproved_visits_by_date_range @earliest_date_available, @end_of_month
+      @visits_by_month = @agency.completed_visits_by_date_range @earliest_date_available, @end_of_month
 
 
       @days = {}

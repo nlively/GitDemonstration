@@ -12,7 +12,7 @@ $(document).ready(function(){
                 css_class += " current";
             }
 
-            return [clickable, css_class, status];
+            return [true, css_class, status];
         };
 
         var calendar_Select = function(dateText, o) {

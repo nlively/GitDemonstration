@@ -61,18 +61,22 @@
 
             <%= render 'shared/breadcrumb' %>
 
-            <% if content_for? :title %>
+            <% if content_for?(:title) or content_for?(:page_top) %>
                 <div class="title-wrapper">
-                  <h1 class="title"><%= yield :title %></h1>
+                  <div class="title-wrapper-inner">
+                    <% if content_for?(:title) %>
+                        <h1 class="title"><%= yield :title %></h1>
+                    <% end %>
 
-                  <% if content_for? :page_top %>
-                      <div id="page-top">
-                        <div id="page-top-inner">
-                           <%= yield :page_top %>
+                    <% if content_for? :page_top %>
+                        <div id="page-top">
+                          <div id="page-top-inner">
+                            <%= yield :page_top %>
+                          </div>
                         </div>
-                      </div>
-                  <% end %>
+                    <% end %>
 
+                  </div>
                 </div>
             <% end %>
 

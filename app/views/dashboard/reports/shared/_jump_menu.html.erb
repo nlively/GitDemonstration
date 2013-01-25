@@ -1,0 +1,9 @@
+<%= javascript_include_tag 'dashboard/reports/jump_menu' %>
+
+<h2>Choose a Report</h2>
+
+<%= form_tag do %>
+    <div class="field">
+      <%= select_tag :report_type, options_from_collection_for_select(@report_types, :first, :last, @report_section) %>
+    </div>
+<% end %>

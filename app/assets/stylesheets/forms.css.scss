@@ -27,13 +27,33 @@ form {
     }
   }
 
+  &.new-batch-form {
+    .form-field {
+      float: left;
+      margin-right: 15px;
+      margin-top: 0;
+
+      div.label {
+        label {
+          font-weight: normal;
+        }
+      }
+
+      .field {
+        input {
+          display: inline-block !important;
+        }
+      }
+    }
+  }
+
 
   .form-address {
 
     .street {
-        input {
-          width: 180px;
-        }
+      input {
+        width: 180px;
+      }
     }
 
     .csz {

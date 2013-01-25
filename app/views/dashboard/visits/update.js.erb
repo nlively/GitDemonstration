@@ -1,1 +1,1 @@
-$('tr[data-id="' + <%= @visit.id %> +'"]').replaceWith("<%= escape_javascript(render('shared/row_visit', :visit => @visit, :type => @type.to_s)) %>");
+$('tr[data-id="' + <%= @visit.id %> +'"]').replaceWith("<%= escape_javascript(render('shared/row_visit', :visit => @visit, :type => @type.to_s, :show_approve => (!@visit.approved?))) %>");

@@ -1,1 +1,10 @@
-<h1>Payroll for <%= @employee.full_name %></h1>
+<% content_for :title do %>
+    <%= @employee.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Payroll
+<% end %>
+
+
+Show any payroll batch that has this employee in it.
