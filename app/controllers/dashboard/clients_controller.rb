@@ -3,7 +3,7 @@ module Dashboard
 
     before_filter do
       @care_recipient = CareRecipient.find params[:id]  unless params[:id].blank?
-      @location = @care_recipient.default_location unless @care_recipient.nil?
+      @location = (@care_recipient.nil? or @care_recipient.default_location.nil?) ? Location.new : @care_recipient.default_location
     end
 
     def index

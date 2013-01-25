@@ -77,3 +77,65 @@ tr.visit-row {
   }
 
 }
+
+
+.add-button, .link-button {
+  @include gradient-gray-button;
+  display: inline-block;
+  font-weight: normal;
+  text-decoration: none;
+  margin: 0px;
+  padding: 5px 12px;
+}
+
+table.assignment-selection {
+
+  tr {
+    border-bottom: 1px solid $borderColor;
+  }
+
+  td.name {
+    width: 300px;
+  }
+
+  td.selection {
+    width: 100px;
+    text-align: center;
+
+    input {
+      padding: 4px 12px;
+    }
+    span {
+      display:inline-block;
+      padding: 4px 0;
+    }
+  }
+
+}
+
+div.fill-page {
+  margin-left: -20px;
+}
+
+table.client-table, table.employee-table {
+  width: 100%;
+
+  tr.client-row, tr.employee-row {
+    border-bottom: 1px solid $borderColor;
+
+    td {
+      vertical-align: middle;
+
+      &.name {
+        padding-left: 15px;
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+table.visits {
+  td.date {
+    width: 80px;
+  }
+}

@@ -1,6 +1,8 @@
 $(function(){
-  var form = $('#visits-custom-form');
+    $(document).ready(function(){
+        var form = $('#visits-custom-form');
 
-  $('#start', form).datepicker();
-  $('#stop', form).datepicker();
+        $('#start', form).datepicker();
+        $('#stop', form).datepicker();
+    });
 });

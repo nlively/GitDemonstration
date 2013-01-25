@@ -1,17 +1,17 @@
 <tr class="client-row">
-  <td>
+  <td class="name">
     <%= care_recipient.full_name_last_first %>
   </td>
   <td>
-    <%= link_to 'Profile', dashboard_clients_profile_path(care_recipient) %>
+    <%= link_to 'Profile', dashboard_clients_profile_path(care_recipient), :class => 'link-button' %>
   </td>
   <td>
-    <%= link_to 'Assigned Caregivers', dashboard_clients_caregivers_path(care_recipient) %>
+    <%= link_to 'Assigned Caregivers', dashboard_clients_caregivers_path(care_recipient), :class => 'link-button' %>
   </td>
   <td>
-    <%= link_to 'Visits', dashboard_clients_visits_path(care_recipient) %>
+    <%= link_to 'Visits', dashboard_clients_visits_path(care_recipient), :class => 'link-button' %>
   </td>
   <td>
-    <%= link_to 'Notes/Photos', dashboard_clients_notes_path(care_recipient) %>
+    <%= link_to 'Notes/Photos', dashboard_clients_notes_path(care_recipient), :class => 'link-button' %>
   </td>
 </tr>

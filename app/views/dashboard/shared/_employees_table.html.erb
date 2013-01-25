@@ -1,5 +1,7 @@
-<table>
-<% @employees.each do |employee| %>
-  <%=  render 'shared/row_employee', :employee => employee %>
-<% end %>
+<table class="employee-table">
+  <tbody>
+  <% @employees.each do |employee| %>
+      <%=  render 'shared/row_employee', :employee => employee %>
+  <% end %>
+  </tbody>
 </table>

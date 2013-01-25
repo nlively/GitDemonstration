@@ -109,3 +109,10 @@ form {
     }
   }
 }
+
+
+.set-password {
+  &.existing-user {
+    display: none;
+  }
+}

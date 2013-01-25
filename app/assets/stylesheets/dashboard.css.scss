@@ -19,18 +19,21 @@ body.dashboard {
 
     #page-top {
       margin: 1.5em 0;
-      //float: left;
 
       form {
 
-
         div.field {
-          float: left;
-          margin-right: 15px;
+          float: none;
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: auto;
 
           &.search-field {
-            margin-right: 0px;
 
+          }
+
+          input {
+            display: block;
           }
         }
 
@@ -90,8 +93,11 @@ body.dashboard {
       }
     }
     tbody {
+      tr {
+        border-bottom: 1px solid $borderColor;
+      }
       td {
-
+        vertical-align: middle;
       }
     }
   }

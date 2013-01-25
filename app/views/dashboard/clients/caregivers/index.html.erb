@@ -2,6 +2,10 @@
     <%= @care_recipient.full_name %>
 <% end %>
 
+<% content_for :page_top do %>
+    <%= link_to 'Assign a New Caregiver', dashboard_clients_caregivers_select_path(@care_recipient), :class => 'add-button add-caregiver' %>
+<% end %>
+
 <% content_for :sidebar_second do %>
     <h3>View all of the client's assigned caregivers here.</h3>
 
@@ -10,12 +14,14 @@
 
 <% content_for :page_caption do %>
     Assigned Caregivers
-    <% end %>
+<% end %>
 
-<table>
-  <tbody>
-  <% @care_recipient.users.each do |user| %>
-      <%=  render 'shared/row_employee', :employee => user %>
-  <% end %>
-  </tbody>
-</table>
+<div class="fill-page">
+  <table class="employee-table">
+    <tbody>
+    <% @care_recipient.users.each do |user| %>
+        <%=  render 'shared/row_employee', :employee => user %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

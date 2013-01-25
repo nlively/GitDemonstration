@@ -3,50 +3,13 @@
 <% end %>
 
 <% content_for :page_caption do %>
-    Visits History
+    Visits History (Approved Visits)
 <% end %>
 
-<% unless @visits.empty? %>
-    <table id="pending-visits">
-      <thead>
-      <tr>
-        <th>Client</th>
-        <th>Pay Rate</th>
-        <th>Bill Rate</th>
-        <th>In</th>
-        <th>Out</th>
-        <th>Duration</th>
-        <th>Location</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @visits.each do |visit| %>
-          <tr class="visit-row">
-            <td class="client" rel="<%= visit.care_recipient_id %>">
-              <%= visit.client_label %>
-            </td>
-            <td class="payrate">
-              <%= visit.pay_rate %>
-            </td>
-            <td class="billrate">
-              <%= visit.bill_rate %>
-            </td>
-            <td class="in-time">
-              <%= visit.in_time_formatted %>
-            </td>
-            <td class="out-time">
-              <%= visit.out_time_formatted %>
-            </td>
-            <td class="duration">
-              <%= visit.duration_string %>
-            </td>
-            <td class="location">
-              <%= visit.location_label %>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-<% else %>
-    <p>There are no visits in <%= @employee.full_name %>'s work history.</p>
-<% end %>
+<div class="fill-page">
+  <% unless @visits.empty? %>
+      <%= render 'shared/table_visits_read_only', :mode => :client, :visits => @visits %>
+  <% else %>
+      <p>There are no visits in <%= @employee.full_name %>'s work history.</p>
+  <% end %>
+</div>

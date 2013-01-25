@@ -3,7 +3,7 @@ module Dashboard
 
     before_filter do
       @employee = User.find params[:id] unless params[:id].blank?
-      @location = @employee.location unless @employee.nil?
+      @location = (@employee.nil? or @employee.location.nil?) ? Location.new : @employee.location
     end
 
     # GET /dashboard/employees
@@ -33,14 +33,32 @@ module Dashboard
     # PUT /dashboard/employees/:id
     def update
       @employee = User.find params[:id]
+      @location = @employee.location
 
-      respond_to do |format|
-        if @employee.update_attributes! params[:user]
-          format.html { redirect_to dashboard_employees_profile_path(@employee), notice: 'Employee was successfully updated.' }
-          format.json { head :no_content }
+      user_tried_to_change_password = params[:user][:password].length > 0
+
+      if user_tried_to_change_password && params[:user][:password] != params[:user][:password_confirmation]
+        flash[:error] = "Your passwords do not match"
+        redirect_to dashboard_employees_profile_path(@employee)
+      elsif user_tried_to_change_password && (! User.valid_password? params[:user][:password])
+        flash[:error] = "Your password needs to be at least 6 characters long"
+        redirect_to dashboard_employees_profile_path(@employee)
+      else
+
+        params[:user].delete :password
+        params[:user].delete :password_confirmation
+
+        if @location.blank?
+          @location = Location.create params[:location]
+          @employee.location = @location
         else
-          format.html { redirect_to dashboard_employees_profile_path(@employee) }
-          format.json { render json: @employee.errors, status: :unprocessable_entity }
+          @location.update_attributes! params[:location]
+        end
+
+        if @employee.update_attributes! params[:user]
+          redirect_to dashboard_employees_profile_path(@employee), notice: 'Employee was successfully updated.'
+        else
+          redirect_to dashboard_employees_profile_path(@employee)
         end
       end
     end

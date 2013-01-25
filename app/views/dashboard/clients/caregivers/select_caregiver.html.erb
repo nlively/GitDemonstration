@@ -1,0 +1,29 @@
+<% content_for :title do %>
+    Assign New Caregiver for <%= @care_recipient.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Select a Caregiver
+<% end %>
+
+
+<table class="assignment-selection">
+  <tbody>
+  <% @caregivers.each do |caregiver| %>
+      <tr>
+        <td class="name"><%= caregiver.full_name %></td>
+        <td class="selection">
+          <% if @care_recipient.users.include? caregiver %>
+               <span><em>Already assigned</em></span>
+          <% else %>
+              <%= form_tag dashboard_clients_caregivers_select_path(@care_recipient), :method => :post do %>
+                  <%= hidden_field_tag :caregiver_id, caregiver.id %>
+                  <%= submit_tag 'Select' %>
+              <% end %>
+          <% end %>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

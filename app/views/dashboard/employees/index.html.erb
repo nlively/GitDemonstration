@@ -4,12 +4,19 @@
     <p>Search by name or browse through your database.</p>
 <% end %>
 
+<% content_for :page_top do %>
+    <%= render 'dashboard/shared/employee_search_form' %>
+<% end %>
+
 <% content_for :title do %>
     Employees
 <% end %>
 
-<%= render 'dashboard/shared/employee_search_form' %>
+<% content_for :page_caption do %>
+    Employees
+<% end %>
 
-<div id="employees-wrapper">
+
+<div id="employees-wrapper" class="fill-page">
   <%= render 'dashboard/shared/employees_table' %>
 </div>

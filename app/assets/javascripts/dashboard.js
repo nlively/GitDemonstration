@@ -4,5 +4,7 @@
 
 
 $(function(){
-  $('.main-col').equalHeights();
+    $(document).ready(function(){
+        $('.main-col').equalHeights(600, 3000);
+    });
 });

@@ -1,5 +1,7 @@
-<table>
-<% @care_recipients.each do |care_recipient| %>
-  <%=  render 'shared/row_client', :care_recipient =>care_recipient %>
-<% end %>
+<table class="client-table">
+  <tbody>
+  <% @care_recipients.each do |care_recipient| %>
+      <%=  render 'shared/row_client', :care_recipient =>care_recipient %>
+  <% end %>
+  </tbody>
 </table>

@@ -94,6 +94,10 @@ body.with-sidebar-second {
       float: left;
       width: 860px;
       background: #fff;
+
+      .main-col-inner {
+        padding-bottom: 300px;
+      }
     }
 
   }

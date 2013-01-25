@@ -11,10 +11,13 @@
     Clients
 <% end %>
 
-<table>
-  <tbody>
-  <% @clients.each do |care_recipient| %>
-      <%=  render 'shared/row_client', :care_recipient => care_recipient %>
-  <% end %>
-  </tbody>
-</table>
+
+<div class="fill-page">
+  <table class="client-table">
+    <tbody>
+    <% @clients.each do |care_recipient| %>
+        <%=  render 'shared/row_client', :care_recipient => care_recipient %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

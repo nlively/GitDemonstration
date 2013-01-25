@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'dashboard/employee_form' %>
 <%
    form_action = (user.id.blank?) ? dashboard_employees_path(user) : dashboard_employee_path(user)
 %>
@@ -72,24 +73,37 @@
         <%= f.text_field :email %>
       </div>
     </div>
-    <% if user.id.blank? %>
-        <div class="form-field">
+
+    <% unless user.id.blank? %>
+        <div class="form-field existing-password">
           <div class="label">
-            <%= f.label :password %>
+            <%= label_tag 'Password'  %>
           </div>
           <div class="field">
-            <%= f.password_field :password %>
-          </div>
-        </div>
-        <div class="form-field">
-          <div class="label">
-            <%= f.label :password_confirmation %>
-          </div>
-          <div class="field">
-            <%= f.password_field :password_confirmation %>
+            <%= password_field_tag :fake_password, 'fakepassword', :size => 30, :disabled => true %>
+            <a class="change-password" href="javascript:void(0);">change password</a>
           </div>
         </div>
     <% end %>
+
+    <div class="set-password <%= user.id.blank? ? 'new-user' : 'existing-user' %>">
+      <div class="form-field">
+        <div class="label">
+          <%= f.label :password %>
+        </div>
+        <div class="field">
+          <%= f.password_field :password %>
+        </div>
+      </div>
+      <div class="form-field">
+        <div class="label">
+          <%= f.label :password_confirmation %>
+        </div>
+        <div class="field">
+          <%= f.password_field :password_confirmation %>
+        </div>
+      </div>
+    </div>
 
 
     <%= f.submit "Save Changes" %>

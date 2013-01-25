@@ -120,9 +120,13 @@ OauthServer::Application.routes.draw do
     namespace :clients do
       match ':id/profile' => 'profile#index', :as => :profile
       match ':id/caregivers' => 'caregivers#index', :as => :caregivers
+      get ':id/caregivers/select' => 'caregivers#select_caregiver', :as => :caregivers_select
+      post ':id/caregivers/select' => 'caregivers#assign_caregiver', :as => :caregivers_select
       match ':id/notes' => 'notes#index', :as => :notes
       match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
+
+
     end
 
   end
