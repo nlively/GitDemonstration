@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124234047) do
+ActiveRecord::Schema.define(:version => 20130125000449) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -156,6 +156,12 @@ ActiveRecord::Schema.define(:version => 20130124234047) do
     t.integer  "visit_id"
   end
 
+  create_table "diagnoses", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "locations", :force => true do |t|
     t.string   "street"
     t.string   "city"
@@ -220,6 +226,20 @@ ActiveRecord::Schema.define(:version => 20130124234047) do
   end
 
   add_index "oauth_applications", ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
+
+  create_table "observations", :force => true do |t|
+    t.string   "label"
+    t.integer  "weight",     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "observations_diagnoses", :force => true do |t|
+    t.integer  "observation_id"
+    t.integer  "diagnosis_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "patient_statuses", :force => true do |t|
     t.string   "label"
