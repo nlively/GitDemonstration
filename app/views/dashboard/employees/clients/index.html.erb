@@ -3,6 +3,12 @@
     <p>You can also add a client to this employee's client list from this section.</p>
 <% end %>
 
+<% content_for :page_top do %>
+    <%= link_to 'Assign Another Client', dashboard_employees_clients_select_path(@employee), :class => 'add-button add-client' %>
+    <%= link_to 'Create New Client Account', new_dashboard_client_path(:employee => @employee.id, :destination => request.fullpath), :class => 'add-button create-client' %>
+<% end %>
+
+
 <% content_for :title do %>
     <%= @employee.full_name %>
 <% end %>

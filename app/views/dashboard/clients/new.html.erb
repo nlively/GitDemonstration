@@ -10,4 +10,11 @@
 <% content_for :title do %>
     Add a New Client
 <% end %>
-<%= render 'dashboard/shared/client_form', :care_recipient => @care_recipient %>
+
+<% if @employee %>
+    <% content_for :page_top do %>
+              This new client will be assigned to <%= @employee.full_name %>
+        <% end %>
+    <% end %>
+
+<%= render 'dashboard/shared/client_form', :care_recipient => @care_recipient, :employee => @employee %>

@@ -12,8 +12,6 @@ $(document).ready(function(){
                 css_class += " current";
             }
 
-            //addDots();
-
             return [clickable, css_class, status];
         };
 
@@ -23,7 +21,6 @@ $(document).ready(function(){
 
         var calendar_ChangeMonthYear = function() {
             setTimeout(function(){addDots();}, 150);
-            //addDots();
         };
 
         $('#calendar').datepicker({

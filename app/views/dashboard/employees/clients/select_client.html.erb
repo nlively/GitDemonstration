@@ -1,0 +1,29 @@
+<% content_for :title do %>
+    Assign New Client for <%= @employee.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Select a Client
+<% end %>
+
+
+<table class="assignment-selection">
+  <tbody>
+  <% @clients.each do |client| %>
+      <tr>
+        <td class="name"><%= client.full_name %></td>
+        <td class="selection">
+          <% if @employee.care_recipients.include? client %>
+               <span><em>Already assigned</em></span>
+          <% else %>
+              <%= form_tag dashboard_employees_clients_select_path(@employee), :method => :post do %>
+                  <%= hidden_field_tag :client_id, client.id %>
+                  <%= submit_tag 'Select' %>
+              <% end %>
+          <% end %>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

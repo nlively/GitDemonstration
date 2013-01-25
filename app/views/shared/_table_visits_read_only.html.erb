@@ -1,7 +1,12 @@
 <%
 
-   show_data = true unless defined? show_data
-   mode = :both unless defined? mode
+   unless defined? show_data
+     show_data = true
+   end
+
+   unless defined? mode
+     mode = :both
+   end
 
    show_client = (mode == :both || mode == :client)
    show_employee = (mode == :both || mode == :employee)

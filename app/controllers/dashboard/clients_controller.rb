@@ -45,6 +45,9 @@ module Dashboard
     def new
       @care_recipient = CareRecipient.new
       @location = Location.new
+      unless params[:employee].blank?
+        @employee = User.find params[:employee]
+      end
     end
 
     def create
@@ -55,9 +58,16 @@ module Dashboard
       @care_recipient.default_location = @location
       @care_recipient.locations << @location
 
+      unless params[:employee_id].blank?
+        @employee = User.find(params[:employee_id])
+        if @employee.agency == current_user.agency
+          @care_recipient.users << @employee
+        end
+      end
+
       respond_to do |format|
         if @care_recipient.save
-          format.html { redirect_to dashboard_client_path(@care_recipient), notice: 'Client was successfully created.' }
+          format.html { redirect_to redirect_destination(dashboard_client_path(@care_recipient)), notice: 'Client was successfully created.' }
           format.json { render json: @care_recipient, status: :created, location: @care_recipient }
         else
           format.html { render action: "new" }

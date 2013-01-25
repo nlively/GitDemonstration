@@ -54,6 +54,10 @@ body.dashboard {
       #content-inner {
         margin-left: 0px;
 
+        & > form {
+          margin-left: 20px;
+        }
+
         .page-caption {
           margin-left: 0px;
           background: #f7f7f7;

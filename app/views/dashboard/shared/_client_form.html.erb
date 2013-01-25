@@ -1,7 +1,14 @@
 <%
    form_action = (care_recipient.id.blank?) ? dashboard_clients_path(care_recipient) : dashboard_client_path(care_recipient)
+
+   employee = nil unless defined? employee
+
 %>
 <%= form_for care_recipient, :url => form_action do |f| %>
+
+    <% unless employee.nil? %>
+        <%= hidden_field_tag :employee_id, employee.id %>
+    <% end %>
 
     <div class="form-field">
       <div class="label">
@@ -22,7 +29,7 @@
     </div>
 
 
-   <%=  render 'dashboard/shared/address_form' %>
+    <%=  render 'dashboard/shared/address_form' %>
 
 
     <div class="form-field">
