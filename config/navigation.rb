@@ -96,16 +96,14 @@ SimpleNavigation::Configuration.run do |navigation|
         visit.item :this_week, 'This Week', dashboard_visits_this_week_path, :highlights_on => :subpath
         visit.item :this_month, 'This Month', dashboard_visits_this_month_path, :highlights_on => :subpath
       end
-      sub_nav.item :reports, 'Reports', dashboard_reports_path, :highlights_on => :subpath do |report|
+      sub_nav.item :reports, 'Billing and Payroll', dashboard_reports_path, :highlights_on => :subpath do |report|
+        report.item :billing, 'Billing', dashboard_reports_billing_path, :highlights_on => :subpath do |billing|
+        end
         report.item :payroll, 'Payroll', dashboard_reports_payroll_path, :highlights_on => :subpath do |payroll|
           #payroll.item :unbatched, 'Unbatched Visits', dashboard_reports_payroll_unbatched_path, :highlights_on => :subpath
           payroll.item :batches, 'Payroll Batches', dashboard_reports_payroll_batches_path, :highlights_on => :subpath
         end
-        report.item :billing, 'Billing', dashboard_reports_billing_path, :highlights_on => :subpath do |billing|
-
-        end
       end
-      sub_nav.item :observations, 'Observations', dashboard_observations_path, :highlights_on => :subpath
       sub_nav.item :settings, 'Settings', dashboard_settings_path, :highlights_on => :subpath do |settings|
         settings.item :agency, 'Agency', dashboard_settings_agency_path, :highlights_on => :subpath
         settings.item :users, 'Users', dashboard_settings_users_path, :highlights_on => :subpath

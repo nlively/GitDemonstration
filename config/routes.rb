@@ -11,19 +11,18 @@ OauthServer::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :photos, :only => :show
-      resources :notes, :only => :show
       resources :visits, :only => :show
       resources :account, :only => [:index]
       resources :check_ins, :only => [:create]
 
       namespace :session do
         post 'photo'
-        post 'note'
       end
 
       namespace :general do
         get 'client_statuses'
         get 'daily_activities'
+        get 'observations'
       end
 
       post 'account' => 'account#update'
@@ -31,12 +30,10 @@ OauthServer::Application.routes.draw do
       get 'account/visits'
       get 'account/visits/completed' => 'account#visits_completed'
       get 'account/clients'
-      get 'account/notes'
       get 'account/photos'
 
       get 'care-recipients/:id' => 'care_recipients#show'
       get 'care-recipients/:id/visits' => 'care_recipients#visits'
-      get 'care-recipients/:id/notes' => 'care_recipients#notes'
       get 'care-recipients/:id/photos' => 'care_recipients#photos'
 
       post 'geo/clients'
@@ -101,8 +98,6 @@ OauthServer::Application.routes.draw do
       match ':id/clients' => 'clients#index', :as => :clients
       get ':id/clients/select' => 'clients#select_client', :as => :clients_select
       post ':id/clients/select' => 'clients#assign_client', :as => :clients_select
-      match ':id/notes' => 'notes#index', :as => :notes
-      match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
       match ':id/payroll' => 'payroll#index', :as => :payroll
 
@@ -124,8 +119,6 @@ OauthServer::Application.routes.draw do
       match ':id/caregivers' => 'caregivers#index', :as => :caregivers
       get ':id/caregivers/select' => 'caregivers#select_caregiver', :as => :caregivers_select
       post ':id/caregivers/select' => 'caregivers#assign_caregiver', :as => :caregivers_select
-      match ':id/notes' => 'notes#index', :as => :notes
-      match ':id/notes/:note_id' => 'notes#show', :as => :note
       match ':id/visits' => 'visits#index', :as => :visits
 
 

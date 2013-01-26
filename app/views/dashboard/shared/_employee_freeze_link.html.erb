@@ -1,5 +1,5 @@
 <% if employee.is_active? %>
-    <%= link_to 'Freeze', dashboard_employees_freeze_path(employee, :destination => request.fullpath) %>
+    <%= link_to 'Freeze', dashboard_employees_freeze_path(employee, :destination => request.fullpath), :class => 'link-button' %>
 <% else %>
-    <%= link_to 'Unfreeze', dashboard_employees_unfreeze_path(employee, :destination => request.fullpath) %>
+    <%= link_to 'Unfreeze', dashboard_employees_unfreeze_path(employee, :destination => request.fullpath), :class => 'link-button' %>
 <% end %>

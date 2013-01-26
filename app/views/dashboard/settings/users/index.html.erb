@@ -22,9 +22,9 @@
       <tr>
         <td><%= link_to caregiver.full_name, dashboard_employee_path(caregiver) %></td>
         <td><%= caregiver.last_check_in_formatted %></td>
-        <td><%= link_to 'Delete', dashboard_employees_delete_path(caregiver, :destination => request.fullpath) %></td>
+        <td><%= link_to 'Delete', dashboard_employees_delete_path(caregiver, :destination => request.fullpath), :class => 'link-button' %></td>
         <td><%= render 'dashboard/shared/employee_freeze_link', :employee => caregiver %></td>
-        <td><%= link_to 'Reset Password', dashboard_employees_reset_password_path(caregiver, :destination => request.fullpath) %></td>
+        <td><%= link_to 'Reset Password', dashboard_employees_reset_password_path(caregiver, :destination => request.fullpath), :class => 'link-button' %></td>
       </tr>
   <% end %>
   </tbody>

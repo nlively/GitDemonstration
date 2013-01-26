@@ -39,9 +39,11 @@ class CareRecipient < ActiveRecord::Base
   has_many :care_recipients_users
   has_many :users, :through => :care_recipients_users
 
+  before_save :process_location
+
   has_attached_file :profile_photo, :styles => {
-    :profile => "93x93>",
-    :tiny => "50x50>"
+      :profile => "93x93>",
+      :tiny => "50x50>"
   }
 
   def default_bill_rate_formatted
@@ -71,13 +73,15 @@ class CareRecipient < ActiveRecord::Base
     location = first_location if location.nil?
 
     hash = {
-      :first_name => first_name,
-      :last_name => last_name,
-      :full_name =>full_name,
-      :full_name_last_first =>full_name_last_first,
-      :photo_url => full_url(url_base, profile_photo.url(:profile)),
-      :id => id,
-      :dob => dob
+        :first_name => first_name,
+        :last_name => last_name,
+        :full_name =>full_name,
+        :full_name_last_first =>full_name_last_first,
+        :photo_url => full_url(url_base, profile_photo.url(:profile)),
+        :phone => phone,
+        :sms => sms,
+        :id => id,
+        :dob => dob
     }
 
     unless location.nil?
@@ -96,5 +100,21 @@ class CareRecipient < ActiveRecord::Base
   def completed_visits
     visits.where 'out_time IS NOT NULL'
   end
+
+
+  def process_location
+
+    if self.default_location.nil?
+      if self.locations.count > 0
+        self.default_location = self.locations.first
+      end
+    else
+      unless self.locations.include? self.default_location
+        self.locations << self.default_location
+      end
+    end
+
+  end
+
 
 end

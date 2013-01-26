@@ -90,4 +90,10 @@ class Location < ActiveRecord::Base
     #end
   end
 
+
+
+  def self.without_latlong
+    Location.where('latitude IS NULL OR longitude IS NULL')
+  end
+
 end

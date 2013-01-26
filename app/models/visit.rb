@@ -168,7 +168,7 @@ class Visit < ActiveRecord::Base
   end
 
   def start_to_stop
-    in_time.to_formatted_s(:hour_with_minute_meridian) + ' to ' + out_time.to_formatted_s(:hour_with_minute_meridian)
+    in_time.to_formatted_s(:hour_with_minute_meridian).strip + ' to ' + out_time.to_formatted_s(:hour_with_minute_meridian).strip
   end
 
   def full_date_string

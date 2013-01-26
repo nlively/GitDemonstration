@@ -2,6 +2,10 @@
     Change your subscription
 <% end %>
 
+<% content_for :page_caption do %>
+    Choose a Subscription
+<% end %>
+
 <%= form_tag dashboard_settings_agency_subscription_path, :method => :post do %>
 
     <table>
@@ -31,11 +35,11 @@
             <td><%= tier.monthly_fee_formatted %></td>
             <td>
               <% if subscription_class == :higher %>
-                  <%= link_to 'Upgrade', dashboard_settings_agency_subscription_change_path(tier) %>
+                  <%= link_to 'Upgrade', dashboard_settings_agency_subscription_change_path(tier), :class => 'link-button' %>
               <% elsif subscription_class == :lower %>
-                  <%= link_to 'Downgrade', dashboard_settings_agency_subscription_change_path(tier) %>
+                  <%= link_to 'Downgrade', dashboard_settings_agency_subscription_change_path(tier), :class => 'link-button' %>
               <% else #same %>
-                  Current subscription
+                  <em>Current subscription</em>
               <% end %>
             </td>
           </tr>

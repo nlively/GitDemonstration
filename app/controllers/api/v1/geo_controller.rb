@@ -8,14 +8,16 @@ module Api::V1
     def clients
       @recipients = get_care_recipients
       @recipients_formatted = @recipients.map do |r|
-        logger.debug r.inspect
         recipient = CareRecipient.find r['care_recipient_id']
         location = Location.find r['location_id']
         result = recipient.web_service_format(root_url, location)
-        result[:distance] = r['distance']
+        result['distance'] = r['distance'].round(1).to_s
 
         result # return the result
       end
+
+      logger.debug   @recipients_formatted.inspect
+
       render json: @recipients_formatted
     end
 
@@ -37,13 +39,21 @@ module Api::V1
       WHERE
         3956 * 2 * ASIN(SQRT( POWER(SIN((:origin_lat -
       abs(l.latitude)) * pi()/180 / 2),2) + COS(:origin_lat * pi()/180 ) *
-      COS(abs(l.latitude) *  pi()/180) * POWER(SIN((:origin_long - l.longitude) *  pi()/180 / 2), 2) )) <= 100
+      COS(abs(l.latitude) *  pi()/180) * POWER(SIN((:origin_long - l.longitude) *  pi()/180 / 2), 2) )) <= :max_distance
+      ORDER BY  3956 * 2 * ASIN(SQRT( POWER(SIN((:origin_lat -
+      abs(l.latitude)) * pi()/180 / 2),2) + COS(:origin_lat * pi()/180 ) *
+      COS(abs(l.latitude) *  pi()/180) * POWER(SIN((:origin_long - l.longitude) *  pi()/180 / 2), 2) )) ASC
+
       "
       @query_results = ActiveRecord::Base.connection.select_all(
-        ActiveRecord::Base.send("sanitize_sql_array", [
-          query_sql,
-          { :user_id => current_resource_owner.id, :origin_lat => search_origin["lat"], :origin_long => search_origin["long"] }
-        ] )
+          ActiveRecord::Base.send("sanitize_sql_array", [
+              query_sql,
+              { :user_id => current_resource_owner.id,
+                :origin_lat => search_origin["lat"],
+                :origin_long => search_origin["long"],
+                :max_distance => 15
+              }
+          ] )
       )
 
       return @query_results
