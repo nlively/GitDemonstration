@@ -1,8 +1,5 @@
-require 'SocketIO'
-
 module Api::V1
   class ApiController < ::ApplicationController
-    include ::SocketIO
 
     def current_resource_owner
       if doorkeeper_token
