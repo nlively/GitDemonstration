@@ -11,12 +11,6 @@
         <%= select_tag 'filter', options_from_collection_for_select(@filter_options, :first, :last) %>
         </div>
 
-        <div class="search-field field">
-            <%= text_field_tag 'search', '', :placeholder => 'search the live feed...' %>
-        </div>
-        <div class="submit-button field">
-          <%= image_submit_tag 'search-go-btn.png' %>
-        </div>
     <% end %>
 <% end %>
 
@@ -27,8 +21,27 @@
 <% content_for :sidebar_second do %>
     <h3>View all activity from your employees with the live feed.</h3>
 
-    <p>You can filter the live feed to show only what you are looking for, or search the whole live feed for something specific with our search tool.</p>
+    <p>You can filter the live feed to show only what you are looking for.</p>
 <% end %>
+
+
+
+<%= javascript_include_tag 'dashboard/feed' %>
+<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+<script type="text/javascript">
+    var pusher = new Pusher('<%= Pusher.key %>'); // uses your API KEY
+    var channel = pusher.subscribe('agency_<%= @agency.id %>');
+    channel.bind('new activity stream', function(data) {
+        $('#activity-stream-wrapper').attr('data-newest-item', data.id);
+
+        var stream_item = $(data.rendered);
+        $('#activity-stream-wrapper .items').prepend(stream_item);
+        stream_item.fadeIn();
+    });
+</script>
+
+
+
 
 <%
 
@@ -40,7 +53,6 @@
 
 %>
 
-<%= javascript_include_tag 'dashboard/home' %>
 <div id="activity-stream-wrapper" data-oldest-item="<%= @oldest_item_id %>" data-newest-item="<%= @newest_item_id %>">
   <div class="items">
 
@@ -48,5 +60,4 @@
         <%= render 'shared/row_activity_stream', :item => item, :css_class => 'html' %>
     <% end %>
   </div>
-  <%= link_to 'older items', 'javascript:void(0)', :id => 'more-items-link', :style => more_items_css %>
 </div>

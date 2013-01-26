@@ -127,7 +127,8 @@ OauthServer::Application.routes.draw do
   end
 
   match 'dashboard' => 'dashboard#index'
-  match 'dashboard/activity_since' => 'dashboard#activity_since'
+  match 'dashboard/feed/activity_since' => 'dashboard#activity_since'
+  match 'dashboard/feed/activity_before' => 'dashboard#activity_before'
 
   devise_for :users
 

@@ -1,4 +1,9 @@
 OauthServer::Application.configure do
+
+
+  require 'pusher'
+
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -48,6 +53,10 @@ OauthServer::Application.configure do
       :secret_access_key => 'DctpqJzQ25yOvJ1HX7kU03FbqglvMqBOUc5pf6mA'
     }
   }
+
+  Pusher.app_id = 36069
+  Pusher.key = '681f0fa068d7a12f01c3'
+  Pusher.secret = '16cd3ee5bb3e83075288'
 
   Paperclip.options[:command_path] = '/opt/local/bin'
 

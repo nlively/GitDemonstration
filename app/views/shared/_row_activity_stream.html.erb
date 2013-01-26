@@ -5,7 +5,7 @@
      classes << css_class
    end
    %>
-<div class="activity-stream-item <%= classes.join ' ' %>" data-id="<%= item.id %>">
+<div class="activity-stream-item <%= classes.join ' ' %>" data-id="<%= item.id %>" data-timestamp="<%= item.created_at.to_i %>">
   <div class="icon">
   <%= render 'shared/activity_stream_icon.html.erb', :item => item %>
   </div>

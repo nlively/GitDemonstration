@@ -45,6 +45,8 @@ gem 'jquery-ui-rails'
 
 gem 'airbrake'
 
+gem 'pusher'
+
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'aws-sdk'
 
