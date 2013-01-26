@@ -1,4 +1,6 @@
 ---
+calendar-icon.png: calendar-icon-b6cb5d1f176211799c77c1a90facb211.png
+calendar-icon/index.png: calendar-icon-b6cb5d1f176211799c77c1a90facb211.png
 camera-32.png: camera-32-d47a0620f34dc3976be76cdd869736b6.png
 camera-32/index.png: camera-32-d47a0620f34dc3976be76cdd869736b6.png
 camera-48.png: camera-48-fe6cb4a9c0e53d09152203a1d1737441.png
@@ -45,8 +47,8 @@ modernizr-2.6.2.min.js: modernizr-2.6.2.min-6125f471a5b370c452de332a1bceea90.js
 modernizr-2/index.6.2.min.js: modernizr-2.6.2.min-6125f471a5b370c452de332a1bceea90.js
 plugins.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
 plugins/index.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
-application.css: application-51120b8d4fbaf5fd413cf51eb09a6316.css
-application/index.css: application-51120b8d4fbaf5fd413cf51eb09a6316.css
+application.css: application-c82974569c0abf1f38b586e76dd547ad.css
+application/index.css: application-c82974569c0abf1f38b586e76dd547ad.css
 doorkeeper/application.js: doorkeeper/application-23e0dc4aeeff30c6e2327681045066a1.js
 doorkeeper/application/index.js: doorkeeper/application-23e0dc4aeeff30c6e2327681045066a1.js
 doorkeeper/application.css: doorkeeper/application-d596bf68965096b2adedc513c3b4c498.css
