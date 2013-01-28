@@ -273,6 +273,7 @@ class Visit < ActiveRecord::Base
       :user_photo_url => full_url(url_base, user.profile_photo.url(:profile)),
       :care_recipient_id => care_recipient.id,
       :care_recipient_full_name => care_recipient.full_name,
+      :care_recipient_full_name_last_first => care_recipient.full_name_last_first,
       :care_recipient_photo_url => full_url(url_base, care_recipient.profile_photo.url(:profile)),
       :location_id => location_id,
       :month => in_time.to_formatted_s(:month_abbrev),
