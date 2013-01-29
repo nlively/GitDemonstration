@@ -17,6 +17,9 @@ OauthServer::Application.routes.draw do
 
       namespace :session do
         post 'photo'
+        post 'activities'
+        post 'client-status', :action => :client_status
+        post 'observations'
       end
 
       namespace :general do

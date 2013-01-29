@@ -316,9 +316,9 @@ class Visit < ActiveRecord::Base
 
     hash[:full_date] = self.full_date_string
 
-    hash[:daily_activities] = self.caregiver_tasks.map {|d| d.web_service_format }
-    hash[:patient_statuses] = self.patient_statuses.map {|d| d.web_service_format }
-    hash[:observations] = self.observations.map {|d| d.web_service_format }
+    hash[:daily_activities] = self.visits_caregiver_tasks.map {|d| d.web_service_format }
+    hash[:patient_statuses] = self.visits_patient_statuses.map {|d| d.web_service_format }
+    hash[:observations] = self.visits_observations.map {|d| d.web_service_format }
 
     hash
   end
