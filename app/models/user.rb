@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ResourcesHelper
   include Boomr::HasManyVisitsHelper
+  #include Boomr::WithPhoneNumber
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

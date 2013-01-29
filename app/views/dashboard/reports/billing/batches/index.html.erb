@@ -1,23 +1,46 @@
-<h1>Billing Batches</h1>
-
-
-<h2>Create a New Batch</h2>
-
-
-
-<%= form_tag dashboard_reports_billing_batches_path, :method => :post, :id => 'billing-batch-form' do %>
-
-    <h3>Select the time period you would like to bill for</h3>
-
-    <div class="date-range">
-      Start date: <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
-      &nbsp;
-      End date: <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
-    </div>
-
-    <%= submit_tag 'Create Batch' %>
+<% content_for :title do %>
+    Billing
 <% end %>
 
-<h2>Batch History</h2>
 
-<%= render 'dashboard/reports/shared/billing_batch_history', :batches => @batches %>
+
+<% content_for :page_top do %>
+
+    <%= javascript_include_tag 'dashboard/reports/new_batch' %>
+    <%= form_tag dashboard_reports_billing_batches_path, :method => :post, :id => 'billing-batch-form', :class=>'new-batch-form' do %>
+
+        <div class="form-field">
+          <div class="label">
+            <%= label_tag :start, 'Start Date' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <div class="label">
+            <%= label_tag :start, 'End Date' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <div class="label">
+            &nbsp;
+          </div>
+          <div class="field">
+            <%= submit_tag 'Create Invoices' %>
+          </div>
+        </div>
+    <% end %>
+<% end %>
+
+<% unless @invoices.blank? or @invoices.empty? %>
+    <h2>Invoices</h2>
+
+    <%= render 'dashboard/reports/shared/billing_batch_history', :batches => @invoices %>
+
+<% end %>

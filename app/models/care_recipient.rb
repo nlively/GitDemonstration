@@ -24,6 +24,7 @@
 class CareRecipient < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ResourcesHelper
+  include Boomr::WithPhoneNumber
 
   has_many :activity_streams
   has_many :photos
