@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129233949) do
+ActiveRecord::Schema.define(:version => 20130130011428) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -83,18 +83,6 @@ ActiveRecord::Schema.define(:version => 20130129233949) do
     t.datetime "updated_at",                                                        :null => false
   end
 
-  create_table "billing_line_items", :force => true do |t|
-    t.integer  "care_recipient_id"
-    t.integer  "pay_status"
-    t.decimal  "hours",              :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "bill_rate",          :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "adjustments",        :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "original_bill_rate", :precision => 11, :scale => 2, :default => 0.0
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
-    t.integer  "client_invoice_id"
-  end
-
   create_table "care_recipients", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -143,6 +131,18 @@ ActiveRecord::Schema.define(:version => 20130129233949) do
     t.datetime "updated_at",                                :null => false
     t.boolean  "in_out"
     t.integer  "visit_id"
+  end
+
+  create_table "client_invoice_line_items", :force => true do |t|
+    t.integer  "care_recipient_id"
+    t.integer  "pay_status"
+    t.decimal  "hours",              :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "bill_rate",          :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "adjustments",        :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "original_bill_rate", :precision => 11, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+    t.integer  "client_invoice_id"
   end
 
   create_table "client_invoices", :force => true do |t|

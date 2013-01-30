@@ -22,7 +22,7 @@
     <td>Edit/Freeze/Delete</td>
   </tr>
   </thead>
-  <% @batch.billing_line_items.each do |item|
+  <% @invoice.client_invoice_line_items.each do |item|
     client = item.care_recipient
   %>
     <tr>

@@ -19,8 +19,8 @@ class ClientInvoice < ActiveRecord::Base
   belongs_to :agency
   belongs_to :care_recipient
 
-  has_many :billing_line_items
-  has_many :visits, :through => :billing_line_items, :foreign_key => :client_invoice_line_item_id
+  has_many :client_invoice_line_items
+  has_many :visits, :through => :client_invoice_line_items
 
 
   def invoice_number_formatted
@@ -31,7 +31,7 @@ class ClientInvoice < ActiveRecord::Base
   def back_out!
 
     self.visits.each {|v| v.client_invoice_line_item_id = nil; v.save!}
-    self.billing_line_items.each {|d| d.delete}
+    self.client_invoice_line_items.each {|d| d.delete}
 
     self.delete
 

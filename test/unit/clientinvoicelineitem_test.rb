@@ -16,7 +16,7 @@
 
 require 'test_helper'
 
-class BillingLineItemTest < ActiveSupport::TestCase
+class ClientInvoiceLineItemTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

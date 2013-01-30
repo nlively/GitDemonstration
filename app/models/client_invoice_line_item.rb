@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: billing_line_items
+# Table name: client_invoice_line_items
 #
 #  id                 :integer          not null, primary key
 #  care_recipient_id  :integer
@@ -14,7 +14,7 @@
 #  client_invoice_id  :integer
 #
 
-class BillingLineItem < ActiveRecord::Base
+class ClientInvoiceLineItem < ActiveRecord::Base
 
   include ActionView::Helpers::NumberHelper
 

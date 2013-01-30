@@ -50,7 +50,7 @@ module Dashboard::Reports::Billing
 
           data[:visits].each do |visit|
 
-            line_item = BillingLineItem.create!({
+            line_item = ClientInvoiceLineItem.create!({
               :client_invoice => invoice,
               :care_recipient_id => id,
               :hours => visit.total_hours,
@@ -58,7 +58,7 @@ module Dashboard::Reports::Billing
               :original_bill_rate => visit.bill_rate,
               :adjustments => 0.0
             })
-            invoice.billing_line_items << line_item
+            invoice.client_invoice_line_items << line_item
 
             visit.client_invoice_line_item_id=line_item.id
             visit.save!
