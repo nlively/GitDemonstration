@@ -7,7 +7,7 @@
 <% content_for :page_top do %>
 
     <%= javascript_include_tag 'dashboard/reports/new_batch' %>
-    <%= form_tag dashboard_reports_billing_batches_path, :method => :post, :id => 'billing-batch-form', :class=>'new-batch-form' do %>
+    <%= form_tag dashboard_reports_billing_invoices_path, :method => :post, :id => 'billing-batch-form', :class=>'new-batch-form' do %>
 
         <div class="form-field">
           <div class="label">
@@ -36,11 +36,17 @@
           </div>
         </div>
     <% end %>
+
+
+    <div class="invoices-overview-form replaceable">
+
+    </div>
+
 <% end %>
 
 <% unless @invoices.blank? or @invoices.empty? %>
     <h2>Invoices</h2>
 
-    <%= render 'dashboard/reports/shared/billing_batch_history', :batches => @invoices %>
+    <%= render 'dashboard/reports/shared/invoices_table', :invoices => @invoices %>
 
 <% end %>

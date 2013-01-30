@@ -7,9 +7,16 @@ module Dashboard::Reports
 
     def index
 
-      redirect_to dashboard_reports_billing_batches_path
+      redirect_to dashboard_reports_billing_invoices_path
 
     end
+
+    def create
+
+      start_date = params[:start]
+
+    end
+
 
 
   end

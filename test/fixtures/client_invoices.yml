@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: client_invoices
+#
+#  id                :integer          not null, primary key
+#  care_recipient_id :integer
+#  invoice_number    :integer
+#  notes             :text
+#  due_date          :datetime
+#  invoice_date      :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  agency_id         :integer
+#  status            :string(255)      default("pending")
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  care_recipient_id: 1
+  invoice_number: 1
+  notes: MyText
+  due_date: 2013-01-29 14:51:14
+  invoice_date: 2013-01-29 14:51:14
+
+two:
+  care_recipient_id: 1
+  invoice_number: 1
+  notes: MyText
+  due_date: 2013-01-29 14:51:14
+  invoice_date: 2013-01-29 14:51:14

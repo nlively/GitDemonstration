@@ -1,0 +1,24 @@
+<% unless @invoices.empty? %>
+
+    <table class="invoices-table">
+      <thead>
+      <tr>
+        <th>Client</th>
+        <th>Invoice #</th>
+        <th>Hours</th>
+        <th>Bill Rate</th>
+        <th>Adjustments</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @invoices.each do |invoice| %>
+      <tr>
+
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>

@@ -31,12 +31,12 @@ class Agency < ActiveRecord::Base
   include Boomr::BraintreeCustomer
 
   has_many :payroll_batches
-  has_many :billing_batches
   has_many :activity_streams
   has_many :users
   has_many :visits
   has_many :care_recipients
   has_many :locations
+  has_many :client_invoices
 
   has_many :agency_invoices
   has_many :agency_invoice_rows, :through => :agency_invoices
@@ -125,6 +125,10 @@ class Agency < ActiveRecord::Base
 
   def subscription_label_extended
     subscription_tier.blank? ? 'n/a' : sprintf("%s (up to %s)", subscription_tier.label, subscription_tier.max_users_formatted)
+  end
+
+  def latest_invoice_number
+    client_invoices.empty? ? 0 : client_invoices.order('invoice_number desc').first.invoice_number
   end
 
 

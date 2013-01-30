@@ -6,4 +6,15 @@
     <div class="field">
       <%= select_tag :report_type, options_from_collection_for_select(@report_types, :first, :last, @report_section) %>
     </div>
+
+
+    <div class="slide-out billing">
+      <%= link_to "Create Invoices", dashboard_reports_billing_invoices_path, :class => 'link-button' %>
+      <%= link_to "Search Invoices", dashboard_reports_billing_invoices_search_path, :class => 'link-button' %>
+    </div>
+    <div class="slide-out payroll">
+      <%= link_to "Button 1", root_path, :class => 'link-button' %>
+      <%= link_to "Button 2", root_path, :class => 'link-button' %>
+    </div>
+
 <% end %>

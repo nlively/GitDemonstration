@@ -1,8 +1,18 @@
 @import 'sass';
 
 body.main {
-  #content {
-    width: 100%;
+  #page {
+
+    #content {
+      width: 100%;
+
+      #content-inner {
+        padding: 20px;
+      }
+    }
+
+
+
   }
 }
 
@@ -108,4 +118,9 @@ body.with-sidebar-second {
   font-size: 0.8em;
   text-align: center;
   margin-top: 40px;
+}
+
+#footer-menu {
+  text-align: center;
+  margin: 30px auto;
 }

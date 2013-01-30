@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125193657) do
+ActiveRecord::Schema.define(:version => 20130129233949) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -83,19 +83,7 @@ ActiveRecord::Schema.define(:version => 20130125193657) do
     t.datetime "updated_at",                                                        :null => false
   end
 
-  create_table "billing_batches", :force => true do |t|
-    t.integer  "agency_id"
-    t.datetime "batch_date"
-    t.text     "notes"
-    t.date     "period_start"
-    t.date     "period_end"
-    t.string   "status",       :default => "pending"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-  end
-
   create_table "billing_line_items", :force => true do |t|
-    t.integer  "billing_batch_id"
     t.integer  "care_recipient_id"
     t.integer  "pay_status"
     t.decimal  "hours",              :precision => 11, :scale => 2, :default => 0.0
@@ -104,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130125193657) do
     t.decimal  "original_bill_rate", :precision => 11, :scale => 2, :default => 0.0
     t.datetime "created_at",                                                         :null => false
     t.datetime "updated_at",                                                         :null => false
+    t.integer  "client_invoice_id"
   end
 
   create_table "care_recipients", :force => true do |t|
@@ -154,6 +143,18 @@ ActiveRecord::Schema.define(:version => 20130125193657) do
     t.datetime "updated_at",                                :null => false
     t.boolean  "in_out"
     t.integer  "visit_id"
+  end
+
+  create_table "client_invoices", :force => true do |t|
+    t.integer  "care_recipient_id"
+    t.integer  "invoice_number"
+    t.text     "notes"
+    t.datetime "due_date"
+    t.datetime "invoice_date"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "agency_id"
+    t.string   "status",            :default => "pending"
   end
 
   create_table "locations", :force => true do |t|
@@ -343,18 +344,18 @@ ActiveRecord::Schema.define(:version => 20130125193657) do
     t.integer  "care_recipient_id"
     t.integer  "location_id"
     t.integer  "agency_id"
-    t.datetime "created_at",                                                                 :null => false
-    t.datetime "updated_at",                                                                 :null => false
-    t.decimal  "bill_rate",                 :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "pay_rate",                  :precision => 11, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
+    t.decimal  "bill_rate",                   :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "pay_rate",                    :precision => 11, :scale => 2, :default => 0.0
     t.integer  "approved_by_user_id"
     t.integer  "payroll_line_item_id"
-    t.boolean  "billable",                                                 :default => true, :null => false
-    t.integer  "break_minutes",                                            :default => 0
-    t.integer  "duration_minutes",                                         :default => 0
-    t.integer  "billable_duration_minutes",                                :default => 0
+    t.boolean  "billable",                                                   :default => true, :null => false
+    t.integer  "break_minutes",                                              :default => 0
+    t.integer  "duration_minutes",                                           :default => 0
+    t.integer  "billable_duration_minutes",                                  :default => 0
     t.string   "guid"
-    t.integer  "billing_line_item_id"
+    t.integer  "client_invoice_line_item_id"
   end
 
   create_table "visits_caregiver_tasks", :force => true do |t|

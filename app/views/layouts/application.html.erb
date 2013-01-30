@@ -1,3 +1,15 @@
+<%
+
+   body_classes = []
+
+
+   body_classes.push (controller_name == 'dashboard') ? 'dashboard-main' : controller_name
+
+   body_classes.push action_name
+
+   body_classes.push 'with-sidebar-second' if content_for? :sidebar_second
+
+%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -18,7 +30,7 @@
 
   <%= csrf_meta_tags %>
 </head>
-<body class="main">
+<body class="dashboard main <%= body_classes.join " " %>">
 
 <div id="page">
   <div id="page-inner">
@@ -41,18 +53,47 @@
 
             <%= render 'shared/breadcrumb' %>
 
-            <% if content_for? :title %>
-                <h1 class="title"><%= yield :title %></h1>
-            <% end %>
+            <% if content_for?(:title) or content_for?(:page_top) %>
+                <div class="title-wrapper">
+                  <div class="title-wrapper-inner">
+                    <% if content_for?(:title) %>
+                        <h1 class="title"><%= yield :title %></h1>
+                    <% end %>
 
+                    <% if content_for? :page_top %>
+                        <div id="page-top">
+                          <div id="page-top-inner">
+                            <%= yield :page_top %>
+                          </div>
+                        </div>
+                    <% end %>
+
+                  </div>
+                </div>
+            <% end %>
 
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
+
+            <% if content_for? :page_caption %>
+                <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>
+            <% end %>
 
             <%= yield %>
 
           </div>
         </div>
+
+        <% if content_for? :sidebar_second %>
+            <div id="sidebar-second" class="sidebar main-col">
+              <div id="sidebar-second-inner" class="sidebar-inner main-col-inner inner">
+                <%= yield :sidebar_second %>
+              </div>
+            </div>
+        <% end %>
+
+
+        <div style="clear:both"></div>
 
       </div>
     </div>

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: visits_observations
+#
+#  id             :integer          not null, primary key
+#  visit_id       :integer
+#  observation_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class VisitsObservation < ActiveRecord::Base
   attr_accessible :observation_id, :visit_id
 

@@ -79,7 +79,12 @@ OauthServer::Application.routes.draw do
         resources :batches, :except => [:edit]
       end
       namespace :billing do
-        resources :batches, :except => [:edit]
+        resources :invoices, :except => [:edit]
+
+        namespace :invoices do
+          get 'search'
+        end
+
       end
     end
 
@@ -136,6 +141,7 @@ OauthServer::Application.routes.draw do
   devise_for :users
 
   get "home/index"
+  get 'terms' => 'home#terms'
 
   mount Doorkeeper::Engine => '/oauth'
   match "/oauth/authorize", :via => :get, :to => "authorization#new"
