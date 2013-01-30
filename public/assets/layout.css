@@ -95,5 +95,10 @@ body.with-sidebar-second #page #main #content {
 /* line 123, ../../app/assets/stylesheets/layout.css.scss */
 #footer-menu {
   text-align: center;
-  margin: 30px auto;
+  margin: 20px auto;
+}
+
+/* line 128, ../../app/assets/stylesheets/layout.css.scss */
+#nap {
+  text-align: center;
 }
