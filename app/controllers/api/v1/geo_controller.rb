@@ -16,8 +16,6 @@ module Api::V1
         result # return the result
       end
 
-      logger.debug   @recipients_formatted.inspect
-
       render json: @recipients_formatted
     end
 
