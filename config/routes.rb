@@ -38,6 +38,7 @@ OauthServer::Application.routes.draw do
       get 'care-recipients/:id' => 'care_recipients#show'
       get 'care-recipients/:id/visits' => 'care_recipients#visits'
       get 'care-recipients/:id/photos' => 'care_recipients#photos'
+      post 'care-recipients/:id/photo' => 'care_recipients#update_photo'
 
       post 'geo/clients'
 

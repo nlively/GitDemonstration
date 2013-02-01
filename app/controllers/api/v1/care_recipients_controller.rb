@@ -66,5 +66,23 @@ module Api::V1
     end
 
 
+
+
+    # POST /api/v1/care-recipients/:id/photo
+    def update_photo
+      @client = CareRecipient.find params[:id]
+
+      unless params[:photo].blank?
+        @client.profile_photo = params[:photo]
+
+        if @client.save!
+          render json: {:result => true, :message => "Client's photo has been updated"}
+        else
+          render json: {:result => false, :message => "Client's photo could not be updated"}
+        end
+      end
+    end
+
+
   end
 end
