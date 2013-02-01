@@ -36,8 +36,14 @@ select {
   position: absolute;
   z-index: 2;
 }
+/* line 37, ../../app/assets/stylesheets/html_elements.css.scss */
+select.normal {
+  display: inline;
+  position: relative;
+  opacity: 1.0;
+}
 
-/* line 38, ../../app/assets/stylesheets/html_elements.css.scss */
+/* line 44, ../../app/assets/stylesheets/html_elements.css.scss */
 button, input[type="button"], input[type="submit"] {
   border: 1px solid #6191f2;
   border-radius: 5px;
@@ -62,7 +68,7 @@ button, input[type="button"], input[type="submit"] {
   padding: 8px 12px;
 }
 
-/* line 53, ../../app/assets/stylesheets/html_elements.css.scss */
+/* line 59, ../../app/assets/stylesheets/html_elements.css.scss */
 hr {
   border-top-color: #d5d5d5;
 }

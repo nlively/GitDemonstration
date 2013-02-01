@@ -12,6 +12,7 @@
 #  updated_at        :datetime         not null
 #  agency_id         :integer
 #  status            :string(255)      default("pending")
+#  exported          :boolean          default(FALSE)
 #
 
 require 'test_helper'

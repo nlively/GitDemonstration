@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130011428) do
+ActiveRecord::Schema.define(:version => 20130201232401) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20130130011428) do
     t.datetime "updated_at",                               :null => false
     t.integer  "agency_id"
     t.string   "status",            :default => "pending"
+    t.boolean  "exported",          :default => false
   end
 
   create_table "locations", :force => true do |t|

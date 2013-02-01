@@ -9,14 +9,18 @@ module Dashboard::Reports::Billing
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
 
+      @invoices = @agency.client_invoices.order('invoice_number DESC')
+
     end
 
-    # GET /dashboard/reports/billing/invoices/search
-    def search
+    def edit
+      @invoice = ClientInvoice.find params[:id]
+    end
 
+    # GET /dashboard/reports/billing/invoices/new
+    def new
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
-
     end
 
     # POST /dashboard/reports/billing/invoices
@@ -71,38 +75,9 @@ module Dashboard::Reports::Billing
 
         end
 
-        redirect_to dashboard_reports_billing_invoices_pending_path(:start => @start.to_formatted_s(:mdy), :stop => @stop.to_formatted_s(:mdy))
+        redirect_to dashboard_reports_billing_invoices_path
 
       end
-
-    end
-
-
-
-    def pending
-      if params[:start].blank? or params[:stop].blank?
-        @pending_invoices = @agency.pending_invoices
-      else
-        @start = Date.strptime(params[:start], '%m/%d/%Y')
-        @stop = (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
-
-        @invoice_total = 0.00
-
-        @pending_invoices = @agency.pending_invoices.where('invoice_date BETWEEN ? AND ?', @start, @stop)
-        @pending_invoices.each do |invoice|
-          @invoice_total += invoice.total_amount
-        end
-
-        @invoice_total_formatted = number_to_currency( @invoice_total, :unit => "$", :precision => 2 )
-      end
-
-    end
-
-    def save_pending
-
-    end
-
-    def cancel_pending
 
     end
 

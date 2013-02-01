@@ -1,13 +1,31 @@
 <% content_for :title do %>
-    Billing
+    Invoices
 <% end %>
-
-
 
 <% content_for :page_top do %>
 
-    <%= render 'dashboard/reports/billing/invoices/create_invoices_form' %>
+    <%= link_to 'Create Invoices', new_dashboard_reports_billing_invoice_path, :class => 'link-button' %>
 
+
+    <%= form_tag root_path, :method => :post do %>
+
+        Search by client: <%= select_tag :client_search, '', :class => 'normal' %>
+        &nbsp;
+        Search by invoice status: <%= select_tag :status_search, '', :class => 'normal' %>
+
+        <% end %>
+
+
+<% end %>
+
+<% content_for :page_caption do %>
+    Invoices
+<% end %>
+
+<% unless @invoices.blank? or @invoices.empty? %>
+
+
+    <%= render 'dashboard/reports/shared/invoices_table', :invoices => @invoices %>
 
 
 <% end %>

@@ -1,0 +1,13 @@
+
+  <tr class="invoice-row" date-remote="true" data-id="<%= invoice.id %>">
+    <td></td>
+    <td><%= invoice.care_recipient.full_name_last_first %></td>
+    <td><%= invoice.invoice_number_formatted %></td>
+    <td><%= invoice.total_hours_string %></td>
+    <td><%= invoice.total_amount_formatted %></td>
+    <td><%= select_tag :status, options_from_collection_for_select(invoice_statuses, :first, :last), :class => 'normal' %></td>
+    <td>
+      <%= link_to 'Save', 'javascript:void(0)' %>
+    </td>
+
+  </tr>

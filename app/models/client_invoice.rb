@@ -12,10 +12,12 @@
 #  updated_at        :datetime         not null
 #  agency_id         :integer
 #  status            :string(255)      default("pending")
+#  exported          :boolean          default(FALSE)
 #
 
 class ClientInvoice < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+  include ApplicationHelper
   include VisitsHelper
 
   belongs_to :agency
@@ -24,6 +26,9 @@ class ClientInvoice < ActiveRecord::Base
   has_many :client_invoice_line_items
   has_many :visits, :through => :client_invoice_line_items
 
+  def status_formatted
+    invoice_statuses[status.to_sym] unless status.blank?
+  end
 
   def invoice_number_formatted
     invoice_number.to_s.rjust 4, '0'
