@@ -8,6 +8,8 @@ module Api::V1
     # POST /api/v1/check_ins
     def create
 
+      logger.debug params.inspect
+
       @checkin = CheckIn.new :user_id => current_resource_owner.id, :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
 
       if @checkin.in_out
