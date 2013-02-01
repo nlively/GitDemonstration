@@ -1,4 +1,4 @@
-<% unless @invoices.empty? %>
+<% unless invoices.empty? %>
 
     <table class="invoices-table">
       <thead>
@@ -6,21 +6,17 @@
         <th>Client</th>
         <th>Invoice #</th>
         <th>Hours</th>
-        <th>Bill Rate</th>
-        <th>Adjustments</th>
         <th>Total</th>
         <th>Action</th>
       </tr>
       </thead>
       <tbody>
-      <% @invoices.each do |invoice| %>
+      <% invoices.each do |invoice| %>
       <tr>
         <td><%= invoice.care_recipient.full_name_last_first %></td>
         <td><%= invoice.invoice_number_formatted %></td>
-        <td><%= invoice.total_hours %></td>
-        <td>n/a</td>
-        <td>n/a</td>
-        <td>n/a</td>
+        <td><%= invoice.total_hours_string %></td>
+        <td><%= invoice.total_amount_formatted %></td>
         <td><%= link_to 'View/edit', root_path %></td>
       </tr>
       <% end %>

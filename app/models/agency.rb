@@ -131,5 +131,9 @@ class Agency < ActiveRecord::Base
     client_invoices.empty? ? 0 : client_invoices.order('invoice_number desc').first.invoice_number
   end
 
+  def pending_invoices
+    client_invoices.where("status = ?", 'pending')
+  end
+
 
 end

@@ -80,11 +80,15 @@ OauthServer::Application.routes.draw do
         resources :batches, :except => [:edit]
       end
       namespace :billing do
-        resources :invoices, :except => [:edit]
 
         namespace :invoices do
           get 'search'
+          get 'pending'
+          post 'pending/save', :action => :save_pending, :as => :save_pending
+          get 'pending/cancel', :action => :cancel_pending, :as => :cancel_pending
         end
+
+        resources :invoices, :except => [:edit, :new]
 
       end
     end

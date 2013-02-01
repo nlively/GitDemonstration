@@ -1,6 +1,7 @@
 module Dashboard::Reports::Billing
   class InvoicesController < Dashboard::Reports::BillingController
     include PayrollAndBillingHelper
+    include ActionView::Helpers::NumberHelper
 
     # GET /dashboard/reports/billing/invoices
     def index
@@ -70,11 +71,41 @@ module Dashboard::Reports::Billing
 
         end
 
-        render :action => :index
+        redirect_to dashboard_reports_billing_invoices_pending_path(:start => @start.to_formatted_s(:mdy), :stop => @stop.to_formatted_s(:mdy))
 
       end
 
     end
+
+
+
+    def pending
+      if params[:start].blank? or params[:stop].blank?
+        @pending_invoices = @agency.pending_invoices
+      else
+        @start = Date.strptime(params[:start], '%m/%d/%Y')
+        @stop = (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
+
+        @invoice_total = 0.00
+
+        @pending_invoices = @agency.pending_invoices.where('invoice_date BETWEEN ? AND ?', @start, @stop)
+        @pending_invoices.each do |invoice|
+          @invoice_total += invoice.total_amount
+        end
+
+        @invoice_total_formatted = number_to_currency( @invoice_total, :unit => "$", :precision => 2 )
+      end
+
+    end
+
+    def save_pending
+
+    end
+
+    def cancel_pending
+
+    end
+
 
     # GET /dashboard/reports/billing/invoices/:id
     def show

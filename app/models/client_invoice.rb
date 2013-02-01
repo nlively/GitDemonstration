@@ -15,6 +15,8 @@
 #
 
 class ClientInvoice < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+  include VisitsHelper
 
   belongs_to :agency
   belongs_to :care_recipient
@@ -27,6 +29,18 @@ class ClientInvoice < ActiveRecord::Base
     invoice_number.to_s.rjust 4, '0'
   end
 
+  def total_amount
+    total = 0.0
+    client_invoice_line_items.each{|item| total += item.total}
+
+    total
+  end
+
+  def total_amount_formatted
+    number_to_currency( total_amount, :unit => "$", :precision => 2 )
+  end
+
+
   def total_hours
     hours = 0.0
     client_invoice_line_items.each do |item|
@@ -35,6 +49,12 @@ class ClientInvoice < ActiveRecord::Base
 
     hours
   end
+
+
+  def total_hours_string
+    duration_in_hours(total_hours*60)
+  end
+
 
   # Deletes an invoice and its associated data
   def back_out!

@@ -6,47 +6,8 @@
 
 <% content_for :page_top do %>
 
-    <%= javascript_include_tag 'dashboard/reports/new_batch' %>
-    <%= form_tag dashboard_reports_billing_invoices_path, :method => :post, :id => 'billing-batch-form', :class=>'new-batch-form' do %>
-
-        <div class="form-field">
-          <div class="label">
-            <%= label_tag :start, 'Start Date' %>
-          </div>
-          <div class="field">
-            <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
-          </div>
-        </div>
-
-        <div class="form-field">
-          <div class="label">
-            <%= label_tag :start, 'End Date' %>
-          </div>
-          <div class="field">
-            <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
-          </div>
-        </div>
-
-        <div class="form-field">
-          <div class="label">
-            &nbsp;
-          </div>
-          <div class="field">
-            <%= submit_tag 'Create Invoices' %>
-          </div>
-        </div>
-    <% end %>
+    <%= render 'dashboard/reports/billing/invoices/create_invoices_form' %>
 
 
-    <div class="invoices-overview-form replaceable">
-
-    </div>
-
-<% end %>
-
-<% unless @invoices.blank? or @invoices.empty? %>
-    <h2>Invoices</h2>
-
-    <%= render 'dashboard/reports/shared/invoices_table', :invoices => @invoices %>
 
 <% end %>
