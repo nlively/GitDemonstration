@@ -11,6 +11,7 @@ module Api::V1
 
     # POST /api/v1/account
     def update
+      filtered_params = {}
       #filtered_params = {
       #  :first_name => params[:first_name],
       #  :last_name =>params[:last_name],
