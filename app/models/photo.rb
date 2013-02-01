@@ -30,6 +30,10 @@ class Photo < ActiveRecord::Base
     :tiny => "50x50>"
   }
 
+  def timestamp
+    created_at.to_formatted_s(:hour_with_minute_meridian)
+  end
+
   def web_service_format_minimal url_base
     hash = {
       :id => id,

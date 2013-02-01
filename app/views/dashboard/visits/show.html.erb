@@ -16,11 +16,16 @@
     <div class="heading">
       Client Status
     </div>
-    <ul class="">
-      <% @visit.patient_statuses.each do |status| %>
-          <li><%= status.label %></li>
+    <table>
+      <tbody>
+      <% @visit.visits_patient_statuses.each do |item| %>
+          <tr>
+            <td class="label"><%= item.patient_status.label %></td>
+            <td class="timestamp"><%= item.timestamp %> </td>
+          </tr>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
   </div>
 
 
@@ -28,23 +33,40 @@
     <div class="heading">
       Daily Activities
     </div>
-    <ul class="">
-      <% @visit.caregiver_tasks.each do |task| %>
-          <li><%= task.label %></li>
+
+    <table>
+      <tbody>
+      <% @visit.visits_caregiver_tasks.each do |item| %>
+          <tr>
+            <td class="label"><%= item.caregiver_task.label %></td>
+            <td class="timestamp"><%= item.timestamp %> </td>
+          </tr>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
+
   </div>
 
   <div class="visit-data-section observations">
     <div class="heading">
       Observations
     </div>
-    <ul class="">
-      <% @visit.observations.each do |observation| %>
-          <li><%= observation.label %></li>
+
+
+    <table>
+      <tbody>
+      <% @visit.visits_observations.each do |item| %>
+          <tr>
+            <td class="label"><%= item.observation.label %></td>
+            <td class="timestamp"><%= item.timestamp %> </td>
+          </tr>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
+
   </div>
 </div>
 
 <%= render 'dashboard/shared/page_caption', :caption => 'Photos' %>
+
+<%= render 'dashboard/shared/photos_grid', :photos => @visit.photos %>

@@ -15,6 +15,10 @@ class VisitsObservation < ActiveRecord::Base
   belongs_to :observation
   belongs_to :visit
 
+  def timestamp
+    created_at.to_formatted_s(:hour_with_minute_meridian)
+  end
+
   def web_service_format
     {
       :label => observation.label,

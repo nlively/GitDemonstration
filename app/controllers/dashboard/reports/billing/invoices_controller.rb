@@ -37,13 +37,14 @@ module Dashboard::Reports::Billing
           @clients[v.care_recipient_id][:visits] << v
         end
 
+        invoice_number = @agency.latest_invoice_number + 1
+
         @clients.each do |id, data|
           care_recipient = CareRecipient.find id
           calculations = calculate_overtime_from_visits data[:visits]
           @clients[id][:care_recipient] = care_recipient
           @clients[id][:calculations] = calculations
 
-          invoice_number = @agency.latest_invoice_number + 1
 
           invoice = ClientInvoice.create! :agency_id => @agency.id, :care_recipient_id => id, :invoice_date => Date.today, :due_date => Date.today, :invoice_number => invoice_number
 
@@ -65,6 +66,7 @@ module Dashboard::Reports::Billing
           end
 
           @invoices << invoice
+          invoice_number += 1
 
         end
 

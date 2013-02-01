@@ -3,7 +3,7 @@ module Boomr::HasManyVisitsHelper
   ## Unbatched visits
 
   def unbatched_visits
-    approved_visits.where('payroll_line_item_id IS NULL AND billable = ?', true)
+    approved_visits.order('in_time DESC').where('payroll_line_item_id IS NULL AND billable = ?', true)
   end
 
   def unbatched_visits_by_date_range start, stop
@@ -31,7 +31,7 @@ module Boomr::HasManyVisitsHelper
   ## Pending visits
 
   def pending_visits
-    visits.where :out_time => nil
+    visits.order('in_time DESC').where :out_time => nil
   end
 
   def pending_visits_by_date_range start, stop
@@ -45,7 +45,7 @@ module Boomr::HasManyVisitsHelper
   ## Completed visits
 
   def completed_visits
-    visits.where 'out_time IS NOT NULL'
+    visits.order('in_time DESC').where 'out_time IS NOT NULL'
   end
 
   def completed_visits_by_date_range start, stop
@@ -59,7 +59,7 @@ module Boomr::HasManyVisitsHelper
   ## Approved visits
 
   def approved_visits
-    visits.where :approved => true
+    visits.order('in_time DESC').where :approved => true
   end
 
   def approved_visits_by_date_range start, stop
@@ -73,7 +73,7 @@ module Boomr::HasManyVisitsHelper
   ## Unapproved visits
 
   def unapproved_visits
-    visits.where :approved => false
+    visits.order('in_time DESC').where :approved => false
   end
 
   def unapproved_visits_by_date_range start, stop

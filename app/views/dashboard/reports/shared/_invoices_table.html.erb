@@ -15,7 +15,13 @@
       <tbody>
       <% @invoices.each do |invoice| %>
       <tr>
-
+        <td><%= invoice.care_recipient.full_name_last_first %></td>
+        <td><%= invoice.invoice_number_formatted %></td>
+        <td><%= invoice.total_hours %></td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td>n/a</td>
+        <td><%= link_to 'View/edit', root_path %></td>
       </tr>
       <% end %>
       </tbody>

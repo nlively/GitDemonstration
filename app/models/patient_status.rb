@@ -13,6 +13,10 @@ class PatientStatus < ActiveRecord::Base
   has_many :visits_patient_statuses
   has_many :visits, :through => :visits_patient_statuses
 
+  def timestamp
+    created_at.to_formatted_s(:hour_with_minute_meridian)
+  end
+
   def web_service_format
     {
       :label => label,

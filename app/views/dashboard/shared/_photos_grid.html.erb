@@ -1,0 +1,20 @@
+<% unless photos.empty?
+     row = 1
+%>
+    <div class="photos-grid thumbnails">
+      <% photos.each_with_index do |photo, index| %>
+
+          <div class="photos-grid-item item-<%=index %> <%= cycle('even', 'odd')%>" data-id="<%= photo.id %>">
+            <div class="photos-grid-item-inner">
+              <div class="photo">
+              <%= image_tag photo.photo.url(:profile) %>
+              </div>
+              <div class="timestamp">
+              <%= photo.timestamp %>
+              </div>
+            </div>
+          </div>
+
+      <% end %>
+    </div>
+<% end %>

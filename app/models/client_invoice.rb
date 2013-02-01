@@ -27,6 +27,15 @@ class ClientInvoice < ActiveRecord::Base
     invoice_number.to_s.rjust 4, '0'
   end
 
+  def total_hours
+    hours = 0.0
+    client_invoice_line_items.each do |item|
+      hours += item.hours
+    end
+
+    hours
+  end
+
   # Deletes an invoice and its associated data
   def back_out!
 

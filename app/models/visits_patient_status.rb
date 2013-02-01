@@ -12,6 +12,11 @@
 class VisitsPatientStatus < ActiveRecord::Base
   belongs_to :visit
   belongs_to :patient_status
+
+  def timestamp
+    created_at.to_formatted_s(:hour_with_minute_meridian)
+  end
+
   def web_service_format
     {
       :label => patient_status.label,

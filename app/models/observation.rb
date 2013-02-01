@@ -15,6 +15,10 @@ class Observation < ActiveRecord::Base
   has_many :visits_observations
   has_many :visits, :through => :visits_observations
 
+  def timestamp
+    created_at.to_formatted_s(:hour_with_minute_meridian)
+  end
+
   def web_service_format
     {
       :label => label,

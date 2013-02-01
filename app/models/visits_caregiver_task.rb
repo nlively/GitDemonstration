@@ -12,6 +12,11 @@
 class VisitsCaregiverTask < ActiveRecord::Base
   belongs_to :visit
   belongs_to :caregiver_task
+
+  def timestamp
+    created_at.to_formatted_s(:hour_with_minute_meridian)
+  end
+
   def web_service_format
     {
       :label => caregiver_task.label,
