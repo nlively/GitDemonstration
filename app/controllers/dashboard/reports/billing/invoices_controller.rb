@@ -1,15 +1,24 @@
 module Dashboard::Reports::Billing
   class InvoicesController < Dashboard::Reports::BillingController
     include PayrollAndBillingHelper
+    include ApplicationHelper
     include ActionView::Helpers::NumberHelper
 
     # GET /dashboard/reports/billing/invoices
     def index
 
+      @client_name = params[:client_name] or ''
+      @invoice_number = params[:invoice_number] or ''
+      @invoice_date = params[:invoice_date] or ''
+      @invoice_status = params[:invoice_status] or ''
+
+      @status_options = invoice_statuses
+
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
 
       @invoices = @agency.client_invoices.order('invoice_number DESC')
+
 
     end
 
@@ -57,13 +66,13 @@ module Dashboard::Reports::Billing
           data[:visits].each do |visit|
 
             line_item = ClientInvoiceLineItem.create!({
-              :client_invoice => invoice,
-              :care_recipient_id => id,
-              :hours => visit.total_hours,
-              :bill_rate => visit.bill_rate,
-              :original_bill_rate => visit.bill_rate,
-              :adjustments => 0.0
-            })
+                                                          :client_invoice => invoice,
+                                                          :care_recipient_id => id,
+                                                          :hours => visit.total_hours,
+                                                          :bill_rate => visit.bill_rate,
+                                                          :original_bill_rate => visit.bill_rate,
+                                                          :adjustments => 0.0
+                                                      })
             invoice.client_invoice_line_items << line_item
 
             visit.client_invoice_line_item_id=line_item.id
@@ -90,6 +99,14 @@ module Dashboard::Reports::Billing
     # POST /dashboard/reports/billing/invoices/:id
     def update
       @invoice = ClientInvoice.find params[:id]
+
+      if @invoice.update_attributes! params[:client_invoice]
+        redirect_to dashboard_reports_billing_invoice_path(@invoice), notice: 'Invoice was successfully updated.'
+      else
+        redirect_to dashboard_reports_billing_invoice_path(@invoice)
+      end
+
+
     end
 
     # DELETE /dashboard/reports/billing/invoices/:id

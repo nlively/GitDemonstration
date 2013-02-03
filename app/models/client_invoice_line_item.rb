@@ -17,6 +17,7 @@
 class ClientInvoiceLineItem < ActiveRecord::Base
 
   include ActionView::Helpers::NumberHelper
+  include VisitsHelper
 
   belongs_to :client_invoice
   belongs_to :care_recipient
@@ -34,6 +35,10 @@ class ClientInvoiceLineItem < ActiveRecord::Base
 
   def total
     (hours * bill_rate) + adjustments
+  end
+
+  def duration_string
+    duration_in_hours (hours*60)
   end
 
   def total_formatted

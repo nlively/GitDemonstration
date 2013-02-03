@@ -293,3 +293,8 @@ div.photos-grid.thumbnails .photos-grid-item .photos-grid-item-inner {
 div.photos-grid.thumbnails .photos-grid-item .photos-grid-item-inner div.photo {
   height: 90px;
 }
+
+/* line 292, ../../app/assets/stylesheets/styles.css.scss */
+div.padded-content {
+  margin: 10px 20px;
+}

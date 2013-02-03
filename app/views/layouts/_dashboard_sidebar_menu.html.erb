@@ -2,6 +2,8 @@
     <%=  render 'dashboard/clients/sidebar_menu' %>
 <% elsif controller.is_a? Dashboard::EmployeesController %>
     <%=  render 'dashboard/employees/sidebar_menu' %>
+<% elsif controller.is_a? Dashboard::Reports::BillingController %>
+    <%=  render 'dashboard/reports/billing/sidebar_menu' %>
 <% elsif controller.is_a? Dashboard::Reports::PayrollController %>
     <%=  render 'dashboard/reports/payroll/sidebar_menu' %>
 <% elsif controller.is_a? Dashboard::ReportsController %>

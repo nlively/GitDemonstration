@@ -1,8 +1,80 @@
-<% content_for :page_title do %>
+<% content_for :title do %>
     Invoice <%= @invoice.invoice_number_formatted %> (<%= @invoice.care_recipient.full_name%>)
 <% end %>
 
-<div class="summary">
+<% content_for :page_caption do %>
+    Invoice Summary
+<% end %>
+
+<% content_for :sidebar_second do %>
+    <h3>Editing instructions</h3>
+    <p>
+      You can adjust bill rates per invoice line item on this page.  Make sure to click "Save Changes" when finished.
+    </p>
+<% end %>
+
+<div class="summary padded-content">
   <strong>Invoice date:</strong> <%= @invoice.invoice_date.to_formatted_s(:mdy) %><br>
   <strong>Due date:</strong> <%= @invoice.due_date.to_formatted_s(:mdy) %><br>
 </div>
+
+<%= render 'dashboard/shared/page_caption', :caption => 'Visits' %>
+
+<%= form_for @invoice, :url => dashboard_reports_billing_invoice_path, :method => :put, :html => {:class => 'table-form'} do |f| %>
+
+    <% unless @invoice.client_invoice_line_items.empty? %>
+        <table id="invoice-visits" class="visits-table">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Employee</th>
+            <th>Bill Rate</th>
+            <th>Duration</th>
+            <th>Location</th>
+            <th>Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @invoice.client_invoice_line_items.each do |line_item| %>
+              <%= f.fields_for :client_invoice_line_items, line_item do |li| %>
+                  <% billrate_key = sprintf 'bill_rate[%d]', line_item.id %>
+                  <tr class="visit-row editable" date-remote="true" data-id="<%= line_item.id %>">
+                    <td class="date">
+                      <%= line_item.visit.date_only_formatted %>
+                    </td>
+                    <td class="employee" rel="<%= line_item.visit.user_id %>">
+                      <%= line_item.visit.employee_label %>
+                    </td>
+                    <td class="billrate">
+                      $ <%= li.text_field :bill_rate %>
+                    </td>
+                    <td class="duration">
+                      <%= line_item.duration_string %>
+                    </td>
+                    <td class="location">
+                      <%= line_item.visit.location_label %>
+                    </td>
+                    <td class="total">
+                      <%= line_item.total_formatted %>
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th colspan="5">
+              Invoice Total:
+            </th>
+            <th class="total">
+              <%= @invoice.total_amount_formatted %>
+            </th>
+          </tr>
+          </tfoot>
+        </table>
+    <% end %>
+
+
+    <%= submit_tag 'Save Changes' %>
+
+<% end %>

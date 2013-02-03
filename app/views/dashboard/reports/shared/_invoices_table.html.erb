@@ -24,7 +24,7 @@
             <td><%= invoice.total_hours_string %></td>
             <td><%= invoice.total_amount_formatted %></td>
             <td><%= invoice.status_formatted %></td>
-            <td><%= link_to 'View/edit', root_path %>  | <%=  link_to 'Export', root_path %></td>
+            <td><%= link_to 'View/edit', dashboard_reports_billing_invoice_path(invoice) %>  | <%=  link_to 'Export', root_path %></td>
           </tr>
       <% end %>
       </tbody>

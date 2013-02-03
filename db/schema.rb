@@ -83,6 +83,29 @@ ActiveRecord::Schema.define(:version => 20130201232401) do
     t.datetime "updated_at",                                                        :null => false
   end
 
+  create_table "billing_batches", :force => true do |t|
+    t.integer  "agency_id"
+    t.datetime "batch_date"
+    t.text     "notes"
+    t.date     "period_start"
+    t.date     "period_end"
+    t.string   "status",       :default => "pending"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  create_table "billing_line_items", :force => true do |t|
+    t.integer  "billing_batch_id"
+    t.integer  "care_recipient_id"
+    t.integer  "pay_status"
+    t.decimal  "hours",              :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "bill_rate",          :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "adjustments",        :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "original_bill_rate", :precision => 11, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+  end
+
   create_table "care_recipients", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"

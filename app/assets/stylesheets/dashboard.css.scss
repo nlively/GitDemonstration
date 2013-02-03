@@ -61,6 +61,10 @@ body.dashboard {
 
         & > form {
           margin-left: 20px;
+
+          &.table-form {
+            margin-left: 0;
+          }
         }
 
         .page-caption {
@@ -211,6 +215,15 @@ body.dashboard {
       }
       td {
         vertical-align: middle;
+      }
+
+      td.total {
+        text-align: right;
+      }
+    }
+    tfoot {
+      th, td {
+       text-align: right;
       }
     }
   }

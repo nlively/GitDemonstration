@@ -4,14 +4,48 @@
 
 <% content_for :page_top do %>
 
-    <%= link_to 'Create Invoices', new_dashboard_reports_billing_invoice_path, :class => 'link-button' %>
 
 
-    <%= form_tag root_path, :method => :post do %>
+    <%= form_tag dashboard_reports_billing_invoices_path, :method => :post, :remote => true do %>
 
-        Search by client: <%= select_tag :client_search, '', :class => 'normal' %>
-        &nbsp;
-        Search by invoice status: <%= select_tag :status_search, '', :class => 'normal' %>
+        <div class="filter-field field client">
+          <div class="label">
+            <%= label_tag :client_name, 'Client' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag :client_name, @client_name, :placeholder => 'Search by name...' %>
+          </div>
+        </div>
+
+        <div class="filter-field field invoice-number">
+          <div class="label">
+            <%= label_tag :invoice_number, 'Invoice #' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag :invoice_number, @invoice_number, :placeholder => '', :size => 6 %>
+          </div>
+        </div>
+
+        <div class="filter-field field date">
+          <div class="label">
+            <%= label_tag :invoice_date, 'Date' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag :invoice_date, @invoice_date, :placeholder => '', :size => 12 %>
+          </div>
+        </div>
+
+        <div class="filter-field field status">
+          <div class="label">
+            <%= label_tag :invoice_status, 'Status' %>
+          </div>
+          <div class="field">
+            <%= select_tag :invoice_status, options_from_collection_for_select(invoice_statuses(true), :first, :last, @invoice_status) %>
+          </div>
+        </div>
+
+
+        <%= submit_tag 'Search' %>
 
         <% end %>
 
@@ -24,8 +58,6 @@
 
 <% unless @invoices.blank? or @invoices.empty? %>
 
-
     <%= render 'dashboard/reports/shared/invoices_table', :invoices => @invoices %>
-
 
 <% end %>

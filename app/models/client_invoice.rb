@@ -26,6 +26,9 @@ class ClientInvoice < ActiveRecord::Base
   has_many :client_invoice_line_items
   has_many :visits, :through => :client_invoice_line_items
 
+
+  accepts_nested_attributes_for :client_invoice_line_items
+
   def status_formatted
     invoice_statuses[status.to_sym] unless status.blank?
   end
