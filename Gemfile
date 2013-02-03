@@ -42,6 +42,8 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'delayed_job'
+
 gem 'airbrake'
 
 gem 'pusher'

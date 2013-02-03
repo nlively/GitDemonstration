@@ -84,6 +84,8 @@ GEM
     connection_pool (1.0.0)
     curb (0.8.3)
     daemons (1.1.9)
+    delayed_job (3.0.5)
+      activesupport (~> 3.0)
     devise (2.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -253,6 +255,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails!
   curb
+  delayed_job
   devise
   doorkeeper (~> 0.4.2)
   geokit-rails3
