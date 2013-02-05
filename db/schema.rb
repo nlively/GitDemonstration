@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201232401) do
+ActiveRecord::Schema.define(:version => 20130205003853) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -83,29 +83,6 @@ ActiveRecord::Schema.define(:version => 20130201232401) do
     t.datetime "updated_at",                                                        :null => false
   end
 
-  create_table "billing_batches", :force => true do |t|
-    t.integer  "agency_id"
-    t.datetime "batch_date"
-    t.text     "notes"
-    t.date     "period_start"
-    t.date     "period_end"
-    t.string   "status",       :default => "pending"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-  end
-
-  create_table "billing_line_items", :force => true do |t|
-    t.integer  "billing_batch_id"
-    t.integer  "care_recipient_id"
-    t.integer  "pay_status"
-    t.decimal  "hours",              :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "bill_rate",          :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "adjustments",        :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "original_bill_rate", :precision => 11, :scale => 2, :default => 0.0
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
-  end
-
   create_table "care_recipients", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -156,6 +133,15 @@ ActiveRecord::Schema.define(:version => 20130201232401) do
     t.integer  "visit_id"
   end
 
+  create_table "client_invoice_batches", :force => true do |t|
+    t.integer  "agency_id"
+    t.string   "guid"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "client_invoice_line_items", :force => true do |t|
     t.integer  "care_recipient_id"
     t.integer  "pay_status"
@@ -166,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20130201232401) do
     t.datetime "created_at",                                                         :null => false
     t.datetime "updated_at",                                                         :null => false
     t.integer  "client_invoice_id"
+    t.integer  "visit_id"
   end
 
   create_table "client_invoices", :force => true do |t|
@@ -174,11 +161,12 @@ ActiveRecord::Schema.define(:version => 20130201232401) do
     t.text     "notes"
     t.datetime "due_date"
     t.datetime "invoice_date"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "agency_id"
-    t.string   "status",            :default => "pending"
-    t.boolean  "exported",          :default => false
+    t.string   "status",                  :default => "pending"
+    t.boolean  "exported",                :default => false
+    t.integer  "client_invoice_batch_id"
   end
 
   create_table "locations", :force => true do |t|

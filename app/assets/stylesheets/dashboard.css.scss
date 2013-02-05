@@ -45,6 +45,12 @@ body.dashboard {
           input {
             display: block;
           }
+
+          &.date {
+           input {
+             display: inline-block;
+           }
+          }
         }
 
 

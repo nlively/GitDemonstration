@@ -42,6 +42,8 @@ class Visit < ActiveRecord::Base
   belongs_to :payroll_line_item
   belongs_to :client_invoice_line_item
 
+  has_one :client_invoice_line_item
+
 
   delegate :payroll_batch, :to => :payroll_line_item, :allow_nil => true
   delegate :client_invoice, :to => :client_invoice_line_item, :allow_nil => true

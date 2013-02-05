@@ -20,7 +20,14 @@
 
 <%= render 'dashboard/shared/page_caption', :caption => 'Visits' %>
 
+<%= javascript_include_tag 'prevent_page_leave' %>
+
 <%= form_for @invoice, :url => dashboard_reports_billing_invoice_path, :method => :put, :html => {:class => 'table-form'} do |f| %>
+
+    <%= hidden_field_tag :batch, params[:batch] %>
+
+    <%= link_to 'Cancel', dashboard_reports_billing_pending_invoices_path(params[:batch]), :class => 'link-button' %>
+    <%= submit_tag 'Save Changes' %>
 
     <% unless @invoice.client_invoice_line_items.empty? %>
         <table id="invoice-visits" class="visits-table">
@@ -74,7 +81,5 @@
         </table>
     <% end %>
 
-
-    <%= submit_tag 'Save Changes' %>
 
 <% end %>

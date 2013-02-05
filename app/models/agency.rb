@@ -136,4 +136,41 @@ class Agency < ActiveRecord::Base
   end
 
 
+  def client_invoices_query options
+
+    where = []
+    params = []
+
+    unless options[:client_name].blank?
+      fuzzy = '%' + options[:client_name] + '%'
+      where << 'care_recipients.first_name like ? OR care_recipients.last_name like ?'
+      params << fuzzy
+      params << fuzzy
+    end
+
+    unless options[:invoice_number].blank?
+      where << 'invoice_number = ?'
+      params << options[:invoice_number].to_i
+    end
+
+    unless options[:invoice_date].blank?
+      where << 'invoice_date BETWEEN ? AND ?'
+      params << options[:invoice_date]
+      params << (options[:invoice_date] + 1.day - 1.second)
+    end
+
+    unless options[:invoice_status].blank?
+      where << 'status = ?'
+      params << options[:invoice_status]
+    end
+
+    where_str = 'status != ?'
+    if where.count > 0
+      where_str += sprintf(' AND (%s)', where.join(' OR '))
+    end
+    client_invoices.includes(:care_recipient).where where_str, 'temporary', *params
+
+  end
+
+
 end

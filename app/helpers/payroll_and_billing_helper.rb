@@ -1,6 +1,7 @@
 module PayrollAndBillingHelper
 
 
+
   def weeks_spanned_by_range visits
     #  Date.beginning_of_week = :sunday
     first_week = visits.first.in_time.beginning_of_week :sunday

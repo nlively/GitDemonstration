@@ -2,26 +2,29 @@
 #
 # Table name: client_invoices
 #
-#  id                :integer          not null, primary key
-#  care_recipient_id :integer
-#  invoice_number    :integer
-#  notes             :text
-#  due_date          :datetime
-#  invoice_date      :datetime
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  agency_id         :integer
-#  status            :string(255)      default("pending")
-#  exported          :boolean          default(FALSE)
+#  id                      :integer          not null, primary key
+#  care_recipient_id       :integer
+#  invoice_number          :integer
+#  notes                   :text
+#  due_date                :datetime
+#  invoice_date            :datetime
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  agency_id               :integer
+#  status                  :string(255)      default("pending")
+#  exported                :boolean          default(FALSE)
+#  client_invoice_batch_id :integer
 #
 
 class ClientInvoice < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ApplicationHelper
   include VisitsHelper
+  include InvoiceHelper
 
   belongs_to :agency
   belongs_to :care_recipient
+  belongs_to :client_invoice_batch
 
   has_many :client_invoice_line_items
   has_many :visits, :through => :client_invoice_line_items
@@ -48,6 +51,11 @@ class ClientInvoice < ActiveRecord::Base
     number_to_currency( total_amount, :unit => "$", :precision => 2 )
   end
 
+  def filename
+    fn = sprintf '%s - %s', invoice_number_formatted, care_recipient.full_name_last_first
+    sanitize_filename fn
+  end
+
 
   def total_hours
     hours = 0.0
@@ -71,6 +79,21 @@ class ClientInvoice < ActiveRecord::Base
     self.client_invoice_line_items.each {|d| d.delete}
 
     self.delete
+
+  end
+
+  def export!
+
+    self.client_invoice_line_items.each do |cli|
+      unless cli.visit.blank?
+        cli.visit.client_invoice_line_item_id = cli.id
+        cli.visit.save!
+      end
+    end
+
+    self.status = :pending
+    self.exported = true
+    self.save!
 
   end
 

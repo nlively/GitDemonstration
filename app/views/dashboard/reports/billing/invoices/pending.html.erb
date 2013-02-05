@@ -1,0 +1,56 @@
+<% content_for :title do %>
+    Create Invoices
+<% end %>
+
+
+<% content_for :page_caption do %>
+    Invoices
+<% end %>
+
+<% content_for :sidebar_second do %>
+    <h3>Instructions</h3>
+    <p>
+      Click "View/edit" next to an invoice to make adjustments.
+    </p>
+    <p>
+      When finished, select the invoices you want to export and click "Save and Export".
+    </p>
+<% end %>
+
+<%= javascript_include_tag 'prevent_page_leave' %>
+
+<%= form_for @batch, :url => dashboard_reports_billing_export_invoices_path, :method => :post, :html => {:class => 'table-form'} do |f| %>
+    <%= hidden_field_tag :batch, @batch.guid %>
+
+    <div class="padded-content">
+      <%= f.submit 'Save and Export' %>  <em>Saves and exports the invoices that are selected</em>
+    </div>
+
+    <table class="invoices-table">
+      <thead>
+      <tr>
+        <th><%= check_box_tag 'select_all', '', true, :id => 'select-all' %></th>
+        <th>Client</th>
+        <th>Invoice #</th>
+        <th>Hours</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @batch.client_invoices.each do |invoice| %>
+          <tr class="invoice-row editable" data-id="<%= invoice.id %>">
+            <td><%= check_box_tag 'export[]', invoice.id, true %></td>
+            <td><%= invoice.care_recipient.full_name_last_first %></td>
+            <td><%= invoice.invoice_number_formatted %></td>
+            <td><%= invoice.total_hours_string %></td>
+            <td><%= invoice.total_amount_formatted %></td>
+            <td><%= invoice.status_formatted %></td>
+            <td><%= link_to 'View/edit', dashboard_reports_billing_invoice_path(invoice, :batch => @batch.guid) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>

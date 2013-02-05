@@ -7,19 +7,35 @@ module Dashboard::Reports::Billing
     # GET /dashboard/reports/billing/invoices
     def index
 
-      @client_name = params[:client_name] or ''
-      @invoice_number = params[:invoice_number] or ''
-      @invoice_date = params[:invoice_date] or ''
-      @invoice_status = params[:invoice_status] or ''
+      @client_name = (params[:client_name] or '')
+      @invoice_number = (params[:invoice_number] or '')
+      @invoice_date = (params[:invoice_date] or '')
+      @invoice_status = (params[:invoice_status] or '')
+
+      unless @invoice_date.blank?
+        @invoice_date = Date.strptime(@invoice_date, '%m/%d/%Y')
+      end
 
       @status_options = invoice_statuses
 
-      @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
-      @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
+      #@start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
+      #@stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
 
-      @invoices = @agency.client_invoices.order('invoice_number DESC')
+      options = {
+        :client_name => @client_name,
+        :invoice_number => @invoice_number,
+        :invoice_date => @invoice_date,
+        :invoice_status => @invoice_status
+      }
+
+      @invoices = @agency.client_invoices_query(options).order('invoice_number DESC')
 
 
+    end
+
+    # POST /dashboard/reports/billing/invoices/search
+    def search
+      index
     end
 
     def edit
@@ -39,6 +55,9 @@ module Dashboard::Reports::Billing
 
         @start = Date.strptime(params[:start], '%m/%d/%Y')
         @stop  = Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second
+
+
+        @batch = ClientInvoiceBatch.create! :agency_id => @agency.id, :start_date => @start, :end_date => @stop
 
         @visits = @agency.unbilled_visits_by_date_range @start, @stop
         @visits.sort_by! { |e| e.in_time }
@@ -60,23 +79,23 @@ module Dashboard::Reports::Billing
           @clients[id][:calculations] = calculations
 
 
-          invoice = ClientInvoice.create! :agency_id => @agency.id, :care_recipient_id => id, :invoice_date => Date.today, :due_date => Date.today, :invoice_number => invoice_number
+          invoice = ClientInvoice.create! :status => :temporary, :client_invoice_batch_id => @batch.id, :agency_id => @agency.id, :care_recipient_id => id, :invoice_date => Date.today, :due_date => Date.today, :invoice_number => invoice_number
 
 
-          data[:visits].each do |visit|
+          data[:visits].each do |v|
+            visit = Visit.find v.id
 
             line_item = ClientInvoiceLineItem.create!({
-                                                          :client_invoice => invoice,
-                                                          :care_recipient_id => id,
-                                                          :hours => visit.total_hours,
-                                                          :bill_rate => visit.bill_rate,
-                                                          :original_bill_rate => visit.bill_rate,
-                                                          :adjustments => 0.0
-                                                      })
+              :visit_id => v.id,
+              :client_invoice => invoice,
+              :care_recipient_id => id,
+              :hours => visit.total_hours,
+              :bill_rate => visit.bill_rate,
+              :original_bill_rate => visit.bill_rate,
+              :adjustments => 0.0
+            })
             invoice.client_invoice_line_items << line_item
 
-            visit.client_invoice_line_item_id=line_item.id
-            visit.save!
           end
 
           @invoices << invoice
@@ -84,12 +103,46 @@ module Dashboard::Reports::Billing
 
         end
 
-        redirect_to dashboard_reports_billing_invoices_path
+        redirect_to dashboard_reports_billing_pending_invoices_path(:guid => @batch.guid)
 
       end
 
     end
 
+    # GET /dashboard/reports/billing/invoices/pending/:guid
+    def pending
+      @batch = ClientInvoiceBatch.find_by_guid params[:guid]
+    end
+
+    # POST /dashboard/reports/billing/invoices/export
+    def export
+      @batch = ClientInvoiceBatch.find_by_guid params[:batch]
+
+      #@invoice_ids = @batch.client_invoices.map{|i| i.id}
+
+      @batch.client_invoices.each do |invoice|
+        if params[:export].include? invoice.id.to_s
+          logger.debug "Exporting invoice " + invoice.id.to_s
+          # do the export
+          invoice.export!
+        else
+          logger.debug "Backing out of invoice " + invoice.id.to_s
+          invoice.back_out!
+        end
+      end
+
+    end
+
+
+    # POST /dashboard/reports/billing/invoices/:id/status
+    def status
+      @invoice = ClientInvoice.find params[:id]
+      unless params[:status].blank?
+        @invoice.status = params[:status]
+        @invoice.save!
+
+      end
+    end
 
     # GET /dashboard/reports/billing/invoices/:id
     def show
@@ -101,9 +154,9 @@ module Dashboard::Reports::Billing
       @invoice = ClientInvoice.find params[:id]
 
       if @invoice.update_attributes! params[:client_invoice]
-        redirect_to dashboard_reports_billing_invoice_path(@invoice), notice: 'Invoice was successfully updated.'
+        redirect_to dashboard_reports_billing_pending_invoices_path(:guid => params[:batch]), notice: 'Invoice was successfully updated.'
       else
-        redirect_to dashboard_reports_billing_invoice_path(@invoice)
+        redirect_to dashboard_reports_billing_pending_invoices_path(:guid => params[:batch])
       end
 
 

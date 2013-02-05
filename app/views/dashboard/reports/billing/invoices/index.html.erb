@@ -6,7 +6,19 @@
 
 
 
-    <%= form_tag dashboard_reports_billing_invoices_path, :method => :post, :remote => true do %>
+    <%= form_tag dashboard_reports_billing_invoices_search_path, :method => :post, :remote => true do %>
+
+        <script type="text/javascript">
+            $(function(){
+                var options = {
+                    showOn: "both",
+                    buttonImage: '/assets/calendar-icon.png',
+                    buttonImageOnly: true
+                };
+
+                $('input#invoice_date').datepicker(options);
+            });
+        </script>
 
         <div class="filter-field field client">
           <div class="label">
@@ -31,7 +43,7 @@
             <%= label_tag :invoice_date, 'Date' %>
           </div>
           <div class="field">
-            <%= text_field_tag :invoice_date, @invoice_date, :placeholder => '', :size => 12 %>
+            <%= text_field_tag :invoice_date, @invoice_date, :placeholder => '', :size => 10 %>
           </div>
         </div>
 
@@ -47,7 +59,7 @@
 
         <%= submit_tag 'Search' %>
 
-        <% end %>
+    <% end %>
 
 
 <% end %>
@@ -56,8 +68,10 @@
     Invoices
 <% end %>
 
-<% unless @invoices.blank? or @invoices.empty? %>
+<div class="invoices replaceable">
+  <% unless @invoices.blank? or @invoices.empty? %>
 
-    <%= render 'dashboard/reports/shared/invoices_table', :invoices => @invoices %>
+      <%= render 'dashboard/reports/shared/invoices_table', :invoices => @invoices %>
 
-<% end %>
+  <% end %>
+</div>

@@ -1,12 +1,9 @@
 <% unless invoices.empty? %>
 
-    <%= javascript_include_tag 'dashboard/reports/invoices_table' %>
-
-
-    <table class="invoices-table editable">
+    <table class="invoices-table">
       <thead>
       <tr>
-        <th><%= check_box_tag 'select_all', '', :id => 'select-all' %></th>
+        <th>Date</th>
         <th>Client</th>
         <th>Invoice #</th>
         <th>Hours</th>
@@ -17,14 +14,14 @@
       </thead>
       <tbody>
       <% invoices.each do |invoice| %>
-          <tr class="invoice-row editable" data-id="<%= invoice.id %>">
-            <td><%= check_box_tag 'export[]', invoice.id %></td>
+          <tr class="invoice-row" data-id="<%= invoice.id %>">
+            <td><%= invoice.invoice_date.to_formatted_s :mdy %></td>
             <td><%= invoice.care_recipient.full_name_last_first %></td>
             <td><%= invoice.invoice_number_formatted %></td>
             <td><%= invoice.total_hours_string %></td>
             <td><%= invoice.total_amount_formatted %></td>
-            <td><%= invoice.status_formatted %></td>
-            <td><%= link_to 'View/edit', dashboard_reports_billing_invoice_path(invoice) %>  | <%=  link_to 'Export', root_path %></td>
+            <td><%= select_tag :status, options_from_collection_for_select(invoice_statuses, :first, :last, invoice.status), 'data-id' => invoice.id %></td>
+            <td><%=  link_to 'Re-export', dashboard_reports_billing_export_invoice_path(invoice) %></td>
           </tr>
       <% end %>
       </tbody>

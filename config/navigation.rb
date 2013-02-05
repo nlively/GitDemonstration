@@ -98,7 +98,7 @@ SimpleNavigation::Configuration.run do |navigation|
       end
       sub_nav.item :reports, 'Billing and Payroll', dashboard_reports_path, :highlights_on => :subpath do |report|
         report.item :billing, 'Billing', dashboard_reports_billing_path, :highlights_on => :subpath do |billing|
-          billing.item :create_invoices, 'Create Invoices', new_dashboard_reports_billing_invoice_path, :highlights_on => :subpath
+          billing.item :create_invoices, 'Create Invoices', new_dashboard_reports_billing_invoice_path, :highlights_on => %r(/invoices/(new|pending))
           billing.item :search, 'Search Invoices', dashboard_reports_billing_invoices_path, :highlights_on => %r(/invoices$)
         end
         report.item :payroll, 'Payroll', dashboard_reports_payroll_path, :highlights_on => :subpath do |payroll|

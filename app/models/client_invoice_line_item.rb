@@ -12,6 +12,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  client_invoice_id  :integer
+#  visit_id           :integer
 #
 
 class ClientInvoiceLineItem < ActiveRecord::Base
@@ -21,7 +22,8 @@ class ClientInvoiceLineItem < ActiveRecord::Base
 
   belongs_to :client_invoice
   belongs_to :care_recipient
-  has_one :visit
+  belongs_to :visit
+  has_many :visits
 
   before_save :fill_defaults
 

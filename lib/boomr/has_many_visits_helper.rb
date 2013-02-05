@@ -21,7 +21,7 @@ module Boomr::HasManyVisitsHelper
   end
 
   def unbilled_visits_by_date_range start, stop
-    approved_visits.where 'client_invoice_line_item_id IS NULL AND billable = ? AND in_time BETWEEN ? AND ?', true, start, stop
+    unbilled_visits.where 'client_invoice_line_item_id IS NULL AND billable = ? AND in_time BETWEEN ? AND ?', true, start, stop
   end
 
   def unbilled_visits_by_week week_of
