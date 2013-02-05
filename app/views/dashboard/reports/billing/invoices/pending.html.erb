@@ -34,7 +34,6 @@
         <th>Invoice #</th>
         <th>Hours</th>
         <th>Total</th>
-        <th>Status</th>
         <th>Action</th>
       </tr>
       </thead>
@@ -46,7 +45,6 @@
             <td><%= invoice.invoice_number_formatted %></td>
             <td><%= invoice.total_hours_string %></td>
             <td><%= invoice.total_amount_formatted %></td>
-            <td><%= invoice.status_formatted %></td>
             <td><%= link_to 'View/edit', dashboard_reports_billing_invoice_path(invoice, :batch => @batch.guid) %></td>
           </tr>
       <% end %>

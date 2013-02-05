@@ -27,6 +27,14 @@ tr.visit-row {
       }
     }
 
+    &.adjustments {
+      width: 60px;
+
+      input[type="text"] {
+        width: 40px;
+      }
+    }
+
     &.in-time, &.out-time {
       width: 65px;
     }

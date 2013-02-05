@@ -52,7 +52,7 @@ class ClientInvoice < ActiveRecord::Base
   end
 
   def filename
-    fn = sprintf '%s - %s', invoice_number_formatted, care_recipient.full_name_last_first
+    fn = sprintf '%s %s', invoice_number_formatted, care_recipient.full_name_last_first
     sanitize_filename fn
   end
 
@@ -82,18 +82,40 @@ class ClientInvoice < ActiveRecord::Base
 
   end
 
-  def export!
+  def export! path=nil
+
+    csv_data = []
+
+    csv_data << ['Visit Date', 'Caregiver', 'Hours', 'Bill Rate', 'Adjustments', 'Total']
 
     self.client_invoice_line_items.each do |cli|
       unless cli.visit.blank?
         cli.visit.client_invoice_line_item_id = cli.id
+        cli.visit.bill_rate = cli.bill_rate
         cli.visit.save!
+
+        csv_data << [ cli.visit.in_time.to_formatted_s(:mdy), cli.visit.user.full_name_last_first, cli.duration_string, cli.bill_rate_formatted, cli.adjustments_formatted, cli.total_formatted ]
+
       end
     end
+
 
     self.status = :pending
     self.exported = true
     self.save!
+
+    if path.blank?
+      path = './' + self.filename + '.csv'
+    end
+
+    CSV.open(path, 'w') do |csv|
+      csv_data.each do |line|
+        csv << line
+      end
+    end # FasterCSV
+
+
+    path
 
   end
 

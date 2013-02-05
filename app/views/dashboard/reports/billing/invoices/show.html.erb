@@ -36,6 +36,7 @@
             <th>Date</th>
             <th>Employee</th>
             <th>Bill Rate</th>
+            <th>Adjustments</th>
             <th>Duration</th>
             <th>Location</th>
             <th>Total</th>
@@ -55,6 +56,9 @@
                     <td class="billrate">
                       $ <%= li.text_field :bill_rate %>
                     </td>
+                    <td class="adjustments">
+                      $ <%= li.text_field :adjustments %>
+                    </td>
                     <td class="duration">
                       <%= line_item.duration_string %>
                     </td>
@@ -70,7 +74,7 @@
           </tbody>
           <tfoot>
           <tr>
-            <th colspan="5">
+            <th colspan="6">
               Invoice Total:
             </th>
             <th class="total">

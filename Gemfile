@@ -13,6 +13,7 @@ gem 'oauth2'
 gem 'acl9'
 
 gem 'uuid'
+gem 'rubyzip'
 
 gem 'rails_admin'
 gem 'annotate'

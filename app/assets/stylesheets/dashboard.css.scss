@@ -3,6 +3,63 @@
 
 body.dashboard {
 
+  &.invoices.index, &.invoices.search {
+
+    .title-wrapper {
+
+      #page-top {
+        form {
+
+          div.filter-fields {
+
+            width: 100%;
+            clear: both;
+            padding: 10px 0;
+
+            .label {
+              font-weight: bold;
+            }
+          }
+
+          div.field {
+            display: none;
+            margin-right: 10px;
+
+            .field {
+              display: inline-block;
+            }
+
+            &.selector {
+              display: block;
+              width: 100%;
+              overflow: auto;
+
+              .label {
+                font-weight: bold;
+                padding-top: 4px;
+              }
+
+              .label, .field {
+                display: block;
+                float: left;
+                margin-right: 10px;
+              }
+            }
+
+          }
+
+          input[type="submit"] {
+            margin-top: 10px;
+            vertical-align: middle;
+          }
+
+        }
+      }
+    }
+
+
+  }
+
   #breadcrumb {
     margin-left: 20px;
   }
@@ -38,6 +95,8 @@ body.dashboard {
           vertical-align: middle;
           margin-right: auto;
 
+
+
           &.search-field {
 
           }
@@ -47,9 +106,9 @@ body.dashboard {
           }
 
           &.date {
-           input {
-             display: inline-block;
-           }
+            input {
+              display: inline-block;
+            }
           }
         }
 
@@ -122,6 +181,22 @@ body.dashboard {
     #calendar {
       margin: 0 auto;
       position: relative;
+
+
+
+      .ui-datepicker {
+        border: none !important;
+        width: auto;
+        padding: 0;
+      }
+
+      .ui-widget-header {
+        background: none;
+        border: none;
+        color: #000;
+      }
+
+
 
       .ui-datepicker-header {
         height: 40px;
@@ -229,7 +304,7 @@ body.dashboard {
     }
     tfoot {
       th, td {
-       text-align: right;
+        text-align: right;
       }
     }
   }
@@ -241,3 +316,4 @@ body.dashboard {
   }
 
 }
+

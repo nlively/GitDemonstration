@@ -47,6 +47,9 @@ module Dashboard
       end
 
       @visits_by_week.each do |visit|
+        if @days[day].blank?
+          @days[day] = 0
+        end
         day = visit.in_time.beginning_of_day.to_date
         @days[day] += 1
       end

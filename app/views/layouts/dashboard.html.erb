@@ -25,6 +25,9 @@
 
   <title>Boomr Web Portal</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <% if controller_name != 'visits' or action_name != 'this_month' %>
+      <%= stylesheet_link_tag    "ui", :media => "all" %>
+  <% end %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "dashboard" %>
   <%= javascript_include_tag "modernizr-2.6.2.min" %>

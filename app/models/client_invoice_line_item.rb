@@ -26,6 +26,14 @@ class ClientInvoiceLineItem < ActiveRecord::Base
   has_many :visits
 
   before_save :fill_defaults
+  before_save :update_visit
+
+  def update_visit
+    if not self.visit.blank? and self.visit.client_invoice_line_item_id == self.id
+      self.visit.bill_rate = self.bill_rate
+      self.visit.save!
+    end
+  end
 
   def fill_defaults
     self.original_bill_rate = bill_rate if original_bill_rate.blank?

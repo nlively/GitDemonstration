@@ -12,6 +12,13 @@ module Dashboard::Reports::Billing
       @invoice_date = (params[:invoice_date] or '')
       @invoice_status = (params[:invoice_status] or '')
 
+      @filter_options = {
+        :client_name => 'Client name',
+        :invoice_number => 'Invoice number',
+        :invoice_date => 'Invoice date',
+        :invoice_status => 'Invoice status'
+      }
+
       unless @invoice_date.blank?
         @invoice_date = Date.strptime(@invoice_date, '%m/%d/%Y')
       end
@@ -116,20 +123,56 @@ module Dashboard::Reports::Billing
 
     # POST /dashboard/reports/billing/invoices/export
     def export
+      require 'rubygems'
+      require 'zip/zip'
+
       @batch = ClientInvoiceBatch.find_by_guid params[:batch]
 
       #@invoice_ids = @batch.client_invoices.map{|i| i.id}
+
+      dirname = temp_dir
+
+      @paths = []
 
       @batch.client_invoices.each do |invoice|
         if params[:export].include? invoice.id.to_s
           logger.debug "Exporting invoice " + invoice.id.to_s
           # do the export
-          invoice.export!
+          path = dirname + '/' + invoice.filename + '.csv'
+          @paths << {:full_path => invoice.export!(path), :file_name => invoice.filename + '.csv' }
         else
           logger.debug "Backing out of invoice " + invoice.id.to_s
           invoice.back_out!
         end
       end
+
+      zip_file_name = "invoices.zip"
+      t = Tempfile.new("#{dirname}/#{@batch.guid}.zip")
+      Zip::ZipOutputStream.open(t.path) do |z|
+        @paths.each do |path|
+          z.put_next_entry(path[:file_name])
+          z.print IO.read(path[:full_path])
+        end
+      end
+      send_file t.path, :type => 'application/zip',
+        :disposition => 'attachment',
+        :filename => zip_file_name
+      t.close
+
+
+
+    end
+
+    # GET /dashboard/reports/billing/invoices/export/:id
+    def export_individual
+      @invoice = ClientInvoice.find params[:id]
+
+      path = temp_dir + '/' + @invoice.filename + '.csv'
+      @invoice.export!(path)
+
+      send_file path, :type => 'text/csv',
+              :disposition => 'attachment',
+              :filename => @invoice.filename + '.csv'
 
     end
 
