@@ -84,6 +84,7 @@ OauthServer::Application.routes.draw do
         post 'invoices/search' => 'invoices#index'
         get 'invoices/pending/:guid' => 'invoices#pending', :as => :pending_invoices
         post 'invoices/export' => 'invoices#export', :as => :export_invoices
+        get 'invoices/export/batch/:guid' => 'invoices#export_batch', :as => :export_batch
         get 'invoices/export/:id' => 'invoices#export_individual', :as => :export_invoice
         post 'invoices/:id/status' => 'invoices#status', :as => :invoice_status
 

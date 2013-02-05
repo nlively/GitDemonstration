@@ -123,45 +123,48 @@ module Dashboard::Reports::Billing
 
     # POST /dashboard/reports/billing/invoices/export
     def export
-      require 'rubygems'
-      require 'zip/zip'
-
-      @batch = ClientInvoiceBatch.find_by_guid params[:batch]
-
-      #@invoice_ids = @batch.client_invoices.map{|i| i.id}
-
-      dirname = temp_dir
-
-      @paths = []
-
-      @batch.client_invoices.each do |invoice|
-        if params[:export].include? invoice.id.to_s
-          logger.debug "Exporting invoice " + invoice.id.to_s
-          # do the export
-          path = dirname + '/' + invoice.filename + '.csv'
-          @paths << {:full_path => invoice.export!(path), :file_name => invoice.filename + '.csv' }
-        else
-          logger.debug "Backing out of invoice " + invoice.id.to_s
-          invoice.back_out!
-        end
-      end
-
-      zip_file_name = "invoices.zip"
-      t = Tempfile.new("#{dirname}/#{@batch.guid}.zip")
-      Zip::ZipOutputStream.open(t.path) do |z|
-        @paths.each do |path|
-          z.put_next_entry(path[:file_name])
-          z.print IO.read(path[:full_path])
-        end
-      end
-      send_file t.path, :type => 'application/zip',
-        :disposition => 'attachment',
-        :filename => zip_file_name
-      t.close
-
-
-
+      @guid = params[:batch]
+      @count = params[:export].count
+      session[:export_ids] = params[:export]
     end
+
+    # GET /dashboard/reports/billing/invoices/export/batch/:guid
+    def export_batch
+          require 'rubygems'
+          require 'zip/zip'
+
+          @batch = ClientInvoiceBatch.find_by_guid params[:guid]
+
+          dirname = temp_dir
+
+          @paths = []
+
+          @batch.client_invoices.each do |invoice|
+            if session[:export_ids].include? invoice.id.to_s
+              logger.debug "Exporting invoice " + invoice.id.to_s
+              # do the export
+              path = dirname + '/' + invoice.filename + '.csv'
+              @paths << {:full_path => invoice.export!(path), :file_name => invoice.filename + '.csv' }
+            else
+              logger.debug "Backing out of invoice " + invoice.id.to_s
+              invoice.back_out!
+            end
+          end
+
+          zip_file_name = "invoices.zip"
+          t = Tempfile.new("#{dirname}/#{@batch.guid}.zip")
+          Zip::ZipOutputStream.open(t.path) do |z|
+            @paths.each do |path|
+              z.put_next_entry(path[:file_name])
+              z.print IO.read(path[:full_path])
+            end
+          end
+          send_file t.path, :type => 'application/zip',
+            :disposition => 'attachment',
+            :filename => zip_file_name
+          t.close
+
+        end
 
     # GET /dashboard/reports/billing/invoices/export/:id
     def export_individual

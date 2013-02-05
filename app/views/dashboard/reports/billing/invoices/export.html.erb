@@ -1,3 +1,22 @@
-<pre>
-<%= @paths.to_yaml %>
-</pre>
+<% content_for :title do %>
+    Save and Export Invoices
+<% end %>
+
+<% content_for :page_caption do %>
+    Export complete
+<% end %>
+
+<script type="text/javascript">
+
+    setTimeout(function(){
+        window.location.href = "<%= dashboard_reports_billing_export_batch_path(@guid) %>";
+    }, 3000);
+
+</script>
+
+<div class="padded-content">
+  <p>
+    You have exported <%= pluralize(@count, 'invoice', 'invoices') %>.  Your export file should automatically download
+    within a few seconds.  If it does not, please <%= link_to 'click here', dashboard_reports_billing_export_batch_path(@guid) %>.
+  </p>
+</div>

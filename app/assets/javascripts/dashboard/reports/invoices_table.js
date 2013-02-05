@@ -24,6 +24,7 @@ $(document).ready(function(){
     $.post('/dashboard/reports/billing/invoices/' + id + '/status.js', {status: $(this).val()});
   };
 
-  $('table.invoices-table td select').change(select_Change);
+
+  $('body').on('click', 'table.invoices-table td select', select_Change);
 
 });

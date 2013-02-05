@@ -8,6 +8,7 @@ module ApplicationHelper
 
     hash[:pending] = 'Pending'
     hash[:processed] = 'Processed'
+    hash[:voided] = 'Voided'
 
     hash
   end
