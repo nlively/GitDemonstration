@@ -135,7 +135,7 @@ module Dashboard::Reports::Billing
 
           @batch = ClientInvoiceBatch.find_by_guid params[:guid]
 
-          dirname = temp_dir
+          dirname = "#{Rails.root}/tmp" #temp_dir
 
           @paths = []
 
@@ -170,7 +170,9 @@ module Dashboard::Reports::Billing
     def export_individual
       @invoice = ClientInvoice.find params[:id]
 
-      path = temp_dir + '/' + @invoice.filename + '.csv'
+      dirname = "#{Rails.root}/tmp" #temp_dir
+
+      path = dirname + '/' + @invoice.filename + '.csv'
       @invoice.export!(path)
 
       send_file path, :type => 'text/csv',
