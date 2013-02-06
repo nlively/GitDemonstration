@@ -13,13 +13,15 @@ module ApplicationHelper
     hash
   end
 
-  def batch_statuses
-    {
-      'Pending' => :pending,
-      :pending => 'Pending',
-      :complete => 'Complete',
-      :back_out => 'Back out'
-    }
+  def batch_statuses(include_blank=false)
+    hash = {}
+    hash[''] = 'Select one...' if include_blank
+
+    hash[:pending] = 'Pending'
+    hash[:complete] = 'Complete'
+    hash[:back_out] = 'Back out'
+
+    hash
   end
 
   def temp_dir options = {:remove => true}

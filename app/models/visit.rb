@@ -22,6 +22,7 @@
 #  billable_duration_minutes   :integer          default(0)
 #  guid                        :string(255)
 #  client_invoice_line_item_id :integer
+#  adjustments                 :decimal(11, 2)   default(0.0)
 #
 
 class Visit < ActiveRecord::Base
@@ -156,6 +157,19 @@ class Visit < ActiveRecord::Base
 
   def total_hours
     billable_duration_minutes.to_f / 60.0
+  end
+
+  def adjustments_formatted
+    number_to_currency( adjustments, :unit => "$", :precision => 2 )
+  end
+
+  def money_made
+    adjustments = self.adjustments or 0.0
+    (pay_rate.blank? or total_hours.blank?) ? 0.0 : ((pay_rate * total_hours) + adjustments).round(2)
+  end
+
+  def money_made_formatted
+    number_to_currency( money_made, :unit => "$", :precision => 2 )
   end
 
   def duration
@@ -299,7 +313,7 @@ class Visit < ActiveRecord::Base
     if completed?
       hash[:timespan_fmt] = start_to_stop
       hash[:duration_fmt] = duration_string
-      hash[:money_made] = (pay_rate.blank? or total_hours.blank?) ? 0.0 : (pay_rate * total_hours).round(2)
+      hash[:money_made] = money_made.round(2) unless money_made.nil?
     end
 
     unless location.nil?

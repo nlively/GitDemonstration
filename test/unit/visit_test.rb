@@ -22,6 +22,7 @@
 #  billable_duration_minutes   :integer          default(0)
 #  guid                        :string(255)
 #  client_invoice_line_item_id :integer
+#  adjustments                 :decimal(11, 2)   default(0.0)
 #
 
 require 'test_helper'

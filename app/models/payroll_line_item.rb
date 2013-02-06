@@ -11,20 +11,27 @@
 #  regular_hours_worked  :decimal(11, 2)   default(0.0)
 #  overtime_hours_worked :decimal(11, 2)   default(0.0)
 #  overtime_rate         :decimal(11, 2)   default(0.0)
-#  adjustments           :decimal(11, 2)   default(0.0)
 #  pay_rate              :decimal(11, 2)   default(0.0)
 #  original_pay_rate     :decimal(11, 2)   default(0.0)
 #
 
 class PayrollLineItem < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
+  include InvoiceHelper
 
   belongs_to :payroll_batch
   belongs_to :user
   has_many :visits
 
+  accepts_nested_attributes_for :visits
 
   before_save :fill_defaults
+
+
+  def filename
+    fn = sprintf '%s detail %s', payroll_batch.batch_number, user.full_name_last_first
+    sanitize_filename fn
+  end
 
   def fill_defaults
     self.original_pay_rate = pay_rate if original_pay_rate.blank?
@@ -36,6 +43,17 @@ class PayrollLineItem < ActiveRecord::Base
 
   def pay_rate_formatted
     number_to_currency( pay_rate, :unit => "$", :precision => 2 )
+  end
+
+  def total_hours
+    regular_hours_worked + overtime_hours_worked
+  end
+
+  def adjustments
+    a = 0.0
+    visits.each {|v|a += v.adjustments }
+
+    a
   end
 
   def total
@@ -59,6 +77,30 @@ class PayrollLineItem < ActiveRecord::Base
     })
 
     return line_item
+  end
+
+
+  def export! path=nil
+
+    visits_data = []
+    visits_data << ['Visit Date', 'Client', 'Hours', 'Pay Rate', 'Adjustments', 'Total']
+
+    self.visits.each do |v|
+      visits_data << [ v.in_time.to_formatted_s(:mdy), v.care_recipient.full_name_last_first, v.duration_string, v.pay_rate_formatted, v.adjustments_formatted, v.money_made_formatted ]
+    end
+
+    if path.blank?
+      path = './' + self.filename + '.csv'
+    end
+
+    CSV.open(path, 'w') do |csv|
+      visits_data.each do |line|
+        csv << line
+      end
+    end # FasterCSV
+
+    path
+
   end
 
 end

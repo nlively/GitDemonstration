@@ -102,8 +102,8 @@ SimpleNavigation::Configuration.run do |navigation|
           billing.item :search, 'Search Invoices', dashboard_reports_billing_invoices_path, :highlights_on => %r(/invoices$)
         end
         report.item :payroll, 'Payroll', dashboard_reports_payroll_path, :highlights_on => :subpath do |payroll|
-          #payroll.item :unbatched, 'Unbatched Visits', dashboard_reports_payroll_unbatched_path, :highlights_on => :subpath
-          payroll.item :invoices, 'Payroll Batches', dashboard_reports_payroll_batches_path, :highlights_on => :subpath
+          payroll.item :create_batch, 'Create Payroll Batch', new_dashboard_reports_payroll_batch_path, :highlights_on => %r(/batches/(new|pending))
+          payroll.item :search, 'Search Batches', dashboard_reports_payroll_batches_path, :highlights_on => %r(/batches(\/search)?$)
         end
       end
       sub_nav.item :settings, 'Settings', dashboard_settings_path, :highlights_on => :subpath do |settings|

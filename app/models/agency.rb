@@ -173,4 +173,64 @@ class Agency < ActiveRecord::Base
   end
 
 
+
+  def payroll_batches_query options
+
+    query = 'SELECT pb.id FROM payroll_batches pb '
+
+    joins = []
+    where = []
+    params = []
+
+    pli_join = 'JOIN payroll_line_items pli ON pli.payroll_batch_id = pb.id'
+
+    unless options[:employee_name].blank?
+      fuzzy = '%' + options[:employee_name] + '%'
+      where << 'u.first_name like ? OR u.last_name like ?'
+      params << fuzzy
+      params << fuzzy
+      joins << pli_join
+      joins << 'JOIN users u ON u.id = pli.user_id'
+
+    end
+
+    unless options[:batch_number].blank?
+      where << 'pb.id = ?'
+      params << options[:batch_number].to_i
+    end
+
+    unless options[:batch_date].blank?
+      where << 'pli. BETWEEN ? AND ?'
+      params << options[:batch_date]
+      params << (options[:batch_date] + 1.day - 1.second)
+      unless joins.include? pli_join
+        joins << pli_join
+      end
+    end
+
+    unless options[:batch_status].blank?
+      where << 'pb.status = ?'
+      params << options[:batch_status]
+    end
+
+    where_str = 'pb.status != ?'
+    if where.count > 0
+      where_str += sprintf(' AND (%s)', where.join(' OR '))
+    end
+
+    query_sql = query + joins.join(' ') + ' WHERE ' + where_str + ' ORDER BY id DESC'
+
+    ids = ActiveRecord::Base.connection.select_all(
+      ActiveRecord::Base.send("sanitize_sql_array", [query_sql, 'temporary', *params] )
+    )
+
+
+    #ids = payroll_batches.includes(:user).where(where_str, 'temporary', *params).select('payroll_batches.id')
+    #payroll_batches.includes(:user).where(where_str, 'temporary', *params)
+
+    PayrollBatch.where(:id => ids.map{|i| i['id']})
+
+  end
+
+
 end

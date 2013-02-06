@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205003853) do
+ActiveRecord::Schema.define(:version => 20130206004913) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(:version => 20130205003853) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.string   "status",       :default => "pending"
+    t.boolean  "exported",     :default => false
   end
 
   create_table "payroll_line_items", :force => true do |t|
@@ -268,7 +269,6 @@ ActiveRecord::Schema.define(:version => 20130205003853) do
     t.decimal  "regular_hours_worked",  :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "overtime_hours_worked", :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "overtime_rate",         :precision => 11, :scale => 2, :default => 0.0
-    t.decimal  "adjustments",           :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "pay_rate",              :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "original_pay_rate",     :precision => 11, :scale => 2, :default => 0.0
   end
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(:version => 20130205003853) do
     t.integer  "billable_duration_minutes",                                  :default => 0
     t.string   "guid"
     t.integer  "client_invoice_line_item_id"
+    t.decimal  "adjustments",                 :precision => 11, :scale => 2, :default => 0.0
   end
 
   create_table "visits_caregiver_tasks", :force => true do |t|

@@ -11,6 +11,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  status       :string(255)      default("pending")
+#  exported     :boolean          default(FALSE)
 #
 
 require 'test_helper'

@@ -11,7 +11,6 @@
 #  regular_hours_worked  :decimal(11, 2)   default(0.0)
 #  overtime_hours_worked :decimal(11, 2)   default(0.0)
 #  overtime_rate         :decimal(11, 2)   default(0.0)
-#  adjustments           :decimal(11, 2)   default(0.0)
 #  pay_rate              :decimal(11, 2)   default(0.0)
 #  original_pay_rate     :decimal(11, 2)   default(0.0)
 #

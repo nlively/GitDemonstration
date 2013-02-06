@@ -1,0 +1,73 @@
+<% content_for :title do %>
+    Payroll Batch <%= @line_item.payroll_batch.batch_number %> - <%= @line_item.user.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Visits
+<% end %>
+
+
+
+<%= form_for @line_item, :url => dashboard_reports_payroll_batch_line_item_path(@line_item.payroll_batch, @line_item), :method => :put, :html => {:class => 'table-form'} do |f| %>
+
+
+    <%= link_to 'Cancel', dashboard_reports_payroll_batch_path(@line_item.payroll_batch), :class => 'link-button' %>
+    <%= submit_tag 'Save Changes' %>
+
+    <% unless @line_item.visits.empty? %>
+        <table id="invoice-visits" class="visits-table">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th>Client</th>
+            <th>Pay Rate</th>
+            <th>Adjustments</th>
+            <th>Duration</th>
+            <th>Location</th>
+            <th>Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @line_item.visits.each do |visit| %>
+              <%= f.fields_for :visits, visit do |v| %>
+                  <tr class="visit-row editable" date-remote="true" data-id="<%= visit.id %>">
+                    <td class="date">
+                      <%= visit.date_only_formatted %>
+                    </td>
+                    <td class="client" rel="<%= visit.care_recipient_id %>">
+                      <%= visit.client_label %>
+                    </td>
+                    <td class="payrate">
+                      $ <%= v.text_field :pay_rate %>
+                    </td>
+                    <td class="adjustments">
+                      $ <%= v.text_field :adjustments %>
+                    </td>
+                    <td class="duration">
+                      <%= visit.duration_string %>
+                    </td>
+                    <td class="location">
+                      <%= visit.location_label %>
+                    </td>
+                    <td class="total">
+                      <%= visit.money_made_formatted %>
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th colspan="6">
+              Total:
+            </th>
+            <th class="total">
+              <%= @line_item.total_formatted %>
+            </th>
+          </tr>
+          </tfoot>
+        </table>
+    <% end %>
+
+
+<% end %>

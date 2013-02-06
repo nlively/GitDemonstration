@@ -1,0 +1,30 @@
+<%= javascript_include_tag 'dashboard/reports/new_batch' %>
+<%= form_tag dashboard_reports_payroll_batches_path, :method => :post, :id => 'payroll-batch-form', :class=>'new-batch-form' do %>
+
+    <div class="form-field">
+      <div class="label">
+        <%= label_tag :start, 'Start Date' %>
+      </div>
+      <div class="field">
+        <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        <%= label_tag :start, 'End Date' %>
+      </div>
+      <div class="field">
+        <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label">
+        &nbsp;
+      </div>
+      <div class="field">
+        <%= submit_tag 'Create Batch' %>
+      </div>
+    </div>
+<% end %>

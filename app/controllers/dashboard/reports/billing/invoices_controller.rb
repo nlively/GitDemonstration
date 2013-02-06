@@ -25,9 +25,6 @@ module Dashboard::Reports::Billing
 
       @status_options = invoice_statuses
 
-      #@start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
-      #@stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
-
       options = {
         :client_name => @client_name,
         :invoice_number => @invoice_number,

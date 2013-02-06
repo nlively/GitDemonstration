@@ -1,0 +1,22 @@
+<% content_for :title do %>
+    Save and Export Payroll Batch
+<% end %>
+
+<% content_for :page_caption do %>
+    Export complete
+<% end %>
+
+<script type="text/javascript">
+
+    setTimeout(function(){
+        window.location.href = "<%= dashboard_reports_payroll_export_batch_download_path(@batch) %>";
+    }, 3000);
+
+</script>
+
+<div class="padded-content">
+  <p>
+    You have exported 1 payroll batch and <%= pluralize(@batch.payroll_line_items.count, 'payroll report', 'payroll reports') %>.  Your export file should automatically download
+    within a few seconds.  If it does not, please <%= link_to 'click here', dashboard_reports_payroll_export_batch_download_path(@batch) %>.
+  </p>
+</div>

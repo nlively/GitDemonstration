@@ -14,16 +14,14 @@
 
   <% batches.each do |batch| %>
       <tr class="batch-summary" rel="<%= batch.id %>">
-        <td><%= link_to batch.batch_number, dashboard_reports_payroll_batch_path(batch) %></td>
+        <td><%= batch.batch_number %></td>
         <td><%= batch.batch_date.to_formatted_s :mdy %></td>
         <td><%= batch.period_start.to_formatted_s :mdy %></td>
         <td><%= batch.period_end.to_formatted_s :mdy %></td>
         <td><%= batch.status_formatted %></td>
-        <td><%= link_to 'View', dashboard_reports_payroll_batch_path(batch), :remote => true %></td>
+        <td><%= link_to 'View', dashboard_reports_payroll_batch_path(batch) %></td>
       </tr>
-      <tr class="batch-details" rel="<%= batch.id %>">
-        <td colspan="5" class="replace"></td>
-      </tr>
+
   <% end %>
 
   </tbody>
