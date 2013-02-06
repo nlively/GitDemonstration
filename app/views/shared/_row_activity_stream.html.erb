@@ -8,7 +8,7 @@
 <div class="activity-stream-item <%= classes.join ' ' %>" data-id="<%= item.id %>">
   <div class="icon">
 
-    <%= render 'shared/activity_stream_icon', :item => item %>
+    <%= render 'shared/activity_stream_icon.html', :item => item %>
   </div>
   <h3>
     <% case item.stream_type.to_sym %>
