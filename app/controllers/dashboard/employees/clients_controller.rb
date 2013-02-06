@@ -7,7 +7,7 @@ module Dashboard::Employees
 
     # GET /dashboard/employees/:id/clients/select
     def select_client
-      @clients = @agency.clients
+      @clients = @agency.care_recipients
     end
 
     # POST /dashboard/employees/:id/clients/select
