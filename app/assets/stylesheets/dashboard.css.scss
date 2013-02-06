@@ -3,7 +3,7 @@
 
 body.dashboard {
 
-  &.invoices.index, &.invoices.search {
+  &.invoices.index, &.invoices.search, &.batches.index, &.batches.search {
 
     .title-wrapper {
 
