@@ -1,1 +1,18 @@
-<h1><%= @employee.full_name %></h1>
+<% content_for :sidebar_second do %>
+    <h3>View employee info from this page.</h3>
+
+    <p>Click one of the links to drill down into specific employee data.</p>
+<% end %>
+
+<% content_for :title do %>
+    <%= @employee.full_name %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Links
+<% end %>
+
+
+<div id="employees-wrapper" class="fill-page">
+  <%= render 'dashboard/shared/employees_table' %>
+</div>

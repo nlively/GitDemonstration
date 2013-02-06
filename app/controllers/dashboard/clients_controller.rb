@@ -24,8 +24,10 @@ module Dashboard
     end
 
     def show
-      #@care_recipient = CareRecipient.find params[:id]
-      redirect_to dashboard_clients_profile_path(params[:id])
+      @care_recipient = CareRecipient.find params[:id]
+      @care_recipients = [@care_recipient]
+
+      #redirect_to dashboard_clients_profile_path(params[:id])
     end
 
     def update

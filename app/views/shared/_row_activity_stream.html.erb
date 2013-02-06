@@ -13,13 +13,15 @@
   <h3>
     <% case item.stream_type.to_sym %>
     <% when :check_in %>
-        <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> checked in with <%= link_to item.care_recipient.full_name, dashboard_clients_profile_path(item.care_recipient) %>
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> checked in with <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>.
+        <%= link_to 'View visit data', dashboard_visit_path(item.visit) %>
     <% when :check_out %>
-        <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> checked out with <%= link_to item.care_recipient.full_name, dashboard_clients_profile_path(item.care_recipient) %>
-    <% when :note %>
-          <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> added a note
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> checked out with <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>.
+        <%= link_to 'View visit data', dashboard_visit_path(item.visit) %>
+    <% when :data %>
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'data', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>
     <% when :photo %>
-              <%= link_to item.user.full_name, dashboard_employees_profile_path(item.user) %> added a photo
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'photo', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>
     <% else %>
         n/a
     <% end %>

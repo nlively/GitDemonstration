@@ -19,6 +19,9 @@ module Api::V1
 
         @visit.save!
 
+        activity = ActivityStream.create_from_data! @visit
+        send_activity_stream_to_node_server activity
+
         render json: true
       end
     end
@@ -38,6 +41,9 @@ module Api::V1
 
         @visit.save!
 
+        activity = ActivityStream.create_from_data! @visit
+        send_activity_stream_to_node_server activity
+
         render json: true
       end
     end
@@ -56,6 +62,9 @@ module Api::V1
         end
 
         @visit.save!
+
+        activity = ActivityStream.create_from_data! @visit
+        send_activity_stream_to_node_server activity
 
         render json: true
       end

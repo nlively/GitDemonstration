@@ -19,40 +19,58 @@ class ActivityStream < ActiveRecord::Base
   belongs_to :agency
 
 
+  def visit
+    visit_id = nil
+
+    case stream_type.to_sym
+      when :photo
+        visit_id = Photo.find(reference_id).visit_id
+      else
+        visit_id = reference_id
+    end
+
+    unless visit_id.nil?
+      Visit.find visit_id
+    end
+  end
+
 
   def self.create_from_visit! visit, check_in=true
 
     label_template = (check_in) ? '%s checked in with %s' : '%s checked out with %s'
 
     data = self.create!({
-                     :user => visit.user,
-                     :care_recipient => visit.care_recipient,
-                     :agency => visit.user.agency,
-                     :stream_type => (check_in) ? :check_in : :check_out,
-                     :label => sprintf(label_template, visit.user.full_name, visit.care_recipient.full_name)
-                 })
+      :user => visit.user,
+      :care_recipient => visit.care_recipient,
+      :agency => visit.user.agency,
+      :stream_type => (check_in) ? :check_in : :check_out,
+      :label => sprintf(label_template, visit.user.full_name, visit.care_recipient.full_name),
+      :reference_id => visit.id
+    })
     data
   end
 
   def self.create_from_photo! photo
     data = self.create!({
-                     :user => photo.user,
-                     :care_recipient => photo.care_recipient,
-                     :agency => photo.user.agency,
-                     :stream_type => :photo,
-                     :label => sprintf('%s uploaded a photo', photo.user.full_name)
-                 })
+      :user => photo.user,
+      :care_recipient => photo.care_recipient,
+      :agency => photo.user.agency,
+      :stream_type => :photo,
+      :label => sprintf('%s added a photo for %s', photo.user.full_name, photo.care_recipient.full_name),
+      :reference_id => photo.id
+    })
     data
   end
 
-  def self.create_from_note! note
+  def self.create_from_data! visit
     data = self.create!({
-                     :user => note.user,
-                     :care_recipient => note.care_recipient,
-                     :agency => note.user.agency,
-                     :stream_type => :note,
-                     :label => sprintf('%s added a note', note.user.full_name)
-                 })
+      :user => visit.user,
+      :care_recipient => visit.care_recipient,
+      :agency => visit.user.agency,
+      :stream_type => :data,
+      :label => sprintf('%s added data for %s', visit.user.full_name, visit.care_recipient.full_name),
+      :reference_id => visit.id
+    })
     data
   end
 
