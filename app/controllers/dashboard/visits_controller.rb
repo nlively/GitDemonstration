@@ -8,6 +8,8 @@ module Dashboard
     end
 
     def custom
+      @page_title = "Custom Visits Report"
+
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
       fetch_visits
@@ -21,12 +23,16 @@ module Dashboard
     end
 
     def today
+      @page_title = "Today's Visits"
+
       @start = Date.today.to_datetime
       @stop = @start + 1.day - 1.second
       fetch_visits
     end
 
     def this_week
+      @page_title = "This Week's Visits"
+
       @start_of_week = Date.today.beginning_of_week :sunday
       @end_of_week = @start_of_week.end_of_week :sunday
 
@@ -57,6 +63,8 @@ module Dashboard
     end
 
     def this_month
+      @page_title = "This Month's Visits"
+
       @start_of_month = Date.today.beginning_of_month
       @end_of_month = @start_of_month.end_of_month
 
@@ -98,6 +106,8 @@ module Dashboard
 
     # GET /dashboard/visits/:id
     def show
+      @page_title = "Data from Visit"
+
       @visit = Visit.find params[:id]
       @type = @visit.type
     end

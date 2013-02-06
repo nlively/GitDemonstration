@@ -11,6 +11,7 @@ module Dashboard::Reports::Payroll
 
     # GET /dashboard/reports/payroll/batches
     def index
+      @page_title = 'Search Payroll Batches'
 
       @employee_id = (params[:employee_id] or '')
       @employee_name = (params[:employee_name] or '')
@@ -45,6 +46,8 @@ module Dashboard::Reports::Payroll
 
     # GET /dashboard/reports/payroll/batches/new
     def new
+      @page_title = 'Create Payroll Batch'
+
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
     end
@@ -106,6 +109,7 @@ module Dashboard::Reports::Payroll
     def show
       @batch = PayrollBatch.find params[:id]
       @batches = @agency.payroll_batches
+      @page_title = 'Payroll Batch ' + @batch.batch_number
     end
 
     # POST /dashboard/reports/payroll/batches/:id
@@ -123,6 +127,7 @@ module Dashboard::Reports::Payroll
 
     # GET /dashboard/reports/payroll/batches/export/:id
     def export
+      @page_title = 'Save and Export Payroll Batch'
       @batch = PayrollBatch.find params[:id]
 
     end
@@ -147,6 +152,7 @@ module Dashboard::Reports::Payroll
 
     # GET /dashboard/reports/payroll/batches/:id/line-item/:line_item_id
     def line_item
+      @page_title = 'Payroll Batch ' + @line_item.payroll_batch.batch_number + ' - ' + @line_item.user.full_name
       @line_item = PayrollLineItem.find params[:line_item_id]
 
       if @line_item && @line_item.payroll_batch.id == params[:id] && @line_item.payroll_batch.agency == @agency

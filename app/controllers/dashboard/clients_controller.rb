@@ -7,6 +7,7 @@ module Dashboard
     end
 
     def index
+      @page_title = 'Clients'
 
       @care_recipients = @agency.care_recipients
       # possible filter params: letter, name
@@ -28,6 +29,7 @@ module Dashboard
       @care_recipients = [@care_recipient]
 
       #redirect_to dashboard_clients_profile_path(params[:id])
+      @page_title = @care_recipient.full_name
     end
 
     def update
@@ -45,6 +47,7 @@ module Dashboard
     end
 
     def new
+      @page_title = 'Add a New Client'
       @care_recipient = CareRecipient.new
       @location = Location.new
       unless params[:employee].blank?

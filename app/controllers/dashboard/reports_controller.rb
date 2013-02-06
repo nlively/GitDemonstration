@@ -10,6 +10,7 @@ module Dashboard
     end
 
     def index
+      @page_title = "Reports"
 
       # possible filter params: letter, name
 

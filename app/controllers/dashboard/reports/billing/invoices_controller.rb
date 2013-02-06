@@ -6,6 +6,7 @@ module Dashboard::Reports::Billing
 
     # GET /dashboard/reports/billing/invoices
     def index
+      @page_title = 'Search Invoices'
 
       @client_name = (params[:client_name] or '')
       @invoice_number = (params[:invoice_number] or '')
@@ -48,6 +49,7 @@ module Dashboard::Reports::Billing
 
     # GET /dashboard/reports/billing/invoices/new
     def new
+      @page_title = 'Create Invoices'
       @start = (params[:start].blank?) ? Date.today.beginning_of_month : Date.strptime(params[:start], '%m/%d/%Y')
       @stop = (params[:stop].blank?) ? DateTime.current : (Date.strptime(params[:stop], '%m/%d/%Y') + 1.day - 1.second)
     end
@@ -115,11 +117,13 @@ module Dashboard::Reports::Billing
 
     # GET /dashboard/reports/billing/invoices/pending/:guid
     def pending
+      @page_title = 'Create Invoices'
       @batch = ClientInvoiceBatch.find_by_guid params[:guid]
     end
 
     # POST /dashboard/reports/billing/invoices/export
     def export
+      @page_title = 'Save and Export Invoices'
       @guid = params[:batch]
       @count = params[:export].count
       session[:export_ids] = params[:export]
@@ -192,6 +196,7 @@ module Dashboard::Reports::Billing
     # GET /dashboard/reports/billing/invoices/:id
     def show
       @invoice = ClientInvoice.find params[:id]
+      @page_title = 'Invoice ' + @invoice.invoice_number_formatted + ' (' + @invoice.care_recipient.full_name + ')'
     end
 
     # POST /dashboard/reports/billing/invoices/:id

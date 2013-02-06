@@ -3,6 +3,7 @@ module Dashboard::Settings
 
     # GET /dashboard/settings/agency
     def index
+      @page_title = 'Agency Settings'
 
     end
 
@@ -19,6 +20,7 @@ module Dashboard::Settings
 
     # GET /dashboard/settings/agency/subscription
     def subscription
+      @page_title = 'Change Your Subscription'
       @subscription_tiers = SubscriptionTier.all_visible
     end
 

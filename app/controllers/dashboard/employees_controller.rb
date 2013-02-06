@@ -8,6 +8,7 @@ module Dashboard
 
     # GET /dashboard/employees
     def index
+      @page_title = "Employees"
       # possible filter params: letter, name
       @employees = @agency.caregivers.order('last_name asc')
 
@@ -29,6 +30,7 @@ module Dashboard
       @employee = User.find params[:id]
       @employees = [@employee]
       #redirect_to dashboard_employees_profile_path(params[:id])
+      @page_title = @employee.full_name
     end
 
     # PUT /dashboard/employees/:id
@@ -66,6 +68,7 @@ module Dashboard
 
     # GET /dashboard/employees/new
     def new
+      @page_title = 'Add a New Employee'
       @user = User.new
       @location = Location.new
     end
@@ -110,6 +113,7 @@ module Dashboard
 
     # GET /dashboard/employees/:id/unfreeze
     def unfreeze
+      @page_title = 'Unfreeze Account'
 
     end
 
@@ -123,6 +127,7 @@ module Dashboard
 
     # GET /dashboard/employees/:id/freeze
     def freeze
+      @page_title = 'Freeze Account'
 
     end
 
@@ -138,6 +143,7 @@ module Dashboard
 
     # GET /dashboard/employees/:id/reset-password
     def reset_password
+      @page_title = 'Reset Password'
 
     end
 

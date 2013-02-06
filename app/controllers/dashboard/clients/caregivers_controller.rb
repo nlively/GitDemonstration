@@ -3,11 +3,13 @@ module Dashboard::Clients
 
     # GET /dashboard/clients/:id/caregivers
     def index
+      @page_title = @care_recipient.full_name + ' - Caregivers'
 
     end
 
     # GET /dashboard/clients/:id/caregivers/select
     def select_caregiver
+      @page_title = @care_recipient.full_name + ' - Assign Caregiver'
       @caregivers = @agency.caregivers
     end
 

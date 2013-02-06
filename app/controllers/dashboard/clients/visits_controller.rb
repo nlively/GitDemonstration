@@ -3,6 +3,7 @@ module Dashboard::Clients
 
     def index
       @visits = @care_recipient.visits.where(:approved => true).order('in_time desc')
+      @page_title = @care_recipient.full_name + ' - Visits'
       end
 
   end

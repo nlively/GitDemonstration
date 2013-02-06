@@ -9,6 +9,8 @@ class DashboardController < ::ApplicationController
     allow :agency_administrator, :administrator
   end
 
+
+
   def get_agency
     @agency = current_user.agency
   end
@@ -36,6 +38,7 @@ class DashboardController < ::ApplicationController
   end
 
   def feed
+    @page_title = 'Live Feed'
 
     @filter_options = {
         '' => 'Filter By',

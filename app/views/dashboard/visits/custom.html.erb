@@ -1,21 +1,22 @@
-<% content_for :title do %>
-    Custom View
+
+<% content_for :page_top do %>
+    <%= form_tag dashboard_visits_custom_path, :method => :get, :id => 'visits-custom-form' do %>
+        Start date: <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
+        &nbsp;
+        End date: <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
+
+        <%= submit_tag 'Go' %>
     <% end %>
+<% end %>
+
+<% content_for :page_caption do %>
+    Completed Visits
+<% end %>
 
 <%= javascript_include_tag 'dashboard/visits/custom' %>
 <%= javascript_include_tag 'dashboard/visits/visits_table' %>
 
-<%= form_tag dashboard_visits_custom_path, :method => :get, :id => 'visits-custom-form' do %>
-    Start date: <%= text_field_tag :start, @start.to_formatted_s(:mdy), :size => 10 %>
-    &nbsp;
-    End date: <%= text_field_tag :stop, @stop.to_formatted_s(:mdy), :size => 10 %>
-
-    <%= submit_tag 'Go' %>
-<% end %>
-
-
 
 <%=  render 'shared/table_visits_completed', :visits => @completed %>
-<%=  render 'shared/table_visits_pending', :visits => @pending %>
 
 
