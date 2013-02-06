@@ -176,7 +176,7 @@ class Agency < ActiveRecord::Base
 
   def payroll_batches_query options
 
-    query = 'SELECT pb.id FROM payroll_batches pb '
+    query = 'SELECT DISTINCT pb.id FROM payroll_batches pb '
 
     joins = []
     where = []
@@ -200,11 +200,12 @@ class Agency < ActiveRecord::Base
     end
 
     unless options[:batch_date].blank?
-      where << 'pli. BETWEEN ? AND ?'
+      where << 'v.in_time BETWEEN ? AND ?'
       params << options[:batch_date]
       params << (options[:batch_date] + 1.day - 1.second)
       unless joins.include? pli_join
         joins << pli_join
+        joins << 'JOIN visits v on v.payroll_line_item_id = pli.id'
       end
     end
 
@@ -213,7 +214,7 @@ class Agency < ActiveRecord::Base
       params << options[:batch_status]
     end
 
-    where_str = 'pb.status != ?'
+    where_str = 'pb.agency_id = ? AND pb.status != ?'
     if where.count > 0
       where_str += sprintf(' AND (%s)', where.join(' OR '))
     end
@@ -221,7 +222,7 @@ class Agency < ActiveRecord::Base
     query_sql = query + joins.join(' ') + ' WHERE ' + where_str + ' ORDER BY id DESC'
 
     ids = ActiveRecord::Base.connection.select_all(
-      ActiveRecord::Base.send("sanitize_sql_array", [query_sql, 'temporary', *params] )
+      ActiveRecord::Base.send("sanitize_sql_array", [query_sql, self.id, 'temporary', *params] )
     )
 
 

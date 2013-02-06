@@ -12,13 +12,14 @@ module Dashboard::Reports::Payroll
     # GET /dashboard/reports/payroll/batches
     def index
 
-
+      @employee_id = (params[:employee_id] or '')
       @employee_name = (params[:employee_name] or '')
       @batch_number = (params[:batch_number] or '')
       @batch_date = (params[:batch_date] or '')
       @batch_status = (params[:batch_status] or '')
 
       @filter_options = {
+        #:employee_id => 'Employee ID',      # This one is a silent option
         :employee_name => 'Employee name',
         :batch_number => 'Batch number',
         :batch_date => 'Batch date',
@@ -32,6 +33,7 @@ module Dashboard::Reports::Payroll
       @status_options = batch_statuses
 
       options = {
+        :employee_id => @employee_id,
         :employee_name => @employee_name,
         :batch_number => @batch_number,
         :batch_date => @batch_date,

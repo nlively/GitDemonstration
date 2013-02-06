@@ -3,8 +3,8 @@
 <% end %>
 
 <% content_for :page_caption do %>
-    Payroll
+    Payroll Batches
 <% end %>
 
 
-Show any payroll batch that has this employee in it.
+<%= render 'dashboard/reports/shared/payroll_batch_history', :batches => @batches %>

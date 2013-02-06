@@ -66,6 +66,9 @@ class User < ActiveRecord::Base
 
   has_many :care_recipients_users
   has_many :care_recipients, :through => :care_recipients_users
+  has_many :payroll_line_items
+
+  has_many :payroll_batches, :through => :payroll_line_items
 
   has_attached_file :profile_photo, :styles => {
     :profile => "93x93>",
