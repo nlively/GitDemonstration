@@ -86,7 +86,7 @@ module Dashboard
 
       @visits_by_month.each do |visit|
         day = visit.in_time.beginning_of_day.to_date
-        @days[day] += 1
+        @days[day] += 1 unless visit.approved?
       end
 
 
