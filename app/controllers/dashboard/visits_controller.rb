@@ -51,7 +51,7 @@ module Dashboard
         if @days[day].blank?
           @days[day] = 0
         end
-        @days[day] += 1
+        @days[day] += 1 unless visit.approved?
       end
 
     end
