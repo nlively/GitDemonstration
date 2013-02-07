@@ -47,8 +47,8 @@ OauthServer::Application.routes.draw do
 
   namespace :dashboard do
 
-    match 'search', :action => :feed_search_filter
     match 'feed'
+    get 'feed/:type', :action => :feed, :as => :feed_filter
 
     resources :employees, :only => [:index, :show, :new, :create, :update, :destroy]
     resources :clients, :only => [:index, :show, :new, :create, :update, :destroy]

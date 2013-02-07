@@ -29,7 +29,8 @@ class DashboardController < ::ApplicationController
     @newest_item_id = (@activity_streams.empty?) ? params[:last_id] : @activity_streams.first.id
   end
 
-  def feed_search_filter
+  # GET /dashboard/feed/filter
+  def feed_filter
 
   end
 
@@ -39,21 +40,45 @@ class DashboardController < ::ApplicationController
 
   def feed
     @page_title = 'Live Feed'
+    has_type = !params[:type].blank?
+
+    @default_filter = has_type ? dashboard_feed_filter_path(params[:type]) : ''
+
+
+    @filter_labels = {
+      :check_in => 'Check Ins',
+      :check_out => 'Check Outs',
+      :photo => 'Photos',
+      :data => 'Visit Data'
+    }
 
     @filter_options = {
-        '' => 'Filter By',
-        :check_in => 'Check-ins',
-        :check_out => 'Check-outs',
-        :photo => 'Photos',
-        :observation => 'Observations'
+      '' => 'Filter By'
     }
+
+    @filter_labels.each {|k,v| @filter_options[dashboard_feed_filter_path(k)] = v }
+
+
+    #@page_title += ' - ' + @filter_labels[params[:type].to_sym] if has_type
 
     limit = (params[:limit].blank?) ? 10 : params[:limit]
 
     if params[:last_id].blank?
-      @activity_streams = @agency.activity_streams.limit(limit).order('id desc')
+
+      if has_type
+        @activity_streams = @agency.activity_streams.where(:stream_type => params[:type]).limit(limit).order('id desc')
+      else
+        @activity_streams = @agency.activity_streams.limit(limit).order('id desc')
+      end
+
     else
-      @activity_streams = @agency.activity_streams.where('id < ?', params[:last_id]).limit(limit).order('id desc')
+
+      if has_type
+        @activity_streams = @agency.activity_streams.where('id < ? AND stream_type = ?', params[:last_id], params[:type]).limit(limit).order('id desc')
+      else
+        @activity_streams = @agency.activity_streams.where('id < ?', params[:last_id]).limit(limit).order('id desc')
+      end
+
     end
 
     @oldest_item_id = (@activity_streams.empty?) ? 0 : @activity_streams.last.id

@@ -1,15 +1,23 @@
-<% content_for :title do %>
-    Live Feed
-<% end %>
-
-
 <% content_for :page_top do %>
 
-    <%= form_tag dashboard_search_path do %>
+    <%= form_tag dashboard_feed_filter_path, :method => :get, :id => 'filter-form' do %>
 
         <div class="filter-field field">
-        <%= select_tag 'filter', options_from_collection_for_select(@filter_options, :first, :last) %>
-        </div>
+              <%= select_tag 'filter', options_from_collection_for_select(@filter_options, :first, :last, @default_filter) %>
+            </div>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    var select = $('.filter-field #filter');
+
+                    var filter_Change = function() {
+                        if ($(this).val().length > 0)
+                            window.location = $(this).val();
+                    };
+
+                    select.change(filter_Change);
+                });
+            </script>
 
     <% end %>
 <% end %>
