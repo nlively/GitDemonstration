@@ -85,8 +85,7 @@ module Dashboard::Reports::Payroll
             :regular_hours_worked => calculations['totals'][:normal_hours],
             :overtime_hours_worked =>calculations['totals'][:overtime_hours],
             :pay_rate => employee.default_pay_rate,
-            :overtime_rate => employee.default_overtime_rate,
-            :adjustments => 0.0
+            :overtime_rate => employee.default_overtime_rate
           })
           @batch.payroll_line_items << line_item
 
