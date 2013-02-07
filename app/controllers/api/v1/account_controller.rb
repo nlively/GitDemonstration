@@ -73,7 +73,7 @@ module Api::V1
 
     # GET /api/v1/account/clients
     def clients
-      sort_string = sort_string_from_params
+      sort_string = sort_string_from_params :sort_field => 'last_name', :sort_order => :asc
 
       if params[:name].blank?
         @clients = current_resource_owner.care_recipients.order(sort_string)
