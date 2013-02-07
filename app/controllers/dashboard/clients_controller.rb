@@ -37,6 +37,15 @@ module Dashboard
 
       respond_to do |format|
         if @care_recipient.update_attributes(params[:care_recipient])
+
+
+          if @location.blank?
+            @location = Location.create params[:location]
+            @care_recipient.location = @location
+          else
+            @location.update_attributes! params[:location]
+          end
+
           format.html { redirect_to dashboard_clients_profile_path(@care_recipient), notice: 'Client was successfully updated.' }
           format.json { head :no_content }
         else

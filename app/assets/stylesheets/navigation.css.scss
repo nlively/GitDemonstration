@@ -90,23 +90,30 @@ nav {
 
 
 .dashboard-sidebar-menu {
-  li {
-    @include bold-font;
-    color: $navText;
+  ul {
+    li {
+      @include bold-font;
+      color: $navText;
 
-    &.selected {
-      color: $leftNavText;
+      li.selected {
+        color: $leftNavText;
 
-      a {
+      }
+
+      a.selected{
         color: $leftNavText;
       }
-    }
 
-    a {
-      display: block;
-      padding: 12px 12px;
-      color: $navText;
-      text-decoration: none;
+      a {
+        display: block;
+        padding: 12px 12px;
+        color: $navText;
+        text-decoration: none;
+      }
+
+      ul {
+          margin-left: 15px;
+      }
     }
   }
 }

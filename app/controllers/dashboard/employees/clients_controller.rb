@@ -15,7 +15,7 @@ module Dashboard::Employees
     # POST /dashboard/employees/:id/clients/select
     def assign_client
       @user = User.find params[:id]
-      @care_recipient = User.find params[:client_id]
+      @care_recipient = CareRecipient.find params[:client_id]
 
       @user.care_recipients << @care_recipient unless @user.care_recipients.include? @care_recipient
       @user.save!
