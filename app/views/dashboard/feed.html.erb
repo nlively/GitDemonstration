@@ -1,6 +1,6 @@
 <% content_for :page_top do %>
 
-    <%= form_tag dashboard_feed_filter_path, :method => :get, :id => 'filter-form' do %>
+    <%= form_tag dashboard_feed_path, :method => :get, :id => 'filter-form' do %>
 
         <div class="filter-field field">
               <%= select_tag 'filter', options_from_collection_for_select(@filter_options, :first, :last, @default_filter) %>
