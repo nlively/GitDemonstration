@@ -21,9 +21,9 @@
         <br>
         <%= link_to 'View visit data', dashboard_visit_path(item.visit) %>
     <% when :data %>
-        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'data', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'data', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>.
     <% when :photo %>
-        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'photo', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'photo', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>.
     <% else %>
         n/a
     <% end %>
