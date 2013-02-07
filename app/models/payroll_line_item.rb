@@ -57,7 +57,9 @@ class PayrollLineItem < ActiveRecord::Base
   end
 
   def total
-    (regular_hours_worked * pay_rate) + (overtime_hours_worked * overtime_rate) + adjustments
+    visits_total = 0.0
+    visits.each {|v|visits_total += v.money_made }
+    visits_total + adjustments
   end
 
   def total_formatted
