@@ -145,7 +145,7 @@ class Visit < ActiveRecord::Base
 
   def billable_overtime_minutes
     if total_hours > 8
-      billable_duration_minutes - (8.hours / 60)
+      billable_duration_minutes - (8.hours / 60.0)
     else
       0
     end

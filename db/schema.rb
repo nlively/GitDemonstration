@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206004913) do
+ActiveRecord::Schema.define(:version => 20130207184539) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -145,7 +145,6 @@ ActiveRecord::Schema.define(:version => 20130206004913) do
   create_table "client_invoice_line_items", :force => true do |t|
     t.integer  "care_recipient_id"
     t.integer  "pay_status"
-    t.decimal  "hours",              :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "bill_rate",          :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "adjustments",        :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "original_bill_rate", :precision => 11, :scale => 2, :default => 0.0
@@ -153,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20130206004913) do
     t.datetime "updated_at",                                                         :null => false
     t.integer  "client_invoice_id"
     t.integer  "visit_id"
+    t.integer  "minutes",                                           :default => 0
   end
 
   create_table "client_invoices", :force => true do |t|

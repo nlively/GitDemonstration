@@ -47,8 +47,12 @@ class ClientInvoiceLineItem < ActiveRecord::Base
     (hours * bill_rate) + adjustments
   end
 
+  def hours
+    minutes / 60.0
+  end
+
   def duration_string
-    duration_in_hours (hours*60)
+    duration_in_hours (minutes)
   end
 
   def total_formatted

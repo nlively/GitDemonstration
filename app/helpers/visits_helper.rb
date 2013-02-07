@@ -1,6 +1,6 @@
 module VisitsHelper
   def duration_in_hours duration
-    if duration < 60
+    if duration < 60.0
       sprintf '%d min', duration
     else
       hours = (duration.to_f / 60.0).floor
@@ -17,11 +17,11 @@ module VisitsHelper
   end
 
   def calculate_duration_minutes from_time, to_time
-    ( (to_time - from_time) / 60).ceil
+    ( (to_time - from_time) / 60.0).ceil
   end
 
   def rounded_for_billing minutes
-    (minutes / 5).round(0) * 5
+    (minutes / 5).ceil * 5
   end
 
 end

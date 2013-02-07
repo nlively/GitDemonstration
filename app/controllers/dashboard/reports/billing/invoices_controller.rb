@@ -95,7 +95,7 @@ module Dashboard::Reports::Billing
               :visit_id => v.id,
               :client_invoice => invoice,
               :care_recipient_id => id,
-              :hours => visit.total_hours,
+              :minutes => visit.billable_duration_minutes,
               :bill_rate => visit.bill_rate,
               :original_bill_rate => visit.bill_rate,
               :adjustments => 0.0
