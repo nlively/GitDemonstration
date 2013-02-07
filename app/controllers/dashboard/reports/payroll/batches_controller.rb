@@ -151,12 +151,10 @@ module Dashboard::Reports::Payroll
 
     # GET /dashboard/reports/payroll/batches/:id/line-item/:line_item_id
     def line_item
-      @page_title = 'Payroll Batch ' + @line_item.payroll_batch.batch_number + ' - ' + @line_item.user.full_name
       @line_item = PayrollLineItem.find params[:line_item_id]
 
-      if @line_item && @line_item.payroll_batch.id == params[:id] && @line_item.payroll_batch.agency == @agency
 
-      end
+      @page_title = 'Payroll Batch ' + @line_item.payroll_batch.batch_number + ' - ' + @line_item.user.full_name
 
     end
 
