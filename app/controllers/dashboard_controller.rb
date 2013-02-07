@@ -29,11 +29,6 @@ class DashboardController < ::ApplicationController
     @newest_item_id = (@activity_streams.empty?) ? params[:last_id] : @activity_streams.first.id
   end
 
-  # GET /dashboard/feed/filter
-  def feed_filter
-
-  end
-
   def index
     redirect_to dashboard_feed_path
   end
@@ -58,8 +53,6 @@ class DashboardController < ::ApplicationController
 
     @filter_labels.each {|k,v| @filter_options[dashboard_feed_filter_path(k)] = v }
 
-
-    #@page_title += ' - ' + @filter_labels[params[:type].to_sym] if has_type
 
     limit = (params[:limit].blank?) ? 10 : params[:limit]
 
