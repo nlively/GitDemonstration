@@ -48,7 +48,7 @@ class DashboardController < ::ApplicationController
     }
 
     @filter_options = {
-      '' => 'Filter By'
+      dashboard_feed_path => 'Filter By'
     }
 
     @filter_labels.each {|k,v| @filter_options[dashboard_feed_filter_path(k)] = v }
