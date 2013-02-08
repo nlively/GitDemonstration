@@ -41,75 +41,32 @@
 </head>
 <body class="splash <%= body_classes.join ' ' %>">
 
-<div id="page">
-  <div id="page-inner">
-    <div id="header" class="">
-      <div id="header-inner">
-        <%= render 'layouts/header' %>
-      </div>
-    </div>
-
-    <div id="main" class="">
-      <div id="main-inner">
-
-        <div id="content" class="main-col">
-          <div id="content-inner" class="inner main-col-inner">
-
-            <%= render 'shared/breadcrumb' %>
-
-            <% if content_for?(:title) or not @page_title.blank? or content_for?(:page_top) %>
-                <div class="title-wrapper">
-                  <div class="title-wrapper-inner">
-                    <% if content_for?(:title) %>
-                        <h1 class="title"><%= yield :title %></h1>
-                    <% elsif not @page_title.blank? %>
-                        <h1 class="title"><%= @page_title %></h1>
-                    <% end %>
-
-                    <% if content_for? :page_top %>
-                        <div id="page-top">
-                          <div id="page-top-inner">
-                            <%= yield :page_top %>
-                          </div>
-                        </div>
-                    <% end %>
-
-                  </div>
-                </div>
-            <% end %>
-
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-
-            <% if content_for? :page_caption %>
-                <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>
-            <% end %>
-
-            <%= yield %>
-
-          </div>
-        </div>
+<div id="splash">
+  <div id="splash-inner">
 
 
+    <h1>
+    <%= image_tag 'login/dashboard_login_logo.png' %>
+    </h1>
 
-        <div style="clear:both"></div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-      </div>
-    </div>
+    <% if content_for? :page_caption %>
+        <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>
+    <% end %>
 
-    <div id="footer" class="">
-      <div id="footer-inner">
-
-
-      </div>
-    </div>
+    <%= yield %>
 
 
   </div>
 </div>
 
+<div id="copyright">
+  Copyright &copy; 2011-<%= Time.new.year %>, Boomr Healthcare Inc.  All rights reserved.
+</div>
 
-<%= render 'layouts/copyright' %>
+
 <%=  render 'layouts/tracking' %>
 
 

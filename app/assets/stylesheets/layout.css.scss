@@ -1,5 +1,24 @@
 @import 'sass';
 
+body.splash {
+  background: #fff;
+
+  #splash {
+    margin-top: 150px;
+
+    text-align: center;
+
+    form {
+
+      div {
+        margin: 1em 0;
+      }
+
+    }
+
+  }
+}
+
 body.main {
   #page {
 
