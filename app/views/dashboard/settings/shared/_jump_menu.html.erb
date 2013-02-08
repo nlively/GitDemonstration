@@ -1,0 +1,20 @@
+<%= javascript_include_tag 'dashboard/settings/jump_menu' %>
+
+<h2>Choose a Section</h2>
+
+<%= form_tag do %>
+    <div class="field">
+      <%= select_tag :page_type, options_from_collection_for_select(@settings_options, :first, :last, @page_type) %>
+    </div>
+
+
+    <div class="slide-out billing">
+      <%= link_to "Create Invoices", new_dashboard_reports_billing_invoice_path, :class => 'link-button' %>
+      <%= link_to "View/Search Invoices", dashboard_reports_billing_invoices_path, :class => 'link-button' %>
+    </div>
+    <div class="slide-out payroll">
+      <%= link_to "Create Payroll Batch", new_dashboard_reports_payroll_batch_path, :class => 'link-button' %>
+      <%= link_to "Search Batches", dashboard_reports_payroll_batches_path, :class => 'link-button' %>
+    </div>
+
+<% end %>

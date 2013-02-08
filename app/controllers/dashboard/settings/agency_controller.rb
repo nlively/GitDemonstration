@@ -1,6 +1,10 @@
 module Dashboard::Settings
   class AgencyController < Dashboard::SettingsController
 
+    before_filter do
+      @page_type = :agency
+    end
+
     # GET /dashboard/settings/agency
     def index
       @page_title = 'Agency Settings'
