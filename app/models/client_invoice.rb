@@ -89,7 +89,7 @@ class ClientInvoice < ActiveRecord::Base
 
     csv_data = []
 
-    csv_data << ['Visit Date', 'Caregiver', 'Hours', 'Bill Rate', 'Adjustments', 'Total']
+    csv_data << ['Visit Date', 'Caregiver', 'In', 'Out', 'Hours', 'Bill Rate', 'Adjustments', 'Total']
 
     self.client_invoice_line_items.each do |cli|
       unless cli.visit.blank?
@@ -97,7 +97,7 @@ class ClientInvoice < ActiveRecord::Base
         cli.visit.bill_rate = cli.bill_rate
         cli.visit.save!
 
-        csv_data << [ cli.visit.in_time.to_formatted_s(:mdy), cli.visit.user.full_name_last_first, cli.duration_string, cli.bill_rate_formatted, cli.adjustments_formatted, cli.total_formatted ]
+        csv_data << [ cli.visit.in_time.to_formatted_s(:mdy), cli.visit.user.full_name_last_first, cli.visit.in_time_time_only, cli.visit.out_time_time_only, cli.duration_string, cli.bill_rate_formatted, cli.adjustments_formatted, cli.total_formatted ]
 
       end
     end

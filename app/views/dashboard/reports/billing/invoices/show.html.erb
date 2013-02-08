@@ -32,7 +32,9 @@
             <th>Date</th>
             <th>Employee</th>
             <th>Bill Rate</th>
-            <th>Adjustments</th>
+            <th>Adj.</th>
+            <th>In</th>
+            <th>Out</th>
             <th>Duration</th>
             <th>Location</th>
             <th>Total</th>
@@ -55,11 +57,17 @@
                     <td class="adjustments">
                       $ <%= li.text_field :adjustments %>
                     </td>
+                    <td class="in-time">
+                      <%= line_item.visit.in_time_time_only %>
+                    </td>
+                    <td class="out-time">
+                      <%= line_item.visit.out_time_time_only %>
+                    </td>
                     <td class="duration">
                       <%= line_item.duration_string %>
                     </td>
                     <td class="location">
-                      <%= line_item.visit.location_label %>
+                      <span title="<%= line_item.visit.location_label %>"><%= truncate line_item.visit.location_label, :length => 10 %></span>
                     </td>
                     <td class="total">
                       <%= line_item.total_formatted %>
