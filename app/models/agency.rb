@@ -46,8 +46,9 @@ class Agency < ActiveRecord::Base
   belongs_to :subscription_tier
 
   before_save :ensure_account_number!
+
   # Disabled because our Braintree account is inactive
-  #before_save :ensure_customer_record!
+  before_save :ensure_customer_record!
 
   # Find out if this user has an associated Braintree customer profile
   def has_payment_info?
