@@ -19,6 +19,14 @@ dd-select.png: dd-select-f7fa4d8aae4755fca47e46c4e27209a5.png
 dd-select/index.png: dd-select-f7fa4d8aae4755fca47e46c4e27209a5.png
 loading.gif: loading-e768865f171787876e86b520868808ac.gif
 loading/index.gif: loading-e768865f171787876e86b520868808ac.gif
+login/dashboard_login_icon.png: login/dashboard_login_icon-55a648120af4a06654ba5b48acb6764f.png
+login/dashboard_login_icon/index.png: login/dashboard_login_icon-55a648120af4a06654ba5b48acb6764f.png
+login/dashboard_login_logo.png: login/dashboard_login_logo-eba8ef325b6838616a92ada1a684c8a1.png
+login/dashboard_login_logo/index.png: login/dashboard_login_logo-eba8ef325b6838616a92ada1a684c8a1.png
+login/dashboard_login_password.png: login/dashboard_login_password-54cc3861ad36ee670def45462ffbd4cb.png
+login/dashboard_login_password/index.png: login/dashboard_login_password-54cc3861ad36ee670def45462ffbd4cb.png
+login/dashboard_login_user.png: login/dashboard_login_user-cccf2d77e065532ba3b4156ca518317f.png
+login/dashboard_login_user/index.png: login/dashboard_login_user-cccf2d77e065532ba3b4156ca518317f.png
 month-arrow-left.png: month-arrow-left-42fcd5a4e957e3323cbef85e73f6e987.png
 month-arrow-left/index.png: month-arrow-left-42fcd5a4e957e3323cbef85e73f6e987.png
 month-arrow-right.png: month-arrow-right-b95558f2e343748546bf97b7bc381955.png
@@ -47,8 +55,8 @@ modernizr-2.6.2.min.js: modernizr-2.6.2.min-6125f471a5b370c452de332a1bceea90.js
 modernizr-2/index.6.2.min.js: modernizr-2.6.2.min-6125f471a5b370c452de332a1bceea90.js
 plugins.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
 plugins/index.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
-application.css: application-413eea43443b14e53f4ce6596e0790db.css
-application/index.css: application-413eea43443b14e53f4ce6596e0790db.css
+application.css: application-dc84927950ba013d23b7d59845a148b8.css
+application/index.css: application-dc84927950ba013d23b7d59845a148b8.css
 ui.css: ui-4724f549ca8789b6c881259911fe4df0.css
 ui/index.css: ui-4724f549ca8789b6c881259911fe4df0.css
 doorkeeper/application.js: doorkeeper/application-23e0dc4aeeff30c6e2327681045066a1.js
