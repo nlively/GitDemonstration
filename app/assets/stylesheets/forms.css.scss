@@ -13,11 +13,26 @@ form {
       label {
         font-weight: bold;
       }
+
+      span.required {
+        color: #ff0000;
+      }
     }
 
     div.field {
 
     }
+
+    span.error {
+
+      input {
+      border: 1px solid #ff0000;
+      }
+      .help-inline {
+        color: #ff0000;
+      }
+    }
+
   }
 
   &.search-form {

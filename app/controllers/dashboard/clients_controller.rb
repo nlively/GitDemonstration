@@ -66,7 +66,9 @@ module Dashboard
 
     def create
       @care_recipient = CareRecipient.new(params[:care_recipient])
-      @location = Location.create(params[:location])
+      @location = Location.new(params[:location])
+
+      location_result = @location.save
 
       @care_recipient.agency = current_user.agency
       @care_recipient.default_location = @location
@@ -80,10 +82,12 @@ module Dashboard
       end
 
       respond_to do |format|
-        if @care_recipient.save
+        if @care_recipient.save && location_result
           format.html { redirect_to redirect_destination(dashboard_client_path(@care_recipient)), notice: 'Client was successfully created.' }
           format.json { render json: @care_recipient, status: :created, location: @care_recipient }
         else
+          #errors = @care_recipient.errors + @location.errors
+
           format.html { render action: "new" }
           format.json { render json: @care_recipient.errors, status: :unprocessable_entity }
         end

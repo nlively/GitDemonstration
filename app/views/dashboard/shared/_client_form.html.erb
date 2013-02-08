@@ -10,18 +10,18 @@
         <%= hidden_field_tag :employee_id, employee.id %>
     <% end %>
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :first_name %>
+        <%= f.label :first_name %> <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.text_field :first_name, :size => 20 %>
       </div>
     </div>
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :last_name %>
+        <%= f.label :last_name %> <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.text_field :last_name, :size => 20 %>
@@ -32,18 +32,18 @@
     <%=  render 'dashboard/shared/address_form' %>
 
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :phone, 'Phone Number' %>
+        <%= f.label :phone, 'Phone Number' %>  <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.phone_field :phone %>
       </div>
     </div>
 
-    <div class="form-field dob">
+    <div class="form-field dob required">
       <div class="label">
-        <%= f.label :dob, 'Date of Birth' %>
+        <%= f.label :dob, 'Date of Birth' %> <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.date_select :dob, :start_year => Time.now.year - 110, :end_year => Time.now.year %>
@@ -66,9 +66,9 @@
       </div>
     </div>
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :default_bill_rate %>
+        <%= f.label :default_bill_rate %>  <span class="required">*</span>
       </div>
       <div class="field">
         $ <%= f.text_field :default_bill_rate, :size=>5 %> USD

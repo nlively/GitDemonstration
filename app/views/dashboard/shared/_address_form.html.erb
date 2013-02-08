@@ -2,9 +2,9 @@
     <div class="form-address">
 
       <div class="street">
-        <div class="form-field">
+        <div class="form-field required">
           <div class="label">
-            <%= l.label :street, 'Street Address' %>
+            <%= l.label :street, 'Street Address' %> <span class="required">*</span>
           </div>
           <div class="field">
             <%= l.text_field :street %>
@@ -13,25 +13,25 @@
       </div>
 
       <div class="csz">
-        <div class="form-field city">
+        <div class="form-field city required">
           <div class="label">
-            <%= l.label :city %>
+            <%= l.label :city %> <span class="required">*</span>
           </div>
           <div class="field">
             <%= l.text_field :city %>
           </div>
         </div>
-        <div class="form-field state">
+        <div class="form-field state required">
           <div class="label">
-            <%= l.label :state %>
+            <%= l.label :state %> <span class="required">*</span>
           </div>
           <div class="field">
             <%= l.text_field :state %>
           </div>
         </div>
-        <div class="form-field zip">
+        <div class="form-field zip required">
           <div class="label">
-            <%= l.label :zip %>
+            <%= l.label :zip %> <span class="required">*</span>
           </div>
           <div class="field">
             <%= l.text_field :zip %>

@@ -24,6 +24,10 @@
 class CareRecipient < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ResourcesHelper
+
+  validates_presence_of :first_name, :last_name, :phone, :dob, :default_location_id
+  validates_numericality_of :default_bill_rate, :greater_than => 0.0
+
   #include Boomr::WithPhoneNumber
 
   has_many :activity_streams
