@@ -76,10 +76,8 @@ module Dashboard
     # POST /dashboard/employees
     def create
       @user = User.new(params[:user])
-      @location = Location.create(params[:location])
 
       @user.agency = current_user.agency
-      @user.location = @location
 
       respond_to do |format|
         if @user.save

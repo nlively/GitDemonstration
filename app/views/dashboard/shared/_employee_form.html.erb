@@ -4,70 +4,45 @@
 %>
 <%= form_for user, :url => form_action do |f| %>
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :first_name %>
+        <%= f.label :first_name %> <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.text_field :first_name %>
       </div>
     </div>
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :middle_name %>
-      </div>
-      <div class="field">
-        <%= f.text_field :middle_name %>
-      </div>
-    </div>
-
-    <div class="form-field">
-      <div class="label">
-        <%= f.label :last_name %>
+        <%= f.label :last_name %> <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.text_field :last_name %>
       </div>
     </div>
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :profile_photo %>
-      </div>
-      <div class="field">
-
-        <% unless user.profile_photo.blank? %>
-            <%= image_tag user.profile_photo.url(:tiny) %>
-        <% end %>
-
-        <%= f.file_field :profile_photo %>
-      </div>
-    </div>
-
-    <div class="form-field">
-      <div class="label">
-        <%= f.label :default_pay_rate %>
+        <%= f.label :default_pay_rate %> <span class="required">*</span>
       </div>
       <div class="field">
         $ <%= f.text_field :default_pay_rate, :size=>5 %> USD
       </div>
     </div>
 
-    <%=  render 'dashboard/shared/address_form' %>
-
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :phone, 'Phone Number' %>
+        <%= f.label :phone, 'Phone Number' %> <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.phone_field :phone %>
       </div>
     </div>
 
-    <div class="form-field">
+    <div class="form-field required">
       <div class="label">
-        <%= f.label :email %>
+        <%= f.label :email %> <span class="required">*</span>
       </div>
       <div class="field">
         <%= f.text_field :email %>
@@ -75,9 +50,9 @@
     </div>
 
     <% unless user.id.blank? %>
-        <div class="form-field existing-password">
+        <div class="form-field existing-password required">
           <div class="label">
-            <%= label_tag 'Password'  %>
+            <%= label_tag 'Password'  %> <span class="required">*</span>
           </div>
           <div class="field">
             <%= password_field_tag :fake_password, 'fakepassword', :size => 30, :disabled => true %>
@@ -87,9 +62,9 @@
     <% end %>
 
     <div class="set-password <%= user.id.blank? ? 'new-user' : 'existing-user' %>">
-      <div class="form-field">
+      <div class="form-field required">
         <div class="label">
-          <%= f.label :password %>
+          <%= f.label :password %> <span class="required">*</span>
         </div>
         <div class="field">
           <%= f.password_field :password %>
@@ -97,7 +72,7 @@
       </div>
       <div class="form-field">
         <div class="label">
-          <%= f.label :password_confirmation %>
+          <%= f.label :password_confirmation %> <span class="required">*</span>
         </div>
         <div class="field">
           <%= f.password_field :password_confirmation %>
