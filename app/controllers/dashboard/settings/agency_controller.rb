@@ -9,6 +9,8 @@ module Dashboard::Settings
     def index
       @page_title = 'Agency Settings'
 
+      @agency.with_braintree_data!
+
     end
 
     # POST /dashboard/settings/agency
@@ -55,6 +57,53 @@ module Dashboard::Settings
 
       redirect_to dashboard_settings_agency_path, notice: message
 
+    end
+
+
+    def update_credit_card
+      @errors = []
+
+      #Formatting expiration date
+      expiration_date = braintree_expiration_from_select params[:credit_card2], "expiration_date"
+
+      # new payment method
+      if !params[:credit_card][:number].blank?
+        options = {
+            :customer_id => current_user.braintree_customer_id,
+            :number => params[:credit_card][:number],
+            :expiration_date => expiration_date,
+            :cardholder_name => params[:credit_card][:cardholder_name],
+            :billing_address => {
+                :street_address => params[:credit_card][:street_address],
+                :locality       => params[:credit_card][:locality],
+                :region         => params[:credit_card][:region],
+                :postal_code    => params[:credit_card][:postal_code],
+            },
+            :options => {
+                :make_default => true
+            }
+        }
+        @result = Braintree::CreditCard.create options
+
+        unless @result.success?
+          @result.errors.each do |error|
+            @errors << error.message
+          end
+        end
+      else
+        @errors << 'Please fill out the new payment method form completely'
+      end
+
+
+      if @errors.empty?
+        set_message sprintf('Your new credit card ending in %s has been added to your account.', @result.credit_card.token)
+        redirect_to account_profile_payment_manager_path
+      else
+        @credit_card = params[:credit_card]
+        set_error @errors
+        current_user.with_braintree_data!
+        render :payment_manager
+      end
     end
 
 
