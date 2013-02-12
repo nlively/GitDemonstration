@@ -234,5 +234,62 @@ class Agency < ActiveRecord::Base
 
   end
 
+  def subscription_fee
+    fee = subscription_tier.blank? ? 0.0 : subscription_tier.monthly_fee
+    monthly_price_override or fee
+  end
+
+  # Returns a default credit card on file for a user
+  def default_credit_card
+    return nil unless self.has_payment_info?
+
+    self.credit_cards.find { |cc| cc.default? }
+  end
+
+  def process_payment!
+
+    amount = self.subscription_fee
+    cc = self.default_credit_card
+
+    if amount > 0 and not cc.blank?
+
+      result = Braintree::Transaction.sale(
+        :amount => amount,
+        :customer_id => self.braintree_customer_id,
+        :payment_method_token => cc.token
+      )
+
+      if result.success?
+
+        payment.status = "COMPLETED"
+        payment.save!
+
+        self.next_billing_date = Date.today if self.next_billing_date.blank?
+        self.next_billing_date += 1.month
+        self.save!
+
+      else
+
+        ex = Exception.new sprintf("Error processing payment with Braintree.")
+        Airbrake.notify ex
+
+        return
+      end
+
+    end
+
+
+  end
+
+  def self.with_payment_due
+
+  end
+
+  def self.needing_invoice_generation
+
+
+
+  end
+
 
 end
