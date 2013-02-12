@@ -22,6 +22,12 @@
 class Location < ActiveRecord::Base
   validates_presence_of :street, :city, :state, :zip
 
+  acts_as_mappable :default_units => :miles,
+    :default_formula => :sphere,
+    :distance_field_name => :distance,
+    :lat_column_name => :latitude,
+    :lng_column_name => :longitude
+
   has_many :visits
   has_many :care_recipients_locations, :class_name =>'CareRecipientsLocations', :foreign_key => :care_recipient_id
   has_many :care_recipients, :through => :care_recipients_locations

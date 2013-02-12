@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
       end
     end
 
-  before_filter :authenticate_user!
   after_filter :store_last_destination
 
 

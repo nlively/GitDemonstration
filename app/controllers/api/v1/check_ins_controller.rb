@@ -37,25 +37,41 @@ module Api::V1
         @checkin.visit = @visit
       else
         @visit = Visit.find params[:visit_id]
-        @visit.out_time = DateTime.current
-        @visit.save!
-        @checkin.visit = @visit
+
+        @temp_loc = Location.new :latitude => params[:latitude], :longitude => params[:longitude]
+
+        @distance = @visit.location.distance_from(@temp_loc)
+
+        if @distance < 0.1 || params[:confirm] == '1'
+
+          @visit.out_time = DateTime.current
+          @visit.save!
+          @checkin.visit = @visit
+
+        else
+
+          render json: { :distance => @distance, :success => false, :message => 'Please confirm checkout.'  }
+          return
+
+        end
 
       end
 
       @checkin.save!
 
-
       unless params[:photo].blank?
         @photo = Photo.create! :care_recipient_id => params[:care_recipient_id], :user_id => current_resource_owner.id, :photo => params[:photo], :visit_id => @visit.id
       end
 
-
+      #Create an activity stream record
       activity = ActivityStream.create_from_visit! @visit, @checkin.in_out
       send_activity_stream_to_node_server activity
 
-
-      render json: @visit.web_service_format(root_url)
+      if @checkin.in_out
+        render json: @visit.web_service_format(root_url)
+      else
+        render json: { :distance => @distance, :success => true, :message => 'You have been checked out!' }
+      end
 
     end
 
