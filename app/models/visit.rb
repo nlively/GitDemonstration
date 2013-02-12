@@ -23,6 +23,7 @@
 #  guid                        :string(255)
 #  client_invoice_line_item_id :integer
 #  adjustments                 :decimal(11, 2)   default(0.0)
+#  temp_payroll_line_item_id   :integer
 #
 
 class Visit < ActiveRecord::Base
@@ -41,6 +42,7 @@ class Visit < ActiveRecord::Base
   belongs_to :agency
   belongs_to :approved_by_user, :class_name => 'User', :foreign_key => :approved_by_user_id
   belongs_to :payroll_line_item
+  belongs_to :temp_payroll_line_item, :class_name => 'PayrollLineItem', :foreign_key => :temp_payroll_line_item_id
   belongs_to :client_invoice_line_item
 
   has_one :client_invoice_line_item
@@ -338,6 +340,13 @@ class Visit < ActiveRecord::Base
     hash[:observations] = self.visits_observations.map {|d| d.web_service_format }
 
     hash
+  end
+
+  def change_from_temp_to_saved!
+    if self.payroll_line_item_id.blank?
+      self.payroll_line_item_id = self.temp_payroll_line_item_id
+      self.save!
+    end
   end
 
 

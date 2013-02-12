@@ -82,7 +82,7 @@ OauthServer::Application.routes.draw do
       namespace :payroll do
 
         post 'batches/search' => 'batches#index'
-        get 'batches/export/:id' => 'batches#export', :as => :export_batch
+        post 'batches/export/:id' => 'batches#export', :as => :export_batch
         get 'batches/export/:id/download' => 'batches#export_download', :as => :export_batch_download
         post 'batches/:id/status' => 'batches#status', :as => :batch_status
         get 'batches/:id/line-item/:line_item_id' => 'batches#line_item', :as => :batch_line_item

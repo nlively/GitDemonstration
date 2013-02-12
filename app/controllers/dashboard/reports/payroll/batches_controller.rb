@@ -81,6 +81,7 @@ module Dashboard::Reports::Payroll
 
           line_item = PayrollLineItem.create!({
             :payroll_batch_id => @batch.id,
+            :status => :temporary,
             :user_id => id,
             :regular_hours_worked => calculations['totals'][:normal_hours],
             :overtime_hours_worked =>calculations['totals'][:overtime_hours],
@@ -90,7 +91,7 @@ module Dashboard::Reports::Payroll
           @batch.payroll_line_items << line_item
 
           data[:visits].each do |visit|
-            visit.payroll_line_item_id=line_item.id
+            visit.temp_payroll_line_item_id=line_item.id
             visit.save!
           end
 
@@ -124,10 +125,27 @@ module Dashboard::Reports::Payroll
       redirect_to dashboard_reports_payroll_batches_path
     end
 
-    # GET /dashboard/reports/payroll/batches/export/:id
+    # POST /dashboard/reports/payroll/batches/export/:id
     def export
       @page_title = 'Save and Export Payroll Batch'
       @batch = PayrollBatch.find params[:id]
+
+      @batch.status = :pending
+
+      @count = params[:export].count
+      session[:export_ids] = params[:export]
+
+      if params[:pending] == '1'
+        @batch.payroll_line_items.each do |li|
+          if params[:export].include? li.id
+            li.status = :saved
+          else
+            li.back_out!
+          end
+        end
+
+        @batch.save!
+      end
 
     end
 
@@ -140,8 +158,8 @@ module Dashboard::Reports::Payroll
       zip_file_name = @batch.export! dirname
       #redirect_to '/dashboard/reports/payroll/batches/' + @batch.id.to_s
       send_file zip_file_name, :type => 'application/zip',
-                  :disposition => 'attachment',
-                  :filename => @batch.filename + '.zip'
+        :disposition => 'attachment',
+        :filename => @batch.filename + '.zip'
     end
 
     # POST /dashboard/reports/payroll/batches/:id/status

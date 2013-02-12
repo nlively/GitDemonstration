@@ -5,7 +5,6 @@
 #  id                 :integer          not null, primary key
 #  care_recipient_id  :integer
 #  pay_status         :integer
-#  hours              :decimal(11, 2)   default(0.0)
 #  bill_rate          :decimal(11, 2)   default(0.0)
 #  adjustments        :decimal(11, 2)   default(0.0)
 #  original_bill_rate :decimal(11, 2)   default(0.0)
@@ -13,6 +12,7 @@
 #  updated_at         :datetime         not null
 #  client_invoice_id  :integer
 #  visit_id           :integer
+#  minutes            :integer          default(0)
 #
 
 class ClientInvoiceLineItem < ActiveRecord::Base

@@ -13,6 +13,7 @@
 #  overtime_rate         :decimal(11, 2)   default(0.0)
 #  pay_rate              :decimal(11, 2)   default(0.0)
 #  original_pay_rate     :decimal(11, 2)   default(0.0)
+#  status                :string(255)
 #
 
 class PayrollLineItem < ActiveRecord::Base
@@ -22,6 +23,8 @@ class PayrollLineItem < ActiveRecord::Base
   belongs_to :payroll_batch
   belongs_to :user
   has_many :visits
+
+  has_many :temp_visits, :class_name => 'Visit', :foreign_key => :temp_payroll_line_item_id
 
   accepts_nested_attributes_for :visits
 
@@ -79,6 +82,28 @@ class PayrollLineItem < ActiveRecord::Base
     })
 
     return line_item
+  end
+
+
+  def change_from_temp_to_saved!
+    self.temp_visits.each do |temp_visit|
+      temp_visit.change_from_temp_to_saved!
+    end
+  end
+
+  def back_out!
+    self.temp_visits.each do |temp_visit|
+      temp_visit.temp_payroll_line_item_id=nil
+      temp_visit.save!
+    end
+
+    self.visits.each do |visit|
+      visit.payroll_line_item_id = nil
+      visit.save!
+    end
+
+    self.delete
+
   end
 
 
