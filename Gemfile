@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'rails', '3.2.11'
+gem 'json', '1.7.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -66,6 +67,7 @@ gem 'therubyracer'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
