@@ -51,12 +51,12 @@ module Dashboard
         params[:user].delete :password
         params[:user].delete :password_confirmation
 
-        if @location.blank?
-          @location = Location.create params[:location]
-          @employee.location = @location
-        else
-          @location.update_attributes! params[:location]
-        end
+        #if @location.blank?
+        #  @location = Location.create params[:location]
+        #  @employee.location = @location
+        #else
+        #  @location.update_attributes! params[:location]
+        #end
 
         if @employee.update_attributes! params[:user]
           redirect_to dashboard_employees_profile_path(@employee), notice: 'Employee was successfully updated.'
