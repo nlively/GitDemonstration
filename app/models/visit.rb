@@ -199,10 +199,12 @@ class Visit < ActiveRecord::Base
   end
 
   def time_only_string
-    if in_time.hour < 12 and out_time.hour >= 12
-      sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute_meridian_no_space), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
-    else
-      sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
+    unless out_time.blank?
+      if in_time.hour < 12 and out_time.hour >= 12
+        sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute_meridian_no_space), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
+      else
+        sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
+      end
     end
   end
 
