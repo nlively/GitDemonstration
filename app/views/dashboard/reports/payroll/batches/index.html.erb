@@ -2,6 +2,11 @@
     Payroll Batches
 <% end %>
 
+<% content_for :sidebar_second do %>
+    <p>Use the filters to find the batch or payroll report you are looking for.</p>
+    <p>Click "re-export" to generate a copy of a batch. </p>
+<% end  %>
+
 <% content_for :page_top do %>
 
     <%= form_tag dashboard_reports_payroll_batches_search_path, :method => :post, :remote => true do %>

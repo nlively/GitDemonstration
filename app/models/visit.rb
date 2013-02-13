@@ -198,6 +198,14 @@ class Visit < ActiveRecord::Base
     sprintf '%s %s-%s', in_time.to_formatted_s(:month_slash_date), in_time.to_formatted_s(:hour_with_minute_meridian_no_space), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
   end
 
+  def time_only_string
+    if in_time.hour < 12 and out_time.hour >= 12
+      sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute_meridian_no_space), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
+    else
+      sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
+    end
+  end
+
   def month_name_day_string
     self.in_time.to_formatted_s(:month_name_day)
   end

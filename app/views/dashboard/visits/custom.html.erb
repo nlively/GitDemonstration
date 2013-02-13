@@ -1,3 +1,10 @@
+<% content_for :sidebar_second do %>
+    <p>This is the "Custom" view of completed visits. </p>
+    <p>"Completed Visits" shows visits that are pending approval. Use the "view" link to see details about each visit. </p>
+    <p>Click on the Pay Rate or Bill Rate to make edits to the dollar amounts associated with each visit. </p>
+    <p>After approving a visit, use the Billing and Payroll page to create an invoice for your client or payroll reports for your employee. </p>
+    <p>Use the menu on the left filter visits by day, week or month.</p>
+<% end %>
 
 <% content_for :page_top do %>
     <%= form_tag dashboard_visits_custom_path, :method => :get, :id => 'visits-custom-form' do %>

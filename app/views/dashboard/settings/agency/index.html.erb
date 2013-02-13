@@ -2,6 +2,11 @@
     Agency
 <% end %>
 
+<% content_for :sidebar_second do %>
+    <p>Use this page to update information about your agency, including payment information.</p>
+    <p>You may also purchase additional users from this page. </p>
+<% end %>
+
 <%= form_for @agency, :url => dashboard_settings_agency_path, :method => :post do |f| %>
 
 

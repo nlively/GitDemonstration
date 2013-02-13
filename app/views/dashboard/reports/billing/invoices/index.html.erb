@@ -1,3 +1,8 @@
+<% content_for :sidebar_second do %>
+    <p>Use the filters to find the invoice you are looking for.</p>
+    <p>Click "re-export" to generate a copy of an invoice. </p>
+<% end %>
+
 <% content_for :page_top do %>
 
     <%= form_tag dashboard_reports_billing_invoices_search_path, :method => :post, :remote => true do %>
