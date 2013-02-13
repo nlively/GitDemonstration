@@ -23,6 +23,7 @@
 #  guid                        :string(255)
 #  client_invoice_line_item_id :integer
 #  adjustments                 :decimal(11, 2)   default(0.0)
+#  temp_payroll_line_item_id   :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html

@@ -14,18 +14,27 @@ tr.visit-row {
     background: $rowHighlight;
   }
 
+  &.edit-mode {
+    td {
+      &.payrate, &.billrate {
+        width: 60px;
+        padding: 0;
+
+        input[type="text"] {
+          width: 33px;
+          padding: 1px;
+        }
+      }
+    }
+  }
+
   td {
     &.employee, &.client {
       width: 120px;
     }
 
     &.payrate, &.billrate {
-      width: 60px;
-
-      input[type="text"] {
-        width: 33px;
-        padding: 1px;
-      }
+      width: 45px;
     }
 
     &.adjustments {
@@ -39,6 +48,10 @@ tr.visit-row {
 
     &.in-time, &.out-time {
       width: 65px;
+    }
+
+    &.in-out-time {
+      width: 95px;
     }
 
     &.duration {

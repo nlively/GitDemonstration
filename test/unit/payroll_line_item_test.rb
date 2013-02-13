@@ -13,6 +13,7 @@
 #  overtime_rate         :decimal(11, 2)   default(0.0)
 #  pay_rate              :decimal(11, 2)   default(0.0)
 #  original_pay_rate     :decimal(11, 2)   default(0.0)
+#  status                :string(255)
 #
 
 require 'test_helper'

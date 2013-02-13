@@ -23,15 +23,14 @@
   <td class="billrate">
     <%= visit.bill_rate_formatted %>
   </td>
-  <td class="in-time">
-    <%= visit.in_time_time_only %>
-  </td>
+
   <% if type == :completed or type == 'completed' %>
-      <td class="out-time">
-        <%= visit.out_time_time_only %>
+      <td class="in-out-time">
+        <%= visit.time_only_string %><br>(<%= visit.duration_string %>)
       </td>
-      <td class="duration">
-        <%= visit.duration_string %>
+  <% else %>
+      <td class="in-time">
+        <%= visit.in_time_time_only %>
       </td>
   <% end %>
   <td class="location">
@@ -44,8 +43,8 @@
       <td class="approve">
         <% unless visit.approved? %>
             <%= check_box_tag :approve, '1', false, :class => 'approve' %>
-            <% else %>
-        <em>approved</em>
+        <% else %>
+            <em>approved</em>
         <% end %>
       </td>
   <% end %>

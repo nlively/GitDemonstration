@@ -1,7 +1,7 @@
 
 
-<tr class="visit-row" date-remote="true" data-id="<%= visit.id %>">
-  <td colspan="11">
+<tr class="visit-row edit-mode" date-remote="true" data-id="<%= visit.id %>">
+  <td colspan="9">
     <%= form_for visit, :url => dashboard_visit_path(visit), :remote => true  do |f| %>
         <%= hidden_field_tag :type, 'completed' %>
         <table class="edit-mode">
@@ -21,20 +21,17 @@
             <td class="billrate">
               $ <%= f.text_field :bill_rate, :size => 3 %>
             </td>
-            <td class="in-time">
-              <%= visit.in_time_time_only %>
+            <td class="in-out-time">
+              <%= visit.time_only_string %>
             </td>
-            <td class="out-time">
-              <%= visit.out_time_time_only %>
-            </td>
-            <td class="duration">
-              <%= visit.duration_string %>
-            </td>
+
             <td class="location">
               <%= visit.location_label %>
             </td>
+            <td class="data">
+              <%= link_to 'view', dashboard_visit_path(visit) %>
+            </td>
             <td>
-
 
               <div class="actions">
                 <%= link_to 'Save', 'javascript:void(0);', :id => 'save-link' %>

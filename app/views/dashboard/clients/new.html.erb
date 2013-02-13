@@ -2,9 +2,10 @@
     <h3>Add a new client here.</h3>
 
     <p>
-      Make sure to fill out all information in this section. The "Default Bill Rate" will always auto fill this
-      amount any time this client is billed. The amount can be edited per visit and the default rate can be
-      changed at any time.
+      Make sure all information in this section is filled out.</p>
+    <p> The “Address” will be the location where care is is provided.</p>
+    <p> The "Default Bill Rate" will always auto fill this amount any time this client is billed. The amount can be edited per visit and the default rate can be changed at any time on this page.
+
     </p>
 <% end %>
 <% content_for :title do %>
@@ -13,8 +14,8 @@
 
 <% if @employee %>
     <% content_for :page_top do %>
-              This new client will be assigned to <%= @employee.full_name %>
-        <% end %>
+        This new client will be assigned to <%= @employee.full_name %>
     <% end %>
+<% end %>
 
 <%= render 'dashboard/shared/client_form', :care_recipient => @care_recipient, :employee => @employee %>

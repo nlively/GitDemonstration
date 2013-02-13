@@ -14,6 +14,8 @@
 
 <%= form_for @batch, :url => dashboard_reports_payroll_export_batch_path, :method => :post, :html => {:class => 'table-form'} do |f| %>
 
+    <%= hidden_field_tag :pending, '1' %>
+
     <div class="padded-content">
       <%= f.submit 'Save and Export' %>  <em>Saves and exports this batch</em>
     </div>
@@ -35,7 +37,7 @@
             <td><%= check_box_tag 'export[]', item.id, true %></td>
             <td><%= employee.full_name %></td>
             <td><%= item.total_hours %></td>
-            <td><%= item.total_formatted %></td>
+            <td><%= item.temp_total_formatted %></td>
             <td><%= link_to 'View/edit', dashboard_reports_payroll_batch_line_item_path(@batch, item) %></td>
           </tr>
       <% end %>

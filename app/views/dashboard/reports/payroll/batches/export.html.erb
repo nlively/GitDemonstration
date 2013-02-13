@@ -12,7 +12,7 @@
 
 <div class="padded-content">
   <p>
-    You have exported 1 payroll batch and <%= pluralize(@batch.payroll_line_items.count, 'payroll report', 'payroll reports') %>.  Your export file should automatically download
+    You have exported 1 payroll batch and <%= pluralize(@count, 'payroll report', 'payroll reports') %>.  Your export file should automatically download
     within a few seconds.  If it does not, please <%= link_to 'click here', dashboard_reports_payroll_export_batch_download_path(@batch) %>.
   </p>
 </div>
