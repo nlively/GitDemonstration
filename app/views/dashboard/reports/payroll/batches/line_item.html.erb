@@ -6,7 +6,21 @@
     Visits
 <% end %>
 
+<%
 
+   if @line_item.pending?
+
+     visits = @line_item.temp_visits
+     sym = 'temp_visits'
+
+     else
+
+     visits = @line_item.visits
+     sym = 'visits'
+
+     end
+
+%>
 
 <%= form_for @line_item, :url => dashboard_reports_payroll_batch_line_item_path(@line_item.payroll_batch, @line_item), :method => :put, :html => {:class => 'table-form'} do |f| %>
 
@@ -14,7 +28,7 @@
     <%= link_to 'Cancel', dashboard_reports_payroll_batch_path(@line_item.payroll_batch), :class => 'link-button' %>
     <%= submit_tag 'Save Changes' %>
 
-    <% unless @line_item.visits.empty? %>
+    <% unless visits.empty? %>
         <table id="invoice-visits" class="visits-table">
           <thead>
           <tr>
@@ -28,8 +42,8 @@
           </tr>
           </thead>
           <tbody>
-          <% @line_item.visits.each do |visit| %>
-              <%= f.fields_for :visits, visit do |v| %>
+          <% visits.each do |visit| %>
+              <%= f.fields_for sym, visit do |v| %>
                   <tr class="visit-row editable" date-remote="true" data-id="<%= visit.id %>">
                     <td class="date">
                       <%= visit.date_only_formatted %>

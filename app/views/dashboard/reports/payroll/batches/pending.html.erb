@@ -37,7 +37,7 @@
             <td><%= check_box_tag 'export[]', item.id, true %></td>
             <td><%= employee.full_name %></td>
             <td><%= item.total_hours %></td>
-            <td><%= item.total_formatted %></td>
+            <td><%= item.temp_total_formatted %></td>
             <td><%= link_to 'View/edit', dashboard_reports_payroll_batch_line_item_path(@batch, item) %></td>
           </tr>
       <% end %>

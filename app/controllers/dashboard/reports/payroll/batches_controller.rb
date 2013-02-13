@@ -98,7 +98,7 @@ module Dashboard::Reports::Payroll
         end
 
         if @batch.save!
-          redirect_to dashboard_reports_payroll_batch_path(@batch)
+          redirect_to dashboard_reports_payroll_batch_pending_path(@batch)
         end
 
       end
@@ -109,6 +109,12 @@ module Dashboard::Reports::Payroll
     def show
       @batch = PayrollBatch.find params[:id]
       @batches = @agency.payroll_batches
+      @page_title = 'Payroll Batch ' + @batch.batch_number
+    end
+
+    # GET /dashboard/reports/payroll/batches/:id/pending
+    def pending
+      @batch = PayrollBatch.find params[:id]
       @page_title = 'Payroll Batch ' + @batch.batch_number
     end
 
@@ -137,9 +143,12 @@ module Dashboard::Reports::Payroll
 
       if params[:pending] == '1'
         @batch.payroll_line_items.each do |li|
-          if params[:export].include? li.id
-            li.status = :saved
+          logger.debug li.id
+          if params[:export].include? li.id.to_s
+            logger.debug 'saving ' + li.id.to_s
+            li.change_from_temp_to_saved!
           else
+            logger.debug 'backing out ' + li.id.to_s
             li.back_out!
           end
         end
@@ -171,7 +180,6 @@ module Dashboard::Reports::Payroll
     def line_item
       @line_item = PayrollLineItem.find params[:line_item_id]
 
-
       @page_title = 'Payroll Batch ' + @line_item.payroll_batch.batch_number + ' - ' + @line_item.user.full_name
 
     end
@@ -181,9 +189,14 @@ module Dashboard::Reports::Payroll
       @line_item = PayrollLineItem.find params[:line_item_id]
 
       if @line_item.update_attributes! params[:payroll_line_item]
-        redirect_to dashboard_reports_payroll_batch_path(@line_item.payroll_batch), notice: 'Payroll line item was successfully updated.'
+        if @line_item.pending?
+          redirect_to dashboard_reports_payroll_batch_pending_path(@line_item.payroll_batch), notice: 'Payroll line item was successfully updated.'
+        else
+          redirect_to dashboard_reports_payroll_batch_path(@line_item.payroll_batch), notice: 'Payroll line item was successfully updated.'
+        end
+
       else
-        redirect_to dashboard_reports_payroll_batch_path(@line_item.payroll_batch)
+        redirect_to dashboard_reports_payroll_batch_line_item_path(@line_item.payroll_batch, @line_item)
       end
     end
 

@@ -87,7 +87,7 @@ OauthServer::Application.routes.draw do
         post 'batches/:id/status' => 'batches#status', :as => :batch_status
         get 'batches/:id/line-item/:line_item_id' => 'batches#line_item', :as => :batch_line_item
         put 'batches/:id/line-item/:line_item_id' => 'batches#update_line_item', :as => :batch_line_item
-
+        get 'batches/:id/pending' => 'batches#pending', :as => :batch_pending
 
         resources :batches, :except => [:edit]
       end
