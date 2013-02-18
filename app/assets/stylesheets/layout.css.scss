@@ -1,5 +1,10 @@
 @import 'sass';
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body.splash {
   background: #fff;
 
@@ -42,6 +47,7 @@ body.with-sidebar-second {
       #sidebar-second {
         float: left;
         width: 208px;
+        margin-left: -209px; //Set left marginto -(RightColumnWidth)
         border-left: 1px solid $borderColor;
         min-height: 400px;
         background: #f6f9fb;
@@ -54,7 +60,9 @@ body.with-sidebar-second {
 
 
       #content {
-        width: 650px;
+        #content-wrapper {
+          margin: 0 208px 0 $leftSidebarWidth;
+        }
       }
     }
 
@@ -63,11 +71,9 @@ body.with-sidebar-second {
 }
 
 #page {
-  width: 1030px;
-  margin: 0 auto;
+  width: 100%;
+  min-width: 960px;
   background:#fff;
-  @include shadow-sides;
-
 
   #header, #main, #footer {
   }
@@ -112,6 +118,7 @@ body.with-sidebar-second {
       border-right: 1px solid $borderColor;
       min-height: 400px;
       background: #fff;
+      margin-left: -100%;
 
       .main-col-inner {
         padding: 0;
@@ -121,8 +128,12 @@ body.with-sidebar-second {
 
     #content {
       float: left;
-      width: 860px;
+      width: 100%;
       background: #fff;
+
+      #content-wrapper {
+        margin: 0 0 0 $leftSidebarWidth;
+      }
 
       .main-col-inner {
         padding-bottom: 300px;
