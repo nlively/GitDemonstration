@@ -1,10 +1,12 @@
 OauthServer::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   get "general/client_statuses"
 
   get "general/daily_activities"
 
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  
 
   resources :check_ins, :only => [:index, :create]
 

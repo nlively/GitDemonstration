@@ -1,4 +1,4 @@
-# RailsAdmin config file. Generated on November 15, 2012 14:41
+# RailsAdmin config file. Generated on February 18, 2013 11:51
 # See github.com/sferik/rails_admin for more informations
 
 RailsAdmin.config do |config|
@@ -27,10 +27,10 @@ RailsAdmin.config do |config|
   # config.default_items_per_page = 20
 
   # Exclude specific models (keep the others):
-  # config.excluded_models = ['Agency', 'CareRecipient', 'CareRecipientsLocations', 'CheckIn', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Photo', 'Role', 'User']
+  # config.excluded_models = ['ActivityStream', 'Agency', 'AgencyInvoice', 'AgencyInvoicePayment', 'AgencyInvoiceRow', 'CareRecipient', 'CareRecipientsLocations', 'CareRecipientsUser', 'CaregiverTask', 'CheckIn', 'ClientInvoice', 'ClientInvoiceBatch', 'ClientInvoiceLineItem', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Observation', 'PatientStatus', 'PayrollBatch', 'PayrollLineItem', 'Photo', 'Role', 'SubscriptionTier', 'User', 'Visit', 'VisitsCaregiverTask', 'VisitsObservation', 'VisitsPatientStatus']
 
   # Include specific models (exclude the others):
-  # config.included_models = ['Agency', 'CareRecipient', 'CareRecipientsLocations', 'CheckIn', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Photo', 'Role', 'User']
+  # config.included_models = ['ActivityStream', 'Agency', 'AgencyInvoice', 'AgencyInvoicePayment', 'AgencyInvoiceRow', 'CareRecipient', 'CareRecipientsLocations', 'CareRecipientsUser', 'CaregiverTask', 'CheckIn', 'ClientInvoice', 'ClientInvoiceBatch', 'ClientInvoiceLineItem', 'Doorkeeper::AccessGrant', 'Doorkeeper::AccessToken', 'Doorkeeper::Application', 'Location', 'Note', 'Observation', 'PatientStatus', 'PayrollBatch', 'PayrollLineItem', 'Photo', 'Role', 'SubscriptionTier', 'User', 'Visit', 'VisitsCaregiverTask', 'VisitsObservation', 'VisitsPatientStatus']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
@@ -52,6 +52,56 @@ RailsAdmin.config do |config|
 
 
 
+  ###  ActivityStream  ###
+
+  # config.model 'ActivityStream' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your activity_stream.rb model definition
+
+  #   # Found associations:
+
+  #     configure :agency, :belongs_to_association 
+  #     configure :user, :belongs_to_association 
+  #     configure :care_recipient, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :user_id, :integer         # Hidden 
+  #     configure :care_recipient_id, :integer         # Hidden 
+  #     configure :stream_type, :string 
+  #     configure :label, :string 
+  #     configure :reference_id, :integer 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
   ###  Agency  ###
 
   # config.model 'Agency' do
@@ -61,7 +111,17 @@ RailsAdmin.config do |config|
   #   # Found associations:
 
   #     configure :location, :belongs_to_association 
+  #     configure :subscription_tier, :belongs_to_association 
+  #     configure :payroll_batches, :has_many_association 
+  #     configure :activity_streams, :has_many_association 
   #     configure :users, :has_many_association 
+  #     configure :visits, :has_many_association 
+  #     configure :care_recipients, :has_many_association 
+  #     configure :locations, :has_many_association 
+  #     configure :client_invoices, :has_many_association 
+  #     configure :agency_invoices, :has_many_association 
+  #     configure :agency_invoice_rows, :has_many_association 
+  #     configure :agency_invoice_payments, :has_many_association 
 
   #   # Found columns:
 
@@ -71,6 +131,168 @@ RailsAdmin.config do |config|
   #     configure :administrative_contact, :string 
   #     configure :website, :string 
   #     configure :email, :string 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :bio, :text 
+  #     configure :phone, :string 
+  #     configure :status, :integer 
+  #     configure :subscription_tier_id, :integer         # Hidden 
+  #     configure :next_billing_date, :date 
+  #     configure :monthly_price_override, :decimal 
+  #     configure :logo_file_name, :string 
+  #     configure :logo_content_type, :string 
+  #     configure :logo_file_size, :integer 
+  #     configure :logo_updated_at, :datetime 
+  #     configure :billing_location_id, :integer 
+  #     configure :overtime_multiplier, :decimal 
+  #     configure :account_number, :integer 
+  #     configure :braintree_customer_id, :text 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  AgencyInvoice  ###
+
+  # config.model 'AgencyInvoice' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your agency_invoice.rb model definition
+
+  #   # Found associations:
+
+  #     configure :agency, :belongs_to_association 
+  #     configure :agency_invoice_rows, :has_many_association 
+  #     configure :agency_invoice_payments, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :total, :decimal 
+  #     configure :invoice_date, :date 
+  #     configure :due_date, :date 
+  #     configure :auto_billing_date, :date 
+  #     configure :notes, :text 
+  #     configure :status, :integer 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  AgencyInvoicePayment  ###
+
+  # config.model 'AgencyInvoicePayment' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your agency_invoice_payment.rb model definition
+
+  #   # Found associations:
+
+  #     configure :agency_invoice, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :agency_invoice_id, :integer         # Hidden 
+  #     configure :payment_method, :string 
+  #     configure :amount, :decimal 
+  #     configure :date, :datetime 
+  #     configure :status, :integer 
+  #     configure :token, :string 
+  #     configure :notes, :text 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  AgencyInvoiceRow  ###
+
+  # config.model 'AgencyInvoiceRow' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your agency_invoice_row.rb model definition
+
+  #   # Found associations:
+
+  #     configure :agency_invoice, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :agency_invoice_id, :integer         # Hidden 
+  #     configure :label, :string 
+  #     configure :quantity, :integer 
+  #     configure :unit_price, :decimal 
+  #     configure :notes, :string 
+  #     configure :status, :string 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
 
@@ -108,9 +330,16 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
+  #     configure :default_location, :belongs_to_association 
+  #     configure :agency, :belongs_to_association 
+  #     configure :activity_streams, :has_many_association 
   #     configure :photos, :has_many_association 
   #     configure :notes, :has_many_association 
-  #     configure :check_ins, :has_many_association 
+  #     configure :visits, :has_many_association 
+  #     configure :care_recipients_locations, :has_many_association 
+  #     configure :locations, :has_many_association 
+  #     configure :care_recipients_users, :has_many_association 
+  #     configure :users, :has_many_association 
 
   #   # Found columns:
 
@@ -118,9 +347,20 @@ RailsAdmin.config do |config|
   #     configure :first_name, :string 
   #     configure :last_name, :string 
   #     configure :dob, :datetime 
-  #     configure :default_location_id, :integer 
+  #     configure :default_location_id, :integer         # Hidden 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
+  #     configure :profile_photo_file_name, :string         # Hidden 
+  #     configure :profile_photo_content_type, :string         # Hidden 
+  #     configure :profile_photo_file_size, :integer         # Hidden 
+  #     configure :profile_photo_updated_at, :datetime         # Hidden 
+  #     configure :profile_photo, :paperclip 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :default_bill_rate, :decimal 
+  #     configure :middle_name, :string 
+  #     configure :gender, :string 
+  #     configure :phone, :string 
+  #     configure :sms, :string 
 
   #   # Cross-section configuration:
 
@@ -161,10 +401,101 @@ RailsAdmin.config do |config|
 
   #   # Found columns:
 
+  #     configure :id, :integer 
   #     configure :care_recipient_id, :integer         # Hidden 
   #     configure :location_id, :integer         # Hidden 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  CareRecipientsUser  ###
+
+  # config.model 'CareRecipientsUser' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your care_recipients_user.rb model definition
+
+  #   # Found associations:
+
+  #     configure :care_recipient, :belongs_to_association 
+  #     configure :user, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :care_recipient_id, :integer         # Hidden 
+  #     configure :user_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  CaregiverTask  ###
+
+  # config.model 'CaregiverTask' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your caregiver_task.rb model definition
+
+  #   # Found associations:
+
+  #     configure :visits_caregiver_tasks, :has_many_association 
+  #     configure :visits, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :label, :string 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :weight, :integer 
 
   #   # Cross-section configuration:
 
@@ -200,21 +531,173 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :care_recipient, :belongs_to_association 
-  #     configure :location, :belongs_to_association 
+  #     configure :user, :belongs_to_association 
+  #     configure :visit, :belongs_to_association 
 
   #   # Found columns:
 
   #     configure :id, :integer 
-  #     configure :user_id, :integer 
-  #     configure :latitude, :integer 
-  #     configure :longitude, :integer 
+  #     configure :user_id, :integer         # Hidden 
+  #     configure :latitude, :decimal 
+  #     configure :longitude, :decimal 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
-  #     configure :session_guid, :string 
   #     configure :in_out, :boolean 
+  #     configure :visit_id, :integer         # Hidden 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  ClientInvoice  ###
+
+  # config.model 'ClientInvoice' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your client_invoice.rb model definition
+
+  #   # Found associations:
+
+  #     configure :care_recipient, :belongs_to_association 
+  #     configure :agency, :belongs_to_association 
+  #     configure :client_invoice_batch, :belongs_to_association 
+  #     configure :client_invoice_line_items, :has_many_association 
+  #     configure :visits, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
   #     configure :care_recipient_id, :integer         # Hidden 
-  #     configure :location_id, :integer         # Hidden 
+  #     configure :invoice_number, :integer 
+  #     configure :notes, :text 
+  #     configure :due_date, :datetime 
+  #     configure :invoice_date, :datetime 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :status, :string 
+  #     configure :exported, :boolean 
+  #     configure :client_invoice_batch_id, :integer         # Hidden 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  ClientInvoiceBatch  ###
+
+  # config.model 'ClientInvoiceBatch' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your client_invoice_batch.rb model definition
+
+  #   # Found associations:
+
+  #     configure :client_invoices, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :agency_id, :integer 
+  #     configure :guid, :string 
+  #     configure :start_date, :datetime 
+  #     configure :end_date, :datetime 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  ClientInvoiceLineItem  ###
+
+  # config.model 'ClientInvoiceLineItem' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your client_invoice_line_item.rb model definition
+
+  #   # Found associations:
+
+  #     configure :care_recipient, :belongs_to_association 
+  #     configure :client_invoice, :belongs_to_association 
+  #     configure :visit, :belongs_to_association 
+  #     configure :visits, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :care_recipient_id, :integer         # Hidden 
+  #     configure :pay_status, :integer 
+  #     configure :bill_rate, :decimal 
+  #     configure :adjustments, :decimal 
+  #     configure :original_bill_rate, :decimal 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :client_invoice_id, :integer         # Hidden 
+  #     configure :visit_id, :integer         # Hidden 
+  #     configure :minutes, :integer 
 
   #   # Cross-section configuration:
 
@@ -395,7 +878,11 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
-  #     configure :check_ins, :has_many_association 
+  #     configure :agency, :belongs_to_association 
+  #     configure :visits, :has_many_association 
+  #     configure :care_recipients_locations, :has_many_association 
+  #     configure :care_recipients, :has_many_association 
+  #     configure :users, :has_many_association 
 
   #   # Found columns:
 
@@ -404,10 +891,17 @@ RailsAdmin.config do |config|
   #     configure :city, :string 
   #     configure :state, :string 
   #     configure :zip, :string 
-  #     configure :latitude, :integer 
-  #     configure :longitude, :integer 
+  #     configure :latitude, :decimal 
+  #     configure :longitude, :decimal 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
+  #     configure :outside_photo_file_name, :string         # Hidden 
+  #     configure :outside_photo_content_type, :string         # Hidden 
+  #     configure :outside_photo_file_size, :integer         # Hidden 
+  #     configure :outside_photo_updated_at, :datetime         # Hidden 
+  #     configure :outside_photo, :paperclip 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :line2, :string 
 
   #   # Cross-section configuration:
 
@@ -455,6 +949,202 @@ RailsAdmin.config do |config|
   #     configure :note, :text 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
+  #     configure :visit_id, :integer 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  Observation  ###
+
+  # config.model 'Observation' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your observation.rb model definition
+
+  #   # Found associations:
+
+  #     configure :visits_observations, :has_many_association 
+  #     configure :visits, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :label, :string 
+  #     configure :weight, :integer 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  PatientStatus  ###
+
+  # config.model 'PatientStatus' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your patient_status.rb model definition
+
+  #   # Found associations:
+
+  #     configure :visits_patient_statuses, :has_many_association 
+  #     configure :visits, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :label, :string 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :weight, :integer 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  PayrollBatch  ###
+
+  # config.model 'PayrollBatch' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your payroll_batch.rb model definition
+
+  #   # Found associations:
+
+  #     configure :agency, :belongs_to_association 
+  #     configure :payroll_line_items, :has_many_association 
+  #     configure :visits, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :batch_date, :datetime 
+  #     configure :notes, :text 
+  #     configure :period_start, :date 
+  #     configure :period_end, :date 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :status, :string 
+  #     configure :exported, :boolean 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  PayrollLineItem  ###
+
+  # config.model 'PayrollLineItem' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your payroll_line_item.rb model definition
+
+  #   # Found associations:
+
+  #     configure :payroll_batch, :belongs_to_association 
+  #     configure :user, :belongs_to_association 
+  #     configure :visits, :has_many_association 
+  #     configure :temp_visits, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :payroll_batch_id, :integer         # Hidden 
+  #     configure :user_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :pay_status, :integer 
+  #     configure :regular_hours_worked, :decimal 
+  #     configure :overtime_hours_worked, :decimal 
+  #     configure :overtime_rate, :decimal 
+  #     configure :pay_rate, :decimal 
+  #     configure :original_pay_rate, :decimal 
+  #     configure :status, :string 
 
   #   # Cross-section configuration:
 
@@ -507,6 +1197,8 @@ RailsAdmin.config do |config|
   #     configure :photo_file_size, :integer         # Hidden 
   #     configure :photo_updated_at, :datetime         # Hidden 
   #     configure :photo, :paperclip 
+  #     configure :visit_id, :integer 
+  #     configure :caption, :string 
 
   #   # Cross-section configuration:
 
@@ -580,6 +1272,54 @@ RailsAdmin.config do |config|
   # end
 
 
+  ###  SubscriptionTier  ###
+
+  # config.model 'SubscriptionTier' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your subscription_tier.rb model definition
+
+  #   # Found associations:
+
+  #     configure :agencies, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :label, :string 
+  #     configure :monthly_fee, :decimal 
+  #     configure :max_users, :integer 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :description, :text 
+  #     configure :visible, :boolean 
+  #     configure :active, :boolean 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
   ###  User  ###
 
   # config.model 'User' do
@@ -588,10 +1328,19 @@ RailsAdmin.config do |config|
 
   #   # Found associations:
 
+  #     configure :agency, :belongs_to_association 
+  #     configure :location, :belongs_to_association 
   #     configure :roles, :has_and_belongs_to_many_association 
+  #     configure :activity_streams, :has_many_association 
   #     configure :photos, :has_many_association 
-  #     configure :notes, :has_many_association 
   #     configure :check_ins, :has_many_association 
+  #     configure :notes, :has_many_association 
+  #     configure :visits, :has_many_association 
+  #     configure :approved_visits, :has_many_association 
+  #     configure :care_recipients_users, :has_many_association 
+  #     configure :care_recipients, :has_many_association 
+  #     configure :payroll_line_items, :has_many_association 
+  #     configure :payroll_batches, :has_many_association 
 
   #   # Found columns:
 
@@ -611,6 +1360,232 @@ RailsAdmin.config do |config|
   #     configure :last_sign_in_at, :datetime 
   #     configure :current_sign_in_ip, :string 
   #     configure :last_sign_in_ip, :string 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :profile_photo_file_name, :string         # Hidden 
+  #     configure :profile_photo_content_type, :string         # Hidden 
+  #     configure :profile_photo_file_size, :integer         # Hidden 
+  #     configure :profile_photo_updated_at, :datetime         # Hidden 
+  #     configure :profile_photo, :paperclip 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :settings, :serialized 
+  #     configure :default_pay_rate, :decimal 
+  #     configure :middle_name, :string 
+  #     configure :phone, :string 
+  #     configure :sms, :string 
+  #     configure :is_active, :boolean 
+  #     configure :deleted, :boolean 
+  #     configure :location_id, :integer         # Hidden 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  Visit  ###
+
+  # config.model 'Visit' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your visit.rb model definition
+
+  #   # Found associations:
+
+  #     configure :user, :belongs_to_association 
+  #     configure :care_recipient, :belongs_to_association 
+  #     configure :location, :belongs_to_association 
+  #     configure :agency, :belongs_to_association 
+  #     configure :approved_by_user, :belongs_to_association 
+  #     configure :payroll_line_item, :belongs_to_association 
+  #     configure :temp_payroll_line_item, :belongs_to_association 
+  #     configure :client_invoice_line_item, :has_one_association 
+  #     configure :check_ins, :has_many_association 
+  #     configure :photos, :has_many_association 
+  #     configure :note, :has_one_association 
+  #     configure :visits_patient_statuses, :has_many_association 
+  #     configure :patient_statuses, :has_many_association 
+  #     configure :visits_caregiver_tasks, :has_many_association 
+  #     configure :caregiver_tasks, :has_many_association 
+  #     configure :visits_observations, :has_many_association 
+  #     configure :observations, :has_many_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :in_time, :datetime 
+  #     configure :out_time, :datetime 
+  #     configure :approved, :boolean 
+  #     configure :user_id, :integer         # Hidden 
+  #     configure :care_recipient_id, :integer         # Hidden 
+  #     configure :location_id, :integer         # Hidden 
+  #     configure :agency_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+  #     configure :bill_rate, :decimal 
+  #     configure :pay_rate, :decimal 
+  #     configure :approved_by_user_id, :integer         # Hidden 
+  #     configure :payroll_line_item_id, :integer         # Hidden 
+  #     configure :billable, :boolean 
+  #     configure :break_minutes, :integer 
+  #     configure :duration_minutes, :integer 
+  #     configure :billable_duration_minutes, :integer 
+  #     configure :guid, :string 
+  #     configure :client_invoice_line_item_id, :integer 
+  #     configure :adjustments, :decimal 
+  #     configure :temp_payroll_line_item_id, :integer         # Hidden 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  VisitsCaregiverTask  ###
+
+  # config.model 'VisitsCaregiverTask' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your visits_caregiver_task.rb model definition
+
+  #   # Found associations:
+
+  #     configure :visit, :belongs_to_association 
+  #     configure :caregiver_task, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :visit_id, :integer         # Hidden 
+  #     configure :caregiver_task_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  VisitsObservation  ###
+
+  # config.model 'VisitsObservation' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your visits_observation.rb model definition
+
+  #   # Found associations:
+
+  #     configure :visit, :belongs_to_association 
+  #     configure :observation, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :visit_id, :integer         # Hidden 
+  #     configure :observation_id, :integer         # Hidden 
+  #     configure :created_at, :datetime 
+  #     configure :updated_at, :datetime 
+
+  #   # Cross-section configuration:
+
+  #     # object_label_method :name     # Name of the method called for pretty printing an *instance* of ModelName
+  #     # label 'My model'              # Name of ModelName (smartly defaults to ActiveRecord's I18n API)
+  #     # label_plural 'My models'      # Same, plural
+  #     # weight 0                      # Navigation priority. Bigger is higher.
+  #     # parent OtherModel             # Set parent model for navigation. MyModel will be nested below. OtherModel will be on first position of the dropdown
+  #     # navigation_label              # Sets dropdown entry's name in navigation. Only for parents!
+
+  #   # Section specific configuration:
+
+  #     list do
+  #       # filters [:id, :name]  # Array of field names which filters should be shown by default in the table header
+  #       # items_per_page 100    # Override default_items_per_page
+  #       # sort_by :id           # Sort column (default is primary key)
+  #       # sort_reverse true     # Sort direction (default is true for primary key, last created first)
+  #     end
+  #     show do; end
+  #     edit do; end
+  #     export do; end
+  #     # also see the create, update, modal and nested sections, which override edit in specific cases (resp. when creating, updating, modifying from another model in a popup modal or modifying from another model nested form)
+  #     # you can override a cross-section field configuration in any section with the same syntax `configure :field_name do ... end`
+  #     # using `field` instead of `configure` will exclude all other fields and force the ordering
+  # end
+
+
+  ###  VisitsPatientStatus  ###
+
+  # config.model 'VisitsPatientStatus' do
+
+  #   # You can copy this to a 'rails_admin do ... end' block inside your visits_patient_status.rb model definition
+
+  #   # Found associations:
+
+  #     configure :visit, :belongs_to_association 
+  #     configure :patient_status, :belongs_to_association 
+
+  #   # Found columns:
+
+  #     configure :id, :integer 
+  #     configure :visit_id, :integer         # Hidden 
+  #     configure :patient_status_id, :integer         # Hidden 
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
 
