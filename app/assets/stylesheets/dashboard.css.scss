@@ -127,8 +127,16 @@ body.dashboard {
         & > form {
           margin-left: 20px;
 
+          .page-caption {
+            margin-left: -20px;
+          }
+
           &.table-form {
             margin-left: 0;
+
+            .page-caption {
+              margin-left: 20px;
+            }
           }
         }
 
@@ -323,4 +331,35 @@ body.dashboard {
 
   font-size: 1.2em;
 
+}
+
+#credit-card-form {
+  .form-field {
+
+    &.expiration {
+      width: 100%;
+      overflow: auto;
+    }
+  }
+
+  .row {
+    width: 100%;
+    overflow: auto;
+
+    .form-field {
+      float: left;
+      margin-right: 15px;
+    }
+
+  }
+
+
+}
+
+table#credit-cards{
+  tr.default {
+    td {
+      font-weight:bold;
+    }
+  }
 }

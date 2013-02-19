@@ -1,5 +1,5 @@
 module Dashboard::Settings::Agency
-  class CreditCardsController < Dashboard::AgencyController
+  class CreditCardsController < Dashboard::Settings::AgencyController
 
     before_filter do
       @agency.with_braintree_data!
@@ -31,31 +31,39 @@ module Dashboard::Settings::Agency
     end
 
     def new
-      @credit_card = BrainTree::CreditCard.new
+      @page_title = 'Add a Credit Card'
+
+      billing_address = (@agency.billing_location.blank?) ? {} : @agency.billing_location.to_braintree_hash
+
+      @credit_card = @agency.credit_cards.build({ :billing_address => billing_address })
+
     end
 
     def create
-      result = Braintree::CreditCard.create(
-          :customer_id => "131866",
-          :number => "5105105105105100",
-          :expiration_date => "12/2012",
-          :billing_address => {
-              :first_name => "Jenna",
-              :last_name => "Smith",
-              :company => "Braintree",
-              :street_address => "1 E Main St",
-              :extended_address => "Suite 403",
-              :locality => "Chicago",
-              :region => "Illinois",
-              :postal_code => "60622",
-              :country_code_alpha2 => "US"
-          }
-      )
+
+      credit_card = params[:credit_card]
+
+      credit_card[:expiration_month] = params[:date][:month]
+      credit_card[:expiration_year] = params[:date][:year]
+
+      result = Braintree::CreditCard.create credit_card
+
+      if result.success?
+        redirect_to dashboard_settings_agency_credit_cards_path
+      end
     end
 
     def edit
       @token = params[:id]
       @credit_card = card_from_token @token
+
+      if @credit_card.blank?
+        @credit_card = {}
+      end
+      if @credit_card[:billing_address].blank?
+        @credit_card[:billing_address] = {}
+      end
+
     end
 
     def update
@@ -67,19 +75,19 @@ module Dashboard::Settings::Agency
 
       # default credit card
       result = Braintree::CreditCard.update(
-          params['default_cc'],
-          :number => "5105105105105105100",
-          :expiration_date => "06/2012",
-          :billing_address => {
-              :street_address => "1 E Main St",
-              :extended_address => "Suite 3",
-              :locality => "Chicago",
-              :region => "Illinois",
-              :postal_code => "60622",
-              :options => {
-                  :update_existing => true
-              }
+        params['default_cc'],
+        :number => "5105105105105105100",
+        :expiration_date => "06/2012",
+        :billing_address => {
+          :street_address => "1 E Main St",
+          :extended_address => "Suite 3",
+          :locality => "Chicago",
+          :region => "Illinois",
+          :postal_code => "60622",
+          :options => {
+            :update_existing => true
           }
+        }
       )
     end
 
@@ -92,10 +100,10 @@ module Dashboard::Settings::Agency
       unless @credit_card.blank?
         # default credit card
         result = Braintree::CreditCard.update(
-            @token,
-            :options => {
-                :make_default => true
-            }
+          @token,
+          :options => {
+            :make_default => true
+          }
         )
       end
     end
@@ -108,6 +116,12 @@ module Dashboard::Settings::Agency
         Braintree::CreditCard.delete @token
         @agency.with_braintree_data!
       end
+
+      @agency.with_braintree_data!
+      @credit_cards = @agency.credit_cards
+
+      redirect_to dashboard_settings_agency_credit_cards_path
+
     end
 
 
@@ -120,19 +134,19 @@ module Dashboard::Settings::Agency
       # new payment method
       if !params[:credit_card][:number].blank?
         options = {
-            :customer_id => current_user.braintree_customer_id,
-            :number => params[:credit_card][:number],
-            :expiration_date => expiration_date,
-            :cardholder_name => params[:credit_card][:cardholder_name],
-            :billing_address => {
-                :street_address => params[:credit_card][:street_address],
-                :locality       => params[:credit_card][:locality],
-                :region         => params[:credit_card][:region],
-                :postal_code    => params[:credit_card][:postal_code],
-            },
-            :options => {
-                :make_default => true
-            }
+          :customer_id => current_user.braintree_customer_id,
+          :number => params[:credit_card][:number],
+          :expiration_date => expiration_date,
+          :cardholder_name => params[:credit_card][:cardholder_name],
+          :billing_address => {
+            :street_address => params[:credit_card][:street_address],
+            :locality       => params[:credit_card][:locality],
+            :region         => params[:credit_card][:region],
+            :postal_code    => params[:credit_card][:postal_code],
+          },
+          :options => {
+            :make_default => true
+          }
         }
         @result = Braintree::CreditCard.create options
 

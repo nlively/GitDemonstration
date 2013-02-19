@@ -85,6 +85,15 @@ class Location < ActiveRecord::Base
   end
 
 
+  def to_braintree_hash
+    {
+      :street_address => self.street,
+      :locality => self.city,
+      :region => self.state,
+      :postal_code => self.zip
+    }
+  end
+
 
   def geocode
     #if self.latitude.nil? or self.latitude.empty?

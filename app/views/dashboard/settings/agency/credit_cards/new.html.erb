@@ -1,0 +1,23 @@
+<%= content_for :page_caption do %>
+    Credit Card Details
+<% end %>
+
+<%#= render 'dashboard/settings/shared/credit_card_form', :credit_card => @credit_card %>
+
+<% form_for :credit_card,
+     :params => params[:credit_card],
+     :errors => @result && @result.errors.for(:credit_card),
+     :builder => BraintreeFormBuilder,
+     :url => payments_path,
+     :html => {:autocomplete => "off"} do |c| -%>
+
+  <% field_set_tag "Credit Card" do -%>
+      <div><%= c.label :number, "Number" %></div>
+      <div><%= c.text_field :number %></div>
+      <div><%= c.label :expiration_date, "Expiration Date (MM/YY)" %></div>
+      <div><%= c.text_field :expiration_date %></div>
+      <div><%= c.label :cvv, "CVV" %></div>
+      <div><%= c.text_field :cvv %></div>
+  <% end -%>
+  <%= f.submit "Submit" %>
+<% end -%>

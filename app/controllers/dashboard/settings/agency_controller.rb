@@ -9,7 +9,10 @@ module Dashboard::Settings
     def index
       @page_title = 'Agency Settings'
 
+      @agency.ensure_customer_record!
       @agency.with_braintree_data!
+
+      @credit_cards = @agency.credit_cards
 
     end
 

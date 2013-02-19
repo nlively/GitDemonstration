@@ -7,10 +7,11 @@ module Boomr::BraintreeCustomer
   # Retrieve customer data from the Braintree web service (based on the braintree_customer_id field)
   # and map it to the User object.
   def self.attach_braintree_data(agency)
+    Rails.logger.debug "Customer id: " + agency.braintree_customer_id
     braintree_data = Braintree::Customer.find(agency.braintree_customer_id)
 
     BRAINTREE_FIELDS.each do |field|
-      user.class.send(:define_method, field) { braintree_data.send(field) }
+      agency.class.send(:define_method, field) { braintree_data.send(field) }
     end
   end
 

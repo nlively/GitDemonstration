@@ -1,35 +1,7 @@
-<% if @credit_cards.empty? %>
+<% content_for :page_top do %>
 
-    You have no cards on file.
+    <%= link_to '+ Add a Credit Card', new_dashboard_settings_agency_credit_card_path, :class => 'link-button' %>
 
-<% else %>
+    <% end %>
 
-    <table id="credit-cards">
-      <thead>
-      <tr>
-        <td>Type</td>
-        <td>Number</td>
-        <td>Expiration</td>
-        <td>Actions</td>
-      </tr>
-      </thead>
-      <tbody>
-      <% @credit_cards.each do |cc| %>
-          <tr <%= "class='default'" if cc.default? %>>
-            <td><%= cc.card_type %></td>
-            <td><%= cc.last_4 %></td>
-            <td><%= sprintf("%s/%s", cc.expiration_month, cc.expiration_year) %></td>
-            <td><%= link_to "edit", edit_dashboard_settings_agency_credit_card_path(cc.token) %></td>
-            <td>
-              <% if cc.default? %>
-                  <div class="default"><em>default</em></div>
-              <% else %>
-                  <%= link_to "make default", dashboard_settings_agency_credit_cards_set_default(cc.token), :remote => true %>
-              <% end %>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-
-<% end %>
+<%= render 'dashboard/settings/shared/credit_cards_on_file', :credit_cards => @credit_cards %>
