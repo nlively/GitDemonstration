@@ -7,7 +7,9 @@
     <p>If a user has not checked-in in the last 30 days, their account is automatically flagged on this page for review.</p>
 <% end %>
 
+<% content_for :page_top do %>
 <%= render 'shared/agency_user_count' %>
+    <% end %>
 
 <table>
   <thead>

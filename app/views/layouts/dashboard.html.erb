@@ -64,47 +64,50 @@
         </div>
 
 
-        <div id="sidebar-first" class="sidebar main-col">
-          <div id="sidebar-first-inner" class="sidebar-inner main-col-inner inner">
-            <%= render 'layouts/dashboard_sidebar_menu' %>
+
+        <div id="content" class="main-col">
+          <div id="content-wrapper">
+            <div id="content-inner" class="inner main-col-inner">
+
+              <%= render 'shared/breadcrumb' %>
+
+              <% if content_for?(:title) or not @page_title.blank? or content_for?(:page_top) %>
+                  <div class="title-wrapper">
+                    <div class="title-wrapper-inner">
+                      <% if content_for?(:title) %>
+                          <h1 class="title"><%= yield :title %></h1>
+                      <% elsif not @page_title.blank? %>
+                          <h1 class="title"><%= @page_title %></h1>
+                      <% end %>
+
+                      <% if content_for? :page_top %>
+                          <div id="page-top">
+                            <div id="page-top-inner">
+                              <%= yield :page_top %>
+                            </div>
+                          </div>
+                      <% end %>
+
+                    </div>
+                  </div>
+              <% end %>
+
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+
+              <% if content_for? :page_caption %>
+                  <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>
+              <% end %>
+
+              <%= yield %>
+
+            </div>
           </div>
         </div>
 
-        <div id="content" class="main-col">
-          <div id="content-inner" class="inner main-col-inner">
-
-            <%= render 'shared/breadcrumb' %>
-
-            <% if content_for?(:title) or not @page_title.blank? or content_for?(:page_top) %>
-                <div class="title-wrapper">
-                  <div class="title-wrapper-inner">
-                    <% if content_for?(:title) %>
-                        <h1 class="title"><%= yield :title %></h1>
-                    <% elsif not @page_title.blank? %>
-                        <h1 class="title"><%= @page_title %></h1>
-                    <% end %>
-
-                    <% if content_for? :page_top %>
-                        <div id="page-top">
-                          <div id="page-top-inner">
-                            <%= yield :page_top %>
-                          </div>
-                        </div>
-                    <% end %>
-
-                  </div>
-                </div>
-            <% end %>
-
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-
-            <% if content_for? :page_caption %>
-                <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>
-            <% end %>
-
-            <%= yield %>
-
+        <div id="sidebar-first" class="sidebar main-col">
+          <div id="sidebar-first-inner" class="sidebar-inner main-col-inner inner">
+            <%= render 'layouts/dashboard_sidebar_menu' %>
           </div>
         </div>
 
