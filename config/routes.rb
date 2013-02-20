@@ -73,7 +73,7 @@ OauthServer::Application.routes.draw do
 
         match 'subscription/change_to/:id', :action => :subscription_change, :as => :subscription_change
 
-        resources :credit_cards
+        resources :credit_cards, :except => [:show]
         match 'credit_cards/:id/set_default' => 'credit_cards#set_default', :as => :credit_cards_set_default
 
       end

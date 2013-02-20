@@ -20,23 +20,11 @@ module Dashboard::Settings::Agency
 
     def index
       @page_title = 'Credit Cards on File'
-
-    end
-
-    def show
-      @token = params[:id]
-      @credit_card = card_from_token @token
-
-
     end
 
     def new
       @page_title = 'Add a Credit Card'
-
-      billing_address = (@agency.billing_location.blank?) ? {} : @agency.billing_location.to_braintree_hash
-
-      @credit_card = @agency.credit_cards.build({ :billing_address => billing_address })
-
+      @credit_card = {}
     end
 
     def create
@@ -57,38 +45,43 @@ module Dashboard::Settings::Agency
       @token = params[:id]
       @credit_card = card_from_token @token
 
+      logger.debug @credit_card.to_yaml
+
+
       if @credit_card.blank?
         @credit_card = {}
       end
-      if @credit_card[:billing_address].blank?
-        @credit_card[:billing_address] = {}
+      if @credit_card.billing_address.blank?
+        @credit_card.billing_address = {}
       end
+
+      @card_num = 'XXXX-XXXX-XXXX-' + @credit_card.last_4
 
     end
 
     def update
       @token = params[:id]
       @credit_card = card_from_token @token
+      @card_num = 'XXXX-XXXX-XXXX-' + @credit_card.last_4
 
-      options = {}
+
+
+      options = params[:credit_card]
+
+      options[:expiration_month] = params[:date][:month]
+      options[:expiration_year] = params[:date][:year]
+
+
+      if options[:number] == @card_num
+        options.delete :number
+      end
 
 
       # default credit card
-      result = Braintree::CreditCard.update(
-        params['default_cc'],
-        :number => "5105105105105105100",
-        :expiration_date => "06/2012",
-        :billing_address => {
-          :street_address => "1 E Main St",
-          :extended_address => "Suite 3",
-          :locality => "Chicago",
-          :region => "Illinois",
-          :postal_code => "60622",
-          :options => {
-            :update_existing => true
-          }
-        }
-      )
+      result = Braintree::CreditCard.update(@token, options)
+
+      redirect_to dashboard_settings_agency_credit_cards_path
+
     end
 
 

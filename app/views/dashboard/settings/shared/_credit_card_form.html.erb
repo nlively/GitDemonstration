@@ -1,21 +1,19 @@
 
-<%= form_for credit_card, dashboard_settings_agency_credit_cards_path, :id => 'credit-card-form' do |f| %>
+<%= form_tag dashboard_settings_agency_credit_card_path, :method => :put, :id => 'credit-card-form' do |f| %>
     <%
 
-       expiration_date = (credit_card[:expiration_month].blank?) ? Date.today : Date.new(credit_card[:expiration_year], credit_card[:expiration_month], 1)
+       expiration_date = (credit_card.expiration_month.blank?) ? Date.today : Date.new(credit_card.expiration_year.to_i, credit_card.expiration_month.to_i, 1)
 
        expiration_year = (expiration_date.year < Date.today.year) ? expiration_date.year : Date.today.year
 
     %>
-
-    <%= hidden_field_tag 'credit_card[customer_id]', @agency.braintree_customer_id %>
 
     <div class="form-field required">
       <div class="label">
         <%= label_tag 'credit_card[number]', 'Credit Card Number' %>
       </div>
       <div class="field">
-        <%= text_field_tag 'credit_card[number]', credit_card[:number] %>
+        <%= text_field_tag 'credit_card[number]', @card_num %>
       </div>
     </div>
 
@@ -24,7 +22,7 @@
         <%= label_tag 'credit_card[cardholder_name]', 'Name on Card' %>
       </div>
       <div class="field">
-        <%= text_field_tag 'credit_card[cardholder_name]', credit_card[:cardholder_name] %>
+        <%= text_field_tag 'credit_card[cardholder_name]', credit_card.cardholder_name %>
       </div>
     </div>
 
@@ -45,62 +43,64 @@
 
       <div class="row">
 
-      <div class="form-field required">
-        <div class="label">
-          <%= label_tag 'credit_card[billing_address][street_address]', 'Address' %>
+        <div class="form-field required">
+          <div class="label">
+            <%= label_tag 'credit_card[billing_address][street_address]', 'Address' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag 'credit_card[billing_address][street_address]', credit_card.billing_address.street_address %>
+          </div>
         </div>
-        <div class="field">
-          <%= text_field_tag 'credit_card[billing_address][street_address]', credit_card[:billing_address][:street_address] %>
-        </div>
-      </div>
 
-      <div class="form-field required">
-        <div class="label">
-          <%= label_tag 'credit_card[billing_address][extended_address]', 'Address Line 2' %>
+        <div class="form-field required">
+          <div class="label">
+            <%= label_tag 'credit_card[billing_address][extended_address]', 'Address Line 2' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag 'credit_card[billing_address][extended_address]', credit_card.billing_address.extended_address %>
+          </div>
         </div>
-        <div class="field">
-          <%= text_field_tag 'credit_card[billing_address][extended_address]', credit_card[:billing_address][:extended_address] %>
-        </div>
-      </div>
       </div>
 
       <div class="row">
 
-      <div class="form-field required">
-        <div class="label">
-          <%= label_tag 'credit_card[billing_address][locality]', 'City' %>
+        <div class="form-field required">
+          <div class="label">
+            <%= label_tag 'credit_card[billing_address][locality]', 'City' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag 'credit_card[billing_address][locality]', credit_card.billing_address.locality %>
+          </div>
         </div>
-        <div class="field">
-          <%= text_field_tag 'credit_card[billing_address][locality]', credit_card[:billing_address][:locality] %>
+
+        <div class="form-field required">
+          <div class="label">
+            <%= label_tag 'credit_card[billing_address][region]', 'State/Province' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag 'credit_card[billing_address][region]', credit_card.billing_address.region, :maxlength => 3, :size => 3 %>
+          </div>
         </div>
+
+        <div class="form-field required">
+          <div class="label">
+            <%= label_tag 'credit_card[billing_address][postal_code]', 'Postal Code' %>
+          </div>
+          <div class="field">
+            <%= text_field_tag 'credit_card[billing_address][postal_code]', credit_card.billing_address.postal_code %>
+          </div>
+        </div>
+
       </div>
 
-      <div class="form-field required">
-        <div class="label">
-          <%= label_tag 'credit_card[billing_address][region]', 'State/Province' %>
-        </div>
-        <div class="field">
-          <%= text_field_tag 'credit_card[billing_address][region]', credit_card[:billing_address][:region], :maxlength => 3, :size => 3 %>
-        </div>
-      </div>
-
-      <div class="form-field required">
-        <div class="label">
-          <%= label_tag 'credit_card[billing_address][postal_code]', 'Postal Code' %>
-        </div>
-        <div class="field">
-          <%= text_field_tag 'credit_card[billing_address][postal_code]', credit_card[:billing_address][:postal_code] %>
-        </div>
-      </div>
-
-      </div>
-
-      <div class="form-field required">
-        <div class="field">
-          <%= check_box_tag 'credit_card[options][make_default]' %>
-          <%= label_tag 'credit_card[default]', 'Make this the default credit card on file' %>
-        </div>
-      </div>
+      <% unless credit_card.default? %>
+          <div class="form-field required">
+            <div class="field">
+              <%= check_box_tag 'credit_card[options][make_default]' %>
+              <%= label_tag 'credit_card[default]', 'Make this the default credit card on file' %>
+            </div>
+          </div>
+      <% end %>
 
       <%= submit_tag 'Save Credit Card' %>
 
