@@ -1,5 +1,6 @@
 module Api::V1
   class CareRecipientsController < ApiController
+    include ResourcesHelper
 
     doorkeeper_for :all
     respond_to :json
