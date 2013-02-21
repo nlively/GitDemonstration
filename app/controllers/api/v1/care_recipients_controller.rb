@@ -76,7 +76,7 @@ module Api::V1
         @client.profile_photo = params[:photo]
 
         if @client.save!
-          render json: {:result => true, :message => "Client's photo has been updated"}
+          render json: {:result => true, :message => "Client's photo has been updated", :thumbnail_url => full_url(root_url, @client.profile_photo.url(:profile))}
         else
           render json: {:result => false, :message => "Client's photo could not be updated"}
         end
