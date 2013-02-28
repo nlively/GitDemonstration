@@ -46,10 +46,19 @@ class Agency < ActiveRecord::Base
   belongs_to :location
   belongs_to :subscription_tier
 
+  has_attached_file :logo, :styles => {
+     :profile => "93x93>",
+     :search_result => "45x45>",
+     :shift_preview => "25x25>",
+     :tiny => "50x50>"
+   }
+
+
   before_save :ensure_account_number!
 
   # Disabled because our Braintree account is inactive
   before_save :ensure_customer_record!
+
 
   # Find out if this user has an associated Braintree customer profile
   def has_payment_info?

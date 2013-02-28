@@ -4,14 +4,48 @@ module Admin2
     def new
       @agency = Agency.new
       @user = User.new
+      @location = Location.new
 
     end
 
     def create
 
-      @agency = Agency.create! params[:agency]
+      # Save location (address) record
+      @location = Location.create! params[:location]
 
+      # Save agency record
+      @agency = Agency.new params[:agency]
+      @agency.location = @location
+      @agency.status = 1
+      @agency.subscription_tier = SubscriptionTier.first
+      @agency.save!
+
+      # Save agency admin user
+      @user = User.new params[:user]
+      @user.agency = @agency
+      @user.default_pay_rate = 1.00
+      @user.save!
+
+      # Make sure the user has the appropriate role
+      @user.has_role! :agency_administrator
+
+      # Initialize braintree account
       @agency.ensure_customer_record!
+
+      # Set up payment method on file
+      unless params[:credit_card][:number].blank?
+
+        credit_card = params[:credit_card]
+        credit_card[:customer_id] = @agency.braintree_customer_id
+
+        credit_card[:expiration_month] = params[:date][:month]
+        credit_card[:expiration_year] = params[:date][:year]
+
+        Braintree::CreditCard.create credit_card
+
+      end
+
+      redirect_to new_admin2_agency_path, :notice => 'Agency was created successfully.'
 
     end
 
