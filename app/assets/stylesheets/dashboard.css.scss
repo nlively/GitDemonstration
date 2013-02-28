@@ -3,6 +3,19 @@
 
 body.dashboard {
 
+  &.agency.new {
+
+    .form-field {
+
+      &.expiration {
+        width: 100%;
+        overflow: auto;
+      }
+
+    }
+
+  }
+
   &.invoices.index, &.invoices.search, &.batches.index, &.batches.search {
 
     .title-wrapper {

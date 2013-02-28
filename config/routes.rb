@@ -1,5 +1,14 @@
 BoomrDashboard::Application.routes.draw do
 
+
+
+
+  match 'admin2' => 'admin2#index'
+
+  namespace :admin2 do
+    resources :agency, :only => [:new, :create]
+  end
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get "general/client_statuses"
@@ -47,12 +56,6 @@ BoomrDashboard::Application.routes.draw do
     end
   end
 
-
-  namespace :admin2 do
-
-    resources :agency, :only => [:new, :create]
-
-  end
 
   #match 'dashboard/feed'
   #match 'dashboard/feed/filter/:type' => 'dashboard#feed_filter', :as => :dashboard_feed_filter

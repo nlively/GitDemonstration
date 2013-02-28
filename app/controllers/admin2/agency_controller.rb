@@ -2,6 +2,7 @@ module Admin2
   class AgencyController < Admin2Controller
 
     def new
+      @page_title = 'Add a New Agency'
       @agency = Agency.new
       @user = User.new
       @location = Location.new
