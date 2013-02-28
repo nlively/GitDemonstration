@@ -10,7 +10,7 @@ module Boomr::BraintreeCustomer
     braintree_data = Braintree::Customer.find(agency.braintree_customer_id)
 
     BRAINTREE_FIELDS.each do |field|
-      user.class.send(:define_method, field) { braintree_data.send(field) }
+      agency.class.send(:define_method, field) { braintree_data.send(field) }
     end
   end
 

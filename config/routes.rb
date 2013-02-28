@@ -1,4 +1,4 @@
-OauthServer::Application.routes.draw do
+BoomrDashboard::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -75,6 +75,17 @@ OauthServer::Application.routes.draw do
       end
 
       get 'users' => 'users#index'
+
+      namespace :users do
+        get 'upgrade' => 'upgrade#index'
+        post 'upgrade' => 'upgrade#index_submit'
+
+        namespace :upgrade do
+          match 'summary'
+          match 'payment'
+        end
+      end
+
     end
 
     namespace :reports do

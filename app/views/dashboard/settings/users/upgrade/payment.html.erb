@@ -1,0 +1,12 @@
+<h3 class="highlight">Total Charge: <%= number_to_currency @total_cost %></h3>
+Adding <%= pluralize @total_new_users, 'user', 'users' %> /  <%= number_to_currency @unit_price %> per user
+
+<h2>Choose Form of Payment</h2>
+
+<%= form_tag dashboard_settings_users_upgrade_payment_path, :method => :post, :id => 'upgrade-payment-form' do %>
+
+    <%= select_tag :payment_method, options_from_collection_for_select(@payment_options, :first, :last), :id => 'payment-method' %>
+
+    <%= submit_tag 'Continue' %>
+
+<% end %>

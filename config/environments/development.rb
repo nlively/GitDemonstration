@@ -1,4 +1,4 @@
-OauthServer::Application.configure do
+BoomrDashboard::Application.configure do
 
 
   require 'pusher'

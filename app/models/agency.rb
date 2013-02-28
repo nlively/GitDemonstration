@@ -94,7 +94,7 @@ class Agency < ActiveRecord::Base
   # Attach Braintree customer data to the object
   def with_braintree_data!
     if self.has_payment_info?
-      BraintreeCustomer.attach_braintree_data(self)
+      Boomr::BraintreeCustomer.attach_braintree_data(self)
     end
   end
 
