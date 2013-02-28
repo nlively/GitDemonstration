@@ -1,0 +1,20 @@
+<% content_for :page_top do %>
+    <%= render 'dashboard/settings/shared/agency_summary', :agency => @agency %>
+
+<% end %>
+
+<h2>Choose Amount of Users</h2>
+
+<%= form_tag dashboard_settings_users_upgrade_path, :method => :post do %>
+
+    <%= select_tag :additional_users, options_from_collection_for_select(@user_options, :first, :last) %>
+
+
+    <div class="buttons">
+
+      <%= submit_tag 'Continue' %>
+      <%= link_to 'Back', dashboard_settings_users_path %>
+
+    </div>
+
+<% end %>

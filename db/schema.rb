@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207184539) do
+ActiveRecord::Schema.define(:version => 20130212175600) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -271,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20130207184539) do
     t.decimal  "overtime_rate",         :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "pay_rate",              :precision => 11, :scale => 2, :default => 0.0
     t.decimal  "original_pay_rate",     :precision => 11, :scale => 2, :default => 0.0
+    t.string   "status"
   end
 
   create_table "photos", :force => true do |t|
@@ -300,6 +301,26 @@ ActiveRecord::Schema.define(:version => 20130207184539) do
     t.integer  "role_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "subscription_invoice_line_items", :force => true do |t|
+    t.string   "label"
+    t.decimal  "amount",                  :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "adjustments",             :precision => 11, :scale => 2, :default => 0.0
+    t.integer  "subscription_invoice_id"
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+  end
+
+  create_table "subscription_invoices", :force => true do |t|
+    t.integer  "agency_id"
+    t.integer  "invoice_number"
+    t.text     "notes"
+    t.datetime "due_date"
+    t.datetime "invoice_date"
+    t.string   "status",         :default => "pending"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "subscription_tiers", :force => true do |t|
@@ -369,6 +390,7 @@ ActiveRecord::Schema.define(:version => 20130207184539) do
     t.string   "guid"
     t.integer  "client_invoice_line_item_id"
     t.decimal  "adjustments",                 :precision => 11, :scale => 2, :default => 0.0
+    t.integer  "temp_payroll_line_item_id"
   end
 
   create_table "visits_caregiver_tasks", :force => true do |t|

@@ -1,4 +1,4 @@
-OauthServer::Application.routes.draw do
+BoomrDashboard::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -47,6 +47,13 @@ OauthServer::Application.routes.draw do
     end
   end
 
+
+  namespace :admin2 do
+
+    resources :agency, :only => [:new, :create]
+
+  end
+
   #match 'dashboard/feed'
   #match 'dashboard/feed/filter/:type' => 'dashboard#feed_filter', :as => :dashboard_feed_filter
 
@@ -79,6 +86,17 @@ OauthServer::Application.routes.draw do
       end
 
       get 'users' => 'users#index'
+
+      namespace :users do
+        get 'upgrade' => 'upgrade#index'
+        post 'upgrade' => 'upgrade#index_submit'
+
+        namespace :upgrade do
+          match 'summary'
+          match 'payment'
+        end
+      end
+
     end
 
     namespace :reports do

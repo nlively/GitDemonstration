@@ -1,0 +1,5 @@
+<div id="agency-summary">
+<%= agency.name %>: Account # <%= agency.account_number %>
+<br />
+<%= agency.location.to_address_string unless agency.location.blank? %>
+</div>

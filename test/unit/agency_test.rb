@@ -24,6 +24,7 @@
 #  overtime_multiplier    :decimal(11, 2)   default(1.5)
 #  account_number         :integer
 #  braintree_customer_id  :text
+#  allowed_users          :integer          default(0)
 #
 
 require 'test_helper'
