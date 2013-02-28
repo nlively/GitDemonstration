@@ -1,0 +1,139 @@
+<%= form_for @agency, :url => admin2_agency_index_path do |f| %>
+
+    <%= render 'dashboard/shared/page_caption', :caption => 'Agency Info' %>
+
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :name %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.text_field :name, :size => 30 %>
+      </div>
+    </div>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :email %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.email_field :email, :size => 30 %>
+      </div>
+    </div>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :website %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.url_field :website, :size => 30 %>
+      </div>
+    </div>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :phone %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.phone_field :phone, :size => 30 %>
+      </div>
+    </div>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :logo %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.file_field :logo %>
+      </div>
+    </div>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :allowed_users %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.number_field :allowed_users, :size => 5 %>
+      </div>
+    </div>
+
+
+    <%= render 'dashboard/shared/page_caption', :caption => 'Primary User' %>
+
+    <%= fields_for @user do |u| %>
+
+        <div class="form-field required">
+          <div class="label">
+            <%= u.label :first_name %> <span class="required">*</span>
+          </div>
+          <div class="field">
+            <%= u.text_field :first_name, :size => 30 %>
+          </div>
+        </div>
+
+        <div class="form-field required">
+          <div class="label">
+            <%= u.label :last_name %> <span class="required">*</span>
+          </div>
+          <div class="field">
+            <%= u.text_field :last_name, :size => 30 %>
+          </div>
+        </div>
+
+        <div class="form-field required">
+          <div class="label">
+            <%= u.label :email %> <span class="required">*</span>
+          </div>
+          <div class="field">
+            <%= u.text_field :email, :size => 30 %>
+          </div>
+        </div>
+
+        <div class="form-field required">
+          <div class="label">
+            <%= u.label :phone %> <span class="required">*</span>
+          </div>
+          <div class="field">
+            <%= u.text_field :phone, :size => 30 %>
+          </div>
+        </div>
+
+
+        <div class="form-field required">
+          <div class="label">
+            <%= u.label :password %> <span class="required">*</span>
+          </div>
+          <div class="field">
+            <%= u.password_field :password, :size => 20 %>
+          </div>
+        </div>
+
+        <div class="form-field required">
+          <div class="label">
+            <%= u.label :password_confirmation %> <span class="required">*</span>
+          </div>
+          <div class="field">
+            <%= u.password_field :password_confirmation, :size => 20 %>
+          </div>
+        </div>
+
+
+        <% end %>
+
+
+    <%= render 'dashboard/shared/page_caption', :caption => 'Billing Details' %>
+
+
+    <div class="form-field required">
+      <div class="label">
+        <%= u.label :password_confirmation %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= u.password_field :password_confirmation, :size => 20 %>
+      </div>
+    </div>
+
+
+    <%= f.submit 'Save' %>
+
+<% end %>

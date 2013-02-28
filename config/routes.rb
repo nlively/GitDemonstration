@@ -47,6 +47,13 @@ BoomrDashboard::Application.routes.draw do
     end
   end
 
+
+  namespace :admin2 do
+
+    resources :agency, :only => [:new, :create]
+
+  end
+
   #match 'dashboard/feed'
   #match 'dashboard/feed/filter/:type' => 'dashboard#feed_filter', :as => :dashboard_feed_filter
 
