@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301204136) do
+ActiveRecord::Schema.define(:version => 20130301212744) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -30,23 +30,35 @@ ActiveRecord::Schema.define(:version => 20130301204136) do
     t.string   "administrative_contact"
     t.string   "website"
     t.string   "email"
-    t.datetime "created_at",                                                             :null => false
-    t.datetime "updated_at",                                                             :null => false
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
     t.text     "bio"
     t.string   "phone"
     t.integer  "status"
     t.integer  "subscription_tier_id"
     t.date     "next_billing_date"
-    t.decimal  "monthly_price_override", :precision => 11, :scale => 2
+    t.decimal  "monthly_price_override",      :precision => 11, :scale => 2
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "billing_location_id"
-    t.decimal  "overtime_multiplier",    :precision => 11, :scale => 2, :default => 1.5
+    t.decimal  "overtime_multiplier",         :precision => 11, :scale => 2, :default => 1.5
     t.integer  "account_number"
     t.text     "braintree_customer_id"
-    t.integer  "allowed_users",                                         :default => 0
+    t.integer  "allowed_users",                                              :default => 0
+    t.datetime "invoice_last_generated_date"
+    t.decimal  "per_user_price_override",     :precision => 11, :scale => 2
+    t.integer  "free_users",                                                 :default => 0
+  end
+
+  create_table "agency_account_histories", :force => true do |t|
+    t.integer  "agency_id"
+    t.string   "label"
+    t.integer  "units"
+    t.string   "action_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "agency_invoice_payments", :force => true do |t|

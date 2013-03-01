@@ -2,35 +2,39 @@
 #
 # Table name: agencies
 #
-#  id                     :integer          not null, primary key
-#  name                   :string(255)
-#  location_id            :integer
-#  administrative_contact :string(255)
-#  website                :string(255)
-#  email                  :string(255)
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  bio                    :text
-#  phone                  :string(255)
-#  status                 :integer
-#  subscription_tier_id   :integer
-#  next_billing_date      :date
-#  monthly_price_override :decimal(11, 2)
-#  logo_file_name         :string(255)
-#  logo_content_type      :string(255)
-#  logo_file_size         :integer
-#  logo_updated_at        :datetime
-#  billing_location_id    :integer
-#  overtime_multiplier    :decimal(11, 2)   default(1.5)
-#  account_number         :integer
-#  braintree_customer_id  :text
-#  allowed_users          :integer          default(0)
+#  id                          :integer          not null, primary key
+#  name                        :string(255)
+#  location_id                 :integer
+#  administrative_contact      :string(255)
+#  website                     :string(255)
+#  email                       :string(255)
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  bio                         :text
+#  phone                       :string(255)
+#  status                      :integer
+#  subscription_tier_id        :integer
+#  next_billing_date           :date
+#  monthly_price_override      :decimal(11, 2)
+#  logo_file_name              :string(255)
+#  logo_content_type           :string(255)
+#  logo_file_size              :integer
+#  logo_updated_at             :datetime
+#  billing_location_id         :integer
+#  overtime_multiplier         :decimal(11, 2)   default(1.5)
+#  account_number              :integer
+#  braintree_customer_id       :text
+#  allowed_users               :integer          default(0)
+#  invoice_last_generated_date :datetime
+#  per_user_price_override     :decimal(11, 2)
+#  free_users                  :integer          default(0)
 #
 
 class Agency < ActiveRecord::Base
   include Boomr::HasManyVisitsHelper
   include Boomr::BraintreeCustomer
 
+  has_many :agency_account_histories
   has_many :payroll_batches
   has_many :activity_streams
   has_many :users
@@ -47,11 +51,11 @@ class Agency < ActiveRecord::Base
   belongs_to :subscription_tier
 
   has_attached_file :logo, :styles => {
-     :profile => "93x93>",
-     :search_result => "45x45>",
-     :shift_preview => "25x25>",
-     :tiny => "50x50>"
-   }
+    :profile => "93x93>",
+    :search_result => "45x45>",
+    :shift_preview => "25x25>",
+    :tiny => "50x50>"
+  }
 
 
   before_save :ensure_account_number!
@@ -291,14 +295,43 @@ class Agency < ActiveRecord::Base
 
   end
 
-  def self.with_payment_due
+  def per_user_price
+    self.per_user_price_override or BoomrDashboard::Application.config.per_user_price
+  end
+
+  def total_paid_users
+    self.users_allowed - self.free_users
+  end
+
+
+  def generate_invoice!
+
+    invoice_date = Date.today
+    total_due = self.total_paid_users * self.per_user_price
+    due_date = self.next_billing_date
+    invoice_label = sprintf "Boomr paid users - %d", self.total_paid_users
+
+    invoice = AgencyInvoice.create :invoice_date => invoice_date, :total => total_due, :due_date => due_date, :auto_billing_date => due_date, :status => 0
+
+    # Invoice row for free users if there are any free users allowed on the account
+    if self.free_users > 0
+      free_label = 'Boomr free users - %d', self.free_users
+      invoice.agency_invoice_rows << AgencyInvoiceRow.create(:label => free_label, :quantity => self.free_users, :unit_price => 0.0)
+    end
+
+    # Invoice row for paid users
+    invoice.agency_invoice_rows << AgencyInvoiceRow.create(:label => invoice_label, :quantity => self.total_paid_users, :unit_price => self.per_user_price)
+
+    self.invoice_last_generated_date = Date.today
+    self.next_billing_date = self.next_billing_date + 1.month
+    self.save!
+
+    invoice
 
   end
 
   def self.needing_invoice_generation
-
-
-
+    Agency.where 'next_billing_date <= ? and (invoice_last_generated_date IS NULL or invoice_last_generated_date < next_billing_date)', Date.today + 1.week
   end
 
 
