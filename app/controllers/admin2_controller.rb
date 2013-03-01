@@ -8,4 +8,8 @@ class Admin2Controller < ::ApplicationController
   end
 
 
+  def index
+    @page_title = 'Boomr Admin Tools'
+  end
+
 end
