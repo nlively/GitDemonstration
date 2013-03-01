@@ -13,7 +13,6 @@
 #  bio                         :text
 #  phone                       :string(255)
 #  status                      :integer
-#  subscription_tier_id        :integer
 #  next_billing_date           :date
 #  monthly_price_override      :decimal(11, 2)
 #  logo_file_name              :string(255)
