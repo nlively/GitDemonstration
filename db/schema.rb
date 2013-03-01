@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301212744) do
+ActiveRecord::Schema.define(:version => 20130301213523) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20130301212744) do
     t.text     "bio"
     t.string   "phone"
     t.integer  "status"
-    t.integer  "subscription_tier_id"
     t.date     "next_billing_date"
     t.decimal  "monthly_price_override",      :precision => 11, :scale => 2
     t.string   "logo_file_name"
@@ -314,17 +313,6 @@ ActiveRecord::Schema.define(:version => 20130301212744) do
     t.integer  "role_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "subscription_tiers", :force => true do |t|
-    t.string   "label"
-    t.decimal  "monthly_fee", :precision => 11, :scale => 2, :default => 0.0
-    t.integer  "max_users",                                  :default => 0
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
-    t.text     "description"
-    t.boolean  "visible",                                    :default => true
-    t.boolean  "active",                                     :default => true
   end
 
   create_table "users", :force => true do |t|

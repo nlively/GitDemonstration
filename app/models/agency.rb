@@ -48,7 +48,6 @@ class Agency < ActiveRecord::Base
   has_many :agency_invoice_payments, :through => :agency_invoices
 
   belongs_to :location
-  belongs_to :subscription_tier
 
   has_attached_file :logo, :styles => {
     :profile => "93x93>",
@@ -127,20 +126,9 @@ class Agency < ActiveRecord::Base
   end
 
   def max_users
-    if subscription_tier.blank?
-      5
-    else
-      subscription_tier.max_users
-    end
+    allowed_users
   end
 
-  def subscription_label
-    subscription_tier.blank? ? 'n/a' : subscription_tier.label
-  end
-
-  def subscription_label_extended
-    subscription_tier.blank? ? 'n/a' : sprintf("%s (up to %s)", subscription_tier.label, subscription_tier.max_users_formatted)
-  end
 
   def latest_invoice_number
     client_invoices.empty? ? 0 : client_invoices.order('invoice_number desc').first.invoice_number
@@ -248,11 +236,6 @@ class Agency < ActiveRecord::Base
 
   end
 
-  def subscription_fee
-    fee = subscription_tier.blank? ? 0.0 : subscription_tier.monthly_fee
-    monthly_price_override or fee
-  end
-
   # Returns a default credit card on file for a user
   def default_credit_card
     return nil unless self.has_payment_info?
@@ -260,40 +243,6 @@ class Agency < ActiveRecord::Base
     self.credit_cards.find { |cc| cc.default? }
   end
 
-  def process_payment!
-
-    amount = self.subscription_fee
-    cc = self.default_credit_card
-
-    if amount > 0 and not cc.blank?
-
-      result = Braintree::Transaction.sale(
-        :amount => amount,
-        :customer_id => self.braintree_customer_id,
-        :payment_method_token => cc.token
-      )
-
-      if result.success?
-
-        payment.status = "COMPLETED"
-        payment.save!
-
-        self.next_billing_date = Date.today if self.next_billing_date.blank?
-        self.next_billing_date += 1.month
-        self.save!
-
-      else
-
-        ex = Exception.new sprintf("Error processing payment with Braintree.")
-        Airbrake.notify ex
-
-        return
-      end
-
-    end
-
-
-  end
 
   def per_user_price
     self.per_user_price_override or BoomrDashboard::Application.config.per_user_price

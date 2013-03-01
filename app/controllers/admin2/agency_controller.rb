@@ -18,7 +18,6 @@ module Admin2
       @agency = Agency.new params[:agency]
       @agency.location = @location
       @agency.status = 1
-      @agency.subscription_tier = SubscriptionTier.first
       @agency.save!
 
       # Save agency admin user

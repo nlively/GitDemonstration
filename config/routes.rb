@@ -78,14 +78,8 @@ BoomrDashboard::Application.routes.draw do
       post 'agency' => 'agency#update'
 
       namespace :agency do
-        get 'subscription'
-        post 'subscription', :action => :subscription_update
-
-        match 'subscription/change_to/:id', :action => :subscription_change, :as => :subscription_change
-
         resources :credit_cards, :except => [:show]
         match 'credit_cards/:id/set_default' => 'credit_cards#set_default', :as => :credit_cards_set_default
-
       end
 
       get 'users' => 'users#index'
