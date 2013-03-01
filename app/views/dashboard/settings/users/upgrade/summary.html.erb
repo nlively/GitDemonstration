@@ -1,0 +1,25 @@
+
+
+<%= form_tag dashboard_settings_users_upgrade_summary_path, :method => :post do %>
+
+    <h3 class="highlight">Summary</h3>
+
+    <p>
+      You are adding <%= pluralize @total_new_users, 'new user', 'new users' %> to your account at <%= number_to_currency @unit_price %> per user.
+    </p>
+
+    <p>
+      <strong>Price for new users:</strong> <%= number_to_currency @total_cost %>
+      <br>
+      <strong>Total monthly cost:</strong> <%= number_to_currency((@agency.allowed_users + @total_new_users) * @unit_price) %>
+      <br>
+      <em>The additional cost will be reflected on your next invoice.</em>
+    </p>
+
+    <p>
+      This change will be made to your account once you click the "Save Changes" button below.
+    </p>
+
+    <%= submit_tag 'Save Changes' %>
+
+<% end %>

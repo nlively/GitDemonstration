@@ -16,6 +16,52 @@ body.dashboard {
 
   }
 
+  &.upgrade {
+
+    h3.highlight {
+      font-size: 1.5em;
+      color: $buttonBlue;
+      font-weight:bold;
+    }
+
+    .title-wrapper {
+      h1.title {
+        float: left;
+        margin-right: 50px;
+      }
+
+      #page-top {
+        float:left;
+        margin-top: 1.5em;
+        font-size: 1.2em;
+      }
+    }
+
+    p {
+
+      font-size: 1.2em;
+      line-height: 1.5em;
+      margin: 1em 0 !important;
+
+    }
+
+    .form-field.select {
+      width: 100%;
+      overflow: auto;
+    }
+
+    div.buttons {
+
+      clear: both;
+
+      input[type="submit"] {
+        margin-right: 10px;
+      }
+
+    }
+
+  }
+
   &.invoices.index, &.invoices.search, &.batches.index, &.batches.search {
 
     .title-wrapper {

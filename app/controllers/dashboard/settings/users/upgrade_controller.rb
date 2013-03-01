@@ -1,5 +1,6 @@
 module Dashboard::Settings::Users
   class UpgradeController < Dashboard::Settings::UsersController
+    include ActionView::Helpers::TextHelper
 
     before_filter do
       @page_type = :users
@@ -32,7 +33,7 @@ module Dashboard::Settings::Users
         render :action => :index
       else
         session[:upgrade_additional_users] = params[:additional_users].to_i
-        redirect_to dashboard_settings_users_upgrade_payment_path
+        redirect_to dashboard_settings_users_upgrade_summary_path
       end
     end
 
@@ -40,7 +41,7 @@ module Dashboard::Settings::Users
     def payment
       @page_title = 'Upgrade - Add More Users'
       @total_new_users = session[:upgrade_additional_users]
-      @unit_price = BoomrDashboard::Application.config.per_user_price
+      @unit_price = @agency.per_user_price
       @total_cost = @total_new_users * @unit_price
 
       @agency.ensure_customer_record!
@@ -62,10 +63,22 @@ module Dashboard::Settings::Users
     # GET /dashboard/settings/users/upgrade/summary
     def summary
       @page_title = 'Upgrade - Add More Users'
+
+      @total_new_users = session[:upgrade_additional_users]
+      @unit_price = @agency.per_user_price
+      @total_cost = @total_new_users * @unit_price
+
     end
 
     # POST /dashboard/settings/users/upgrade/summary
     def summary_submit
+      @agency.allowed_users += session[:upgrade_additional_users]
+      @agency.save!
+
+      session.delete :upgrade_additional_users
+
+      notice = 'Your account has been upgraded to ' + pluralize(@agency.allowed_users, 'total user', 'total users')
+      redirect_to dashboard_settings_users_path, :notice => notice
 
     end
 

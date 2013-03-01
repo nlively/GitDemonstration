@@ -3,11 +3,25 @@
 
 <% end %>
 
-<h2>Choose Amount of Users</h2>
-
 <%= form_tag dashboard_settings_users_upgrade_path, :method => :post do %>
 
-    <%= select_tag :additional_users, options_from_collection_for_select(@user_options, :first, :last) %>
+    <p>
+      <% if @agency.free_users > 0 %>
+          Your account currently has <%= pluralize @agency.allowed_users, 'user', 'users' %>, including <%= pluralize @agency.free_users, 'free user', 'free users' %>.
+      <% else %>
+          Your account currently has <%= pluralize @agency.allowed_users, 'user', 'users' %>.
+      <% end %>
+    </p>
+
+    <h3 class="highlight">Choose Number of Users to Add</h3>
+
+
+    <div class="form-field required additional-users select">
+      <div class="field">
+        <%= select_tag :additional_users, options_from_collection_for_select(@user_options, :first, :last) %>
+      </div>
+    </div>
+
 
 
     <div class="buttons">

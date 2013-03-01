@@ -89,8 +89,9 @@ BoomrDashboard::Application.routes.draw do
         post 'upgrade' => 'upgrade#index_submit'
 
         namespace :upgrade do
-          match 'summary'
-          match 'payment'
+          get 'summary'
+          post 'summary', :action => :summary_submit
+          #match 'payment'
         end
       end
 

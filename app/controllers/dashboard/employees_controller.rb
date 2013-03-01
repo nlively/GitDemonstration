@@ -68,6 +68,11 @@ module Dashboard
 
     # GET /dashboard/employees/new
     def new
+
+      if @agency.max_users <= @agency.users.count
+        redirect_to dashboard_employees_path, :notice => 'In order to add an employee, you must add users to your account.  Please visit the Settings tab to make this change.'
+      end
+
       @page_title = 'Add a New Employee'
       @user = User.new
       @location = Location.new
