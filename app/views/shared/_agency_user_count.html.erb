@@ -1,6 +1,5 @@
 <div class="agency-user-count-wrapper">
-  <div class="user-count">You have <%= @agency.caregivers.count %> of <%= @agency.max_users %> users.</div>
-  <div class="upgrade-link">
-    Want more users? <%= render 'shared/agency_subscription_link' %>
+  <div class="user-count">You have <%= @agency.caregivers.count %> of <%= @agency.max_users %> users.
+    Want more users? &nbsp;&nbsp; <%= render 'shared/agency_subscription_link' %>
   </div>
 </div>

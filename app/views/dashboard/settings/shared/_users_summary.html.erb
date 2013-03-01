@@ -1,0 +1,5 @@
+<% if @agency.free_users > 0 %>
+    Your account currently has <%= pluralize @agency.allowed_users, 'user', 'users' %>, including <%= pluralize @agency.free_users, 'free user', 'free users' %>.
+<% else %>
+    Your account currently has <%= pluralize @agency.allowed_users, 'user', 'users' %>.
+<% end %>

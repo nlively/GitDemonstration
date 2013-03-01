@@ -248,7 +248,7 @@ class Agency < ActiveRecord::Base
   end
 
   def total_paid_users
-    self.users_allowed - self.free_users
+    self.allowed_users - self.free_users
   end
 
 

@@ -6,11 +6,7 @@
 <%= form_tag dashboard_settings_users_upgrade_path, :method => :post do %>
 
     <p>
-      <% if @agency.free_users > 0 %>
-          Your account currently has <%= pluralize @agency.allowed_users, 'user', 'users' %>, including <%= pluralize @agency.free_users, 'free user', 'free users' %>.
-      <% else %>
-          Your account currently has <%= pluralize @agency.allowed_users, 'user', 'users' %>.
-      <% end %>
+      <%= render 'dashboard/settings/shared/users_summary' %>
     </p>
 
     <h3 class="highlight">Choose Number of Users to Add</h3>
