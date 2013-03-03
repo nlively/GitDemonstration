@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: agency_daily_activities
+#
+#  id          :integer          not null, primary key
+#  agency_id   :integer
+#  original_id :integer
+#  label       :string(255)
+#  weight      :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  label: MyString
+  weight: 1
+
+two:
+  label: MyString
+  weight: 1

@@ -11,9 +11,9 @@ module Api::V1
 
         @items = params[:items].split(',')
         @items.each do |item_id|
-          item = CaregiverTask.find(item_id)
-          unless item.blank? or @visit.caregiver_tasks.include? item
-            @visit.caregiver_tasks << item
+          item = AgencyDailyActivity.find(item_id)
+          unless item.blank? or @visit.agency_daily_activities.include? item
+            @visit.agency_daily_activities << item
           end
         end
 

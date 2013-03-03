@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: caregiver_tasks
+# Table name: daily_activities
 #
 #  id         :integer          not null, primary key
 #  label      :string(255)
@@ -9,9 +9,9 @@
 #  weight     :integer          default(0)
 #
 
-class CaregiverTask < ActiveRecord::Base
-  has_many :visits_caregiver_tasks
-  has_many :visits, :through => :visits_caregiver_tasks
+class DailyActivity < ActiveRecord::Base
+  has_many :visits_daily_activities
+  has_many :visits, :through => :visits_daily_activities
 
   def timestamp
     created_at.to_formatted_s(:hour_with_minute_meridian)

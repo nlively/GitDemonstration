@@ -58,8 +58,8 @@ class Visit < ActiveRecord::Base
   has_many :visits_patient_statuses
   has_many :patient_statuses, :through => :visits_patient_statuses
 
-  has_many :visits_caregiver_tasks
-  has_many :caregiver_tasks, :through => :visits_caregiver_tasks
+  has_many :visits_daily_activities
+  has_many :agency_daily_activities, :through => :visits_daily_activities
 
   has_many :visits_observations
   has_many :observations, :through => :visits_observations
@@ -345,7 +345,7 @@ class Visit < ActiveRecord::Base
 
     hash[:full_date] = self.full_date_string
 
-    hash[:daily_activities] = self.visits_caregiver_tasks.map {|d| d.web_service_format }
+    hash[:daily_activities] = self.visits_daily_activities.map {|d| d.web_service_format }
     hash[:patient_statuses] = self.visits_patient_statuses.map {|d| d.web_service_format }
     hash[:observations] = self.visits_observations.map {|d| d.web_service_format }
 

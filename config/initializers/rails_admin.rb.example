@@ -482,11 +482,11 @@ RailsAdmin.config do |config|
 
   # config.model 'CaregiverTask' do
 
-  #   # You can copy this to a 'rails_admin do ... end' block inside your caregiver_task.rb model definition
+  #   # You can copy this to a 'rails_admin do ... end' block inside your daily_activity.rb model definition
 
   #   # Found associations:
 
-  #     configure :visits_caregiver_tasks, :has_many_association 
+  #     configure :visits_daily_activities, :has_many_association
   #     configure :visits, :has_many_association 
 
   #   # Found columns:
@@ -1424,8 +1424,8 @@ RailsAdmin.config do |config|
   #     configure :note, :has_one_association 
   #     configure :visits_patient_statuses, :has_many_association 
   #     configure :patient_statuses, :has_many_association 
-  #     configure :visits_caregiver_tasks, :has_many_association 
-  #     configure :caregiver_tasks, :has_many_association 
+  #     configure :visits_daily_activities, :has_many_association
+  #     configure :daily_activities, :has_many_association
   #     configure :visits_observations, :has_many_association 
   #     configure :observations, :has_many_association 
 
@@ -1484,18 +1484,18 @@ RailsAdmin.config do |config|
 
   # config.model 'VisitsCaregiverTask' do
 
-  #   # You can copy this to a 'rails_admin do ... end' block inside your visits_caregiver_task.rb model definition
+  #   # You can copy this to a 'rails_admin do ... end' block inside your visits_daily_activity.rb model definition
 
   #   # Found associations:
 
   #     configure :visit, :belongs_to_association 
-  #     configure :caregiver_task, :belongs_to_association 
+  #     configure :daily_activity, :belongs_to_association
 
   #   # Found columns:
 
   #     configure :id, :integer 
   #     configure :visit_id, :integer         # Hidden 
-  #     configure :caregiver_task_id, :integer         # Hidden 
+  #     configure :daily_activity_id, :integer         # Hidden
   #     configure :created_at, :datetime 
   #     configure :updated_at, :datetime 
 

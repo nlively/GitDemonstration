@@ -41,6 +41,7 @@ class Agency < ActiveRecord::Base
   has_many :care_recipients
   has_many :locations
   has_many :client_invoices
+  has_many :agency_daily_activities
 
   has_many :agency_invoices
   has_many :agency_invoice_rows, :through => :agency_invoices
@@ -60,6 +61,8 @@ class Agency < ActiveRecord::Base
 
   # Disabled because our Braintree account is inactive
   before_save :ensure_customer_record!
+
+  after_create :populate_daily_activities
 
 
   # Find out if this user has an associated Braintree customer profile
@@ -282,5 +285,12 @@ class Agency < ActiveRecord::Base
     Agency.where 'next_billing_date <= ? and (invoice_last_generated_date IS NULL or invoice_last_generated_date < next_billing_date)', Date.today + 1.week
   end
 
+  def populate_daily_activities
+
+    DailyActivity.all.each do |ct|
+      AgencyDailyActivity.create :agency_id => self.id, :original_id => ct.id, :label => ct.label, :weight => ct.weight
+    end
+
+  end
 
 end

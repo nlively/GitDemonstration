@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301213523) do
+ActiveRecord::Schema.define(:version => 20130303031133) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(:version => 20130301213523) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "agency_daily_activities", :force => true do |t|
+    t.integer  "agency_id"
+    t.integer  "original_id"
+    t.string   "label"
+    t.integer  "weight"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "agency_invoice_payments", :force => true do |t|
     t.integer  "agency_invoice_id"
     t.string   "payment_method"
@@ -95,6 +104,29 @@ ActiveRecord::Schema.define(:version => 20130301213523) do
     t.datetime "updated_at",                                                        :null => false
   end
 
+  create_table "billing_batches", :force => true do |t|
+    t.integer  "agency_id"
+    t.datetime "batch_date"
+    t.text     "notes"
+    t.date     "period_start"
+    t.date     "period_end"
+    t.string   "status",       :default => "pending"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  create_table "billing_line_items", :force => true do |t|
+    t.integer  "billing_batch_id"
+    t.integer  "care_recipient_id"
+    t.integer  "pay_status"
+    t.decimal  "hours",              :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "bill_rate",          :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "adjustments",        :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "original_bill_rate", :precision => 11, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+  end
+
   create_table "care_recipients", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -126,13 +158,6 @@ ActiveRecord::Schema.define(:version => 20130301213523) do
     t.integer  "user_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-  end
-
-  create_table "caregiver_tasks", :force => true do |t|
-    t.string   "label"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "weight",     :default => 0
   end
 
   create_table "check_ins", :force => true do |t|
@@ -179,6 +204,13 @@ ActiveRecord::Schema.define(:version => 20130301213523) do
     t.string   "status",                  :default => "pending"
     t.boolean  "exported",                :default => false
     t.integer  "client_invoice_batch_id"
+  end
+
+  create_table "daily_activities", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "weight",     :default => 0
   end
 
   create_table "locations", :force => true do |t|
@@ -374,11 +406,11 @@ ActiveRecord::Schema.define(:version => 20130301213523) do
     t.integer  "temp_payroll_line_item_id"
   end
 
-  create_table "visits_caregiver_tasks", :force => true do |t|
+  create_table "visits_daily_activities", :force => true do |t|
     t.integer  "visit_id"
-    t.integer  "caregiver_task_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "agency_daily_activity_id"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "visits_observations", :force => true do |t|

@@ -11,7 +11,7 @@
 
 require 'test_helper'
 
-class CaregiverTaskTest < ActiveSupport::TestCase
+class DailyActivityTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

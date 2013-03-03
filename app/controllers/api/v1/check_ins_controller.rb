@@ -16,7 +16,7 @@ module Api::V1
         unless params[:activities].blank?
           activities = params[:activities].split(',')
           activities.each do |key|
-            @visit.caregiver_tasks << CaregiverTask.find(key)
+            @visit.agency_daily_activities << AgencyDailyActivity.find(key)
           end
         end
 

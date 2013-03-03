@@ -294,7 +294,7 @@ RailsAdmin.config do |config|
   config.model 'PatientStatus' do
     object_label_method :label
   end
-  config.model 'CaregiverTask' do
+  config.model 'DailyActivity' do
     object_label_method :label
   end
 

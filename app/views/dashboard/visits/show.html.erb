@@ -36,9 +36,9 @@
 
     <table>
       <tbody>
-      <% @visit.visits_caregiver_tasks.each do |item| %>
+      <% @visit.visits_daily_activities.each do |item| %>
           <tr>
-            <td class="label"><%= item.caregiver_task.label %></td>
+            <td class="label"><%= item.daily_activity.label %></td>
             <td class="timestamp"><%= item.timestamp %> </td>
           </tr>
       <% end %>
