@@ -95,6 +95,8 @@ BoomrDashboard::Application.routes.draw do
         end
       end
 
+      resources :daily_activities, :except => [:show]
+
     end
 
     namespace :reports do

@@ -107,6 +107,7 @@ SimpleNavigation::Configuration.run do |navigation|
             upgrade.item :summary, 'Summary', dashboard_settings_users_upgrade_summary_path, :highlights_on => :subpath
           end
         end
+        settings.item :daily_activities, 'Daily Activities', dashboard_settings_daily_activities_path, :highlights_on => :subpath
       end
     end
 

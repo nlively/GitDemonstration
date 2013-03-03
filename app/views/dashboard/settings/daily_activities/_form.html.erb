@@ -1,0 +1,13 @@
+<%= form_for @activity, :url => path do |f| %>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :label %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.text_field :label, :size => 40 %>
+      </div>
+    </div>
+
+    <%= f.submit 'Save' %>
+<% end %>

@@ -1,0 +1,16 @@
+<% content_for :page_caption do %>
+    Daily Activities List Shown in Mobile Application
+<% end %>
+<table id="daily-activities">
+  <% @activities.each do |a| %>
+  <tr>
+    <td><%= a.label %></td>
+    <td>
+      <%= link_to 'Edit', edit_dashboard_settings_daily_activity_path(a), :class => 'link-button' %>
+    </td>
+    <td>
+      <%= link_to 'Remove', dashboard_settings_daily_activity_path(a), :method => :delete, :confirm => 'Are you sure you want to remove this daily activity?', :class => 'link-button' %>
+    </td>
+  </tr>
+  <% end %>
+</table>
