@@ -6,7 +6,7 @@ module Api::V1
     end
 
     def daily_activities
-      render json: current_resource_owner.agency.agency_daily_activities.order('weight ASC, label ASC').all.map{|s| {id:s.id,label:s.label}}
+      render json: current_resource_owner.agency.agency_daily_activities.where(:deleted => 0).order('weight ASC, label ASC').all.map{|s| {id:s.id,label:s.label}}
     end
 
     def observations
