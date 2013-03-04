@@ -19,7 +19,7 @@ class VisitsDailyActivity < ActiveRecord::Base
 
   def web_service_format
     {
-      :label => daily_activity.label,
+      :label => agency_daily_activity.label,
       :created_at => created_at,
       :date => created_at.to_formatted_s(:mdy),
       :time => created_at.to_formatted_s(:hour_with_minute_meridian)
