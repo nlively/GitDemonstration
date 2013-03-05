@@ -6,22 +6,27 @@
 
 class CronController < ApplicationController
 
-  # Initiate payouts to providers
-  #def process_payments_due
-  #  Agency.with_payment_due.each do |agency|
-  #    begin
-  #      agency.process_payment!
-  #    rescue => ex
-  #      Rails.logger.debug "Exception in CronController.process_payments_due: " + ex.message
-  #      Rails.logger.debug sprintf("Agency ID was %d", agency.id)
-  #      Airbrake.notify ex
-  #    end
-  #  end
-  #end
-
   def generate_invoices
     Agency.needing_invoice_generation.each do |agency|
-      agency.generate_invoice!
+      begin
+        agency.generate_invoice!
+      rescue => ex
+        Rails.logger.debug "Exception in CronController.generate_invoices: " + ex.message
+        Rails.logger.debug sprintf("Agency ID was %d", agency.id)
+        Airbrake.notify ex
+      end
+    end
+  end
+
+  def process_invoices
+    AgencyInvoice.where(:status => 0).each do |invoice|
+      begin
+        invoice.process_payment!
+      rescue => ex
+        Rails.logger.debug "Exception in CronController.process_invoices: " + ex.message
+        Rails.logger.debug sprintf("Invoice ID was %d", invoice.id)
+        Airbrake.notify ex
+      end
     end
   end
 

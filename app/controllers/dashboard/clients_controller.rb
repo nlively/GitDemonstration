@@ -49,7 +49,7 @@ module Dashboard
           format.html { redirect_to dashboard_clients_profile_path(@care_recipient), notice: 'Client was successfully updated.' }
           format.json { head :no_content }
         else
-          format.html { render action: "edit" }
+          format.html { redirect_to dashboard_clients_profile_path(@care_recipient), notice: 'There was a problem updating the client.' }
           format.json { render json: @care_recipient.errors, status: :unprocessable_entity }
         end
       end
