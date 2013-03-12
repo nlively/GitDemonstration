@@ -28,6 +28,7 @@ module Admin2
 
       # Make sure the user has the appropriate role
       @user.has_role! :agency_administrator
+      @user.has_role! :caregiver
 
       # Initialize braintree account
       @agency.ensure_customer_record!
