@@ -111,6 +111,7 @@ module Dashboard
       @employee.deleted = true
       @employee.is_active = false
       @employee.save!
+      @employee.scramble_email!
       redirect_to redirect_destination(:back), :notice => 'Account has been deleted for ' + @employee.full_name
     end
 

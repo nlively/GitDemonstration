@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318152412) do
+ActiveRecord::Schema.define(:version => 20130318191935) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -364,6 +364,7 @@ ActiveRecord::Schema.define(:version => 20130318152412) do
     t.boolean  "is_active",                                                 :default => true
     t.boolean  "deleted",                                                   :default => false
     t.integer  "location_id"
+    t.string   "original_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

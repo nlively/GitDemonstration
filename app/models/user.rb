@@ -142,6 +142,13 @@ class User < ActiveRecord::Base
 
   end
 
+  def scramble_email!
+
+    self.email = UUID.generate + ':' + self.email
+    self.save!
+
+  end
+
 
   # Find and return all admin-level users
   def self.administrators
