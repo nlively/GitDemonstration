@@ -18,7 +18,7 @@ class CronController < ApplicationController
     end
   end
 
-  def process_invoices
+  def process_invoice_payments
     AgencyInvoice.ready_for_payment.each do |invoice|
       begin
         invoice.process_payment!
