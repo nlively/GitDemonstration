@@ -25,7 +25,7 @@ module Dashboard
     def today
       @page_title = "Today's Visits"
 
-      @start = Date.today.to_datetime
+      @start = DateTime.current.beginning_of_day
       @stop = @start + 1.day - 1.second
       fetch_visits
     end
@@ -33,12 +33,13 @@ module Dashboard
     def this_week
       @page_title = "This Week's Visits"
 
-      @start_of_week = Date.today.beginning_of_week :sunday
+      @start_of_week = DateTime.current.beginning_of_week :sunday
       @end_of_week = @start_of_week.end_of_week :sunday
 
 
       unless params[:day].blank?
-        @current = Date.parse(params[:day]) unless params[:day].blank?
+        @current = DateTime.parse(params[:day] + " 00:00:00 #{Time.zone}")
+        @current = @current.utc
         @current_visits = @agency.completed_visits_by_date_range @current, @current + 1.day
       end
 
@@ -49,7 +50,7 @@ module Dashboard
 
       (0..6).each do |offset|
         date = @start_of_week + offset.days
-        @days[date] = 0
+        @days[date.to_date] = 0
       end
 
       @visits_by_week.each do |visit|
@@ -65,18 +66,19 @@ module Dashboard
     def this_month
       @page_title = "This Month's Visits"
 
-      @start_of_month = Date.today.beginning_of_month
+      @start_of_month = DateTime.current.beginning_of_month
       @end_of_month = @start_of_month.end_of_month
 
       @earliest_date_available = @start_of_month - 2.months
       days_back = (@start_of_month -  @earliest_date_available).to_i
 
-      @start = Date.today.beginning_of_month
+      @start = DateTime.current.beginning_of_month
       @stop = DateTime.current
 
 
       unless params[:day].blank?
-        @current = Date.parse(params[:day]) unless params[:day].blank?
+        @current = DateTime.parse(params[:day] + " 00:00:00 #{Time.zone}")
+        @current = @current.utc
         @current_visits = @agency.completed_visits_by_date_range @current, @current + 1.day
       end
 
@@ -88,18 +90,17 @@ module Dashboard
 
       ((0-days_back)..(@end_of_month.day-1)).each do |offset|
         date = @start_of_month + offset.days
-        @days[date] = 0
+        @days[date.to_date] = 0
       end
 
 
       @visits_by_month.each do |visit|
         day = visit.in_time.beginning_of_day.to_date
+        if @days[day].blank?
+          @days[day] = 0
+        end
         @days[day] += 1 unless visit.approved?
       end
-
-
-      logger.debug @days.inspect
-
 
     end
 
