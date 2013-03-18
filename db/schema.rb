@@ -140,13 +140,6 @@ ActiveRecord::Schema.define(:version => 20130318191935) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "caregiver_tasks", :force => true do |t|
-    t.string   "label"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "weight",     :default => 0
-  end
-
   create_table "check_ins", :force => true do |t|
     t.integer  "user_id"
     t.decimal  "latitude",   :precision => 11, :scale => 8
@@ -392,13 +385,6 @@ ActiveRecord::Schema.define(:version => 20130318191935) do
     t.integer  "client_invoice_line_item_id"
     t.decimal  "adjustments",                 :precision => 11, :scale => 2, :default => 0.0
     t.integer  "temp_payroll_line_item_id"
-  end
-
-  create_table "visits_caregiver_tasks", :force => true do |t|
-    t.integer  "visit_id"
-    t.integer  "caregiver_task_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
   end
 
   create_table "visits_daily_activities", :force => true do |t|

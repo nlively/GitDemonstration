@@ -32,8 +32,11 @@ textarea {
 select {
   display: block;
   opacity: 0.0;
+  filter: alpha(opacity = 0);
+  zoom: 1;
   position: absolute;
   z-index: 2;
+  height: 30px;
 
   &.normal {
    display: inline;
