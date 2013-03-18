@@ -19,13 +19,16 @@ class CronController < ApplicationController
   end
 
   def process_invoices
-    AgencyInvoice.where(:status => 0).each do |invoice|
+    AgencyInvoice.ready_for_payment.each do |invoice|
       begin
         invoice.process_payment!
       rescue => ex
         Rails.logger.debug "Exception in CronController.process_invoices: " + ex.message
         Rails.logger.debug sprintf("Invoice ID was %d", invoice.id)
         Airbrake.notify ex
+
+        invoice.auto_payment_attempts += 1
+        invoice.save!
       end
     end
   end

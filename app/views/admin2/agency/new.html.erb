@@ -55,7 +55,25 @@
         <%= f.label :allowed_users %> <span class="required">*</span>
       </div>
       <div class="field">
-        <%= f.number_field :allowed_users, :size => 5 %>
+        <%= f.number_field :allowed_users, :size => 5, :value => 3 %>
+      </div>
+    </div>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :free_users %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        <%= f.number_field :free_users, :size => 5, :value => 3 %>
+      </div>
+    </div>
+
+    <div class="form-field required">
+      <div class="label">
+        <%= f.label :per_user_price_override %> <span class="required">*</span>
+      </div>
+      <div class="field">
+        $ <%= f.number_field :per_user_price_override, :size => 5, :value => BoomrDashboard::Application.config.per_user_price %> USD
       </div>
     </div>
 

@@ -18,6 +18,7 @@ module Admin2
       @agency = Agency.new params[:agency]
       @agency.location = @location
       @agency.status = 1
+      @agency.next_billing_date=Date.today
       @agency.save!
 
       # Save agency admin user
@@ -33,6 +34,10 @@ module Admin2
       # Initialize braintree account
       @agency.ensure_customer_record!
 
+      @agency.with_braintree_data!
+
+      @invoice = @agency.generate_invoice!
+
       # Set up payment method on file
       unless params[:credit_card][:number].blank?
 
@@ -43,6 +48,8 @@ module Admin2
         credit_card[:expiration_year] = params[:date][:year]
 
         Braintree::CreditCard.create credit_card
+
+        @invoice.process_payment!
 
       end
 

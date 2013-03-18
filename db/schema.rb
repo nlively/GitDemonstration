@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130303032526) do
+ActiveRecord::Schema.define(:version => 20130318152412) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -73,13 +73,14 @@ ActiveRecord::Schema.define(:version => 20130303032526) do
   create_table "agency_invoice_payments", :force => true do |t|
     t.integer  "agency_invoice_id"
     t.string   "payment_method"
-    t.decimal  "amount",            :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "amount",             :precision => 11, :scale => 2, :default => 0.0
     t.datetime "date"
     t.integer  "status"
-    t.string   "token"
+    t.string   "confirmation_token"
     t.text     "notes"
-    t.datetime "created_at",                                                        :null => false
-    t.datetime "updated_at",                                                        :null => false
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+    t.string   "payment_token"
   end
 
   create_table "agency_invoice_rows", :force => true do |t|
@@ -95,14 +96,15 @@ ActiveRecord::Schema.define(:version => 20130303032526) do
 
   create_table "agency_invoices", :force => true do |t|
     t.integer  "agency_id"
-    t.decimal  "total",             :precision => 11, :scale => 2, :default => 0.0
+    t.decimal  "total",                 :precision => 11, :scale => 2, :default => 0.0
     t.date     "invoice_date"
     t.date     "due_date"
     t.date     "auto_billing_date"
     t.text     "notes"
     t.integer  "status"
-    t.datetime "created_at",                                                        :null => false
-    t.datetime "updated_at",                                                        :null => false
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
+    t.integer  "auto_payment_attempts",                                :default => 0
   end
 
   create_table "care_recipients", :force => true do |t|
@@ -136,6 +138,13 @@ ActiveRecord::Schema.define(:version => 20130303032526) do
     t.integer  "user_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "caregiver_tasks", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "weight",     :default => 0
   end
 
   create_table "check_ins", :force => true do |t|
@@ -382,6 +391,13 @@ ActiveRecord::Schema.define(:version => 20130303032526) do
     t.integer  "client_invoice_line_item_id"
     t.decimal  "adjustments",                 :precision => 11, :scale => 2, :default => 0.0
     t.integer  "temp_payroll_line_item_id"
+  end
+
+  create_table "visits_caregiver_tasks", :force => true do |t|
+    t.integer  "visit_id"
+    t.integer  "caregiver_task_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "visits_daily_activities", :force => true do |t|
