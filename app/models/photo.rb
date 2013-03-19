@@ -27,7 +27,9 @@ class Photo < ActiveRecord::Base
     :profile => "93x93>",
     :search_result => "45x45>",
     :shift_preview => "25x25>",
-    :tiny => "50x50>"
+    :tiny => "50x50>",
+    :large => "800x800>",
+    :extra_large => "1200x1200>"
   }
 
   def timestamp

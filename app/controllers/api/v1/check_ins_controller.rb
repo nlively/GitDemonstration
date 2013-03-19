@@ -44,6 +44,10 @@ module Api::V1
 
         if @distance < 0.1 || params[:confirm] == '1'
 
+          if params[:auto] == '1'
+            @visit.auto_checked_out=true
+          end
+
           @visit.out_time = DateTime.current
           @visit.save!
           @checkin.visit = @visit
