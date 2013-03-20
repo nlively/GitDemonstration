@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319223118) do
+ActiveRecord::Schema.define(:version => 20130320205428) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -102,9 +102,10 @@ ActiveRecord::Schema.define(:version => 20130319223118) do
     t.date     "auto_billing_date"
     t.text     "notes"
     t.integer  "status"
-    t.datetime "created_at",                                                            :null => false
-    t.datetime "updated_at",                                                            :null => false
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
     t.integer  "auto_payment_attempts",                                :default => 0
+    t.boolean  "auto_charge",                                          :default => false
   end
 
   create_table "care_recipients", :force => true do |t|

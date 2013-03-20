@@ -7,6 +7,8 @@ module Dashboard
         :agency => 'Agency',
         :users => 'Users',
         :daily_activities => 'Daily Activities',
+        :invoices => 'Invoices',
+        :payments => 'Payment History',
       }
     end
 

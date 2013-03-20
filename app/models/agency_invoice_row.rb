@@ -15,4 +15,9 @@
 
 class AgencyInvoiceRow < ActiveRecord::Base
   belongs_to :agency_invoice
+
+  def total_price
+    unit_price * quantity.to_f
+  end
+
 end

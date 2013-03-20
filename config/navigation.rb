@@ -89,8 +89,8 @@ SimpleNavigation::Configuration.run do |navigation|
       end
       sub_nav.item :reports, 'Billing and Payroll', dashboard_reports_path, :highlights_on => :subpath do |report|
         report.item :billing, 'Billing', dashboard_reports_billing_path, :highlights_on => :subpath do |billing|
-          billing.item :create_invoices, 'Create Invoices', new_dashboard_reports_billing_invoice_path, :highlights_on => %r(/invoices/(new|pending))
-          billing.item :search, 'Search Invoices', dashboard_reports_billing_invoices_path, :highlights_on => %r(/invoices$)
+          billing.item :create_invoices, 'Create Invoices', new_dashboard_reports_billing_invoice_path, :highlights_on => %r(/dashboard\/billing\/*\/invoices/(new|pending))
+          billing.item :search, 'Search Invoices', dashboard_reports_billing_invoices_path, :highlights_on => %r(/dashboard\/billing\/*\/invoices$)
         end
         report.item :payroll, 'Payroll', dashboard_reports_payroll_path, :highlights_on => :subpath do |payroll|
           payroll.item :create_batch, 'Create Payroll Batch', new_dashboard_reports_payroll_batch_path, :highlights_on => %r(/batches/(new|pending)$)
@@ -109,6 +109,8 @@ SimpleNavigation::Configuration.run do |navigation|
           end
         end
         settings.item :daily_activities, 'Daily Activities', dashboard_settings_daily_activities_path, :highlights_on => :subpath
+        settings.item :agency_invoices, 'Invoices', dashboard_settings_invoices_path, :highlights_on => :subpath
+        settings.item :agency_invoice_payments, 'Payment History', dashboard_settings_payments_path, :highlights_on => :subpath
       end
     end
 

@@ -262,7 +262,7 @@ class Agency < ActiveRecord::Base
     due_date = self.next_billing_date
     invoice_label = sprintf "Boomr paid users - %d", self.total_paid_users
 
-    invoice = AgencyInvoice.create :agency => self, :invoice_date => invoice_date, :total => total_due, :due_date => due_date, :auto_billing_date => due_date, :status => 0
+    invoice = AgencyInvoice.create :agency => self, :invoice_date => invoice_date, :total => total_due, :due_date => due_date, :auto_billing_date => due_date, :status => 0, :auto_charge => true
 
     # Invoice row for free users if there are any free users allowed on the account
     if self.free_users > 0

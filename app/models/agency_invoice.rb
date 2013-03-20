@@ -13,6 +13,7 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  auto_payment_attempts :integer          default(0)
+#  auto_charge           :boolean          default(FALSE)
 #
 
 class AgencyInvoice < ActiveRecord::Base
@@ -23,7 +24,48 @@ class AgencyInvoice < ActiveRecord::Base
   has_many :agency_invoice_payments
 
   def self.ready_for_payment
-    AgencyInvoice.where('status = ? AND auto_billing_date <= ? and auto_payment_attempts < ?', 0, Date.today, 3)
+    AgencyInvoice.where('status = ? AND auto_charge = ? AND auto_billing_date <= ? AND auto_payment_attempts < ?', 0, true, Date.today, 3)
+  end
+
+  def invoice_number
+    self.id
+  end
+
+  def invoice_number_formatted
+    invoice_number.to_s.rjust 4, '0'
+  end
+
+  def invoice_date_formatted
+    invoice_date.to_formatted_s :mdy
+  end
+
+  def due_date_formatted
+    due_date.to_formatted_s :mdy
+  end
+
+  def auto_billing_date_formatted
+    due_date.to_formatted_s :mdy
+  end
+
+  def status_formatted
+    case status
+      when 0
+        'Unpaid'
+      when 1
+        'Paid'
+      else
+        'N/A'
+    end
+  end
+
+  def paid?
+    status == 1
+  end
+
+  def auto_charge_string
+    if auto_charge?
+      sprintf 'Will be automatically billed to card on file on %s', auto_billing_date.to_formatted_s(:mdy)
+    end
   end
 
   def process_payment!

@@ -32,6 +32,7 @@
 #  is_active                  :boolean          default(TRUE)
 #  deleted                    :boolean          default(FALSE)
 #  location_id                :integer
+#  original_email             :string(255)
 #
 
 require 'test_helper'

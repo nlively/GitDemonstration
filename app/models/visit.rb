@@ -24,6 +24,7 @@
 #  client_invoice_line_item_id :integer
 #  adjustments                 :decimal(11, 2)   default(0.0)
 #  temp_payroll_line_item_id   :integer
+#  auto_checked_out            :boolean          default(FALSE)
 #
 
 class Visit < ActiveRecord::Base

@@ -13,6 +13,7 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  auto_payment_attempts :integer          default(0)
+#  auto_charge           :boolean          default(FALSE)
 #
 
 require 'test_helper'

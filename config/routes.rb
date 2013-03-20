@@ -96,6 +96,9 @@ BoomrDashboard::Application.routes.draw do
         end
       end
 
+      resources :agency_invoices, :only => [:index, :show], :path => :invoices, :as => :invoices
+      resources :agency_invoice_payments, :only => [:index, :show], :path => :payments, :as => :payments
+
       resources :daily_activities, :except => [:show]
 
     end

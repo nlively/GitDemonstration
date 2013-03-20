@@ -1,0 +1,29 @@
+<table id="invoice-line-items">
+  <thead>
+  <tr>
+    <td>Item</td>
+    <td>Quantity</td>
+    <td>Unit Price</td>
+    <td>Total Price</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @invoice.agency_invoice_rows.each do |row| %>
+      <tr>
+        <td><%= row.label %></td>
+        <td><%= row.quantity %></td>
+        <td><%= number_to_currency row.unit_price %></td>
+        <td><%= number_to_currency row.total_price %></td>
+      </tr>
+  <% end %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="4">
+      <strong>Total:
+        <%= number_to_currency @invoice.total %>
+      </strong>
+    </td>
+  </tr>
+  </tfoot>
+</table>

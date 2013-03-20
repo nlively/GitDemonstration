@@ -40,6 +40,10 @@ class ClientInvoice < ActiveRecord::Base
     invoice_number.to_s.rjust 4, '0'
   end
 
+  def invoice_date_formatted
+    invoice_date.to_formatted_s :mdy
+  end
+
   def total_amount
     total = 0.0
     client_invoice_line_items.each{|item| total += item.total}

@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #  in_out     :boolean
 #  visit_id   :integer
+#  auto       :boolean          default(FALSE)
 #
 
 class CheckIn < ActiveRecord::Base

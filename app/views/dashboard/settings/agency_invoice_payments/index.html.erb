@@ -1,0 +1,25 @@
+<% content_for :page_caption do %>
+    Payment History
+<% end %>
+<table id="invoice-payments">
+  <thead>
+  <tr>
+    <th>Payment Date</th>
+    <th>Invoice #</th>
+    <th>Payment Amount</th>
+    <th>Payment Method</th>
+    <th>Confirmation #</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @payments.each do |a| %>
+      <tr>
+        <td><%= a.date_formatted %></td>
+        <td><%= link_to a.agency_invoice.invoice_number_formatted, dashboard_settings_invoice_path(a.agency_invoice) %></td>
+        <td><%= number_to_currency a.amount %></td>
+        <td><%= a.payment_method %></td>
+        <td><%= a.confirmation_token %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
