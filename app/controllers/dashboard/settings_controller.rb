@@ -5,7 +5,8 @@ module Dashboard
       @settings_options = {
         '' => 'Select one...',
         :agency => 'Agency',
-        :users => 'Users'
+        :users => 'Users',
+        :daily_activities => 'Daily Activities',
       }
     end
 

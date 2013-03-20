@@ -63,7 +63,7 @@ module BoomrDashboard
     config.assets.version = '1.0'
 
 
-    config.per_user_price = 20.00
+    config.per_user_price = 10.00
     #BoomrDashboard::Application.config.per_user_price
 
   end

@@ -293,4 +293,31 @@ class Agency < ActiveRecord::Base
 
   end
 
+  def generate_prorated_invoice! number_of_new_users
+
+    invoice_date = Date.today
+    total_due = prorated_amount number_of_new_users
+    due_date = Date.today
+    invoice_label = sprintf "Additional boomr users - %d - PRORATED", number_of_new_users
+
+    invoice = AgencyInvoice.create :agency => self, :invoice_date => invoice_date, :total => total_due, :due_date => due_date, :status => 0
+
+    # Invoice row for paid users
+    invoice.agency_invoice_rows << AgencyInvoiceRow.create(:label => invoice_label, :quantity => number_of_new_users, :unit_price => prorated_user_price)
+
+    invoice
+
+  end
+
+  def prorated_user_price
+    daily_price = self.per_user_price / 30
+    days_until_invoice = (self.next_billing_date.to_date - DateTime.tomorrow.beginning_of_day.to_date).to_f
+
+    daily_price * days_until_invoice
+  end
+
+  def prorated_amount number_of_new_users
+    prorated_user_price * number_of_new_users
+  end
+
 end

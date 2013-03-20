@@ -16,6 +16,8 @@
 #
 
 class AgencyInvoice < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+
   belongs_to :agency
   has_many :agency_invoice_rows
   has_many :agency_invoice_payments
@@ -30,10 +32,10 @@ class AgencyInvoice < ActiveRecord::Base
     self.agency.with_braintree_data!
     cc = self.agency.default_credit_card
 
-    if amount > 0 and not cc.blank?
+    if amount > 0 and not cc.blank? and self.status == 0
 
       result = Braintree::Transaction.sale(
-        :amount => amount,
+        :amount => number_with_precision(amount, :precision => 2),
         :customer_id => self.agency.braintree_customer_id,
         :payment_method_token => cc.token
       )
@@ -44,17 +46,20 @@ class AgencyInvoice < ActiveRecord::Base
         self.status = 1
         self.save!
 
+        return true
+
       else
 
-        ex = Exception.new sprintf("Error processing payment with Braintree.")
+        ex = Exception.new sprintf("Error processing payment with Braintree. Errors: %s", result.message)
         Airbrake.notify ex
 
-        return
+        return result
       end
 
     end
 
 
   end
+
 
 end

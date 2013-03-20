@@ -91,6 +91,7 @@ BoomrDashboard::Application.routes.draw do
         namespace :upgrade do
           get 'summary'
           post 'summary', :action => :summary_submit
+          get 'error'
           #match 'payment'
         end
       end

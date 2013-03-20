@@ -152,3 +152,17 @@ form {
     display: none;
   }
 }
+
+form.edit_agency {
+  table {
+    width: 80%;
+
+    td {
+      border-left: 1px solid  #d4d4d4;
+      border-right: 1px solid  #d4d4d4;
+    }
+  }
+  input[type="submit"] {
+    margin-top: 20px;
+  }
+}

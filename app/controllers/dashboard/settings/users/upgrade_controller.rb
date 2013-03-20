@@ -67,20 +67,47 @@ module Dashboard::Settings::Users
       @total_new_users = session[:upgrade_additional_users]
       @unit_price = @agency.per_user_price
       @total_cost = @total_new_users * @unit_price
+      @prorated_amount = @agency.prorated_amount @total_new_users
 
     end
 
     # POST /dashboard/settings/users/upgrade/summary
     def summary_submit
-      @agency.allowed_users += session[:upgrade_additional_users]
-      @agency.save!
+      @agency.ensure_customer_record!
+      @agency.with_braintree_data!
+      if @agency.credit_cards.empty?
+        redirect_to dashboard_settings_users_upgrade_error_path, :error => 'Transaction Denied'
+      else
 
-      session.delete :upgrade_additional_users
+        @total_new_users = session[:upgrade_additional_users]
 
-      notice = 'Your account has been upgraded to ' + pluralize(@agency.allowed_users, 'total user', 'total users')
-      redirect_to dashboard_settings_users_path, :notice => notice
+        @prorated_invoice = @agency.generate_prorated_invoice! @total_new_users
+        payment_result = @prorated_invoice.process_payment!
+
+        if payment_result == true
+          @agency.allowed_users += session[:upgrade_additional_users]
+          @agency.save!
+
+          session.delete :upgrade_additional_users
+
+          notice = 'Your account has been upgraded to ' + pluralize(@agency.allowed_users, 'total user', 'total users')
+          redirect_to dashboard_settings_users_path, :notice => notice
+
+        elsif !payment_result.success?
+          error_message = 'Unable to process payment. ' + result.message
+          redirect_to dashboard_settings_users_path, :notice => error_message
+
+        end
+      end
+
 
     end
+
+    def error
+      @page_title = 'TRANSACTION DENIED'
+
+    end
+
 
   end
 end

@@ -11,9 +11,10 @@
     <p>
       <strong>Price for new users:</strong> <%= number_to_currency @total_cost %>
       <br>
-      <strong>Total monthly cost:</strong> <%= number_to_currency((@agency.total_paid_users + @total_new_users) * @unit_price) %>
-      <br>
-      <em>The additional cost will be reflected on your next invoice.</em>
+      <strong>New total monthly cost:</strong> <%= number_to_currency((@agency.total_paid_users + @total_new_users) * @unit_price) %>
+    </p>
+    <p>
+      <em>By clicking "Save Changes" below, you are authorizing a prorated charge of <%= number_to_currency @prorated_amount %> to be applied immediately to your credit card on file.</em>
     </p>
 
     <p>
