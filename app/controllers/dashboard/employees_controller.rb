@@ -51,6 +51,14 @@ module Dashboard
         params[:user].delete :password
         params[:user].delete :password_confirmation
 
+        unless @employee.id == current_user.id
+          if params[:admin_access] == '1'
+            @employee.has_role! :agency_administrator
+          else
+            @employee.has_no_role! :agency_administrator
+          end
+        end
+
         #if @location.blank?
         #  @location = Location.create params[:location]
         #  @employee.location = @location
@@ -87,6 +95,11 @@ module Dashboard
       respond_to do |format|
         if @user.save
           @user.has_role! :caregiver
+
+          if params[:admin_access] == '1'
+            @user.has_role! :agency_administrator
+          end
+
           format.html { redirect_to dashboard_employee_path(@user), notice: 'Employee was successfully created.' }
           format.json { render json: @user, status: :created, location: @user }
         else

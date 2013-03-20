@@ -38,6 +38,8 @@ module Dashboard::Settings::Agency
 
       if result.success?
         redirect_to dashboard_settings_agency_credit_cards_path
+      else
+        render :action => :new, :error => result.message
       end
     end
 

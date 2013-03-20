@@ -1,6 +1,7 @@
 <%= javascript_include_tag 'dashboard/employee_form' %>
 <%
    form_action = (user.id.blank?) ? dashboard_employees_path(user) : dashboard_employee_path(user)
+   is_admin_default = !user.id.blank? && user.has_role?(:agency_administrator)
 %>
 <%= form_for user, :url => form_action do |f| %>
 
@@ -79,6 +80,19 @@
         </div>
       </div>
     </div>
+
+    <% unless user.id == current_user.id or (!user.id.blank? and user.has_role? :administrator) %>
+        <div class="form-field">
+          <div class="label">
+            <%= label_tag 'Do you want to give this employee access to the administrative site?' %>
+          </div>
+          <div class="field">
+            <%= radio_button_tag :admin_access, '1', is_admin_default, :id => 'admin-access-yes' %> <%=label_tag 'admin-access-yes', 'Yes' %>
+            <br>
+            <%= radio_button_tag :admin_access, '0', !is_admin_default, :id => 'admin-access-no' %> <%=label_tag 'admin-access-no', 'No' %>
+          </div>
+        </div>
+    <% end %>
 
 
     <%= f.submit "Save Changes" %>
