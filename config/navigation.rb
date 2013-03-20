@@ -63,6 +63,7 @@ SimpleNavigation::Configuration.run do |navigation|
         else
           client.item :employee, @care_recipient.try(:full_name), dashboard_client_path(@care_recipient), :highlights_on => /dashboard\/clients\/[0-9]+/ do |client_sub|
             client_sub.item :profile, 'Profile', dashboard_clients_profile_path(@care_recipient), :highlights_on => :subpath
+            client_sub.item :locations, 'Locations', dashboard_client_locations_path(@care_recipient), :highlights_on => :subpath
             client_sub.item :caregivers, 'Assigned Caregivers', dashboard_clients_caregivers_path(@care_recipient), :highlights_on => :subpath
             client_sub.item :visits, 'Visits', dashboard_clients_visits_path(@care_recipient), :highlights_on => :subpath
           end

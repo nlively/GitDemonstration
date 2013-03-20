@@ -15,7 +15,7 @@ BoomrDashboard::Application.routes.draw do
 
   get "general/daily_activities"
 
-  
+
 
   resources :check_ins, :only => [:index, :create]
 
@@ -62,8 +62,8 @@ BoomrDashboard::Application.routes.draw do
 
   namespace :dashboard do
 
-   match 'feed'
-   match 'feed/filter/:type', :action => :feed, :as => :feed_filter
+    match 'feed'
+    match 'feed/filter/:type', :action => :feed, :as => :feed_filter
 
     resources :employees, :only => [:index, :show, :new, :create, :update, :destroy]
     resources :clients, :only => [:index, :show, :new, :create, :update, :destroy]
@@ -170,7 +170,12 @@ BoomrDashboard::Application.routes.draw do
       post ':id/caregivers/select' => 'caregivers#assign_caregiver', :as => :caregivers_select
       match ':id/visits' => 'visits#index', :as => :visits
 
+    end
 
+    resources :clients, :only => [:show] do
+      resources :locations, :except => [:show], :controller => 'clients/locations' do
+        match 'make_default'
+      end
     end
 
   end

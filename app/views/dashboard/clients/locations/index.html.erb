@@ -1,0 +1,28 @@
+<% content_for :page_caption do %>
+    Locations
+<% end %>
+<% content_for :page_top do %>
+    <%= link_to 'Add a Location', new_dashboard_client_location_path(@care_recipient), :class => 'link-button' %>
+<% end %>
+<table id="locations">
+  <thead>
+  <tr>
+    <th>Address</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <% @locations.each do |a| %>
+      <tr>
+        <td><%= a.to_address_string %></td>
+        <td>
+          <%= link_to 'Edit', edit_dashboard_client_location_path(@care_recipient, a), :class => 'link-button' %>
+          <% if @care_recipient.default_location != a %>
+              &nbsp;|&nbsp;
+              <%= link_to 'Make default', dashboard_client_location_make_default_path(@care_recipient, a), :class => 'link-button' %>
+              &nbsp;|&nbsp;
+              <%= link_to 'Remove', dashboard_client_location_path(@care_recipient, a), :method => :delete, :confirm => 'Are you sure you want to remove this location?', :class => 'link-button' %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>

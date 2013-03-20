@@ -1,9 +1,11 @@
 module Dashboard
   class ClientsController  < DashboardController
 
-    before_filter do
+    before_filter :prep_data
+
+    def prep_data
       @care_recipient = CareRecipient.find params[:id]  unless params[:id].blank?
-      @location = (@care_recipient.nil? or @care_recipient.default_location.nil?) ? Location.new : @care_recipient.default_location
+            @location = (@care_recipient.nil? or @care_recipient.default_location.nil?) ? Location.new : @care_recipient.default_location
     end
 
     def index

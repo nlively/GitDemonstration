@@ -6,6 +6,9 @@
     <%= link_to 'Profile', dashboard_clients_profile_path(care_recipient), :class => 'link-button' %>
   </td>
   <td>
+    <%= link_to 'Locations', dashboard_client_locations_path(care_recipient), :class => 'link-button' %>
+  </td>
+  <td>
     <%= link_to 'Assigned Caregivers', dashboard_clients_caregivers_path(care_recipient), :class => 'link-button' %>
   </td>
   <td>

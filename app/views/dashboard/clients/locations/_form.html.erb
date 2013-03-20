@@ -1,0 +1,7 @@
+<%= form_for @location, :url => path do |l| %>
+
+
+    <%=  render 'dashboard/shared/address_form' %>
+
+    <%= l.submit 'Save' %>
+<% end %>
