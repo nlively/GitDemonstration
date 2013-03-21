@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'json', '1.7.7'
@@ -32,7 +32,7 @@ gem 'curb'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'compass-rails', :git => 'git://github.com/Compass/compass-rails.git'
+  gem 'compass-rails', '~> 1.0.3'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'coffee-rails', '~> 3.2.1'
 

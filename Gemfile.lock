@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/Compass/compass-rails.git
-  revision: 47d889ad8dabdab1e9f44da4447f94846c089c50
-  specs:
-    compass-rails (1.0.0.rc.3)
-      compass (~> 0.12.rc.0)
-
-GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: f28d75b81818386407f1ebd505058e0236920fd9
   specs:
@@ -17,7 +10,7 @@ GIT
       mime-types
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     acl9 (0.12.0)
     actionmailer (3.2.11)
@@ -77,10 +70,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
-    compass (0.13.alpha.2.222937c)
+    compass (0.12.2)
       chunky_png (~> 1.2)
-      listen (~> 0.5.3)
-      sass (~> 3.2.0.alpha.93)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     curb (0.8.3)
     daemons (1.1.9)
     delayed_job (3.0.5)
@@ -101,6 +96,7 @@ GEM
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    fssm (0.2.10)
     geokit (1.6.5)
       multi_json
     geokit-rails3 (0.1.5)
@@ -125,7 +121,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     libv8 (3.11.8.13)
-    listen (0.5.3)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
     mail (2.4.4)
@@ -249,7 +244,7 @@ DEPENDENCIES
   braintree
   chronic
   coffee-rails (~> 3.2.1)
-  compass-rails!
+  compass-rails (~> 1.0.3)
   curb
   delayed_job
   devise
