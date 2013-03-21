@@ -30,6 +30,9 @@
   <meta name="viewport" content="width=device-width">
 
   <title><%= @title_tag %></title>
+
+  <%= favicon_link_tag %>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <% if controller_name != 'visits' or action_name != 'this_month' %>
       <%= stylesheet_link_tag    "ui", :media => "all" %>
