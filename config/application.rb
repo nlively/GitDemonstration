@@ -66,5 +66,11 @@ module BoomrDashboard
     config.per_user_price = 10.00
     #BoomrDashboard::Application.config.per_user_price
 
+
+    #config.geokit.default_units = :miles
+    #config.geokit.default_formula = :sphere
+    #config.geokit.geocoders.google = 'AIzaSyB4CXWgUoLWqaS1WRUGJz9_LMvYCZp7VEw'
+    #config.geokit.geocoders.provider_order = [:google]
+
   end
 end
