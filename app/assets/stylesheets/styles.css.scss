@@ -37,7 +37,7 @@ tr.visit-row {
       width: 45px;
     }
 
-    &.adjustments {
+    &.adjustments, &.payroll-payrate {
       width: 60px;
 
       input[type="text"] {
