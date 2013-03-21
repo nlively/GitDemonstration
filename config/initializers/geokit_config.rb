@@ -1,11 +1,3 @@
-#Geokit.configure do |config|
-#  config.geokit.default_units = :miles
-#  config.geokit.default_formula = :sphere
-#  config.geokit.geocoders.google = ''
-#  config.geokit.geocoders.provider_order = [:google]
-#end
-
-
 if defined? Geokit
 
 	# These defaults are used in Geokit::Mappable.distance_to and in acts_as_mappable
@@ -20,6 +12,12 @@ if defined? Geokit
 	# This is your Google Maps geocoder key.
   Geokit::Geocoders::google = 'AIzaSyB4CXWgUoLWqaS1WRUGJz9_LMvYCZp7VEw'
 
+	# This is your username and password for geocoder.us.
+	# To use the free service, the value can be set to nil or false.  For
+	# usage tied to an account, the value should be set to username:password.
+	# See http://geocoder.us
+	# and http://geocoder.us/user/signup
+	Geokit::Geocoders::geocoder_us = false
 
 	# This is the order in which the geocoders are called in a failover scenario
 	# If you only want to use a single geocoder, put a single symbol in the array.

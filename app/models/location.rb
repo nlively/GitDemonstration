@@ -97,7 +97,9 @@ class Location < ActiveRecord::Base
 
   def geocode
     #if self.latitude.nil? or self.latitude.empty?
-    geo = Geokit::Geocoders::GoogleGeocoder.geocode to_address_string
+    geo = Geokit::Geocoders::MultiGeocoder.geocode to_address_string
+
+    #geo = Geokit::Geocoders::GoogleGeocoder.geocode to_address_string
     Rails.logger.debug to_address_string
     Rails.logger.debug geo.inspect
     if geo.success then
