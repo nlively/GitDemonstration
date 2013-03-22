@@ -1,0 +1,20 @@
+You have been added as a new user by <%= @user.agency.name %>. To login use the information below:
+
+Username: <%= @user.email %>
+Password: <%= @password %>
+
+After logging in, you may change your password at any time by simply touching the "My Account" tab.
+
+To access Boomr, simply go to the Apple App Store or Google Play and download the Boomr mobile application <image/link>. Watch the 30-second tutorial video below to learn everything you need to know about using Boomr!
+
+(Video tutorial in this order)
+
+Login: <%= @urls[:login] %>
+Locate me/Check-In: <%= @urls[:check_in] %>
+Upload Data (Current Session): <%= @urls[:upload_data] %>
+Logout: : <%= @urls[:logout] %>
+History Tab: <%= @urls[:history] %>
+Change Password: <%= @urls[:change_password] %>
+
+
+Thank you for using Boomr, we love hearing from our users so please don’t hesitate to contact us at info@boomr.com with any feedback!

@@ -18,6 +18,10 @@
 class AgencyInvoicePayment < ActiveRecord::Base
   belongs_to :agency_invoice
 
+  def agency
+    agency_invoice.agency
+  end
+
   def date_formatted
     date.to_formatted_s :mdy
   end

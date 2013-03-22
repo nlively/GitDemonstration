@@ -88,6 +88,8 @@ module Dashboard::Settings::Users
           @agency.allowed_users += session[:upgrade_additional_users]
           @agency.save!
 
+          MailerAgency.account_upgrade(@agency, session[:upgrade_additional_users]).deliver
+
           session.delete :upgrade_additional_users
 
           notice = 'Your account has been upgraded to ' + pluralize(@agency.allowed_users, 'total user', 'total users')

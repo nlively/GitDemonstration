@@ -21,6 +21,8 @@ module Admin2
       @agency.next_billing_date=Date.today
       @agency.save!
 
+
+
       # Save agency admin user
       @user = User.new params[:user]
       @user.agency = @agency
@@ -36,22 +38,28 @@ module Admin2
 
       @agency.with_braintree_data!
 
-      @invoice = @agency.generate_invoice!
+      if @agency.free_users == @agency.allowed_users
+        MailerAgency.welcome_starter(@agency).deliver
+      else
+        @invoice = @agency.generate_invoice!
 
-      # Set up payment method on file
-      unless params[:credit_card][:number].blank?
+        # Set up payment method on file
+        unless params[:credit_card][:number].blank?
 
-        credit_card = params[:credit_card]
-        credit_card[:customer_id] = @agency.braintree_customer_id
+          credit_card = params[:credit_card]
+          credit_card[:customer_id] = @agency.braintree_customer_id
 
-        credit_card[:expiration_month] = params[:date][:month]
-        credit_card[:expiration_year] = params[:date][:year]
+          credit_card[:expiration_month] = params[:date][:month]
+          credit_card[:expiration_year] = params[:date][:year]
 
-        Braintree::CreditCard.create credit_card
+          Braintree::CreditCard.create credit_card
 
-        @invoice.process_payment!
+          @invoice.process_payment!
 
+        end
       end
+
+
 
       redirect_to new_admin2_agency_path, :notice => 'Agency was created successfully.'
 

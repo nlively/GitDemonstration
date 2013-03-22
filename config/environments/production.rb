@@ -67,7 +67,7 @@ BoomrDashboard::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-   # Amazon S3 settings for Paperclip uploads
+  # Amazon S3 settings for Paperclip uploads
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_protocol => 'http',
@@ -77,4 +77,19 @@ BoomrDashboard::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'boomr.com' }
+  config.action_mailer.raise_delivery_errors = true
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name  => ENV['SENDGRID_USERNAME'],
+    :password  => ENV['SENDGRID_PASSWORD'],
+    :address => "smtp.sendgrid.net",
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
 end

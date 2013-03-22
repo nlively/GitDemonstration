@@ -9,7 +9,7 @@ class CronController < ApplicationController
   def generate_invoices
     Agency.needing_invoice_generation.each do |agency|
       begin
-        agency.generate_invoice!
+        invoice = agency.generate_invoice!
       rescue => ex
         Rails.logger.debug "Exception in CronController.generate_invoices: " + ex.message
         Rails.logger.debug sprintf("Agency ID was %d", agency.id)
@@ -21,7 +21,7 @@ class CronController < ApplicationController
   def process_invoice_payments
     AgencyInvoice.ready_for_payment.each do |invoice|
       begin
-        invoice.process_payment!
+        payment = invoice.process_payment!
       rescue => ex
         Rails.logger.debug "Exception in CronController.process_invoices: " + ex.message
         Rails.logger.debug sprintf("Invoice ID was %d", invoice.id)

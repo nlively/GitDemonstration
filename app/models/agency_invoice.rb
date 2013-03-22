@@ -84,9 +84,11 @@ class AgencyInvoice < ActiveRecord::Base
 
       if result.success?
 
-        AgencyInvoicePayment.create :agency_invoice => self, :payment_method => 'credit_card', :payment_token => cc.token, :amount => amount, :date => DateTime.current, :status => 1, :confirmation_token => result.transaction.id
+        payment = AgencyInvoicePayment.create :agency_invoice => self, :payment_method => 'credit_card', :payment_token => cc.token, :amount => amount, :date => DateTime.current, :status => 1, :confirmation_token => result.transaction.id
         self.status = 1
         self.save!
+
+        MailerAgency.bill_paid(payment).deliver
 
         return true
 

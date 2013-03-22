@@ -60,4 +60,8 @@ BoomrDashboard::Application.configure do
 
   Paperclip.options[:command_path] = '/opt/local/bin'
 
+
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
 end

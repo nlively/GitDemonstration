@@ -100,6 +100,8 @@ module Dashboard
             @user.has_role! :agency_administrator
           end
 
+          #MailerUser.caregiver_welcome(@user, params[:user][:password]).deliver
+
           format.html { redirect_to dashboard_employee_path(@user), notice: 'Employee was successfully created.' }
           format.json { render json: @user, status: :created, location: @user }
         else
