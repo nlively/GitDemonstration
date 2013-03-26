@@ -192,6 +192,7 @@ BoomrDashboard::Application.routes.draw do
   get "home/index"
   get 'terms' => 'home#terms'
 
+  post "oauth/token", :to => "tokens#create"
   mount Doorkeeper::Engine => '/oauth'
   match "/oauth/authorize", :via => :get, :to => "authorization#new"
   match "/oauth/authorize", :via => :post, :to => "authorization#create"

@@ -12,6 +12,8 @@ gem 'rest-client'
 
 gem 'oauth2'
 gem 'acl9'
+gem 'doorkeeper', '~> 0.4.2'
+gem 'devise'
 
 gem 'uuid'
 gem 'rubyzip'
@@ -21,9 +23,6 @@ gem 'annotate'
 
 gem 'simple-navigation'
 
-gem 'doorkeeper', '~> 0.4.2'
-
-gem 'devise'
 
 gem 'braintree'
 gem 'curb'
