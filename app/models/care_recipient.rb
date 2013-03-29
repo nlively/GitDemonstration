@@ -19,13 +19,15 @@
 #  gender                     :string(255)
 #  phone                      :string(255)
 #  sms                        :string(255)
+#  is_company                 :boolean          default(FALSE)
+#  company_name               :string(255)
 #
 
 class CareRecipient < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ResourcesHelper
 
-  validates_presence_of :first_name, :last_name, :phone, :dob, :default_location_id
+  validates_presence_of :phone, :dob, :default_location_id
   validates_numericality_of :default_bill_rate, :greater_than => 0.0
 
   #include Boomr::WithPhoneNumber
@@ -47,8 +49,8 @@ class CareRecipient < ActiveRecord::Base
   before_save :process_location
 
   has_attached_file :profile_photo, :styles => {
-      :profile => "93x93>",
-      :tiny => "50x50>"
+    :profile => "93x93>",
+    :tiny => "50x50>"
   }
 
   def default_bill_rate_formatted
@@ -56,11 +58,11 @@ class CareRecipient < ActiveRecord::Base
   end
 
   def full_name
-    return sprintf '%s %s', first_name, last_name
+    return (is_company?) ? company_name : sprintf('%s %s', first_name, last_name)
   end
 
   def full_name_last_first
-    return sprintf '%s, %s', last_name, first_name
+    return (is_company?) ? company_name : sprintf('%s, %s', last_name, first_name)
   end
 
   def first_location
@@ -78,15 +80,16 @@ class CareRecipient < ActiveRecord::Base
     location = first_location if location.nil?
 
     hash = {
-        :first_name => first_name,
-        :last_name => last_name,
-        :full_name =>full_name,
-        :full_name_last_first =>full_name_last_first,
-        :photo_url => full_url(url_base, profile_photo.url(:profile)),
-        :phone => phone,
-        :sms => sms,
-        :id => id,
-        :dob => dob
+      :first_name => first_name,
+      :last_name => last_name,
+      :company_name => company_name,
+      :full_name => full_name,
+      :full_name_last_first =>full_name_last_first,
+      :photo_url => full_url(url_base, profile_photo.url(:profile)),
+      :phone => phone,
+      :sms => sms,
+      :id => id,
+      :dob => dob
     }
 
     unless location.nil?

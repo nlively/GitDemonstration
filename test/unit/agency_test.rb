@@ -27,6 +27,7 @@
 #  invoice_last_generated_date :datetime
 #  per_user_price_override     :decimal(11, 2)
 #  free_users                  :integer          default(0)
+#  auto_check_out              :boolean          default(TRUE)
 #
 
 require 'test_helper'

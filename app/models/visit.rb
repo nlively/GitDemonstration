@@ -310,7 +310,8 @@ class Visit < ActiveRecord::Base
       :day => in_time.to_formatted_s(:day_only),
       :bill_rate => bill_rate,
       :pay_rate => pay_rate,
-      :photos => []
+      :photos => [],
+      :allow_auto_checkout => agency.auto_check_out?
     }
 
     unless self.photos.empty?

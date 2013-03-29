@@ -27,6 +27,9 @@
   <% if type == :completed or type == 'completed' %>
       <td class="in-out-time">
         <%= visit.time_only_string %><br>(<%= visit.duration_string %>)
+
+        <%= visit.auto_checked_out? %>
+
       </td>
   <% else %>
       <td class="in-time">

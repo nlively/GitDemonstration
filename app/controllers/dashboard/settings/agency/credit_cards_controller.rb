@@ -39,7 +39,12 @@ module Dashboard::Settings::Agency
       if result.success?
         redirect_to dashboard_settings_agency_credit_cards_path
       else
-        render :action => :new, :error => result.message
+        @errors = []
+        result.errors.each do |error|
+          @errors << error
+        end
+        flash[:error] = @errors.join(', ')
+        render :action => :new
       end
     end
 
@@ -164,6 +169,16 @@ module Dashboard::Settings::Agency
         current_user.with_braintree_data!
         render :payment_manager
       end
+    end
+
+
+    def validate_cc_parameters
+      @errors = []
+
+      if params[:credit_card][:number].blank? or params[:credit_card][:number].length < 16
+
+      end
+
     end
 
 

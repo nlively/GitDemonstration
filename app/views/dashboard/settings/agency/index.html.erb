@@ -38,6 +38,18 @@
     </div>
 
     <div class="form-field">
+         <div class="label">
+           <%= label_tag 'Automatically check out users?' %>
+           <div class="description">Employees will be automatically checked out of care appointments if they travel 1 mile away from the appointment after they have checked in.</div>
+         </div>
+         <div class="field">
+           <%= f.radio_button :auto_check_out, true, :id => 'is-company-yes' %> <%= label_tag 'is-company-yes', 'Yes' %>
+           <br>
+           <%= f.radio_button :auto_check_out, false, :id => 'is-company-no' %> <%= label_tag 'is-company-no', 'No' %>
+         </div>
+       </div>
+
+    <div class="form-field">
       <div class="label">
         <%= label_tag 'Billing Info' %>
       </div>
