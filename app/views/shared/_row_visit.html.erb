@@ -25,8 +25,13 @@
   </td>
 
   <% if type == :completed or type == 'completed' %>
+
       <td class="in-out-time">
+
+        <%= render 'shared/visit_icon', :visit => visit %>
+
         <%= visit.time_only_string %><br>(<%= visit.duration_string %>)
+
       </td>
   <% else %>
       <td class="in-time">

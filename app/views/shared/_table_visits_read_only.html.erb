@@ -59,6 +59,7 @@
           <%= visit.in_time_time_only %>
         </td>
         <td class="out-time">
+          <%= render 'shared/visit_icon', :visit => visit %>
           <%= visit.out_time_time_only %>
         </td>
         <td class="duration">

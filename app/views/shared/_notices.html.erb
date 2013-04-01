@@ -1,0 +1,9 @@
+<div class="main messages">
+  <% unless notice.blank? %>
+    <p class="notice"><%= raw notice %></p>
+  <% end %>
+  <% unless alert.blank? %>
+    <p class="alert"><%= raw alert %></p>
+  <% end %>
+  <p class="js-errors"></p>
+</div>

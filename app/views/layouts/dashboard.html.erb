@@ -95,8 +95,7 @@
                   </div>
               <% end %>
 
-              <p class="notice"><%= notice %></p>
-              <p class="alert"><%= alert %></p>
+              <%= render 'shared/notices' %>
 
               <% if content_for? :page_caption %>
                   <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>

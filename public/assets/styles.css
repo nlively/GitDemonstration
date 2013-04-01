@@ -1,0 +1,387 @@
+/* line 4, ../../app/assets/stylesheets/styles.css.scss */
+body .messages.main {
+  clear: both;
+}
+/* line 7, ../../app/assets/stylesheets/styles.css.scss */
+body .messages.main p {
+  background-position: 8px 8px;
+  background-repeat: no-repeat;
+  border: 1px solid;
+  margin: 6px 0;
+  padding: 10px 10px 10px 10px;
+}
+/* line 14, ../../app/assets/stylesheets/styles.css.scss */
+body .messages.main p.notice {
+  border-color: #BE7;
+  color: #234600;
+  background-color: #F8FFF0;
+}
+/* line 19, ../../app/assets/stylesheets/styles.css.scss */
+body .messages.main p.alert, body .messages.main p.js-errors {
+  border-color: #ED541D;
+  color: #8C2E0B;
+  background-color: #FEF5F1;
+}
+/* line 25, ../../app/assets/stylesheets/styles.css.scss */
+body .messages.main p.js-errors {
+  display: none;
+}
+/* line 27, ../../app/assets/stylesheets/styles.css.scss */
+body .messages.main p.js-errors label {
+  width: auto !important;
+  display: block !important;
+}
+
+/* line 39, ../../app/assets/stylesheets/styles.css.scss */
+ul.three-columns, ol.three-columns {
+  -moz-column-count: 3;
+  -webkit-column-count: 3;
+  column-count: 3;
+}
+
+/* line 47, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row.approved {
+  background: #e2ecf2;
+}
+/* line 53, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row.edit-mode td.payrate, tr.visit-row.edit-mode td.billrate {
+  width: 60px;
+  padding: 0;
+}
+/* line 57, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row.edit-mode td.payrate input[type="text"], tr.visit-row.edit-mode td.billrate input[type="text"] {
+  width: 33px;
+  padding: 1px;
+}
+/* line 66, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.employee, tr.visit-row td.client {
+  width: 120px;
+}
+/* line 70, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.payrate, tr.visit-row td.billrate {
+  width: 45px;
+}
+/* line 74, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.adjustments, tr.visit-row td.payroll-payrate {
+  width: 60px;
+}
+/* line 77, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.adjustments input[type="text"], tr.visit-row td.payroll-payrate input[type="text"] {
+  width: 33px;
+  padding: 1px;
+}
+/* line 83, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.in-time, tr.visit-row td.out-time {
+  width: 65px;
+}
+/* line 86, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.in-time .auto-checkout, tr.visit-row td.out-time .auto-checkout {
+  float: right;
+  margin-left: 2px;
+}
+/* line 92, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.in-out-time {
+  width: 114px;
+}
+/* line 95, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.in-out-time .auto-checkout {
+  float: right;
+  margin-left: 2px;
+}
+/* line 102, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.duration {
+  width: 60px;
+}
+/* line 106, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.wrapper {
+  padding: 0;
+  text-align: left;
+}
+/* line 110, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.wrapper table {
+  width: 100%;
+}
+/* line 115, ../../app/assets/stylesheets/styles.css.scss */
+tr.visit-row td.approve {
+  text-align: center;
+}
+
+/* line 122, ../../app/assets/stylesheets/styles.css.scss */
+#activity-stream-wrapper .activity-stream-item {
+  clear: both;
+  margin: 10px 0;
+}
+/* line 126, ../../app/assets/stylesheets/styles.css.scss */
+#activity-stream-wrapper .activity-stream-item div.icon {
+  float: left;
+  width: 75px;
+  height: 75px;
+  margin-right: 10px;
+}
+/* line 133, ../../app/assets/stylesheets/styles.css.scss */
+#activity-stream-wrapper .activity-stream-item h3 {
+  font-size: 1.2em;
+}
+/* line 137, ../../app/assets/stylesheets/styles.css.scss */
+#activity-stream-wrapper .activity-stream-item div.time {
+  font-size: 0.85em;
+  font-style: italic;
+}
+/* line 142, ../../app/assets/stylesheets/styles.css.scss */
+#activity-stream-wrapper .activity-stream-item.js {
+  display: none;
+}
+
+/* line 150, ../../app/assets/stylesheets/styles.css.scss */
+.add-button, .link-button {
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  background-color: #fdfdfd;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFDFDFD', endColorstr='#FFF7F7F7');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fdfdfd), color-stop(50%, #f7f7f7));
+  background-image: -webkit-linear-gradient(top, #fdfdfd 0%, #f7f7f7 50%);
+  background-image: -moz-linear-gradient(top, #fdfdfd 0%, #f7f7f7 50%);
+  background-image: -o-linear-gradient(top, #fdfdfd 0%, #f7f7f7 50%);
+  background-image: linear-gradient(top, #fdfdfd 0%, #f7f7f7 50%);
+  color: #727474;
+  -moz-text-stroke: 1px transparent;
+  -webkit-text-stroke: 1px transparent;
+  text-stroke: 1px transparent;
+  text-shadow: #fdfdfd -1px -1px;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  font-weight: normal;
+  text-decoration: none;
+  margin: 0px;
+  padding: 5px 12px;
+}
+/* line 158, ../../app/assets/stylesheets/styles.css.scss */
+.add-button.blue, .link-button.blue {
+  border: 1px solid #6191f2;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  background-color: #6d9dfe;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF6D9DFE', endColorstr='#FF6191F2');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6d9dfe), color-stop(50%, #6191f2));
+  background-image: -webkit-linear-gradient(top, #6d9dfe 0%, #6191f2 50%);
+  background-image: -moz-linear-gradient(top, #6d9dfe 0%, #6191f2 50%);
+  background-image: -o-linear-gradient(top, #6d9dfe 0%, #6191f2 50%);
+  background-image: linear-gradient(top, #6d9dfe 0%, #6191f2 50%);
+  color: white;
+  -moz-text-stroke: 1px transparent;
+  -webkit-text-stroke: 1px transparent;
+  text-stroke: 1px transparent;
+  text-shadow: #537ac7 -1px -1px;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/* line 165, ../../app/assets/stylesheets/styles.css.scss */
+table.assignment-selection tr {
+  border-bottom: 1px solid #d5d5d5;
+}
+/* line 169, ../../app/assets/stylesheets/styles.css.scss */
+table.assignment-selection td.name {
+  width: 300px;
+}
+/* line 173, ../../app/assets/stylesheets/styles.css.scss */
+table.assignment-selection td.selection {
+  width: 100px;
+  text-align: center;
+}
+/* line 177, ../../app/assets/stylesheets/styles.css.scss */
+table.assignment-selection td.selection input {
+  padding: 4px 12px;
+}
+/* line 180, ../../app/assets/stylesheets/styles.css.scss */
+table.assignment-selection td.selection span {
+  display: inline-block;
+  padding: 4px 0;
+}
+
+/* line 188, ../../app/assets/stylesheets/styles.css.scss */
+div.fill-page {
+  margin-left: 0px;
+}
+
+/* line 192, ../../app/assets/stylesheets/styles.css.scss */
+table.client-table, table.employee-table {
+  width: 100%;
+}
+/* line 195, ../../app/assets/stylesheets/styles.css.scss */
+table.client-table tr.client-row, table.client-table tr.employee-row, table.employee-table tr.client-row, table.employee-table tr.employee-row {
+  border-bottom: 1px solid #d5d5d5;
+}
+/* line 198, ../../app/assets/stylesheets/styles.css.scss */
+table.client-table tr.client-row td, table.client-table tr.employee-row td, table.employee-table tr.client-row td, table.employee-table tr.employee-row td {
+  vertical-align: middle;
+}
+/* line 201, ../../app/assets/stylesheets/styles.css.scss */
+table.client-table tr.client-row td.name, table.client-table tr.employee-row td.name, table.employee-table tr.client-row td.name, table.employee-table tr.employee-row td.name {
+  padding-left: 15px;
+  font-size: 1em;
+}
+
+/* line 211, ../../app/assets/stylesheets/styles.css.scss */
+table.edit-mode tbody tr, table.edit-mode tbody td {
+  border-bottom: none !important;
+}
+
+/* line 218, ../../app/assets/stylesheets/styles.css.scss */
+table.visits td.date {
+  width: 80px;
+}
+
+/* line 223, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-table {
+  margin: 40px 0;
+}
+
+/* line 229, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary td {
+  width: 14.28571%;
+  text-align: center;
+  position: relative;
+}
+/* line 235, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.dow {
+  font-size: 1.4em;
+}
+/* line 238, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data {
+  background-color: #f9f9f9;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF9F9F9', endColorstr='#FFEAEAEA');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(70%, #f9f9f9), color-stop(100%, #eaeaea));
+  background-image: -webkit-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: -moz-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: -o-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  font-size: 1.2em;
+}
+/* line 243, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data td {
+  border: 1px solid #d4d4d4;
+}
+/* line 246, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data td.current {
+  background: #e2ecf2;
+}
+/* line 250, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data td a {
+  color: #727474;
+  text-decoration: none;
+}
+/* line 255, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data td div.day {
+  font-weight: bold;
+}
+/* line 259, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data td div.count {
+  display: block;
+  background: url(red-sm.png) no-repeat;
+  color: #fff;
+  width: 17px;
+  height: 17px;
+  text-align: center;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  font-size: 0.7em;
+}
+/* line 271, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data td div.count span {
+  display: block;
+  padding-top: 1px;
+}
+/* line 275, ../../app/assets/stylesheets/styles.css.scss */
+table.visits-week-summary tr.data td div.count span a {
+  color: #fff;
+}
+
+/* line 286, ../../app/assets/stylesheets/styles.css.scss */
+.visit-summary {
+  margin-bottom: 40px;
+}
+
+/* line 290, ../../app/assets/stylesheets/styles.css.scss */
+.visit-data .visit-data-section {
+  width: 100%;
+  overflow: auto;
+  margin-top: 40px;
+}
+/* line 295, ../../app/assets/stylesheets/styles.css.scss */
+.visit-data .visit-data-section .heading {
+  width: 160px;
+  float: left;
+  text-align: left;
+  font-size: 1.2em;
+  margin-left: 30px;
+}
+/* line 303, ../../app/assets/stylesheets/styles.css.scss */
+.visit-data .visit-data-section table {
+  margin-top: 0;
+  padding-top: 0;
+  float: left;
+  width: auto;
+}
+/* line 309, ../../app/assets/stylesheets/styles.css.scss */
+.visit-data .visit-data-section table tr, .visit-data .visit-data-section table td {
+  border-bottom: none;
+}
+/* line 313, ../../app/assets/stylesheets/styles.css.scss */
+.visit-data .visit-data-section table td.label {
+  background: url(checkbox.png) no-repeat left top;
+  padding-left: 25px;
+  min-width: 200px;
+}
+/* line 319, ../../app/assets/stylesheets/styles.css.scss */
+.visit-data .visit-data-section table td.timestamp {
+  width: 90px;
+  text-align: center;
+}
+
+/* line 328, ../../app/assets/stylesheets/styles.css.scss */
+div.slide-out {
+  display: none;
+  margin-top: 30px;
+}
+
+/* line 334, ../../app/assets/stylesheets/styles.css.scss */
+div.photos-grid {
+  width: 100%;
+  overflow: auto;
+}
+/* line 339, ../../app/assets/stylesheets/styles.css.scss */
+div.photos-grid.thumbnails .photos-grid-item {
+  float: left;
+  width: 120px;
+  height: 130px;
+  text-align: center;
+  vertical-align: center;
+  border: 1px solid #d5d5d5;
+  margin: 0.5em;
+}
+/* line 348, ../../app/assets/stylesheets/styles.css.scss */
+div.photos-grid.thumbnails .photos-grid-item .photos-grid-item-inner {
+  padding: 15px;
+}
+/* line 351, ../../app/assets/stylesheets/styles.css.scss */
+div.photos-grid.thumbnails .photos-grid-item .photos-grid-item-inner div.photo {
+  height: 95px;
+}
+/* line 355, ../../app/assets/stylesheets/styles.css.scss */
+div.photos-grid.thumbnails .photos-grid-item .photos-grid-item-inner div.timestamp {
+  margin-top: 5px;
+}
+
+/* line 364, ../../app/assets/stylesheets/styles.css.scss */
+div.padded-content {
+  margin: 10px 20px;
+}

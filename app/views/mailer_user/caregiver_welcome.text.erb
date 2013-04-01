@@ -1,3 +1,5 @@
+<%= render 'shared/mailer_header' %>
+
 You have been added as a new user by <%= @user.agency.name %>. To login use the information below:
 
 Username: <%= @user.email %>
@@ -12,9 +14,11 @@ To access Boomr, simply go to the Apple App Store or Google Play and download th
 Login: <%= @urls[:login] %>
 Locate me/Check-In: <%= @urls[:check_in] %>
 Upload Data (Current Session): <%= @urls[:upload_data] %>
-Logout: : <%= @urls[:logout] %>
+Logout: <%= @urls[:logout] %>
 History Tab: <%= @urls[:history] %>
 Change Password: <%= @urls[:change_password] %>
 
 
 Thank you for using Boomr, we love hearing from our users so please don’t hesitate to contact us at info@boomr.com with any feedback!
+
+<%= render 'shared/mailer_footer' %>

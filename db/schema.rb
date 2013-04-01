@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
     t.string   "administrative_contact"
     t.string   "website"
     t.string   "email"
-    t.datetime "created_at",                                                                   :null => false
-    t.datetime "updated_at",                                                                   :null => false
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
     t.text     "bio"
     t.string   "phone"
     t.integer  "status"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
     t.datetime "invoice_last_generated_date"
     t.decimal  "per_user_price_override",     :precision => 11, :scale => 2
     t.integer  "free_users",                                                 :default => 0
-    t.boolean  "auto_check_out",                                             :default => true
-  end
+        t.boolean  "auto_check_out",                                             :default => true
+     end
 
   create_table "agency_account_histories", :force => true do |t|
     t.integer  "agency_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
     t.datetime "updated_at",                                           :null => false
     t.boolean  "deleted",                           :default => false
     t.integer  "agency_daily_activity_category_id"
-  end
+  end       
 
   create_table "agency_daily_activity_categories", :force => true do |t|
     t.string   "label"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
     t.datetime "updated_at",  :null => false
     t.integer  "agency_id"
   end
+  
 
   create_table "agency_invoice_payments", :force => true do |t|
     t.integer  "agency_invoice_id"
@@ -123,8 +124,8 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
     t.string   "last_name"
     t.datetime "dob"
     t.integer  "default_location_id"
-    t.datetime "created_at",                                                                   :null => false
-    t.datetime "updated_at",                                                                   :null => false
+    t.datetime "created_at",                                                                 :null => false
+    t.datetime "updated_at",                                                                 :null => false
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
@@ -134,7 +135,7 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
     t.string   "middle_name"
     t.string   "gender"
     t.string   "phone"
-    t.string   "sms"
+    t.string   "sms"   
     t.boolean  "is_company",                                                :default => false
     t.string   "company_name"
   end
@@ -209,11 +210,11 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
 
   create_table "daily_activities", :force => true do |t|
     t.string   "label"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.integer  "weight",                     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "weight",     :default => 0      
     t.integer  "daily_activity_category_id"
-  end
+  end      
 
   create_table "daily_activity_categories", :force => true do |t|
     t.string   "label"
@@ -387,7 +388,7 @@ ActiveRecord::Schema.define(:version => 20130401231053) do
     t.integer  "location_id"
     t.string   "original_email"
     t.boolean  "auto_check_out",                                            :default => true
-  end
+     end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true

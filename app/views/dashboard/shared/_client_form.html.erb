@@ -1,30 +1,57 @@
 <%
    form_action = (care_recipient.id.blank?) ? dashboard_clients_path(care_recipient) : dashboard_client_path(care_recipient)
+   #is_company_default = !care_recipient.id.blank? && care_recipient.is_company?
 
    employee = nil unless defined? employee
-
 %>
+
+<%= javascript_include_tag 'dashboard/client_form' %>
+
 <%= form_for care_recipient, :url => form_action do |f| %>
 
     <% unless employee.nil? %>
         <%= hidden_field_tag :employee_id, employee.id %>
     <% end %>
 
-    <div class="form-field required">
+    <div class="form-field">
       <div class="label">
-        <%= f.label :first_name %> <span class="required">*</span>
+        <%= label_tag 'What type of client is this?' %>
       </div>
       <div class="field">
-        <%= f.text_field :first_name, :size => 20 %>
+        <%= f.radio_button :is_company, false, :id => 'is-company-no' %> <%=label_tag 'is-company-no', 'An individual' %>
+        <br>
+        <%= f.radio_button :is_company, true, :id => 'is-company-yes' %> <%=label_tag 'is-company-yes', 'A company' %>
       </div>
     </div>
 
-    <div class="form-field required">
-      <div class="label">
-        <%= f.label :last_name %> <span class="required">*</span>
+    <div class="individual-wrapper">
+      <div class="form-field required">
+        <div class="label">
+          <%= f.label :first_name %> <span class="required">*</span>
+        </div>
+        <div class="field">
+          <%= f.text_field :first_name, :size => 20 %>
+        </div>
       </div>
-      <div class="field">
-        <%= f.text_field :last_name, :size => 20 %>
+
+      <div class="form-field required">
+        <div class="label">
+          <%= f.label :last_name %> <span class="required">*</span>
+        </div>
+        <div class="field">
+          <%= f.text_field :last_name, :size => 20 %>
+        </div>
+      </div>
+    </div>
+
+    <div class="company-wrapper">
+      <div class="form-field required">
+        <div class="label">
+          <%= f.label :company_name %> <span class="required">*</span>
+        </div>
+        <div class="field">
+          <%= f.text_field :company_name, :size => 40 %>
+        </div>
       </div>
     </div>
 
