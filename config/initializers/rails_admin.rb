@@ -304,6 +304,9 @@ RailsAdmin.config do |config|
   config.model 'DailyActivity' do
     object_label_method :label
   end
+  config.model 'AgencyDailyActivity' do
+    object_label_method :label
+  end
 
 
   ###  Doorkeeper::AccessGrant  ###

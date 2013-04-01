@@ -43,6 +43,7 @@ class Agency < ActiveRecord::Base
   has_many :locations
   has_many :client_invoices
   has_many :agency_daily_activities
+  has_many :agency_daily_activity_categories
 
   has_many :agency_invoices
   has_many :agency_invoice_rows, :through => :agency_invoices
@@ -289,7 +290,21 @@ class Agency < ActiveRecord::Base
   def populate_daily_activities
 
     DailyActivity.all.each do |ct|
-      AgencyDailyActivity.create :agency_id => self.id, :original_id => ct.id, :label => ct.label, :weight => ct.weight
+      a = AgencyDailyActivity.new :agency_id => self.id, :original_id => ct.id, :label => ct.label, :weight => ct.weight
+
+      unless ct.daily_activity_category.blank?
+
+        cat = AgencyDailyActivityCategory.find_by_agency_id_and_original_id self.id, ct.daily_activity_category.id
+
+        if cat.blank?
+          cat = AgencyDailyActivityCategory.create :label => ct.daily_activity_category.label, :original_id => ct.daily_activity_category.id, :agency => self
+        end
+
+        a.agency_daily_activity_category = cat
+
+      end
+
+      a.save!
     end
 
   end
