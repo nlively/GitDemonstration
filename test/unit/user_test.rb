@@ -33,6 +33,7 @@
 #  deleted                    :boolean          default(FALSE)
 #  location_id                :integer
 #  original_email             :string(255)
+#  auto_check_out             :boolean          default(TRUE)
 #
 
 require 'test_helper'

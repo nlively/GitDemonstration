@@ -243,6 +243,13 @@ RailsAdmin.config do |config|
 
 
 
+  config.model 'AgencyDailyActivityCategory' do
+    object_label_method :label
+  end
+
+  config.model 'DailyActivityCategory' do
+    object_label_method :label
+  end
 
 
 

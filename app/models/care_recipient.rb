@@ -19,6 +19,8 @@
 #  gender                     :string(255)
 #  phone                      :string(255)
 #  sms                        :string(255)
+#  is_company                 :boolean          default(FALSE)
+#  company_name               :string(255)
 #
 
 class CareRecipient < ActiveRecord::Base

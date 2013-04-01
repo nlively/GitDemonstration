@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320205428) do
+ActiveRecord::Schema.define(:version => 20130401231053) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20130320205428) do
     t.string   "administrative_contact"
     t.string   "website"
     t.string   "email"
-    t.datetime "created_at",                                                                  :null => false
-    t.datetime "updated_at",                                                                  :null => false
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
     t.text     "bio"
     t.string   "phone"
     t.integer  "status"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130320205428) do
     t.datetime "invoice_last_generated_date"
     t.decimal  "per_user_price_override",     :precision => 11, :scale => 2
     t.integer  "free_users",                                                 :default => 0
+    t.boolean  "auto_check_out",                                             :default => true
   end
 
   create_table "agency_account_histories", :force => true do |t|
@@ -65,9 +66,18 @@ ActiveRecord::Schema.define(:version => 20130320205428) do
     t.integer  "original_id"
     t.string   "label"
     t.integer  "weight"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "deleted",     :default => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.boolean  "deleted",                           :default => false
+    t.integer  "agency_daily_activity_category_id"
+  end
+
+  create_table "agency_daily_activity_categories", :force => true do |t|
+    t.string   "label"
+    t.integer  "original_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "agency_id"
   end
 
   create_table "agency_invoice_payments", :force => true do |t|
@@ -113,8 +123,8 @@ ActiveRecord::Schema.define(:version => 20130320205428) do
     t.string   "last_name"
     t.datetime "dob"
     t.integer  "default_location_id"
-    t.datetime "created_at",                                                                 :null => false
-    t.datetime "updated_at",                                                                 :null => false
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
@@ -125,6 +135,8 @@ ActiveRecord::Schema.define(:version => 20130320205428) do
     t.string   "gender"
     t.string   "phone"
     t.string   "sms"
+    t.boolean  "is_company",                                                :default => false
+    t.string   "company_name"
   end
 
   create_table "care_recipients_locations", :force => true do |t|
@@ -197,9 +209,16 @@ ActiveRecord::Schema.define(:version => 20130320205428) do
 
   create_table "daily_activities", :force => true do |t|
     t.string   "label"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "weight",     :default => 0
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "weight",                     :default => 0
+    t.integer  "daily_activity_category_id"
+  end
+
+  create_table "daily_activity_categories", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "locations", :force => true do |t|
@@ -367,6 +386,7 @@ ActiveRecord::Schema.define(:version => 20130320205428) do
     t.boolean  "deleted",                                                   :default => false
     t.integer  "location_id"
     t.string   "original_email"
+    t.boolean  "auto_check_out",                                            :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
