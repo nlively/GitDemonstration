@@ -22,7 +22,8 @@
               $ <%= f.text_field :bill_rate, :size => 3 %>
             </td>
             <td class="in-out-time">
-              <%= visit.time_only_string %>
+              <%= render 'shared/visit_icon', :visit => visit %>
+              <%= visit.time_only_string %><br>(<%= visit.duration_string %>)
             </td>
 
             <td class="location">

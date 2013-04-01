@@ -85,7 +85,13 @@ tr.visit-row {
     }
 
     &.in-out-time {
-      width: 95px;
+      width: 114px;
+
+      .auto-checkout {
+        float: right;
+        margin-left: 2px;
+      }
+
     }
 
     &.duration {
