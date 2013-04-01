@@ -1,11 +1,3 @@
-<% unless @errors.blank? or @errors.empty? %>
-    <ul>
-      <% @errors.each do |e| %>
-          <li><%= e.message %></li>
-      <% end %>
-    </ul>
-<% end %>
-
 <%= content_for :page_caption do %>
     Credit Card Details
 <% end %>

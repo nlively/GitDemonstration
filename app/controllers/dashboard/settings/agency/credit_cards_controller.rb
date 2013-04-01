@@ -34,18 +34,31 @@ module Dashboard::Settings::Agency
       credit_card[:expiration_month] = params[:date][:month]
       credit_card[:expiration_year] = params[:date][:year]
 
-      result = Braintree::CreditCard.create credit_card
+      validate_cc_parameters
 
-      if result.success?
+      if @errors.empty?
+        result = Braintree::CreditCard.create credit_card
+        unless result.success?
+          @errors = []
+          result.errors.each do |error|
+            @errors << error
+          end
+          flash[:error] = @errors.join(', ')
+        end
+      end
+
+      if @errors.empty?
+        set_message sprintf('Your new credit card ending in %s has been added to your account.', @result.credit_card.token)
         redirect_to dashboard_settings_agency_credit_cards_path
       else
-        @errors = []
-        result.errors.each do |error|
-          @errors << error
-        end
-        flash[:error] = @errors.join(', ')
+        @credit_card = params[:credit_card]
+        set_error @errors
+        @agency.with_braintree_data!
         render :action => :new
       end
+
+
+
     end
 
     def edit
@@ -72,22 +85,44 @@ module Dashboard::Settings::Agency
       @card_num = 'XXXX-XXXX-XXXX-' + @credit_card.last_4
 
 
+      validate_cc_parameters
 
-      options = params[:credit_card]
+      if @errors.empty?
 
-      options[:expiration_month] = params[:date][:month]
-      options[:expiration_year] = params[:date][:year]
+        options = params[:credit_card]
+
+        options[:expiration_month] = params[:date][:month]
+        options[:expiration_year] = params[:date][:year]
 
 
-      if options[:number] == @card_num
-        options.delete :number
+        if options[:number] == @card_num
+          options.delete :number
+        end
+
+
+        # default credit card
+        result = Braintree::CreditCard.update(@token, options)
+
+        unless result.success?
+          @errors = []
+          result.errors.each do |error|
+            @errors << error
+          end
+          flash[:error] = @errors.join(', ')
+        end
+
+
+
       end
 
-
-      # default credit card
-      result = Braintree::CreditCard.update(@token, options)
-
-      redirect_to dashboard_settings_agency_credit_cards_path
+      if @errors.empty?
+        redirect_to dashboard_settings_agency_credit_cards_path
+      else
+        @credit_card = card_from_token @token
+        set_error @errors
+        @agency.with_braintree_data!
+        render :action => :edit
+      end
 
     end
 
@@ -125,58 +160,20 @@ module Dashboard::Settings::Agency
     end
 
 
-    def update_credit_card
-      @errors = []
-
-      #Formatting expiration date
-      expiration_date = braintree_expiration_from_select params[:credit_card2], "expiration_date"
-
-      # new payment method
-      if !params[:credit_card][:number].blank?
-        options = {
-          :customer_id => current_user.braintree_customer_id,
-          :number => params[:credit_card][:number],
-          :expiration_date => expiration_date,
-          :cardholder_name => params[:credit_card][:cardholder_name],
-          :billing_address => {
-            :street_address => params[:credit_card][:street_address],
-            :locality       => params[:credit_card][:locality],
-            :region         => params[:credit_card][:region],
-            :postal_code    => params[:credit_card][:postal_code],
-          },
-          :options => {
-            :make_default => true
-          }
-        }
-        @result = Braintree::CreditCard.create options
-
-        unless @result.success?
-          @result.errors.each do |error|
-            @errors << error.message
-          end
-        end
-      else
-        @errors << 'Please fill out the new payment method form completely'
-      end
-
-
-      if @errors.empty?
-        set_message sprintf('Your new credit card ending in %s has been added to your account.', @result.credit_card.token)
-        redirect_to account_profile_payment_manager_path
-      else
-        @credit_card = params[:credit_card]
-        set_error @errors
-        current_user.with_braintree_data!
-        render :payment_manager
-      end
-    end
-
-
     def validate_cc_parameters
       @errors = []
 
-      if params[:credit_card][:number].blank? or params[:credit_card][:number].length < 16
+      exp_year = params[:date][:year].to_i
+      exp_month = params[:date][:month].to_i
 
+      if params[:credit_card][:number].blank? or params[:credit_card][:number].gsub(/[-. ]/, '').length < 16
+        @errors << 'Please enter a valid credit card number'
+      elsif params[:credit_card][:cardholder_name].blank?
+        @errors << 'Please enter the name of the cardholder'
+      elsif exp_year < Date.today.year or (exp_year == Date.today.year and exp_month < Date.today.month)
+        @errors << 'Please choose a valid expiration date for the credit card'
+      elsif params[:credit_card][:billing_address][:street_address].blank? or (params[:credit_card][:billing_address][:locality].blank? and params[:credit_card][:billing_address][:postal_code].blank?)
+        @errors << 'Please enter the billing address for this credit card'
       end
 
     end

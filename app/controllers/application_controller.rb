@@ -34,4 +34,30 @@ class ApplicationController < ActionController::Base
   def logged_in?
     return !current_user.nil?
   end
+
+
+
+
+  def set_boomr_flash_message key, message
+    flash[key] = '' if flash[key].nil?
+
+    if message.class == Array
+      message = message.join('<br />')
+    elsif message.class == Hash
+      message = message.values.join('<br />')
+    end
+
+    flash[key] << '<br />' unless flash[key].blank? or message.blank?
+    flash[key] << message
+  end
+
+  def set_message message
+    set_boomr_flash_message :notice, message
+  end
+
+  def set_error message
+    set_boomr_flash_message :alert, message
+  end
+
+
 end
