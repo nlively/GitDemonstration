@@ -1,3 +1,5 @@
+<%= render 'shared/mailer_header' %>
+
 <% if @payment.agency_invoice.auto_charge? %>
 Your recent payment of <%= number_to_currency @payment.amount %> for the period beginning <%= @payment.agency_invoice.invoice_date_formatted %> has been processed and billed to the account on file.
 <% else %>
@@ -7,3 +9,5 @@ Your recent payment of <%= number_to_currency @payment.amount %> for invoice <%=
 Add new users at any time by going to Settings > Agency and click on the "Upgrade" button.
 
 Thank you for your business, we look forward to helping your agency increase operational efficiency while encouraging accountability and high quality patient care.
+
+<%= render 'shared/mailer_footer' %>

@@ -1,37 +1,37 @@
 @import 'sass';
 
 body {
-    .messages.main {
-      clear: both;
+  .messages.main {
+    clear: both;
 
-      p {
-        background-position: 8px 8px;
-        background-repeat: no-repeat;
-        border: 1px solid;
-        margin: 6px 0;
-        padding: 10px 10px 10px 10px;
+    p {
+      background-position: 8px 8px;
+      background-repeat: no-repeat;
+      border: 1px solid;
+      margin: 6px 0;
+      padding: 10px 10px 10px 10px;
 
-        &.notice {
-          border-color: #BE7;
-          color: #234600;
-          background-color: #F8FFF0;
-        }
-        &.alert, &.js-errors {
-          border-color: #ED541D;
-          color: #8C2E0B;
-          background-color: #FEF5F1;
-        }
-
-        &.js-errors {
-          display: none;
-          label {
-            width: auto !important;
-            display: block !important;
-          }
-        }
+      &.notice {
+        border-color: #BE7;
+        color: #234600;
+        background-color: #F8FFF0;
+      }
+      &.alert, &.js-errors {
+        border-color: #ED541D;
+        color: #8C2E0B;
+        background-color: #FEF5F1;
       }
 
+      &.js-errors {
+        display: none;
+        label {
+          width: auto !important;
+          display: block !important;
+        }
+      }
     }
+
+  }
 }
 
 
@@ -82,6 +82,11 @@ tr.visit-row {
 
     &.in-time, &.out-time {
       width: 65px;
+
+      .auto-checkout {
+        float: right;
+        margin-left: 2px;
+      }
     }
 
     &.in-out-time {
