@@ -4,10 +4,12 @@ class TokensController < Doorkeeper::TokensController
       'Pragma'        => 'no-cache',
       'Cache-Control' => 'no-store',
     })
+
     if token.authorize
-      #logger.debug token.to_json
       output = token.authorization
-      output[:user_id] = token.resource_owner.id unless token.resource_owner.blank?
+      unless token.access_token.resource_owner_id.blank?
+        output[:user_id] = token.access_token.resource_owner_id
+      end
       render :json => output #token.authorization
     else
       render :json => token.error_response, :status => token.error_response.status

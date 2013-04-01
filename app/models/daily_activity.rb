@@ -10,8 +10,8 @@
 #
 
 class DailyActivity < ActiveRecord::Base
-  has_many :visits_daily_activities
-  has_many :visits, :through => :visits_daily_activities
+  #has_many :visits_daily_activities
+  #has_many :visits, :through => :visits_daily_activities
 
   def timestamp
     created_at.to_formatted_s(:hour_with_minute_meridian)
