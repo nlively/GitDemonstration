@@ -25,6 +25,7 @@ BoomrDashboard::Application.routes.draw do
       resources :visits, :only => :show
       resources :account, :only => [:index]
       resources :check_ins, :only => [:create]
+      resources :work_breaks, :only => [:create]
 
       namespace :session do
         post 'photo'

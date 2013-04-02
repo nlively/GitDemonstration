@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   belongs_to :location
 
   has_many :work_breaks
+  has_many :work_break_check_ins
 
   has_many :care_recipients_users
   has_many :care_recipients, :through => :care_recipients_users

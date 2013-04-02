@@ -292,6 +292,19 @@ class Visit < ActiveRecord::Base
   end
 
 
+  def update_break_minutes!
+    _break_min = 0
+
+    work_breaks.each do |b|
+      if b.completed?
+        _break_min += b.duration_minutes
+      end
+    end
+
+    self.break_minutes = _break_min
+    self.save!
+  end
+
 
   def web_service_format url_base
 

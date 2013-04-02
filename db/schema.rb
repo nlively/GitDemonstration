@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402002953) do
+ActiveRecord::Schema.define(:version => 20130402010427) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -445,14 +445,27 @@ ActiveRecord::Schema.define(:version => 20130402002953) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "work_break_check_ins", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "latitude",      :precision => 11, :scale => 8
+    t.decimal  "longitude",     :precision => 11, :scale => 8
+    t.boolean  "in_out"
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+    t.integer  "work_break_id"
+    t.boolean  "auto",                                         :default => false
+  end
+
   create_table "work_breaks", :force => true do |t|
     t.integer  "user_id"
-    t.decimal  "latitude",   :precision => 11, :scale => 8
-    t.decimal  "longitude",  :precision => 11, :scale => 8
-    t.boolean  "in_out"
     t.integer  "visit_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.string   "guid"
+    t.datetime "in_time"
+    t.datetime "out_time"
+    t.boolean  "auto_checked_out"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "duration_minutes", :default => 0
   end
 
 end

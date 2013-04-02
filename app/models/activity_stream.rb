@@ -25,6 +25,8 @@ class ActivityStream < ActiveRecord::Base
     case stream_type.to_sym
       when :photo
         visit_id = Photo.find(reference_id).visit_id
+      when :work_break
+        visit_id = WorkBreak.find(reference_id).visit_id
       else
         visit_id = reference_id
     end
@@ -58,6 +60,21 @@ class ActivityStream < ActiveRecord::Base
       :stream_type => :photo,
       :label => sprintf('%s added a photo for %s', photo.user.full_name, photo.care_recipient.full_name),
       :reference_id => photo.id
+    })
+    data
+  end
+
+  def self.create_from_work_break! work_break, check_in=true
+
+    label_template = (check_in) ? '%s took a lunch break' : '%s came back from lunch'
+
+    data = self.create!({
+      :user => work_break.user,
+      :care_recipient => work_break.visit.work_break,
+      :agency => work_break.user.agency,
+      :stream_type => :work_break,
+      :label => sprintf(label_template, work_break.user.full_name),
+      :reference_id => work_break.id
     })
     data
   end
