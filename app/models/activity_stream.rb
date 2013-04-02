@@ -70,7 +70,7 @@ class ActivityStream < ActiveRecord::Base
 
     data = self.create!({
       :user => work_break.user,
-      :care_recipient => work_break.visit.work_break,
+      :care_recipient => work_break.visit.care_recipient,
       :agency => work_break.user.agency,
       :stream_type => :work_break,
       :label => sprintf(label_template, work_break.user.full_name),

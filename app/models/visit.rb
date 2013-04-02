@@ -29,6 +29,7 @@
 
 class Visit < ActiveRecord::Base
 
+  include Boomr::WithInOutTime
   include ActionView::Helpers::DateHelper
   include ActionView::Helpers::NumberHelper
   include VisitsHelper
@@ -120,33 +121,6 @@ class Visit < ActiveRecord::Base
     number_to_currency( pay_rate, :unit => "$", :precision => 2 )
   end
 
-  def in_time_formatted
-    in_time.to_formatted_s(:mdy_with_time) unless in_time.blank?
-  end
-
-  def date_only_formatted
-    in_time.to_formatted_s :mdy unless in_time.blank?
-  end
-
-  def in_time_time_only
-    in_time.to_formatted_s :hour_with_minute_meridian unless in_time.blank?
-  end
-
-  def out_time_time_only
-    out_time.to_formatted_s :hour_with_minute_meridian unless out_time.blank?
-  end
-
-  def out_time_formatted
-    out_time.to_formatted_s(:mdy_with_time) unless out_time.blank?
-  end
-
-  def type
-    (completed?) ? :completed : :pending
-  end
-
-  def completed?
-    return !out_time.blank?
-  end
 
   def billable_overtime_minutes
     if total_hours > 8
@@ -177,55 +151,7 @@ class Visit < ActiveRecord::Base
     number_to_currency( money_made, :unit => "$", :precision => 2 )
   end
 
-  def duration
-    return (out_time.blank?) ? nil : out_time - in_time
-  end
 
-  def duration_string
-    duration_in_hours duration_minutes
-  end
-
-  def date_string
-    in_time.to_formatted_s(:mdy)
-  end
-
-  def start_to_stop
-    in_time.to_formatted_s(:hour_with_minute_meridian).strip + ' to ' + out_time.to_formatted_s(:hour_with_minute_meridian).strip
-  end
-
-  def full_date_string
-    in_time.to_formatted_s(:full_date)
-  end
-
-  def time_string
-    sprintf '%s %s-%s', in_time.to_formatted_s(:month_slash_date), in_time.to_formatted_s(:hour_with_minute_meridian_no_space), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
-  end
-
-  def time_only_string
-    unless out_time.blank?
-      if in_time.hour < 12 and out_time.hour >= 12
-        sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute_meridian_no_space), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
-      else
-        sprintf '%s-%s', in_time.to_formatted_s(:hour_with_minute), out_time.to_formatted_s(:hour_with_minute_meridian_no_space)
-      end
-    end
-  end
-
-  def month_name_day_string
-    self.in_time.to_formatted_s(:month_name_day)
-  end
-
-  def is_over?
-    self.out_time < Time.now
-  end
-
-  def is_future?
-    self.in_time > Time.now
-  end
-
-  def spans_two_days?
-    not self.in_time.blank? and not self.out_time.blank? and self.in_time.beginning_of_day != self.out_time.beginning_of_day
-  end
 
   def split_days!
     days = (self.out_time.beginning_of_day - self.in_time.beginning_of_day) / 1.day
@@ -305,6 +231,13 @@ class Visit < ActiveRecord::Base
     self.save!
   end
 
+  def change_from_temp_to_saved!
+    if self.payroll_line_item_id.blank?
+      self.payroll_line_item_id = self.temp_payroll_line_item_id
+      self.save!
+    end
+  end
+
 
   def web_service_format url_base
 
@@ -367,13 +300,6 @@ class Visit < ActiveRecord::Base
     hash[:observations] = self.visits_observations.map {|d| d.web_service_format }
 
     hash
-  end
-
-  def change_from_temp_to_saved!
-    if self.payroll_line_item_id.blank?
-      self.payroll_line_item_id = self.temp_payroll_line_item_id
-      self.save!
-    end
   end
 
 
