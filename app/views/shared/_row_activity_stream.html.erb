@@ -22,6 +22,10 @@
         <%= link_to 'View visit data', dashboard_visit_path(item.visit) %>
     <% when :data %>
         <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'data', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>.
+    <% when :work_break_start %>
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> took a lunch break.
+    <% when :work_break_end %>
+        <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> came back from lunch. Lunch break was <%= item.referenced_object.duration_string %>.
     <% when :photo %>
         <%= link_to item.user.full_name, dashboard_employee_path(item.user) %> added <%= link_to 'photo', dashboard_visit_path(item.visit) %> for <%= link_to item.care_recipient.full_name, dashboard_client_path(item.care_recipient) %>.
     <% else %>

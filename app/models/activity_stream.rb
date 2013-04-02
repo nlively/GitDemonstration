@@ -25,7 +25,8 @@ class ActivityStream < ActiveRecord::Base
     case stream_type.to_sym
       when :photo
         visit_id = Photo.find(reference_id).visit_id
-      when :work_break
+      when :work_break_start
+      when :work_break_end
         visit_id = WorkBreak.find(reference_id).visit_id
       else
         visit_id = reference_id
@@ -36,6 +37,17 @@ class ActivityStream < ActiveRecord::Base
     end
   end
 
+  def referenced_object
+    case stream_type.to_sym
+      when :photo
+        Photo.find(reference_id)
+      when :work_break_start
+      when :work_break_end
+        WorkBreak.find(reference_id)
+      else
+        Visit.find reference_id
+    end
+  end
 
   def self.create_from_visit! visit, check_in=true
 
@@ -72,7 +84,7 @@ class ActivityStream < ActiveRecord::Base
       :user => work_break.user,
       :care_recipient => work_break.visit.care_recipient,
       :agency => work_break.user.agency,
-      :stream_type => :work_break,
+      :stream_type =>  (check_in) ? :work_break_start : :work_break_end,
       :label => sprintf(label_template, work_break.user.full_name),
       :reference_id => work_break.id
     })

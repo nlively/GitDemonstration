@@ -1,7 +1,9 @@
 <% case item.stream_type.to_sym %>
 <% when :photo %>
     <%= image_tag 'camera-32.png' %>
-<% when :work_break %>
+<% when :work_break_start %>
+    <%= image_tag 'lunch-32.png' %>
+<% when :work_break_end %>
     <%= image_tag 'lunch-32.png' %>
 <% when :data %>
     <%= image_tag 'note-32.png' %>
