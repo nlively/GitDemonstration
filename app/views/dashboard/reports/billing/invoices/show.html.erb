@@ -44,7 +44,7 @@
           <% @invoice.client_invoice_line_items.each do |line_item| %>
               <%= f.fields_for :client_invoice_line_items, line_item do |li| %>
                   <% billrate_key = sprintf 'bill_rate[%d]', line_item.id %>
-                  <tr class="visit-row editable" date-remote="true" data-id="<%= line_item.id %>">
+                  <tr class="visit-row edit-mode editable" date-remote="true" data-id="<%= line_item.id %>">
                     <td class="date">
                       <%= line_item.visit.date_only_formatted %>
                     </td>

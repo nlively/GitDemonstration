@@ -121,6 +121,10 @@ class Visit < ActiveRecord::Base
     number_to_currency( pay_rate, :unit => "$", :precision => 2 )
   end
 
+  def break_duration_string
+    duration_in_hours break_minutes
+  end
+
 
   def billable_overtime_minutes
     if total_hours > 8

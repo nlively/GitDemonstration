@@ -34,7 +34,7 @@
       </thead>
       <tbody>
       <% @batch.client_invoices.each do |invoice| %>
-          <tr class="invoice-row editable" data-id="<%= invoice.id %>">
+          <tr class="invoice-row edit-mode editable" data-id="<%= invoice.id %>">
             <td><%= check_box_tag 'export[]', invoice.id, true %></td>
             <td><%= invoice.care_recipient.full_name_last_first %></td>
             <td><%= invoice.invoice_number_formatted %></td>

@@ -33,6 +33,9 @@
         <%= visit.time_only_string %><br>(<%= visit.duration_string %>)
 
       </td>
+      <td class="break-time">
+             <%= visit.break_duration_string %>
+           </td>
   <% else %>
       <td class="in-time">
         <%= visit.in_time_time_only %>

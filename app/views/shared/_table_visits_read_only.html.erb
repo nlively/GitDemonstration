@@ -27,6 +27,7 @@
     <th>In</th>
     <th>Out</th>
     <th>Duration</th>
+    <th>Break</th>
     <th>Location</th>
     <% if show_data %>
         <th>Data</th>
@@ -64,6 +65,9 @@
         </td>
         <td class="duration">
           <%= visit.duration_string %>
+        </td>
+        <td class="break-time">
+          <%= visit.break_duration_string %>
         </td>
         <td class="location">
           <%= visit.location_label %>

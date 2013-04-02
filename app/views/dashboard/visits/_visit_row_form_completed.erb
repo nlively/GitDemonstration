@@ -1,7 +1,7 @@
 
 
 <tr class="visit-row edit-mode" date-remote="true" data-id="<%= visit.id %>">
-  <td colspan="9">
+  <td colspan="10">
     <%= form_for visit, :url => dashboard_visit_path(visit), :remote => true  do |f| %>
         <%= hidden_field_tag :type, 'completed' %>
         <table class="edit-mode">
@@ -24,6 +24,9 @@
             <td class="in-out-time">
               <%= render 'shared/visit_icon', :visit => visit %>
               <%= visit.time_only_string %><br>(<%= visit.duration_string %>)
+            </td>
+            <td class="break-time">
+              <%= visit.break_duration_string %>
             </td>
 
             <td class="location">
