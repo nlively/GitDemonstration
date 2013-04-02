@@ -56,6 +56,8 @@ class Visit < ActiveRecord::Base
   has_many :photos
   has_one :note
 
+  has_many :work_breaks
+
   has_many :visits_patient_statuses
   has_many :patient_statuses, :through => :visits_patient_statuses
 

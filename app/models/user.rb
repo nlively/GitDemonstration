@@ -69,6 +69,8 @@ class User < ActiveRecord::Base
   belongs_to :agency
   belongs_to :location
 
+  has_many :work_breaks
+
   has_many :care_recipients_users
   has_many :care_recipients, :through => :care_recipients_users
   has_many :payroll_line_items
