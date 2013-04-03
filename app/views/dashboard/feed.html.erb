@@ -35,7 +35,7 @@
 
 
 <%= javascript_include_tag 'dashboard/feed' %>
-<script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+<script src="https://d3dy5gmtp8yhk7.cloudfront.net/2.0/pusher.min.js"></script>
 <script type="text/javascript">
     var pusher = new Pusher('<%= Pusher.key %>'); // uses your API KEY
     var channel = pusher.subscribe('agency_<%= @agency.id %>');
