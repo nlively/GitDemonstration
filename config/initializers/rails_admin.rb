@@ -3,11 +3,14 @@
 
 RailsAdmin.config do |config|
 
+  config.authorize_with do
+    redirect_to root_path unless current_user.has_role? :administrator
+  end
 
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
-  config.main_app_name = ['Oauth Server', 'Admin']
+  config.main_app_name = ['Boomr', 'Admin']
   # or for a more dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
