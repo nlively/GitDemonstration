@@ -263,7 +263,8 @@ class Visit < ActiveRecord::Base
       :bill_rate => bill_rate,
       :pay_rate => pay_rate,
       :photos => [],
-      :allow_auto_checkout => agency.auto_check_out?
+      :allow_auto_checkout => agency.auto_check_out?,
+      :completed => completed?
     }
 
     unless self.photos.empty?
