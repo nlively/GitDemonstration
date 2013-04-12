@@ -124,6 +124,18 @@ class Visit < ActiveRecord::Base
   def break_duration_string
     duration_in_hours break_minutes
   end
+  
+  def on_break?
+    on_break=false
+    work_breaks.each do |b|
+      unless b.completed?
+        on_break = true
+        break
+      end
+    end
+    
+    on_break
+  end
 
 
   def billable_overtime_minutes
@@ -264,7 +276,8 @@ class Visit < ActiveRecord::Base
       :pay_rate => pay_rate,
       :photos => [],
       :allow_auto_checkout => agency.auto_check_out?,
-      :completed => completed?
+      :completed => completed?,
+      :on_break => on_break?
     }
 
     unless self.photos.empty?
