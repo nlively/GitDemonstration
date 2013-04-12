@@ -129,7 +129,7 @@ class Visit < ActiveRecord::Base
     if work_breaks.empty?
       false
     else
-      work_breaks.last.completed?
+      !work_breaks.last.completed?
     end
   end
 
