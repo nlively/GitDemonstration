@@ -46,9 +46,9 @@ module Api::V1
 
         @distance = @visit.location.distance_from(@temp_loc)
 
-        if @distance < 0.1 || params[:confirm] == '1'
+        if @distance < 0.1 || params[:confirm] == '1' || params[:confirm] == 'true'
 
-          if params[:auto] == '1'
+          if params[:auto] == '1' || params[:auto] == 'true'
             @visit.auto_checked_out=true
           end
 
