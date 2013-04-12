@@ -124,17 +124,21 @@ class Visit < ActiveRecord::Base
   def break_duration_string
     duration_in_hours break_minutes
   end
-  
+
   def on_break?
-    on_break=false
-    work_breaks.each do |b|
-      unless b.completed?
-        on_break = true
-        break
-      end
+    if work_breaks.empty?
+      false
+    else
+      work_breaks.last.completed?
     end
-    
-    on_break
+  end
+
+  def last_break_id
+    if work_breaks.empty?
+      nil
+    else
+      work_breaks.last.id
+    end
   end
 
 
@@ -277,7 +281,8 @@ class Visit < ActiveRecord::Base
       :photos => [],
       :allow_auto_checkout => agency.auto_check_out?,
       :completed => completed?,
-      :on_break => on_break?
+      :on_break => on_break?,
+      :break_id => last_break_id
     }
 
     unless self.photos.empty?
