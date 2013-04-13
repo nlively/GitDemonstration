@@ -43,7 +43,7 @@ module Dashboard::Clients
     def update
       @location = Location.find params[:id]
 
-      if @location.save
+      if @location.update_attributes params[:location]
         redirect_to dashboard_client_locations_path(@care_recipient), :notice => 'Location has been updated'
       else
         render :action => :edit, :error =>'There was a problem saving this location'
