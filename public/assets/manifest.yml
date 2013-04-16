@@ -1,6 +1,8 @@
 ---
 app-icon.png: app-icon-4157629284945340ed5354983cfa3fcb.png
 app-icon/index.png: app-icon-4157629284945340ed5354983cfa3fcb.png
+app_store_badge.png: app_store_badge-1f82b2b4bf08637cad098a6663a71225.png
+app_store_badge/index.png: app_store_badge-1f82b2b4bf08637cad098a6663a71225.png
 auto-checkout.png: auto-checkout-89271c6774f93ebcebc07fb8a60f55f4.png
 auto-checkout/index.png: auto-checkout-89271c6774f93ebcebc07fb8a60f55f4.png
 background.jpg: background-a27370d60abc3e28c93fe87f15e32565.jpg
@@ -121,8 +123,8 @@ plugins.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
 plugins/index.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
 dashboard/application.css: dashboard/application-35d139b42302c885c6fa2fa211d9165d.css
 dashboard/application/index.css: dashboard/application-35d139b42302c885c6fa2fa211d9165d.css
-front_end/application.css: front_end/application-a6fa916be60fd9f20c992e3998d0426f.css
-front_end/application/index.css: front_end/application-a6fa916be60fd9f20c992e3998d0426f.css
+front_end/application.css: front_end/application-bfc19a0f8c96ae22dcf72222dc1d998f.css
+front_end/application/index.css: front_end/application-bfc19a0f8c96ae22dcf72222dc1d998f.css
 images/border.png: images/border-309da1cb74634cb844c9c7490b0be5c0.png
 images/border/index.png: images/border-309da1cb74634cb844c9c7490b0be5c0.png
 images/controls.png: images/controls-8398752bdf681c982e533d07fa842ee3.png
