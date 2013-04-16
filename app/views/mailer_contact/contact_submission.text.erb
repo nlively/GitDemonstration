@@ -1,0 +1,9 @@
+New contact request from the Boomr website
+
+Date/Time: <%= @contact_submission.created_at.to_formatted_s :mdy_with_time %>
+Name: <%= @contact_submission.name %>
+Agency Name: <%= @contact_submission.agency_name %>
+Email: <%= @contact_submission.email %>
+IP Address: <%= @contact_submission.ip %>
+Message:
+<%= @contact_submission.message %>

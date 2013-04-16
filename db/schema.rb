@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402010427) do
+ActiveRecord::Schema.define(:version => 20130415210711) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -116,6 +116,19 @@ ActiveRecord::Schema.define(:version => 20130402010427) do
     t.datetime "updated_at",                                                              :null => false
     t.integer  "auto_payment_attempts",                                :default => 0
     t.boolean  "auto_charge",                                          :default => false
+  end
+
+  create_table "agency_signup_requests", :force => true do |t|
+    t.string   "agency_name"
+    t.string   "contact_name"
+    t.string   "email"
+    t.string   "website"
+    t.string   "phone"
+    t.string   "ip"
+    t.integer  "requested_users"
+    t.integer  "agency_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "care_recipients", :force => true do |t|
