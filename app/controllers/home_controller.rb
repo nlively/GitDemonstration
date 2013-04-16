@@ -18,6 +18,10 @@ class HomeController < ApplicationController
     @body_class = 'faq'
   end
 
+  def apps
+    @body_class = 'apps'
+  end
+
   def features
 
     @body_class = "features"

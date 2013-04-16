@@ -1,17 +1,22 @@
 <div class="confirm-title">
-<h1>Congratulations!</h1>
-<h2>You Have Created Your First Account With Boomr.</h2>
+  <h1>Congratulations!</h1>
+  <h2>You Have Created Your First Account With Boomr.</h2>
 </div>
 <div class="left">
-<h2>Follow these directions to log in
-  and add your other two user accounts.</h2>
-<p>
-1. Click here to log in:<br/><br/>
+  <h2>Follow these directions to log in
+    and add your other two user accounts.</h2>
+  <p>
+    1. <%= link_to 'Click here to log in', new_user_session_path, :target => '_blank' %><br/><br/>
 
-2. Once you log in click on the “Employee” tab<br/><br/>
+    2. Once you log in click on the “Employee” tab<br/><br/>
 
-3. Then click on the “Add A New Employee” link in the left hand column.<br/><br/>
+    3. Then click on the “Add A New Employee” link in the left hand column.<br/><br/>
 
-4. Follow the directions on the screen, after you have added an employee they can download the Boomr App on their mobile device. Just search “boomr” in either the Apple App Store or the Google Play Store. You can also click on the below images to download the app to a computer.</p><br/>
+    4. Follow the directions on the screen, after you have added an employee they can download the Boomr App on their mobile device. Just search “boomr” in either the Apple App Store or the Google Play Store. You can also click on the below images to download the app to a computer.</p>
+
+
+  <%= render 'shared/app_links' %>
+
+  <br/>
 </div>
 <div class="sign-up-image"><%= image_tag 'sign-up-img.png' %></div>
