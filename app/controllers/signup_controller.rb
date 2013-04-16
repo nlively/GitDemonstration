@@ -73,12 +73,12 @@ class SignupController < ApplicationController
 
     if session[:new_agency_id].blank?
       set_error 'Boomr has encountered an error processing your signup request'
-      #redirect_to root_path
-      #return
+      redirect_to root_path
+      return
     end
 
-    #@agency = Agency.find session[:new_agency_id]
-    @user = User.new #:agency_id => @agency.id
+    @agency = Agency.find session[:new_agency_id]
+    @user = User.new :agency_id => @agency.id
 
   end
 
