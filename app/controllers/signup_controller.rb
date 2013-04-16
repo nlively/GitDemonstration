@@ -25,7 +25,7 @@ class SignupController < ApplicationController
           })
 
     if params[:service_plan] == 'more'
-      MailerAgencySignup.deliver_new_agency_request @signup_request
+      MailerAgencySignup.new_agency_request(@signup_request).deliver
       redirect_to signup_thanks_path
     else
 
@@ -35,7 +35,7 @@ class SignupController < ApplicationController
         render :action => 'index'
 
       else
-        MailerAgencySignup.deliver_agency_free_signup @signup_request
+        MailerAgencySignup.agency_free_signup(@signup_request).deliver
         @agency = Agency.new({
           :name => params[:agency_name],
           :administrative_contact => params[:contact_name],
