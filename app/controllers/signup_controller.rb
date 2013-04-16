@@ -14,6 +14,7 @@ class SignupController < ApplicationController
 
   # POST /sign-up
   def index_submit
+    @body_class = 'sign-up index'
 
     @signup_request = AgencySignupRequest.create!({
             :agency_name => params[:agency_name],
@@ -84,6 +85,8 @@ class SignupController < ApplicationController
 
   # POST /sign-up/setup
   def setup_submit
+    @body_class = 'sign-up setup'
+    
     @agency = Agency.find session[:new_agency_id]
     @user = User.new params[:user]
 
