@@ -1,121 +1,104 @@
-<%
-
-   body_classes = []
-
-
-   body_classes.push (controller_name == 'dashboard') ? 'dashboard-main' : controller_name
-
-   body_classes.push action_name
-
-   body_classes.push 'with-sidebar-second' if content_for? :sidebar_second
-
-%>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
 <head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
-
-  <title>Boomr Web Portal</title>
-
-  <%= favicon_link_tag %>
-
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "modernizr-2.6.2.min" %>
-
+  <title>Boomr</title>
+  <%= stylesheet_link_tag    "front_end/application", :media => "all" %>
+  <%= javascript_include_tag "front_end/application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="dashboard main <%= body_classes.join " " %>">
+<body class="<%= @body_class %>">
 
 <div id="page">
-  <div id="page-inner">
-    <div id="header" class="">
-      <div id="header-inner">
-        <%= render 'layouts/header' %>
-      </div>
+
+  <div id="header">
+    <div id="header-inner">
+      <%= link_to root_path do %>
+          <%= image_tag 'logo-top.png', :alt => 'Boomr Health Care' %>
+      <% end %>
+      <%= yield :headerInner %>
+
+      <ul class="nav nav-pills pull-right" xmlns="http://www.w3.org/1999/html">
+        <li class="first"><%= link_to "Log In", new_user_session_path %></li>
+        <li class="last"><%= link_to "Sign Up", signup_path %></li>
+      </ul>
+
     </div>
-
-    <div id="main" class="">
-      <div id="main-inner">
-
-        <div id="navigation">
-          <%= render 'layouts/dashboard_top_menu' %>
-        </div>
-
-
-        <div id="content" class="main-col">
-          <div id="content-inner" class="inner main-col-inner">
-
-            <%= render 'shared/breadcrumb' %>
-
-            <% if content_for?(:title) or content_for?(:page_top) %>
-                <div class="title-wrapper">
-                  <div class="title-wrapper-inner">
-                    <% if content_for?(:title) %>
-                        <h1 class="title"><%= yield :title %></h1>
-                    <% end %>
-
-                    <% if content_for? :page_top %>
-                        <div id="page-top">
-                          <div id="page-top-inner">
-                            <%= yield :page_top %>
-                          </div>
-                        </div>
-                    <% end %>
-
-                  </div>
-                </div>
-            <% end %>
-
-
-            <%= render 'shared/notices' %>
-
-
-            <% if content_for? :page_caption %>
-                <%= render 'dashboard/shared/page_caption', :caption => yield(:page_caption) %>
-            <% end %>
-
-            <%= yield %>
-
-          </div>
-        </div>
-
-        <% if content_for? :sidebar_second %>
-            <div id="sidebar-second" class="sidebar main-col">
-              <div id="sidebar-second-inner" class="sidebar-inner main-col-inner inner">
-                <%= yield :sidebar_second %>
-              </div>
-            </div>
-        <% end %>
-
-
-        <div style="clear:both"></div>
-
-      </div>
-    </div>
-
-    <div id="footer" class="">
-      <div id="footer-inner">
-
-
-      </div>
-    </div>
-
-
   </div>
+  <div id="menu">
+    <%= yield :menu %>
+    <div class="main-menu">
+      <ul class="main-menu-inner">
+        <li class="first"><%= link_to "Home", root_path %></li>
+        <li class="second"><%= link_to "Software Features", features_path %></li>
+        <li class="third"><%= link_to "Why Use Boomr", benefits_path %></li>
+        <li class="fourth"><%= link_to "Pricing", pricing_path %></li>
+        <li class="last"><%= link_to "Contact", contact_path %></li>
+      </ul>
+    </div>
+  </div>
+  <div id="banner">
+    <%= yield :banner %>
+    <div id="banner-inner">
+      <%= yield :bannerInner %>
+    </div>
+  </div>
+  <div id="jumbo-outer">
+    <div id="content">
+      <div id="content-inner">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-bottom">
+    <%= yield :contentBottom %>
+  </div>
+
+  <div id="footer">
+    <div id="footer-inner">
+      <%= yield :footerInner%>
+      <div class="footer-items">
+
+        <div class="span3">
+          <ul>
+            <li><%= link_to "About Us", about_path %></li>
+            <li><%= link_to "FAQ", faq_path %></li>
+          </ul>
+        </div>
+
+        <div class="span3">
+          <ul>
+            <li><%= link_to "Like Us on Facebook", "https://www.facebook.com/BoomrHealth", :target => '_blank' %></li>
+            <li><%= link_to "Follow Us on Twitter", "https://twitter.com/BoomrHealth", :target => '_blank' %></li>
+            <li><%= link_to "Email Us", contact_path %></li>
+          </ul>
+        </div>
+
+        <div class="span3">
+          <ul>
+            <li><%= link_to "Terms of Service / Privacy", terms_path %></li>
+            <li><%= link_to "Sign Up or Log In", new_user_session_path %></li>
+          </ul>
+        </div>
+
+        <div class="span3">
+          <div class="span3icon">
+            <%= link_to root_path do %>
+                <%= image_tag 'logo-bottom.png' %>
+            <% end %></div>
+
+        </div>
+
+
+      </div>
+      <p>Copyright &copy; 2013, Boomr Healthcare, Inc. All rights reserved.</p>
+    </div>
+  </div>
+
+
+
 </div>
 
-
-<%= render 'layouts/copyright' %>
-<%=  render 'layouts/tracking' %>
 
 
 </body>

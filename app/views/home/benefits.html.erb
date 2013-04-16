@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <h2>Give Your Clients Peace of Mind</h2>
+  <p class="lead">Increase Your Accountability and Quality of Care</p>
+  <%= link_to "Sign up for 3 FREE users today!", signup_path, :class => 'btn btn-large btn-success' %>
+  <p class="last">No credit card necessary. No hassles. Cancel anytime.</p>
+</div>
+
+<div class="row-fluid marketing">
+  <div class="span6">
+    <div class= "item"><%= image_tag 'icon-easy-to-use.gif' %><h4>Easy to Use</h4>
+      <p>Checking in and out of appointments with Boomr could not be easier. No learning curve, or elaborate training sessions required. We listened to your needs and built exactly what you needed with no extra bells or whistles, making our product simple and straightforward. See our instructional video for a 30-second demonstration. </p>
+    </div>
+    <div class= "item"><%= image_tag 'icon-affordable-and-flexible.gif' %><h4>Affordable & Flexible</h4>
+      <p>For the value it brings, the cost of using Boomr is less than your current telephony system. You only pay for what you use, and billing cycles are set on a month-to-month basis. Add or remove accounts at any time with no fees. Downloading the mobile app is free and it is available anytime in the app store. Product updates are pushed periodically, at absolutely no cost. </p>
+    </div>
+    <div class= "item last"><%= image_tag 'icon-improves-safety.gif' %><h4>Improves Safety, & Quality of Care</h4>
+      <p>Real-time submission of data collected at point of care allows for instant oversight by your case management team, scheduler and other administrative personnel. This truly makes your employees the eyes and ears for the clinical team, and allows for data sharing to support and reduce the risk of accidents or unwanted events. Keeping your clients safe at home improves clinical outcomes and makes your Agency more competitive to referral sources. </p>
+    </div>
+
+  </div>
+
+  <div class="span6">
+    <div class= "item"><%= image_tag 'icon-seamless-integration.gif' %><h4>Seamless Integration</h4>
+      <p>Boomr can be used independent of your existing management software platform or off-line processes. Because the data that Boomr collects is aggregated into universal templates for both billing clients and paying employees, it makes it easy for you to integrate Boomr into your current workflow. Migrate your employees to Boomr at a comfortable pace, no conversion costs or system-wide implementation needed. </p>
+    </div>
+    <div class= "item"> <div class="quote"><h4>“Boomr has automated all of my repetitive manual
+      tasks and improved communication with my staff
+      in the field.”</h4>
+      <p>—Jeff Sternberg, Owner and CEO, Home Care of La Jolla</p>
+    </div>
+    </div>
+    <div class= "item last"><%= image_tag 'icon-build-bottom-line.gif' %><h4>Build Upon Your Bottom Line</h4>
+      <p>By using Boomr you can set yourself apart from your competitors by giving your clients and their families peace of mind by increasing your accountability and quality of patient care. Boomr unlocks the opportunity for operational efficiency which means reduced costs and increased profits. Our streamlined technology allows you to free up time so you can concentrate on other aspects of your business.</p>
+    </div>
+  </div>
+
+  <% content_for :contentBottom do  %>
+      <div class="inner">
+        <%= render 'shared/bottom_signup' %>
+      </div>
+  <% end %>
+</div>

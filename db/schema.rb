@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415210711) do
+ActiveRecord::Schema.define(:version => 20130416002357) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -218,6 +218,17 @@ ActiveRecord::Schema.define(:version => 20130415210711) do
     t.string   "status",                  :default => "pending"
     t.boolean  "exported",                :default => false
     t.integer  "client_invoice_batch_id"
+  end
+
+  create_table "contact_submissions", :force => true do |t|
+    t.string   "name"
+    t.string   "agency_name"
+    t.string   "email"
+    t.text     "message"
+    t.string   "ip"
+    t.string   "category"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "daily_activities", :force => true do |t|

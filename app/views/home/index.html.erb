@@ -1,4 +1,57 @@
+<% content_for :contentBottom do %>
+    <div class="inner">
+      <hr>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="span3icon"><%= image_tag 'app-icon.png' %></div>
+          <h2>App For Your Caregivers</h2>
+          <p>With a tap of a button employees can check in and out of their scheduled appointments using our geotag & timestamp technology for 100% accountability and accuracy.</p>
+        </div>
+        <div class="span3">
+          <div class="span3icon"><%= image_tag 'laptop-icon.png' %></div>
+          <h2>Management Dashboard</h2>
+          <p>Monitor your remote workforce with real-time updates sent your agency dashboard. All info collected in the field becomes organized & meaningful data.</p>
+        </div>
+        <div class="span3">
+          <div class="span3icon"><%= image_tag 'tools-icon.png' %></div>
+          <h2>Clinical Tools & Alerts</h2>
+          <p>Our mobile app allows caregivers to track Daily Activities, Client’s Status & collect Observations during each visit. Give clients peace of mind & keep re-admissions minimal.</p>
+        </div>
+        <div class="span3">
+          <div class="span3icon"><%= image_tag 'bolt-icon.png' %></div>
+          <h2>Seamless Integration</h2>
+          <p>Our software solutions are plug & play, stand alone applications that will easily integrate into your current Agency Management Software. Get started using Boomr in less than 10 minutes!</p>
+        </div>
+      </div>
 
 
-<%= link_to 'Dashboard', dashboard_path %>
+      <%= render 'shared/bottom_signup' %>
 
+    </div>
+<% end%>
+
+<% content_for :footerInner do %>
+
+<% end %>
+
+
+<div class="jumbotron">
+  <div class="lead">
+    <h3 class="lead1">Mobile Check In Technology Equipped with Clinical Tools</h3>
+    <div class="lead2">
+      <p>
+        Leverage our technology to compliment your services,<br>
+        improve your margins,<br>
+        and keep your care<br>
+        recipients in their <br>
+        home longer.
+      </p>
+    </div>
+  </div>
+  <div class="home-devices">
+    <%= image_tag 'devices.png', :alt => 'Boomr works on Android and iOS mobile devices and on the web!' %>
+  </div>
+
+</div>

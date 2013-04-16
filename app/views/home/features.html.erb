@@ -1,0 +1,68 @@
+<div class="jumbotron">
+  <h2>Software Built Specifically for Your Agency</h2>
+  <p class="lead">Designed to be Caregiver Friendly</p>
+  <%= link_to "Sign up for 3 FREE users today!", signup_path, :class => 'btn btn-large btn-success' %>
+  <p class="last">No credit card necessary. No hassles. Cancel anytime.</p>
+</div>
+
+<div id="features-main">
+
+  <div class="row odd one first">
+    <div class="para">
+      <h3>Mobile Time Clock Technology</h3>
+      <p>Telephony and timecards are a thing of the past. Employees use <br/>Boomr to check-in and out of appointments on their smart-phone or <br/>any mobile device/tablet. These time stamps are geotagged to verify <br/>employees are at the point of care. This allows for real-time accountability, <br/>and proactive patient care delivery.</p></div>
+    <div class="row-image"><%= image_tag 'mobile-time-img.png' %></div>
+  </div>
+  <div class="row even two">
+    <div class="para">
+      <h3>Real-time Data Collection</h3>
+      <p>Our mobile app was designed to make it easy for employees to collect and submit patient care data in real time. Simple checklists are available to the employee to click what they are observing or doing. Photos can also be safely and securely uploaded to provide visual transparency of what has happened during the shift. All of this data is time stamped, creating a care timeline for the Agency to review, effectively replacing manual documentation and laborious narratives.</p></div>
+    <div class="row-image"><%= image_tag 'real-time-img.png' %></div>
+  </div>
+  <div class="row odd three">
+    <div class="para">
+      <h3>Clinical Tools & Alerts</h3>
+
+      Boomr allows Agencies to customize the lists of data that show up in the mobile App into the following categories:<br/> <br/>
+      <ul>
+        <li><strong>Daily Activities</strong> - a list of tasks that employees will work on while at
+          the clients home</li><br/>
+
+        <li><strong>Client Status</strong> - general notes about the physical, mental and
+          emotional condition of the client</li><br/>
+
+        <li><strong>Observations</strong> - specific measurements or assessments relating to
+          the unique health and medical condition of the client</li><br/>
+      </ul>
+
+      The collection of personalized data allows for custom alerts to be set in order to notify the Agency when information that has been submitted indicates a patient is at high-risk or in need of additional support. This oversight encourages closer Employee-Client interaction and reduces the frequency of hospital admissions and visits to the physician.
+    </div>
+    <div class="row-image"><%= image_tag 'clinical-tools-img.png' %></div>
+  </div>
+  <div class="row even four">
+    <div class="para">
+      <h3>Employee Work History</h3>
+
+      <p>Your employees will have unlimited access to their work history directly from the mobile app. They can view past visit notes and completed tasks from other employees with whom they share client and case responsibilities with, allowing for ultimate patient care collaboration within your team. All data is safely stored and 100% accurate allowing you to never again have a payroll or billing discrepancy.</p></div>
+
+    <div class="row-image"><%= image_tag 'work-history-img.png' %></div>
+  </div>
+  <div class="row odd five last">
+    <div class="para">
+      <h3>Management Oversight</h3>
+
+      <p>All visits are twice verified for accuracy in the online administrative portal prior to populating the data spreadsheet for billing and payroll purposes. This feature is accessible through the cloud-based management dashboard, and presented in a simple user friendly interface. It’s never been easier to process time card info for payroll and bill clients quickly for confirmed hours of service that have been provided.</p>
+      <p>Boomr easily integrates with any current billing payroll software you already use:
+      <div class="accepted-pay"><%= image_tag 'img-logos.png' %></div>
+      </p>
+    </div>
+    <div class="row-image"><%= image_tag 'macbook-air-img.png' %></div>
+  </div>
+</div>
+
+
+<% content_for :contentBottom do  %>
+    <div class="inner">
+      <%= render 'shared/bottom_signup' %>
+    </div>
+<% end %>

@@ -1,0 +1,136 @@
+@import 'front_end/sass';
+
+#page {
+  margin: 0 auto;
+  .nav{
+    .first {
+      background: #BFBFBF;
+      border-radius: 7px;
+      border: #E0E0E0 solid 1px;
+      box-shadow: #CCC 0px 2px 2px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right: 10px;
+
+      :hover { background:#BFBFBF }
+
+      a{
+        font-size: 1.0em;
+        color: white;
+        text-shadow: #969696 0px -1px 1px;
+        line-height: 9px;
+      }
+
+    }
+
+    .last {
+      background: $softBlue;
+      border-radius: 7px;
+      border: #CCFFFF solid 1px;
+      box-shadow: #CCC 0px 2px 2px;
+      padding-left: 5px;
+      padding-right: 5px;
+
+      :hover {
+        background:$softBlue;
+      }
+
+      a{
+        font-size: 1.0em;
+        color: white;
+        text-shadow: #969696 0px -1px 1px;
+        line-height: 9px;
+      }
+    }
+
+  }
+  #header {
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    #header-inner{
+      margin: 0 auto;
+      width: 960px;
+    }
+  }
+
+}
+#menu {
+  margin: 0 auto;
+  height: 35px;
+  width: 670px;
+
+  .main-menu {
+
+    ul{
+      li{
+        list-style-type: none;
+        float: left;
+        padding-right: 28px;
+        margin-left: 28px;
+        border-right: #9a9c9f solid 1px;
+        a{
+          color: #9A9C9F;
+          font-size: 1em;
+
+        }
+      }
+      .last {
+        border: none;
+      }
+    }
+
+  }
+}
+#banner {
+  margin: 0 auto;    }
+
+
+#content {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#footer {
+  background-color: white;
+  height: 150px;
+  margin-top:  60px;
+  padding-top: 30px;
+  #footer-inner {
+    width: 960px;
+    margin: 0 auto;
+    li{
+      list-style-type: none;
+      a{
+        color: #8ED1D3;
+      }
+    }
+
+  }
+  p{
+    float: left;
+    font-family: Arial;
+    color: #B9BBBD;
+    font-size: 0.8em;
+    margin-top: 22px;
+    text-align: center;
+    margin-left: 110px;
+  }
+  .footer-items {
+
+  }
+}
+
+
+.styled-white-box {
+  @include styled-white-box;
+
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.centered-icon {
+  margin: 15px auto;
+  text-align: center;
+}

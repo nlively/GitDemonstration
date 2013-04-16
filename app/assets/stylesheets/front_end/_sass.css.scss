@@ -1,0 +1,11 @@
+$softBlue: #8ED1D3;
+$standardFont: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+
+@mixin styled-white-box {
+  background: white;
+  margin-top: 50px;
+  border-radius: 7px;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-shadow: #909090 0px 0px 7px;
+}

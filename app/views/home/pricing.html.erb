@@ -1,0 +1,18 @@
+<div class="pricing-main">
+  <h1>Boomr is free for your first 3 users.</h1>
+  <p>No credit card necessary. No hassles. Cancel anytime.</p> <br/>
+  <%= link_to "Sign up for 3 FREE users today!", signup_path, :class => 'btn btn-large btn-success' %>
+
+  <div class="pricing-box">
+    <span class="ten">$10</span> /month &nbsp; <span class="ten">Per user (employee)</span><br/><br/>
+    <%= link_to "Sign up for more than 3 users.", signup_path, :class => 'btn btn-large btn-success' %><br/><br/>
+    <p class="last-line">*Your first 3 users are still free</p>
+  </div>
+</div>
+
+
+<% content_for :contentBottom do %>
+    <div class="inner">
+      <%= render 'shared/bottom_signup' %>
+    </div>
+<% end %>

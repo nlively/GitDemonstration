@@ -1,0 +1,141 @@
+/* line 3, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page {
+  margin: 0 auto;
+}
+/* line 6, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .first {
+  background: #BFBFBF;
+  border-radius: 7px;
+  border: #E0E0E0 solid 1px;
+  box-shadow: #CCC 0px 2px 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 10px;
+}
+/* line 15, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .first :hover {
+  background: #bfbfbf;
+}
+/* line 17, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .first a {
+  font-size: 1.0em;
+  color: white;
+  text-shadow: #969696 0px -1px 1px;
+  line-height: 9px;
+}
+/* line 26, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .last {
+  background: #8ed1d3;
+  border-radius: 7px;
+  border: #CCFFFF solid 1px;
+  box-shadow: #CCC 0px 2px 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+/* line 34, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .last :hover {
+  background: #8ed1d3;
+}
+/* line 38, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .last a {
+  font-size: 1.0em;
+  color: white;
+  text-shadow: #969696 0px -1px 1px;
+  line-height: 9px;
+}
+/* line 47, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page #header {
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* line 51, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page #header #header-inner {
+  margin: 0 auto;
+  width: 960px;
+}
+
+/* line 58, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu {
+  margin: 0 auto;
+  height: 35px;
+  width: 670px;
+}
+/* line 66, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu .main-menu ul li {
+  list-style-type: none;
+  float: left;
+  padding-right: 28px;
+  margin-left: 28px;
+  border-right: #9a9c9f solid 1px;
+}
+/* line 72, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu .main-menu ul li a {
+  color: #9A9C9F;
+  font-size: 1em;
+}
+/* line 78, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu .main-menu ul .last {
+  border: none;
+}
+
+/* line 85, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#banner {
+  margin: 0 auto;
+}
+
+/* line 89, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#content {
+  width: 960px;
+  margin: 0 auto;
+}
+
+/* line 94, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer {
+  background-color: white;
+  height: 150px;
+  margin-top: 60px;
+  padding-top: 30px;
+}
+/* line 99, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer #footer-inner {
+  width: 960px;
+  margin: 0 auto;
+}
+/* line 102, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer #footer-inner li {
+  list-style-type: none;
+}
+/* line 104, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer #footer-inner li a {
+  color: #8ED1D3;
+}
+/* line 110, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer p {
+  float: left;
+  font-family: Arial;
+  color: #B9BBBD;
+  font-size: 0.8em;
+  margin-top: 22px;
+  text-align: center;
+  margin-left: 110px;
+}
+
+/* line 125, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.styled-white-box {
+  background: white;
+  margin-top: 50px;
+  border-radius: 7px;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-shadow: #909090 0px 0px 7px;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* line 133, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.centered-icon {
+  margin: 15px auto;
+  text-align: center;
+}

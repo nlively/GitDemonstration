@@ -1,0 +1,208 @@
+@import 'front_end/sass';
+
+body.home {
+#page {
+
+  #header {
+    background-color: white;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    #header-inner {
+      width: 960px;
+      margin: 0 auto;
+      .nav{
+        .first {
+          background: #BFBFBF;
+          border-radius: 7px;
+          border: #E0E0E0 solid 1px;
+          box-shadow: #CCC 0px 2px 2px;
+          padding-left: 5px;
+          padding-right: 5px;
+          margin-right: 10px;
+
+            :hover { background:#BFBFBF }
+
+          a{
+            font-size: 1.0em;
+            color: white;
+            text-shadow: #969696 0px -1px 1px;
+            line-height: 9px;
+          }
+
+        }
+
+        .last {
+          background: $softBlue;
+          border-radius: 7px;
+          border: #CCFFFF solid 1px;
+          box-shadow: #CCC 0px 2px 2px;
+          padding-left: 5px;
+          padding-right: 5px;
+
+          :hover {
+            background:$softBlue;
+          }
+
+          a{
+            font-size: 1.0em;
+            color: white;
+            text-shadow: #969696 0px -1px 1px;
+            line-height: 9px;
+            }
+        }
+
+      }  }
+
+  }
+
+  #jumbo-outer {
+    background-image: url(image_path('bg-wide.png'));
+    background-repeat: no-repeat;
+    margin-left: -100px;
+  }
+
+  #content {
+    .jumbotron {
+      height: 465px;
+      margin-left: 75px;
+    }
+    .lead {
+      float: left;
+      color: white;
+      text-shadow: #000 1px 1px 1px;
+      width: 300px;
+      margin-top: 30px;
+      .lead1{
+        width: 400px;
+        h3{
+          font-size: 1.3em;
+          font-family: $standardFont;
+          font-weight: normal;
+          line-height: 36px;
+        }
+      }
+      .lead2 {
+             h4 {
+               font-family: Arial;
+               font-weight: normal;
+             }
+      }
+    }
+    .home-devices{
+      position: relative;
+      bottom: 291px;
+      left: 190px;
+      height: 0px;
+      img{
+
+      }
+
+    }
+    #content-inner {
+
+    }
+
+  }
+  #content-bottom {
+    background-image: url(image_path('gray-background-tile.jpg'));
+    margin-top: -53px;
+    h2 {
+      font-size: 1.1em;
+      font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+      color: $softBlue;
+      line-height: 6px;
+      margin-top: 45px;
+      text-align: center;
+    }
+    .inner {
+      width: 960px;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-bottom: 42px;
+    }
+    .bottom-box {
+      width: 915px;
+      @include styled-white-box;
+      height: 185px;
+      .left{
+        float: left;
+        width: 500px;
+        color: #6D6E71;
+        border-right: #CCC solid 1px;
+        padding-right: 16px;
+        margin-right: 55px;
+        height: 185px;
+
+        p{
+          font-weight: normal;
+          font-family: Arial;
+        }
+
+        h3{
+          color: #6D6E71;
+          line-height: 41px;
+          font-family: 'HelveticaNeue-CondensedBold';
+          font-size: 2.3em;
+          margin-top: 24px;
+        }
+
+      }
+      .right{
+        width: 320px;
+        float: left;
+        p{
+          font-weight: normal;
+          font-family: Arial;
+          font-size: 0.8em;
+          line-height: 17px;
+          color: #6D6E71;
+        }
+        .sign-up-button {
+          background-image: url(image_path('sign-up-bottom.png'));
+          background-repeat: no-repeat;
+          height: 41px;
+          text-align: center;
+          width: 270px;
+          padding-top: 27px;
+          margin-top: 30px;
+
+          a {
+            font-size: 2.6em;
+            color: white;
+            text-shadow: #000 0px 1px 1px;
+            line-height: 9px;
+            font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+          }
+        }
+      }
+
+    }
+    .row-fluid {
+      width: 915px;
+      @include styled-white-box;
+      .span3 {
+        height: 235px;
+        margin-bottom: -8px;
+        width: 210px;
+        padding-top: 32px;
+       .span3icon {
+         position: relative;
+         left: 84px;
+         height: 41px;
+       }
+        img{
+          position: absolute;
+          bottom: 10px;
+        }
+
+        p{
+          color: #58595B;
+          font-size: 0.85em;
+        }
+      }
+    }
+  }
+}
+
+}

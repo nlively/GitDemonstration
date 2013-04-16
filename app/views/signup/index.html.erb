@@ -1,0 +1,70 @@
+<h1>Start Using Boomr Today</h1>
+<div class="left"><h2>Sign Up Here</h2>
+  <%= form_tag signup_path, :method => :post do %>
+
+      <div class="form-field">
+        <div class="label">
+          <%= label_tag :contact_name, 'Name' %>
+        </div>
+        <div class="field">
+          <%= text_field_tag :contact_name %>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <div class="label">
+          <%= label_tag :agency_name, 'Agency Name' %>
+        </div>
+        <div class="field">
+          <%= text_field_tag :agency_name %>
+        </div>
+      </div>
+
+
+      <div class="form-field">
+        <div class="label">
+          <%= label_tag :agency_email, 'Email Address' %>
+        </div>
+        <div class="field">
+          <%= email_field_tag :agency_email %>
+        </div>
+      </div>
+
+
+      <div class="form-field">
+        <div class="label">
+          <%= label_tag :agency_website, 'Agency\'s Website' %>
+        </div>
+        <div class="field">
+          <%= url_field_tag :agency_website %>
+        </div>
+      </div>
+
+
+      <div class="form-field">
+        <div class="label">
+          <%= label_tag :agency_phone, 'Phone #' %>
+        </div>
+        <div class="field">
+          <%= text_field_tag :agency_phone %>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <div class="label">
+          <%= label_tag 'Choose Your Plan' %>
+        </div>
+        <div class="field">
+          <%= radio_button_tag :service_plan, '3', true, :id => 'service-plan-3' %> <%=label_tag 'service-plan-3', '3 Free Users' %>
+          <br>
+          <%= radio_button_tag :service_plan, 'more', false, :id => 'service-plan-more' %> <%=label_tag 'service-plan-more', 'More than 3 users (first 3 users are still free)' %>
+        </div>
+      </div>
+
+      <div id="submit-agreement"><p>By submitting this form you will not initiate payment or use of Boomr. Once you do click submit a Boomr Representative will contact you right away to set up your customized account and walk you through getting started with using Boomr. </p></div>
+
+      <div class="submit"> <%= submit_tag 'Submit' %> </div>
+
+      <div class="sign-up-image"><%= image_tag 'sign-up-img.png' %></div>
+
+  <% end %>

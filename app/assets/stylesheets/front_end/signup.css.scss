@@ -1,0 +1,84 @@
+@import 'front_end/sass';
+
+#content-inner {
+  h1{
+    color: #7F7D7D;
+    text-align: center;
+  }
+  h2 {
+    color: #7F7D7D;
+    font-size: 1.8em;
+    font-weight: normal;
+  }
+  label {
+    font-size: 1em;
+    color: #7F7D7D;
+  }
+  .label {
+    border: none;
+    background: none;
+    color: #A5A5A5;
+    text-shadow: none;
+    float: left;
+    width: 150px;
+    label {
+      font-size: 1.4em;
+      color: #7F7D7D;
+    }
+  }
+  .field {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    input {
+      border: #8ED1D3 solid 2px;
+      width: 310px;
+      height: 15px;
+    }
+  }
+  #service-plan-3 {
+    float: left;
+    width: 32px;
+  }
+  #service-plan-more {
+    float: left;
+    width: 32px;
+    margin-left: 157px;
+  }
+  #submit-agreement {
+    color: #7F7D7D;
+    font-family: 'Helvetica', Arial, sans-serif;
+    width: 500px;
+    margin-top: 60px;
+  }
+  .submit {
+    background-image: url(image_path("sign-up-bottom.png"));
+    background-repeat: no-repeat;
+    height: 41px;
+    text-align: center;
+    width: 225px;
+    padding-top: 27px;
+    margin-top: 22px;
+    background-size: 66%;
+    input {
+      font-size: 1.3em;
+      color: white;
+      text-shadow: #000 0px 1px 1px;
+      line-height: 9px;
+      font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+      border: none;
+      background: none;
+      height: 54px;
+      margin-top: -41px;
+      margin-left: -78px;
+    }
+  }
+  .left {
+    float: left;
+  }
+  .sign-up-image {
+    height: 550px;
+    margin-left: 540px;
+    margin-top: 65px;
+  }
+
+}

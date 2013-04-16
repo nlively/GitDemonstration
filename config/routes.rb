@@ -3,22 +3,19 @@ BoomrDashboard::Application.routes.draw do
 
 
 
+  # SUPERUSER ADMIN PAGES
   match 'admin2' => 'admin2#index'
-
   namespace :admin2 do
     resources :agency, :only => [:new, :create]
   end
 
+  # RAILS_ADMIN GEM PAGES
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  get "general/client_statuses"
 
-  get "general/daily_activities"
+  #resources :check_ins, :only => [:index, :create]
 
-
-
-  resources :check_ins, :only => [:index, :create]
-
+  # WEB SERVICE API
   namespace :api do
     namespace :v1 do
       resources :photos, :only => :show
@@ -58,9 +55,7 @@ BoomrDashboard::Application.routes.draw do
   end
 
 
-  #match 'dashboard/feed'
-  #match 'dashboard/feed/filter/:type' => 'dashboard#feed_filter', :as => :dashboard_feed_filter
-
+  # ADMIN DASHBOARD
   namespace :dashboard do
 
     match 'feed'
@@ -188,16 +183,34 @@ BoomrDashboard::Application.routes.draw do
   match 'dashboard/feed/activity_since' => 'dashboard#activity_since'
   match 'dashboard/feed/activity_before' => 'dashboard#activity_before'
 
+  # SIGN IN AND REGISTRATION PAGES
   devise_for :users
 
-  get "home/index"
-  get 'terms' => 'home#terms'
-
+  # OAUTH STUFF
   post "oauth/token", :to => "tokens#create"
   mount Doorkeeper::Engine => '/oauth'
   match "/oauth/authorize", :via => :get, :to => "authorization#new"
   match "/oauth/authorize", :via => :post, :to => "authorization#create"
 
+  # PUBLIC PAGES
+  match 'features' => 'home#features'
+  match 'pricing' => 'home#pricing'
+  match 'benefits' => 'home#benefits'
+  get 'contact' => 'home#contact'
+  post 'contact' => 'home#contact_submit'
+  match 'terms' => 'home#terms'
+  match 'about' => 'home#about'
+  match 'faq' => 'home#faq'
+
+  # PUBLIC WEBSITE SIGNUP WORKFLOW
+  get "sign-up" => 'signup#index', :as => :signup
+  post "sign-up" => 'signup#index_submit', :as => :signup
+  get "sign-up/setup" => 'signup#setup', :as => :signup_setup
+  post "sign-up/setup" => 'signup#setup_submit', :as => :signup_setup
+  get "sign-up/confirm" => 'signup#confirm', :as => :signup_confirm
+  get "sign-up/thanks" => 'signup#thanks', :as => :signup_thanks
+
+  # ROOT PATH
   root :to => "home#index"
 
 end

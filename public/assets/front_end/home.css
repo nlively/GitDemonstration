@@ -1,0 +1,214 @@
+/* line 6, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header {
+  background-color: white;
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* line 11, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header #header-inner {
+  width: 960px;
+  margin: 0 auto;
+}
+/* line 15, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header #header-inner .nav .first {
+  background: #BFBFBF;
+  border-radius: 7px;
+  border: #E0E0E0 solid 1px;
+  box-shadow: #CCC 0px 2px 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 10px;
+}
+/* line 24, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header #header-inner .nav .first :hover {
+  background: #bfbfbf;
+}
+/* line 26, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header #header-inner .nav .first a {
+  font-size: 1.0em;
+  color: white;
+  text-shadow: #969696 0px -1px 1px;
+  line-height: 9px;
+}
+/* line 35, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header #header-inner .nav .last {
+  background: #8ed1d3;
+  border-radius: 7px;
+  border: #CCFFFF solid 1px;
+  box-shadow: #CCC 0px 2px 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+/* line 43, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header #header-inner .nav .last :hover {
+  background: #8ed1d3;
+}
+/* line 47, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #header #header-inner .nav .last a {
+  font-size: 1.0em;
+  color: white;
+  text-shadow: #969696 0px -1px 1px;
+  line-height: 9px;
+}
+/* line 59, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #jumbo-outer {
+  background-image: url("/assets/bg-wide.png");
+  background-repeat: no-repeat;
+  margin-left: -100px;
+}
+/* line 66, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content .jumbotron {
+  height: 465px;
+  margin-left: 75px;
+}
+/* line 70, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content .lead {
+  float: left;
+  color: white;
+  text-shadow: #000 1px 1px 1px;
+  width: 300px;
+  margin-top: 30px;
+}
+/* line 76, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content .lead .lead1 {
+  width: 400px;
+}
+/* line 78, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content .lead .lead1 h3 {
+  font-size: 1.3em;
+  font-family: "HelveticaNeue-CondensedBold", Arial, sans-serif;
+  font-weight: normal;
+  line-height: 36px;
+}
+/* line 86, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content .lead .lead2 h4 {
+  font-family: Arial;
+  font-weight: normal;
+}
+/* line 92, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content .home-devices {
+  position: relative;
+  bottom: 291px;
+  left: 190px;
+  height: 0px;
+}
+/* line 107, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom {
+  background-image: url("/assets/gray-background-tile.jpg");
+  margin-top: -53px;
+}
+/* line 110, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom h2 {
+  font-size: 1.1em;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+  color: #8ed1d3;
+  line-height: 6px;
+  margin-top: 45px;
+  text-align: center;
+}
+/* line 118, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .inner {
+  width: 960px;
+  margin: 0 auto;
+  padding-left: 50px;
+  padding-bottom: 42px;
+}
+/* line 124, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box {
+  width: 915px;
+  background: white;
+  margin-top: 50px;
+  border-radius: 7px;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-shadow: #909090 0px 0px 7px;
+  height: 185px;
+}
+/* line 128, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box .left {
+  float: left;
+  width: 500px;
+  color: #6D6E71;
+  border-right: #CCC solid 1px;
+  padding-right: 16px;
+  margin-right: 55px;
+  height: 185px;
+}
+/* line 137, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box .left p {
+  font-weight: normal;
+  font-family: Arial;
+}
+/* line 142, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box .left h3 {
+  color: #6D6E71;
+  line-height: 41px;
+  font-family: 'HelveticaNeue-CondensedBold';
+  font-size: 2.3em;
+  margin-top: 24px;
+}
+/* line 151, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box .right {
+  width: 320px;
+  float: left;
+}
+/* line 154, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box .right p {
+  font-weight: normal;
+  font-family: Arial;
+  font-size: 0.8em;
+  line-height: 17px;
+  color: #6D6E71;
+}
+/* line 161, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box .right .sign-up-button {
+  background-image: url("/assets/sign-up-bottom.png");
+  background-repeat: no-repeat;
+  height: 41px;
+  text-align: center;
+  width: 270px;
+  padding-top: 27px;
+  margin-top: 30px;
+}
+/* line 170, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .bottom-box .right .sign-up-button a {
+  font-size: 2.6em;
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+  line-height: 9px;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+}
+/* line 181, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .row-fluid {
+  width: 915px;
+  background: white;
+  margin-top: 50px;
+  border-radius: 7px;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-shadow: #909090 0px 0px 7px;
+}
+/* line 184, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .row-fluid .span3 {
+  height: 235px;
+  margin-bottom: -8px;
+  width: 210px;
+  padding-top: 32px;
+}
+/* line 189, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .row-fluid .span3 .span3icon {
+  position: relative;
+  left: 84px;
+  height: 41px;
+}
+/* line 194, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .row-fluid .span3 img {
+  position: absolute;
+  bottom: 10px;
+}
+/* line 199, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .row-fluid .span3 p {
+  color: #58595B;
+  font-size: 0.85em;
+}
