@@ -1,0 +1,14 @@
+Boomr Guys,
+
+<%= @signup_request.contact_name %> from agency "<%= @signup_request.agency_name %>" signed up on the Boomr website for
+an agency account with 3 free users.
+
+The agency account and first user have been created.
+
+You can follow up with this person using the info below:
+Phone #: <%= @signup_request.phone %>
+Email: <%= @signup_request.email %>
+Website: <%= @signup_request.website %>
+
+Submitted on: <%= @signup_request.created_at.to_formatted_s :mdy_with_time %>
+IP address: <%= @signup_request.ip %>

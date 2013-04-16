@@ -15,15 +15,17 @@ class SignupController < ApplicationController
   # POST /sign-up
   def index_submit
 
+    @signup_request = AgencySignupRequest.create!({
+            :agency_name => params[:agency_name],
+            :contact_name => params[:contact_name],
+            :email => params[:agency_email],
+            :website => params[:agency_website],
+            :phone => params[:agency_phone],
+            :ip => request.remote_ip
+          })
+
     if params[:service_plan] == 'more'
-      @signup_request = AgencySignupRequest.create!({
-        :agency_name => params[:agency_name],
-        :contact_name => params[:contact_name],
-        :email => params[:agency_email],
-        :website => params[:agency_website],
-        :phone => params[:agency_phone],
-        :ip => request.remote_ip
-      })
+      MailerAgencySignup.deliver_new_agency_request @signup_request
       redirect_to signup_thanks_path
     else
 
@@ -33,7 +35,7 @@ class SignupController < ApplicationController
         render :action => 'index'
 
       else
-
+        MailerAgencySignup.deliver_agency_free_signup @signup_request
         @agency = Agency.new({
           :name => params[:agency_name],
           :administrative_contact => params[:contact_name],
@@ -45,6 +47,10 @@ class SignupController < ApplicationController
         })
 
         if @agency.save!
+
+          @signup_request.agency = @agency
+          @signup_request.save
+
           session[:new_agency_id] = @agency.id
           redirect_to signup_setup_path
         else
@@ -67,12 +73,12 @@ class SignupController < ApplicationController
 
     if session[:new_agency_id].blank?
       set_error 'Boomr has encountered an error processing your signup request'
-      #redirect_to root_path
-      #return
+      redirect_to root_path
+      return
     end
 
-    #@agency = Agency.find session[:new_agency_id]
-    @user = User.new #:agency_id => @agency.id
+    @agency = Agency.find session[:new_agency_id]
+    @user = User.new :agency_id => @agency.id
 
   end
 
@@ -87,6 +93,10 @@ class SignupController < ApplicationController
     respond_to do |format|
       if @user.save
         session.delete :new_agency_id
+
+        # Make sure the user has the appropriate role
+        @user.has_role! :agency_administrator
+        @user.has_role! :caregiver
 
         format.html { redirect_to signup_confirm_path }
         format.json { render json: @user, status: :created, location: @user }

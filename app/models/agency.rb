@@ -49,6 +49,8 @@ class Agency < ActiveRecord::Base
   has_many :agency_invoice_rows, :through => :agency_invoices
   has_many :agency_invoice_payments, :through => :agency_invoices
 
+  has_one :agency_signup_request
+
   belongs_to :location
 
   has_attached_file :logo, :styles => {
