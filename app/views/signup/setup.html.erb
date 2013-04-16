@@ -1,3 +1,10 @@
+<div class="confirm-title" xmlns="http://www.w3.org/1999/html">
+  <h1>Thank You For Signing Up</h1>
+  <h2>Please Fill Out The Info Below To Complete Your Registration </h2>
+</div>
+<div class="left">
+<h2>Primary User</h2>
+<h3>(the primary user will have access to the online dashboard)</h3>
 <%= form_for @user, :url => signup_setup_path, :method => :post do |f| %>
 
 
@@ -73,6 +80,8 @@
     </div>
 
 
-    <%= f.submit 'Continue' %>
+      <div class="submit"> <%= f.submit 'Continue' %>  </div>
 
 <% end %>
+</div>
+<div class="sign-up-image"><%= image_tag 'sign-up-img.png' %></div>
