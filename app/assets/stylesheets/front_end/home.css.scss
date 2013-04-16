@@ -59,7 +59,6 @@ body.home {
   #jumbo-outer {
     background-image: url(image_path('bg-wide.png'));
     background-repeat: no-repeat;
-    margin-left: -100px;
   }
 
   #content {
@@ -90,10 +89,7 @@ body.home {
       }
     }
     .home-devices{
-      position: relative;
-      bottom: 291px;
-      left: 190px;
-      height: 0px;
+
       img{
 
       }
@@ -122,12 +118,12 @@ body.home {
       padding-bottom: 42px;
     }
     .bottom-box {
-      width: 915px;
+
       @include styled-white-box;
       height: 185px;
       .left{
         float: left;
-        width: 500px;
+        width: 60%;
         color: #6D6E71;
         border-right: #CCC solid 1px;
         padding-right: 16px;
@@ -149,7 +145,7 @@ body.home {
 
       }
       .right{
-        width: 320px;
+        width: 30%;
         float: left;
         p{
           font-weight: normal;
@@ -179,7 +175,7 @@ body.home {
 
     }
     .row-fluid {
-      width: 915px;
+
       @include styled-white-box;
       .span3 {
         height: 235px;
