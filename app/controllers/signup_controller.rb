@@ -14,6 +14,7 @@ class SignupController < ApplicationController
 
   # POST /sign-up
   def index_submit
+    @body_class = 'sign-up index'
 
     @signup_request = AgencySignupRequest.create!({
             :agency_name => params[:agency_name],
@@ -25,7 +26,7 @@ class SignupController < ApplicationController
           })
 
     if params[:service_plan] == 'more'
-      MailerAgencySignup.deliver_new_agency_request @signup_request
+      MailerAgencySignup.new_agency_request(@signup_request).deliver
       redirect_to signup_thanks_path
     else
 
@@ -35,7 +36,7 @@ class SignupController < ApplicationController
         render :action => 'index'
 
       else
-        MailerAgencySignup.deliver_agency_free_signup @signup_request
+        MailerAgencySignup.agency_free_signup(@signup_request).deliver
         @agency = Agency.new({
           :name => params[:agency_name],
           :administrative_contact => params[:contact_name],
@@ -84,6 +85,8 @@ class SignupController < ApplicationController
 
   # POST /sign-up/setup
   def setup_submit
+    @body_class = 'sign-up setup'
+    
     @agency = Agency.find session[:new_agency_id]
     @user = User.new params[:user]
 

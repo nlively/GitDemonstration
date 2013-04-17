@@ -201,6 +201,7 @@ BoomrDashboard::Application.routes.draw do
   match 'terms' => 'home#terms'
   match 'about' => 'home#about'
   match 'faq' => 'home#faq'
+  match 'apps' => 'home#apps'
 
   # PUBLIC WEBSITE SIGNUP WORKFLOW
   get "sign-up" => 'signup#index', :as => :signup

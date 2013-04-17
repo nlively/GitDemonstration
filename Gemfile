@@ -6,8 +6,7 @@ gem 'json', '1.7.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
-gem 'sqlite3'
+gem 'mysql2'
 
 gem 'rest-client'
 
