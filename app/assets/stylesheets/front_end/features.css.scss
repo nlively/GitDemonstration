@@ -98,9 +98,14 @@ body.features {
       }
       .five{
         border: none;
+
         .para{
           width: 435px;
           margin-top: 45px;
+          .row-image {
+            float: left;
+            width: 552px;
+          }
           .accepted-pay {
 
             float: left;
@@ -109,8 +114,7 @@ body.features {
           }
         }
         img {
-          margin-top: -28px;
-          margin-right: -60px;
+          margin-top: -25px;
         }
       }
 
