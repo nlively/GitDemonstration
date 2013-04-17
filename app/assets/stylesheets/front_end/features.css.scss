@@ -43,6 +43,10 @@ body.features {
       }
     }
     #features-main {
+      width: 960px;
+      margin: 0 auto;
+      padding-left: 35px;
+      padding-right: 35px;
       .row{
         border-bottom: #CCC solid 1px;
         h3 {
@@ -98,14 +102,14 @@ body.features {
       }
       .five{
         border: none;
-
+        .row-image {
+          float: left;
+          width: 552px;
+        }
         .para{
-          width: 435px;
-          margin-top: 45px;
-          .row-image {
-            float: left;
-            width: 552px;
-          }
+          width: 376px;
+          margin-top: 44px;
+
           .accepted-pay {
 
             float: left;
