@@ -1,6 +1,7 @@
 class SignupController < ApplicationController
 
   before_filter do
+    @constrained_content = true
     #unless current_user.blank?
     #  redirect_to root_path
     #end

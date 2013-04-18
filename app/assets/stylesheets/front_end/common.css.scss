@@ -1,5 +1,14 @@
 @import 'front_end/sass';
 
+body.constrained-content {
+  #content {
+
+    width: 960px;
+    margin: 0 auto;
+
+  }
+}
+
 #page {
   margin: 0 auto;
   .nav{
@@ -58,7 +67,7 @@
 #menu {
   margin: 0 auto;
   height: 35px;
-  width: 665px;
+  width: 670px;
 
   .main-menu {
 
@@ -104,6 +113,10 @@
 #footer {
   height: 100px;
   margin-top: 39px;
+  clear: both;
+  max-width: 1200px;
+  margin: 0 auto;
+
   #footer-inner {
 
     margin: 0 auto;
@@ -139,6 +152,10 @@
   margin-top: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+
+  p {
+    padding: 5px 10px;
+  }
 }
 
 .centered-icon {
