@@ -1,5 +1,5 @@
 <% content_for :contentBottom do %>
-    <div class="inner">
+
       <hr>
 
       <!-- Example row of columns -->
@@ -12,7 +12,7 @@
         <div class="span3">
           <div class="span3icon"><%= image_tag 'laptop-icon.png' %></div>
           <h2>Management Dashboard</h2>
-          <p>Monitor your remote workforce with real-time updates sent your agency dashboard. All info collected in the field becomes organized & meaningful data.</p>
+          <p>Monitor your remote workforce with real-time updates sent to your agency dashboard. All info collected in the field becomes organized & meaningful data.</p>
         </div>
         <div class="span3">
           <div class="span3icon"><%= image_tag 'tools-icon.png' %></div>
@@ -29,7 +29,7 @@
 
       <%= render 'shared/bottom_signup' %>
 
-    </div>
+
 <% end%>
 
 <% content_for :footerInner do %>
@@ -38,6 +38,7 @@
 
 
 <div class="jumbotron">
+  <div class="inner">
   <div class="lead">
     <h3 class="lead1">Mobile Check In Technology Equipped with Clinical Tools</h3>
     <div class="lead2">
@@ -52,6 +53,7 @@
   </div>
   <div class="home-devices">
     <%= image_tag 'devices.png', :alt => 'Boomr works on Android and iOS mobile devices and on the web!' %>
+  </div>
   </div>
 
 </div>

@@ -81,6 +81,8 @@ module Api::V1
         else
           render json: {:result => false, :message => "Client's photo could not be updated"}
         end
+      else
+          render json: {:result => false, :message => 'Unknown error'}
       end
     end
 
