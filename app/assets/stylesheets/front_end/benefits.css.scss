@@ -14,8 +14,9 @@ body.benefits {
   #jumbo-outer {
     background-image: url(image_path('benefits-bg.jpg'));
     background-repeat: no-repeat;
-    margin-left: -345px;
-    padding-left: 345px;
+    background-position: center top;
+    //margin-left: -345px;
+    //padding-left: 345px;
 
   }
   #content {

@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_last_destination
 
+  before_filter do
+    @constrained_content = false
+  end
+
 
   def store_last_destination
     logger.debug "store_last_redirect_destination"

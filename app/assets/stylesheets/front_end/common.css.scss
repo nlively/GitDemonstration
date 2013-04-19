@@ -1,8 +1,18 @@
 @import 'front_end/sass';
 
+body.constrained-content {
+  #content {
+
+    width: 960px;
+    margin: 0 auto;
+
+  }
+}
+
 #page {
   margin: 0 auto;
   .nav{
+     margin-right: 25px;
     .first {
       background: #BFBFBF;
       border-radius: 7px;
@@ -58,7 +68,7 @@
 #menu {
   margin: 0 auto;
   height: 35px;
-  width: 665px;
+  width: 670px;
 
   .main-menu {
 
@@ -103,8 +113,13 @@
 
 #footer {
   height: 100px;
+  margin-top: 39px;
+  clear: both;
+  max-width: 1200px;
+  margin: 0 auto;
+
   #footer-inner {
-    padding-top: 35px;
+
     margin: 0 auto;
     li{
       list-style-type: none;
@@ -138,6 +153,10 @@
   margin-top: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
+
+  p {
+    padding: 5px 10px;
+  }
 }
 
 .centered-icon {
@@ -159,8 +178,8 @@
     width: 60%;
     color: #6D6E71;
     border-right: #CCC solid 1px;
-    padding-right: 9px;
-    margin-right: 9px;
+    padding-right: 16px;
+    margin-right: 55px;
     height: 185px;
 
     p{

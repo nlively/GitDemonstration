@@ -6,7 +6,7 @@
   <%= javascript_include_tag "front_end/application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= @body_class %>">
+<body class="<%= @body_class %> <%= (@constrained_content) ? 'constrained-content' : 'fluid-content' %>">
 
 <div id="page">
 

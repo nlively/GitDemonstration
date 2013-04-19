@@ -12,14 +12,17 @@ class HomeController < ApplicationController
 
   def about
     @body_class = "about"
+    @constrained_content = true
   end
 
   def faq
     @body_class = 'faq'
+    @constrained_content = true
   end
 
   def apps
     @body_class = 'apps'
+    @constrained_content = true
   end
 
   def features
@@ -63,10 +66,12 @@ class HomeController < ApplicationController
 
   def terms
     @body_class = "terms"
+    @constrained_content = true
   end
 
   def privacy
     @body_class = "privacy"
+    @constrained_content = true
   end
 
 end
