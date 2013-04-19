@@ -1,0 +1,235 @@
+/* line 4, ../../../app/assets/stylesheets/front_end/common.css.scss */
+body.constrained-content #content {
+  width: 960px;
+  margin: 0 auto;
+}
+
+/* line 12, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page {
+  margin: 0 auto;
+}
+/* line 14, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav {
+  margin-right: 25px;
+}
+/* line 16, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .first {
+  background: #BFBFBF;
+  border-radius: 7px;
+  border: #E0E0E0 solid 1px;
+  box-shadow: #CCC 0px 2px 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 10px;
+}
+/* line 25, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .first :hover {
+  background: #bfbfbf;
+}
+/* line 27, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .first a {
+  font-size: 1.0em;
+  color: white;
+  text-shadow: #969696 0px -1px 1px;
+  line-height: 9px;
+}
+/* line 36, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .last {
+  background: #8ed1d3;
+  border-radius: 7px;
+  border: #CCFFFF solid 1px;
+  box-shadow: #CCC 0px 2px 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+/* line 44, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .last :hover {
+  background: #8ed1d3;
+}
+/* line 48, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page .nav .last a {
+  font-size: 1.0em;
+  color: white;
+  text-shadow: #969696 0px -1px 1px;
+  line-height: 9px;
+}
+/* line 57, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page #header {
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* line 61, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#page #header #header-inner {
+  margin: 0 auto;
+  width: 960px;
+}
+
+/* line 68, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu {
+  margin: 0 auto;
+  height: 35px;
+  width: 670px;
+}
+/* line 76, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu .main-menu ul li {
+  list-style-type: none;
+  float: left;
+  padding-right: 28px;
+  margin-left: 28px;
+  border-right: #9a9c9f solid 1px;
+}
+/* line 82, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu .main-menu ul li a {
+  color: #9A9C9F;
+  font-size: 1em;
+}
+/* line 88, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#menu .main-menu ul .last {
+  border: none;
+}
+
+/* line 95, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#banner {
+  margin: 0 auto;
+}
+
+/* line 99, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#content {
+  margin: 0 auto;
+}
+
+/* line 104, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.row-fluid .inner {
+  padding-bottom: 42px;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+/* line 114, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer {
+  height: 100px;
+  margin-top: 39px;
+  clear: both;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* line 121, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer #footer-inner {
+  padding-top: 35px;
+  margin: 0 auto;
+}
+/* line 124, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer #footer-inner li {
+  list-style-type: none;
+}
+/* line 126, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer #footer-inner li a {
+  color: #8ED1D3;
+}
+/* line 132, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#footer p {
+  float: left;
+  font-family: Arial;
+  color: #B9BBBD;
+  font-size: 0.8em;
+  margin-top: 22px;
+  text-align: center;
+  margin-left: 110px;
+}
+
+/* line 145, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#content-bottom #inner {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* line 150, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.styled-white-box {
+  background: white;
+  margin-top: 50px;
+  border-radius: 7px;
+  box-shadow: #909090 0px 0px 7px;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* line 157, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.styled-white-box p {
+  padding: 5px 10px;
+}
+
+/* line 162, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.centered-icon {
+  margin: 15px auto;
+  text-align: center;
+}
+
+/* line 168, ../../../app/assets/stylesheets/front_end/common.css.scss */
+#app-links span, #app-links div {
+  padding: 10px;
+}
+
+/* line 172, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box {
+  padding-left: 25px;
+  background: white;
+  margin-top: 50px;
+  border-radius: 7px;
+  box-shadow: #909090 0px 0px 7px;
+  height: 185px;
+}
+/* line 176, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box .left {
+  float: left;
+  width: 60%;
+  color: #6D6E71;
+  border-right: #CCC solid 1px;
+  padding-right: 12px;
+  margin-right: 12px;
+  height: 185px;
+}
+/* line 185, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box .left p {
+  font-weight: normal;
+  font-family: Arial;
+}
+/* line 190, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box .left h3 {
+  color: #6D6E71;
+  line-height: 41px;
+  font-family: 'HelveticaNeue-CondensedBold';
+  font-size: 2.3em;
+  margin-top: 24px;
+}
+/* line 199, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box .right {
+  width: 30%;
+  float: left;
+}
+/* line 202, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box .right p {
+  font-weight: normal;
+  font-family: Arial;
+  font-size: 0.8em;
+  line-height: 17px;
+  color: #6D6E71;
+}
+/* line 209, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box .right .sign-up-button {
+  background-image: url("/assets/sign-up-bottom.png");
+  background-repeat: no-repeat;
+  height: 41px;
+  text-align: center;
+  width: 270px;
+  padding-top: 27px;
+  margin-top: 30px;
+}
+/* line 218, ../../../app/assets/stylesheets/front_end/common.css.scss */
+.bottom-box .right .sign-up-button a {
+  font-size: 2.6em;
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+  line-height: 9px;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+}

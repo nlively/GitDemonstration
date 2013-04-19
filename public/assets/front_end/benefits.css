@@ -1,0 +1,101 @@
+/* line 6, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #menu .third a {
+  font-weight: bold;
+}
+/* line 11, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #header {
+  background-image: url("/assets/gray-background-tile.jpg");
+}
+/* line 14, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #jumbo-outer {
+  background-image: url("/assets/benefits-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+/* line 23, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .jumbotron {
+  height: 305px;
+  text-align: center;
+  padding-top: 65px;
+  margin-left: 245px;
+}
+/* line 28, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .jumbotron h2 {
+  font-size: 2.1em;
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+  line-height: 9px;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+  margin-top: 30px;
+}
+/* line 36, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .jumbotron .lead {
+  font-size: 1.7em;
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+  line-height: 9px;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+  margin-top: 30px;
+}
+/* line 44, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .jumbotron .last {
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+}
+/* line 51, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid img {
+  float: left;
+  margin-right: 14px;
+  margin-top: -12px;
+}
+/* line 56, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid h4 {
+  margin-bottom: 35px;
+  color: #8ED1D3;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+  font-size: 1.3em;
+  margin-top: 10px;
+}
+/* line 64, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid .quote {
+  background-color: #8ED1D3;
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 7px;
+}
+/* line 69, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid .quote h4 {
+  color: white;
+  font-family: Arial;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+/* line 76, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid .quote p {
+  color: white;
+  font-style: italic;
+}
+/* line 81, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid .item {
+  height: 225px;
+  margin-bottom: 60px;
+  border-bottom: #CCC solid 1px;
+}
+/* line 86, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid p {
+  color: #58595B;
+}
+/* line 89, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content .row-fluid .last {
+  border: none;
+}
+/* line 95, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content-bottom {
+  background-image: url("/assets/gray-background-tile.jpg");
+  padding-top: 5px;
+  padding-bottom: 60px;
+}
+/* line 99, ../../../app/assets/stylesheets/front_end/benefits.css.scss */
+body.benefits #content-bottom .inner {
+  margin: 0 auto;
+}

@@ -1,0 +1,349 @@
+/* line 10, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.agency.new .form-field.expiration {
+  width: 100%;
+  overflow: auto;
+}
+/* line 21, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.upgrade h3.highlight {
+  font-size: 1.5em;
+  color: #6191f2;
+  font-weight: bold;
+}
+/* line 28, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.upgrade .title-wrapper h1.title {
+  float: left;
+  margin-right: 50px;
+}
+/* line 33, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.upgrade .title-wrapper #page-top {
+  float: left;
+  margin-top: 1.5em;
+  font-size: 1.2em;
+}
+/* line 40, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.upgrade p {
+  font-size: 1.2em;
+  line-height: 1.5em;
+  margin: 1em 0 !important;
+}
+/* line 48, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.upgrade .form-field.select {
+  width: 100%;
+  overflow: auto;
+}
+/* line 53, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.upgrade div.buttons {
+  clear: both;
+}
+/* line 57, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.upgrade div.buttons input[type="submit"] {
+  margin-right: 10px;
+}
+/* line 72, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form div.filter-fields, body.dashboard.invoices.search .title-wrapper #page-top form div.filter-fields, body.dashboard.batches.index .title-wrapper #page-top form div.filter-fields, body.dashboard.batches.search .title-wrapper #page-top form div.filter-fields {
+  width: 100%;
+  clear: both;
+  padding: 10px 0;
+}
+/* line 78, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form div.filter-fields .label, body.dashboard.invoices.search .title-wrapper #page-top form div.filter-fields .label, body.dashboard.batches.index .title-wrapper #page-top form div.filter-fields .label, body.dashboard.batches.search .title-wrapper #page-top form div.filter-fields .label {
+  font-weight: bold;
+}
+/* line 83, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form div.field, body.dashboard.invoices.search .title-wrapper #page-top form div.field, body.dashboard.batches.index .title-wrapper #page-top form div.field, body.dashboard.batches.search .title-wrapper #page-top form div.field {
+  display: none;
+  margin-right: 10px;
+}
+/* line 87, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form div.field .field, body.dashboard.invoices.search .title-wrapper #page-top form div.field .field, body.dashboard.batches.index .title-wrapper #page-top form div.field .field, body.dashboard.batches.search .title-wrapper #page-top form div.field .field {
+  display: inline-block;
+}
+/* line 91, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form div.field.selector, body.dashboard.invoices.search .title-wrapper #page-top form div.field.selector, body.dashboard.batches.index .title-wrapper #page-top form div.field.selector, body.dashboard.batches.search .title-wrapper #page-top form div.field.selector {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+/* line 96, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form div.field.selector .label, body.dashboard.invoices.search .title-wrapper #page-top form div.field.selector .label, body.dashboard.batches.index .title-wrapper #page-top form div.field.selector .label, body.dashboard.batches.search .title-wrapper #page-top form div.field.selector .label {
+  font-weight: bold;
+  padding-top: 4px;
+}
+/* line 101, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form div.field.selector .label, body.dashboard.invoices.index .title-wrapper #page-top form div.field.selector .field, body.dashboard.invoices.search .title-wrapper #page-top form div.field.selector .label, body.dashboard.invoices.search .title-wrapper #page-top form div.field.selector .field, body.dashboard.batches.index .title-wrapper #page-top form div.field.selector .label, body.dashboard.batches.index .title-wrapper #page-top form div.field.selector .field, body.dashboard.batches.search .title-wrapper #page-top form div.field.selector .label, body.dashboard.batches.search .title-wrapper #page-top form div.field.selector .field {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+/* line 110, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.invoices.index .title-wrapper #page-top form input[type="submit"], body.dashboard.invoices.search .title-wrapper #page-top form input[type="submit"], body.dashboard.batches.index .title-wrapper #page-top form input[type="submit"], body.dashboard.batches.search .title-wrapper #page-top form input[type="submit"] {
+  margin-top: 10px;
+  vertical-align: middle;
+}
+/* line 122, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #breadcrumb {
+  margin-left: 20px;
+}
+/* line 126, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard .title-wrapper {
+  width: 100%;
+  overflow: auto;
+  margin-left: 0;
+  margin-bottom: 50px;
+  border-bottom: 1px solid #d5d5d5;
+}
+/* line 133, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard .title-wrapper .title-wrapper-inner {
+  padding-bottom: 0;
+  padding-left: 20px;
+}
+/* line 139, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard .title-wrapper h1 {
+  font-weight: normal;
+  margin-right: 50px;
+  margin-top: 1.05em;
+}
+/* line 146, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top {
+  margin: 1.5em 0;
+}
+/* line 151, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top form div.field {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: auto;
+}
+/* line 163, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top form div.field input {
+  display: block;
+}
+/* line 168, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard .title-wrapper #page-top form div.field.date input {
+  display: inline-block;
+}
+/* line 183, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #page #main #content-inner {
+  margin-left: 0px;
+}
+/* line 186, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #page #main #content-inner > form {
+  margin-left: 20px;
+}
+/* line 189, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #page #main #content-inner > form .page-caption {
+  margin-left: -20px;
+}
+/* line 193, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #page #main #content-inner > form.table-form {
+  margin-left: 0;
+}
+/* line 196, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #page #main #content-inner > form.table-form .page-caption {
+  margin-left: 20px;
+}
+/* line 202, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #page #main #content-inner .page-caption {
+  margin-left: 0px;
+  background: #f7f7f7;
+  text-transform: uppercase;
+  border-top: 1px solid #eae9ea;
+  border-bottom: 1px solid #eae9ea;
+  padding: 4px 15px;
+  color: #727474;
+  font-size: 14px;
+}
+/* line 213, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard #page #main #content-inner p {
+  margin: 1em 20px;
+}
+/* line 222, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.dashboard-main.index .title-wrapper {
+  margin-bottom: 50px;
+}
+/* line 237, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar-wrapper {
+  width: 386px;
+  margin: 30px 10px 10px 20px;
+  background: #e2ecf2;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 243, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar-wrapper #calendar-inner {
+  padding: 10px;
+}
+/* line 248, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar {
+  margin: 0 auto;
+  position: relative;
+}
+/* line 254, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-datepicker {
+  border: none !important;
+  width: auto;
+  padding: 0;
+}
+/* line 260, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-widget-header {
+  background: none;
+  border: none;
+  color: #000;
+}
+/* line 268, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-datepicker-header {
+  height: 40px;
+}
+/* line 272, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-datepicker-title {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  -moz-text-stroke: 1px transparent;
+  -webkit-text-stroke: 1px transparent;
+  text-stroke: 1px transparent;
+  text-shadow: white 1px 1px 0;
+}
+/* line 279, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-datepicker-prev, body.dashboard.visits #calendar .ui-datepicker-next {
+  position: absolute;
+  top: -2px;
+  width: 27px;
+  height: 27px;
+}
+/* line 284, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-datepicker-prev span, body.dashboard.visits #calendar .ui-datepicker-next span {
+  visibility: hidden;
+}
+/* line 289, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-datepicker-prev {
+  left: 0px;
+  background: url(month-arrow-left.png) no-repeat;
+}
+/* line 294, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar .ui-datepicker-next {
+  right: 0px;
+  background: url(month-arrow-right.png) no-repeat;
+}
+/* line 299, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar th {
+  border-right: none;
+  border-left: none;
+  background-color: #eaeaea;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEAEAEA', endColorstr='#FFCACACA');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eaeaea), color-stop(80%, #eaeaea), color-stop(100%, #dadada));
+  background-image: -webkit-linear-gradient(top, #eaeaea 0%, #eaeaea 80%, #dadada 100%);
+  background-image: -moz-linear-gradient(top, #eaeaea 0%, #eaeaea 80%, #dadada 100%);
+  background-image: -o-linear-gradient(top, #eaeaea 0%, #eaeaea 80%, #dadada 100%);
+  background-image: linear-gradient(top, #eaeaea 0%, #eaeaea 80%, #dadada 100%);
+  text-align: center;
+  font-size: 1.2em;
+}
+/* line 309, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar td {
+  background-color: #f9f9f9;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF9F9F9', endColorstr='#FFEAEAEA');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(70%, #f9f9f9), color-stop(100%, #eaeaea));
+  background-image: -webkit-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: -moz-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: -o-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  border: 1px solid #d4d4d4;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow: #fff 1px 1px;
+  height: 30px;
+  position: relative;
+}
+/* line 319, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar td.current {
+  background: #6191f2 !important;
+  color: #fff;
+  -moz-box-shadow: inset 0 0 5px #336;
+  -webkit-box-shadow: inset 0 0 5px #336;
+  box-shadow: inner 0 0 3px #333366;
+}
+/* line 326, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar td.current a {
+  color: #fff;
+  text-shadow: #000 1px 1px;
+}
+/* line 333, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar td.has-visits .mini-dot {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  width: 9px;
+  height: 9px;
+  background: url(red-tiny.png) no-repeat;
+}
+/* line 343, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard.visits #calendar td a {
+  color: #727474;
+  text-decoration: none;
+}
+/* line 354, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard table thead td, body.dashboard table thead th {
+  background-color: #f9f9f9;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF9F9F9', endColorstr='#FFEAEAEA');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(70%, #f9f9f9), color-stop(100%, #eaeaea));
+  background-image: -webkit-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: -moz-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: -o-linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  background-image: linear-gradient(top, #f9f9f9 0%, #f9f9f9 70%, #eaeaea 100%);
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+}
+/* line 361, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard table tbody tr {
+  border-bottom: 1px solid #d5d5d5;
+}
+/* line 364, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard table tbody td {
+  vertical-align: middle;
+}
+/* line 368, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard table tbody td.total {
+  text-align: right;
+}
+/* line 373, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard table tfoot th, body.dashboard table tfoot td {
+  text-align: right;
+}
+/* line 380, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+body.dashboard table.batch-history tr.batch-details {
+  display: none;
+}
+
+/* line 389, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+.agency-user-count-wrapper {
+  font-size: 1.2em;
+}
+
+/* line 398, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+#credit-card-form .form-field.expiration {
+  width: 100%;
+  overflow: auto;
+}
+/* line 404, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+#credit-card-form .row {
+  width: 100%;
+  overflow: auto;
+}
+/* line 408, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+#credit-card-form .row .form-field {
+  float: left;
+  margin-right: 15px;
+}
+
+/* line 420, ../../../app/assets/stylesheets/dashboard/dashboard.css.scss */
+table#credit-cards tr.default td {
+  font-weight: bold;
+}
