@@ -9,8 +9,8 @@ background.jpg: background-a27370d60abc3e28c93fe87f15e32565.jpg
 background/index.jpg: background-a27370d60abc3e28c93fe87f15e32565.jpg
 benefits-bg.jpg: benefits-bg-6a0c15f9c32c884bffd1128261a140e1.jpg
 benefits-bg/index.jpg: benefits-bg-6a0c15f9c32c884bffd1128261a140e1.jpg
-bg-wide.png: bg-wide-c2f0125b9cb47f58c3a0cf7867db6e64.png
-bg-wide/index.png: bg-wide-c2f0125b9cb47f58c3a0cf7867db6e64.png
+bg-wide.png: bg-wide-edae76a4921cf55ce770e972c88097f4.png
+bg-wide/index.png: bg-wide-edae76a4921cf55ce770e972c88097f4.png
 bolt-icon.png: bolt-icon-4855e2f125690dc9386cc17966e873bc.png
 bolt-icon/index.png: bolt-icon-4855e2f125690dc9386cc17966e873bc.png
 button-hover.png: button-hover-6503144ab1b0326b7550500cdc0d48dd.png
@@ -127,8 +127,8 @@ plugins.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
 plugins/index.js: plugins-a2065a5ca112d00b2edf64f7f95c1ce9.js
 dashboard/application.css: dashboard/application-35d139b42302c885c6fa2fa211d9165d.css
 dashboard/application/index.css: dashboard/application-35d139b42302c885c6fa2fa211d9165d.css
-front_end/application.css: front_end/application-8733fe5c8203edc62c5ecb0169030fa4.css
-front_end/application/index.css: front_end/application-8733fe5c8203edc62c5ecb0169030fa4.css
+front_end/application.css: front_end/application-0d70a5ff5c6d96c0aea2d27b001b8b11.css
+front_end/application/index.css: front_end/application-0d70a5ff5c6d96c0aea2d27b001b8b11.css
 images/border.png: images/border-309da1cb74634cb844c9c7490b0be5c0.png
 images/border/index.png: images/border-309da1cb74634cb844c9c7490b0be5c0.png
 images/controls.png: images/controls-8398752bdf681c982e533d07fa842ee3.png
