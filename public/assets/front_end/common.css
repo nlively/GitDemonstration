@@ -99,21 +99,21 @@
 /* line 104, ../../../app/assets/stylesheets/front_end/common.css.scss */
 #footer {
   height: 100px;
-  margin-top: 39px;
 }
-/* line 107, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 106, ../../../app/assets/stylesheets/front_end/common.css.scss */
 #footer #footer-inner {
+  padding-top: 35px;
   margin: 0 auto;
 }
-/* line 110, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 109, ../../../app/assets/stylesheets/front_end/common.css.scss */
 #footer #footer-inner li {
   list-style-type: none;
 }
-/* line 112, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 111, ../../../app/assets/stylesheets/front_end/common.css.scss */
 #footer #footer-inner li a {
   color: #8ED1D3;
 }
-/* line 118, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 117, ../../../app/assets/stylesheets/front_end/common.css.scss */
 #footer p {
   float: left;
   font-family: Arial;
@@ -124,13 +124,13 @@
   margin-left: 110px;
 }
 
-/* line 131, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 130, ../../../app/assets/stylesheets/front_end/common.css.scss */
 #content-bottom #inner {
   padding-left: 30px;
   padding-right: 30px;
 }
 
-/* line 136, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 135, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .styled-white-box {
   background: white;
   margin-top: 50px;
@@ -141,18 +141,18 @@
   padding-bottom: 10px;
 }
 
-/* line 144, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 143, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .centered-icon {
   margin: 15px auto;
   text-align: center;
 }
 
-/* line 150, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 149, ../../../app/assets/stylesheets/front_end/common.css.scss */
 #app-links span, #app-links div {
   padding: 10px;
 }
 
-/* line 154, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 153, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box {
   padding-left: 25px;
   background: white;
@@ -161,22 +161,22 @@
   box-shadow: #909090 0px 0px 7px;
   height: 185px;
 }
-/* line 158, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 157, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box .left {
   float: left;
   width: 60%;
   color: #6D6E71;
   border-right: #CCC solid 1px;
-  padding-right: 16px;
-  margin-right: 55px;
+  padding-right: 9px;
+  margin-right: 9px;
   height: 185px;
 }
-/* line 167, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 166, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box .left p {
   font-weight: normal;
   font-family: Arial;
 }
-/* line 172, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 171, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box .left h3 {
   color: #6D6E71;
   line-height: 41px;
@@ -184,12 +184,12 @@
   font-size: 2.3em;
   margin-top: 24px;
 }
-/* line 181, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 180, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box .right {
   width: 30%;
   float: left;
 }
-/* line 184, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 183, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box .right p {
   font-weight: normal;
   font-family: Arial;
@@ -197,7 +197,7 @@
   line-height: 17px;
   color: #6D6E71;
 }
-/* line 191, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 190, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box .right .sign-up-button {
   background-image: url("/assets/sign-up-bottom.png");
   background-repeat: no-repeat;
@@ -207,7 +207,7 @@
   padding-top: 27px;
   margin-top: 30px;
 }
-/* line 200, ../../../app/assets/stylesheets/front_end/common.css.scss */
+/* line 199, ../../../app/assets/stylesheets/front_end/common.css.scss */
 .bottom-box .right .sign-up-button a {
   font-size: 2.6em;
   color: white;
