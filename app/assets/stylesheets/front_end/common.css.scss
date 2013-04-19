@@ -8,11 +8,31 @@ body.constrained-content {
 
   }
 }
+#jumbo-outer {
 
+}
+.jumbotron {
+  .inner {
+    max-width: 990px;
+    margin: 0 auto;
+  }
+}
 #page {
   margin: 0 auto;
+
+}
+#header {
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-width: 990px;
+  #header-inner{
+    margin: 0 auto;
+    width: 960px;
+  }
   .nav{
-     margin-right: 25px;
+    margin-right: 25px;
+    height: 11px;
     .first {
       background: #BFBFBF;
       border-radius: 7px;
@@ -54,17 +74,8 @@ body.constrained-content {
     }
 
   }
-  #header {
-    padding-left: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    #header-inner{
-      margin: 0 auto;
-      width: 960px;
-    }
-  }
-
 }
+
 #menu {
   margin: 0 auto;
   height: 35px;
@@ -104,23 +115,25 @@ body.constrained-content {
   .inner {
     padding-bottom: 42px;
     margin: 0 auto;
-    max-width: 900px;
+    width: 965px;
   }
 }
 #content-bottom {
-
+  min-width: 990px;
 }
 
 #footer {
   height: 100px;
   margin-top: 39px;
   clear: both;
-  max-width: 1200px;
+  width: 990px;
   margin: 0 auto;
 
   #footer-inner {
     padding-top: 35px;
     margin: 0 auto;
+    margin: 0 auto;
+    max-width: 990px;
     li{
       list-style-type: none;
       a{
@@ -143,8 +156,8 @@ body.constrained-content {
   }
 }
 #content-bottom #inner {
-  padding-left: 30px;
-  padding-right: 30px;
+  margin: 0 auto;
+  max-width: 990px;
 }
 
 .styled-white-box {
@@ -173,13 +186,16 @@ body.constrained-content {
   padding-left: 25px;
   @include styled-white-box;
   height: 185px;
+  width: 965px;
+  margin: 0 auto;
+  margin-top: 28px;
   .left{
     float: left;
     width: 60%;
     color: #6D6E71;
     border-right: #CCC solid 1px;
     padding-right: 12px;
-    margin-right: 12px;
+    margin-right: 42px;
     height: 185px;
 
     p{

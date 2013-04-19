@@ -24,7 +24,7 @@ body.features #content .jumbotron h2 {
   font-size: 2.1em;
   color: white;
   text-shadow: #000 0px 1px 1px;
-  line-height: 9px;
+  line-height: 25px;
   font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
   margin-top: 30px;
 }
@@ -33,7 +33,7 @@ body.features #content .jumbotron .lead {
   font-size: 1.7em;
   color: white;
   text-shadow: #000 0px 1px 1px;
-  line-height: 9px;
+  line-height: 25px;
   font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
   margin-top: 30px;
 }

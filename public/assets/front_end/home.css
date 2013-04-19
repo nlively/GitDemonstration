@@ -1,17 +1,16 @@
-/* line 6, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header {
+/* line 4, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header {
   background-color: white;
   padding-left: 50px;
   padding-top: 20px;
-  padding-bottom: 20px;
 }
-/* line 11, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header #header-inner {
+/* line 8, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header #header-inner {
   width: 960px;
   margin: 0 auto;
 }
-/* line 15, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header #header-inner .nav .first {
+/* line 12, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header #header-inner .nav .first {
   background: #BFBFBF;
   border-radius: 7px;
   border: #E0E0E0 solid 1px;
@@ -20,19 +19,19 @@ body.home #page #header #header-inner .nav .first {
   padding-right: 5px;
   margin-right: 10px;
 }
-/* line 24, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header #header-inner .nav .first :hover {
+/* line 21, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header #header-inner .nav .first :hover {
   background: #bfbfbf;
 }
-/* line 26, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header #header-inner .nav .first a {
+/* line 23, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header #header-inner .nav .first a {
   font-size: 1.0em;
   color: white;
   text-shadow: #969696 0px -1px 1px;
   line-height: 9px;
 }
-/* line 35, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header #header-inner .nav .last {
+/* line 32, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header #header-inner .nav .last {
   background: #8ed1d3;
   border-radius: 7px;
   border: #CCFFFF solid 1px;
@@ -40,12 +39,12 @@ body.home #page #header #header-inner .nav .last {
   padding-left: 5px;
   padding-right: 5px;
 }
-/* line 43, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header #header-inner .nav .last :hover {
+/* line 40, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header #header-inner .nav .last :hover {
   background: #8ed1d3;
 }
-/* line 47, ../../../app/assets/stylesheets/front_end/home.css.scss */
-body.home #page #header #header-inner .nav .last a {
+/* line 44, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #header #header-inner .nav .last a {
   font-size: 1.0em;
   color: white;
   text-shadow: #969696 0px -1px 1px;
@@ -56,40 +55,41 @@ body.home #page #jumbo-outer {
   background-image: url("/assets/bg-wide.png");
   background-repeat: no-repeat;
   background-position: center top;
+  min-width: 1100px;
 }
-/* line 66, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 67, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .jumbotron {
   height: 465px;
   margin-left: 25px;
 }
-/* line 67, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 68, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .jumbotron .inner {
-  max-width: 990px;
+  width: 990px;
   margin: 0 auto;
 }
-/* line 74, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 75, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .lead {
   float: left;
   color: white;
   text-shadow: #000 1px 1px 1px;
-  width: 20%;
+  width: 199px;
   margin-top: 30px;
 }
-/* line 80, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 81, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .lead .lead1 {
   width: 368px;
   font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
   line-height: 34px;
   position: relative;
 }
-/* line 85, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 86, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .lead .lead1 h3 {
   font-size: 1.3em;
   font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
   font-weight: normal;
   line-height: 36px;
 }
-/* line 93, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 94, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .lead .lead2 p {
   font-family: Arial;
   font-weight: normal;
@@ -98,24 +98,24 @@ body.home #page #content .lead .lead2 p {
   width: 274px;
   position: relative;
 }
-/* line 103, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 104, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .home-devices {
   float: right;
-  width: 80%;
+  width: 791px;
   margin-top: 52px;
 }
-/* line 107, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 108, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content .home-devices img {
   max-height: 440px;
   margin-bottom: -33px;
 }
-/* line 116, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 117, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content-bottom {
   background-image: url("/assets/gray-background-tile.jpg");
   margin-top: -53px;
   padding-bottom: 45px;
 }
-/* line 120, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 121, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content-bottom h2 {
   font-size: 1.1em;
   font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
@@ -124,36 +124,45 @@ body.home #page #content-bottom h2 {
   margin-top: 45px;
   text-align: center;
 }
-/* line 129, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 130, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content-bottom .row-fluid {
   margin: 0 auto;
+  width: 990px;
   background: white;
   margin-top: 50px;
   border-radius: 7px;
   box-shadow: #909090 0px 0px 7px;
 }
-/* line 132, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 131, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .row-fluid .inner {
+  width: 990px;
+}
+/* line 137, ../../../app/assets/stylesheets/front_end/home.css.scss */
+body.home #page #content-bottom .row-fluid .quarter-cell {
+  width: 25%;
+  float: left;
+}
+/* line 141, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content-bottom .row-fluid .span3 {
   height: 235px;
   margin-bottom: -8px;
-  width: 210px;
   padding-top: 32px;
-  margin-left: 8px;
+  margin-left: 21px;
 }
-/* line 138, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 146, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content-bottom .row-fluid .span3 .span3icon {
   position: relative;
   left: 84px;
   height: 41px;
   width: 56px;
 }
-/* line 144, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 152, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content-bottom .row-fluid .span3 img {
   position: absolute;
   bottom: 10px;
 }
-/* line 149, ../../../app/assets/stylesheets/front_end/home.css.scss */
+/* line 157, ../../../app/assets/stylesheets/front_end/home.css.scss */
 body.home #page #content-bottom .row-fluid .span3 p {
   color: #58595B;
-  font-size: 0.82em;
+  font-size: 1em;
 }

@@ -8,21 +8,21 @@
 </head>
 <body class="<%= @body_class %> <%= (@constrained_content) ? 'constrained-content' : 'fluid-content' %>">
 
+<div id="header">
+  <%= link_to root_path do %>
+      <%= image_tag 'logo-top.png', :alt => 'Boomr Health Care' %>
+  <% end %>
+  <%= yield :headerInner %>
+
+  <ul class="nav nav-pills pull-right" xmlns="http://www.w3.org/1999/html">
+    <li class="first"><%= link_to "Log In", new_user_session_path %></li>
+    <li class="last"><%= link_to "Sign Up", signup_path %></li>
+  </ul>
+
+
+</div>
 <div id="page">
 
-  <div id="header">
-      <%= link_to root_path do %>
-          <%= image_tag 'logo-top.png', :alt => 'Boomr Health Care' %>
-      <% end %>
-      <%= yield :headerInner %>
-
-      <ul class="nav nav-pills pull-right" xmlns="http://www.w3.org/1999/html">
-        <li class="first"><%= link_to "Log In", new_user_session_path %></li>
-        <li class="last"><%= link_to "Sign Up", signup_path %></li>
-      </ul>
-
-
-  </div>
   <div id="menu">
     <%= yield :menu %>
     <div class="main-menu">

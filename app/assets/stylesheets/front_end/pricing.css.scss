@@ -5,7 +5,9 @@ body.pricing  {
     background-image: url(image_path('gray-background-tile.jpg'));
   }
 
-
+  #content {
+    width: 990px;
+  }
   #content-bottom{
     background-image: url(image_path('gray-background-tile.jpg'));
     padding-top: 5px;
