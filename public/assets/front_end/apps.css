@@ -1,0 +1,9 @@
+/* line 5, ../../../app/assets/stylesheets/front_end/apps.css.scss */
+body.apps #app-links {
+  text-align: center;
+}
+/* line 7, ../../../app/assets/stylesheets/front_end/apps.css.scss */
+body.apps #app-links span {
+  display: inline-block;
+  margin: 50px;
+}
