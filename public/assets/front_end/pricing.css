@@ -2,31 +2,35 @@
 body.pricing #header {
   background-image: url("/assets/gray-background-tile.jpg");
 }
-/* line 9, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 8, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing #content {
+  width: 990px;
+}
+/* line 11, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing #content-bottom {
   background-image: url("/assets/gray-background-tile.jpg");
   padding-top: 5px;
   padding-bottom: 60px;
 }
-/* line 13, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 15, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing #content-bottom .inner {
   margin: 0 auto;
 }
-/* line 18, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 20, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing .pricing-main {
   text-align: center;
 }
-/* line 20, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 22, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing .pricing-main h1 {
   color: #7F7D7D;
   font-size: 2.8em;
 }
-/* line 24, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 26, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing .pricing-main p {
   color: #A5A5A5;
   font-size: 1.2em;
 }
-/* line 28, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 30, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing .pricing-main .pricing-box {
   border: #99CCCC solid 3px;
   border-radius: 7px;
@@ -40,12 +44,12 @@ body.pricing .pricing-main .pricing-box {
   margin-bottom: 80px;
   padding-top: 30px;
 }
-/* line 41, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 43, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing .pricing-main .pricing-box .ten {
   color: #7F7D7D;
   font-size: 1.8em;
 }
-/* line 50, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+/* line 52, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
 body.pricing #menu .fourth a {
   font-weight: bold;
 }
