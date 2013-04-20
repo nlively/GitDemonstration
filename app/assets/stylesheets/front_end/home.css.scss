@@ -134,15 +134,16 @@ body.home {
         margin: 0 auto;
        width: 990px;
         @include styled-white-box;
-        .quarter-cell {
-          width: 25%;
-          float: left;
-        }
+
         .span3 {
           height: 235px;
-          margin-bottom: -8px;
-          padding-top: 32px;
-          margin-left: 21px;
+
+          .span3-inner {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top:32px;
+          }
+
           .span3icon {
             position: relative;
             left: 84px;
