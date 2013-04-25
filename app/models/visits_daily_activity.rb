@@ -19,6 +19,7 @@ class VisitsDailyActivity < ActiveRecord::Base
 
   def web_service_format
     {
+      :id => agency_daily_activity.id,
       :label => agency_daily_activity.label,
       :created_at => created_at,
       :date => created_at.to_formatted_s(:mdy),

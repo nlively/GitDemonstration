@@ -19,6 +19,7 @@ class VisitsPatientStatus < ActiveRecord::Base
 
   def web_service_format
     {
+      :id => patient_status.id,
       :label => patient_status.label,
       :created_at => created_at,
       :date => created_at.to_formatted_s(:mdy),
