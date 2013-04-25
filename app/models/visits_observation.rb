@@ -21,7 +21,7 @@ class VisitsObservation < ActiveRecord::Base
 
   def web_service_format
     {
-      :id => agency_daily_activity.id,
+      :id => observation.id,
       :label => observation.label,
       :created_at => created_at,
       :date => created_at.to_formatted_s(:mdy),
