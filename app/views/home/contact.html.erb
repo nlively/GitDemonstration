@@ -1,4 +1,4 @@
-<div class="contact-title"><h1><p class="first">Contact Us</p> <p class="second">1879 Lundy Ave, #186, San Jose, CA 95131</p></h1></div>
+<div class="contact-title"><h1><p class="first">Contact Us</p> <p class="second"><%= BoomrDashboard::Application.config.boomr_phone %> // 1879 Lundy Ave, #186, San Jose, CA 95131</p></h1></div>
 
 <%= form_for @contact_submission, :url => contact_path, :method => :post do |f| %>
 

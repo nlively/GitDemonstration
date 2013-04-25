@@ -39,19 +39,19 @@ body.setup {
 
   label {
     font-size: 1em;
-    color: #A5A5A5;
+    color: $textColor;
     width: 470px;
   }
   .label {
     border: none;
     background: none;
-    color: #A5A5A5;
+    color: $textColor;
     text-shadow: none;
     float: left;
     width: 150px;
     label {
       font-size: 1.4em;
-      color: #A5A5A5;
+      color: $textColor;
 
     }
   }
@@ -102,7 +102,7 @@ body.setup {
     float: left;
     width: 500px;
     p{
-      color:#A5A5A5;
+      color:$textColor;
       font-family: 'Helvetica-Light', Arial, sans-serif;
       font-size: 1.1em;
     }
@@ -143,8 +143,8 @@ body.contact {
   }
   p.second {
     text-align: left;
-    font-size: 0.3em;
-    color: #A5A5A5;
+    font-size: 0.4em;
+    color: $textColor;
     font-family: 'Helvetica-Light', Arial, sans-serif;
     font-weight: normal;
     width: 701px;
@@ -193,7 +193,7 @@ body.thanks {
       font-size: 1.5em;
       text-align: center;
       margin-top: 25px;
-      color: #a5a5a5;
+      color: $textColor;
 
     }
     .submit {

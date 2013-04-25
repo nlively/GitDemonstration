@@ -19,6 +19,9 @@
     <li class="last"><%= link_to "Sign Up", signup_path %></li>
   </ul>
 
+  <div class="phone pull-right">
+    <%= BoomrDashboard::Application.config.boomr_phone %>
+  </div>
 
 </div>
 <div id="page">
@@ -43,7 +46,7 @@
   </div>
   <div id="jumbo-outer">
     <div id="content">
-        <%= yield %>
+      <%= yield %>
 
     </div>
   </div>
@@ -52,7 +55,7 @@
     <div id="inner">
 
 
-    <%= yield :contentBottom %>
+      <%= yield :contentBottom %>
     </div>
   </div>
 
@@ -88,14 +91,19 @@
           <div class="span3icon">
             <%= link_to root_path do %>
                 <%= image_tag 'logo-bottom.png' %>
-            <% end %></div>
+            <% end %>
+            <br>
+            <div class="phone">
+              <%= BoomrDashboard::Application.config.boomr_phone %>
+            </div>
+          </div>
 
         </div>
 
 
       </div>
     </div>
-      <p>Copyright &copy; 2013, Boomr Healthcare, Inc. All rights reserved.</p>
+    <p>Copyright &copy; 2013, Boomr Healthcare, Inc. All rights reserved.</p>
 
   </div>
 

@@ -64,6 +64,7 @@ module BoomrDashboard
 
 
     config.per_user_price = 10.00
+    config.boomr_phone = '(866) 894-3767'
     #BoomrDashboard::Application.config.per_user_price
 
 

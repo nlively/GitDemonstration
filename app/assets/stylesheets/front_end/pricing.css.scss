@@ -24,7 +24,7 @@ body.pricing  {
       font-size: 2.8em;
     }
     p{
-      color: #A5A5A5;
+      color: $textColor;
       font-size: 1.2em;
     }
     .pricing-box {
@@ -33,7 +33,7 @@ body.pricing  {
       width: 505px;
       height: 150px;
       padding: 20px;
-      color: #A5A5A5;
+      color: $textColor;
       font-size: 1.2em;
       margin: 0 auto;
       margin-top: 80px;

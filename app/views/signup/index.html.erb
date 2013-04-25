@@ -1,5 +1,11 @@
+<%
+
+   agency_3_users = params[:users] != 'more'
+
+   %>
+
 <h1>Start Using Boomr Today</h1>
-<div class="left"><h2>Sign Up Here</h2>
+<div class="left"><h2>Agency Sign Up Here</h2>
   <%= form_tag signup_path, :method => :post do %>
 
       <div class="form-field">
@@ -55,9 +61,9 @@
           <%= label_tag 'Choose Your Plan' %>
         </div>
         <div class="field">
-          <%= radio_button_tag :service_plan, '3', true, :id => 'service-plan-3' %> <%=label_tag 'service-plan-3', '3 Free Users' %>
+          <%= radio_button_tag :service_plan, '3', agency_3_users, :id => 'service-plan-3' %> <%=label_tag 'service-plan-3', '3 Free Users' %>
           <br>
-          <%= radio_button_tag :service_plan, 'more', false, :id => 'service-plan-more' %> <%=label_tag 'service-plan-more', 'More than 3 users (first 3 users are still free)' %>
+          <%= radio_button_tag :service_plan, 'more', !agency_3_users, :id => 'service-plan-more' %> <%=label_tag 'service-plan-more', 'More than 3 users (first 3 users are still free)' %>
         </div>
       </div>
 
