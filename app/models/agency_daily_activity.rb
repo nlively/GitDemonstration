@@ -14,7 +14,6 @@
 #
 
 class AgencyDailyActivity < ActiveRecord::Base
-  attr_accessible :agency_id, :original_id, :label, :weight
 
   belongs_to :agency
   belongs_to :agency_daily_activity_category

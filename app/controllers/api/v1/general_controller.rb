@@ -36,9 +36,17 @@ module Api::V1
         daily_activities_by_category[cat] << {id:a[:id],label:a[:label]}
       end
 
-      {
+      daily_activities_sorted = []
+      daily_activities_by_category.each do |k,v|
+        daily_activities_sorted << {
+          category: k,
+          data: v
+        }
+      end
+
+      render json: {
         client_statuses: client_statuses,
-        daily_activities: daily_activities_by_category,
+        daily_activities: daily_activities_sorted,
         observations: observations
       }
 
