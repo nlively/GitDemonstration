@@ -19,4 +19,8 @@ class AgencyDailyActivity < ActiveRecord::Base
   belongs_to :agency
   belongs_to :agency_daily_activity_category
 
+  def category_label
+    (agency_daily_activity_category.blank?) ? 'Other' : agency_daily_activity_category.label
+  end
+
 end

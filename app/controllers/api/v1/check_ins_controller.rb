@@ -5,6 +5,7 @@ module Api::V1
     respond_to :json
 
 
+
     # POST /api/v1/check_ins
     def create
 

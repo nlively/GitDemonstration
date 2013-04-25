@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416002357) do
+ActiveRecord::Schema.define(:version => 20130425170816) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -129,6 +129,15 @@ ActiveRecord::Schema.define(:version => 20130416002357) do
     t.integer  "agency_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "app_keep_alives", :force => true do |t|
+    t.string   "operating_system"
+    t.integer  "visit_id"
+    t.string   "app_version"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "care_recipients", :force => true do |t|
@@ -439,6 +448,7 @@ ActiveRecord::Schema.define(:version => 20130416002357) do
     t.decimal  "adjustments",                 :precision => 11, :scale => 2, :default => 0.0
     t.integer  "temp_payroll_line_item_id"
     t.boolean  "auto_checked_out",                                           :default => false
+    t.datetime "last_keepalive_ping"
   end
 
   create_table "visits_caregiver_tasks", :force => true do |t|

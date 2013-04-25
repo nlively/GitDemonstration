@@ -32,9 +32,14 @@ BoomrDashboard::Application.routes.draw do
       end
 
       namespace :general do
+        # deprecated pages as of app release 1.1.4
         get 'client_statuses'
         get 'daily_activities'
         get 'observations'
+
+        # current pages
+        get 'list_data'
+        post 'keepalive'
       end
 
       post 'account' => 'account#update'
