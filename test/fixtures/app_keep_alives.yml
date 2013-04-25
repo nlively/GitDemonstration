@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  operating_system: MyString
+  visit_id: 1
+  app_version: MyString
+  user_id: 1
+
+two:
+  operating_system: MyString
+  visit_id: 1
+  app_version: MyString
+  user_id: 1
