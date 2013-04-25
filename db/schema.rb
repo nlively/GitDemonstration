@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425170816) do
+ActiveRecord::Schema.define(:version => 20130425201109) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -449,6 +449,7 @@ ActiveRecord::Schema.define(:version => 20130425170816) do
     t.integer  "temp_payroll_line_item_id"
     t.boolean  "auto_checked_out",                                           :default => false
     t.datetime "last_keepalive_ping"
+    t.boolean  "auto_expired",                                               :default => false
   end
 
   create_table "visits_caregiver_tasks", :force => true do |t|

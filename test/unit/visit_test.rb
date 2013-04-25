@@ -25,6 +25,8 @@
 #  adjustments                 :decimal(11, 2)   default(0.0)
 #  temp_payroll_line_item_id   :integer
 #  auto_checked_out            :boolean          default(FALSE)
+#  last_keepalive_ping         :datetime
+#  auto_expired                :boolean          default(FALSE)
 #
 
 require 'test_helper'

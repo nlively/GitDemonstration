@@ -6,6 +6,14 @@
 
 class CronController < ApplicationController
 
+  def close_dead_visits
+    Visit.dead_visits.each do |v|
+      v.out_time = DateTime.current
+      v.auto_expired = true
+      v.save
+    end
+  end
+
   def generate_invoices
     Agency.needing_invoice_generation.each do |agency|
       begin

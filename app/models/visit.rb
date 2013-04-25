@@ -25,6 +25,8 @@
 #  adjustments                 :decimal(11, 2)   default(0.0)
 #  temp_payroll_line_item_id   :integer
 #  auto_checked_out            :boolean          default(FALSE)
+#  last_keepalive_ping         :datetime
+#  auto_expired                :boolean          default(FALSE)
 #
 
 class Visit < ActiveRecord::Base
@@ -323,6 +325,11 @@ class Visit < ActiveRecord::Base
     hash[:observations] = self.visits_observations.map {|d| d.web_service_format }
 
     hash
+  end
+
+
+  def self.dead_visits
+    Visit.where('out_time IS NULL AND last_keepalive_ping <= ?', DateTime.current - 3.hours)
   end
 
 

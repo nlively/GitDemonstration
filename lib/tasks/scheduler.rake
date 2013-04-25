@@ -5,3 +5,9 @@ task :daily => :environment do
   CronJobs::DailyCronJob.run
   puts "done running daily tasks."
 end
+
+task :hourly => :environment do
+  puts "Running hourly tasks..."
+    CronJobs::HourlyCronJob.run
+    puts "done running hourly tasks."
+end
