@@ -3,6 +3,8 @@ BoomrDashboard::Application.routes.draw do
 
 
 
+  devise_for :care_recipients
+
   # SUPERUSER ADMIN PAGES
   match 'admin2' => 'admin2#index'
   namespace :admin2 do
@@ -17,6 +19,14 @@ BoomrDashboard::Application.routes.draw do
 
   # WEB SERVICE API
   namespace :api do
+
+    namespace :inhome do
+      namespace :v1 do
+        get 'employees'
+      end
+    end
+
+
     namespace :v1 do
       resources :photos, :only => :show
       resources :visits, :only => :show

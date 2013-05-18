@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425201109) do
+ActiveRecord::Schema.define(:version => 20130518051428) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "agency_id"
@@ -159,7 +159,20 @@ ActiveRecord::Schema.define(:version => 20130425201109) do
     t.string   "sms"
     t.boolean  "is_company",                                                :default => false
     t.string   "company_name"
+    t.string   "email"
+    t.string   "encrypted_password",                                        :default => "",    :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                                             :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "care_recipients", ["email"], :name => "index_care_recipients_on_email", :unique => true
+  add_index "care_recipients", ["reset_password_token"], :name => "index_care_recipients_on_reset_password_token", :unique => true
 
   create_table "care_recipients_locations", :force => true do |t|
     t.integer  "care_recipient_id"
@@ -413,6 +426,7 @@ ActiveRecord::Schema.define(:version => 20130425201109) do
     t.integer  "location_id"
     t.string   "original_email"
     t.boolean  "auto_check_out",                                            :default => true
+    t.integer  "mapped_client_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

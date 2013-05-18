@@ -69,6 +69,8 @@ class User < ActiveRecord::Base
   belongs_to :agency
   belongs_to :location
 
+  belongs_to :mapped_client, :class_name => 'CareRecipient'
+
   has_many :work_breaks
   has_many :work_break_check_ins
 

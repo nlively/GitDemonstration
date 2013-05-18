@@ -24,6 +24,14 @@
 #
 
 class CareRecipient < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   include ActionView::Helpers::NumberHelper
   include ResourcesHelper
 
@@ -36,6 +44,8 @@ class CareRecipient < ActiveRecord::Base
   has_many :photos
   has_many :notes
   has_many :visits
+
+  has_one :mapped_user, :class_name => 'User', :foreign_key => :mapped_client_id
 
   belongs_to :agency
   belongs_to :default_location, :class_name => 'Location', :foreign_key => :default_location_id
