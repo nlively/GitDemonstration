@@ -20,11 +20,11 @@ BoomrDashboard::Application.routes.draw do
   # WEB SERVICE API
   namespace :api do
 
-    namespace :inhome do
-      namespace :v1 do
-        get 'employees'
-      end
-    end
+    #namespace :inhome do
+    #  namespace :v1 do
+    #    get 'employees'
+    #  end
+    #end
 
 
     namespace :v1 do
