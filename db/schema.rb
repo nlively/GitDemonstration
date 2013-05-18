@@ -175,13 +175,6 @@ ActiveRecord::Schema.define(:version => 20130425201109) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "caregiver_tasks", :force => true do |t|
-    t.string   "label"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "weight",     :default => 0
-  end
-
   create_table "check_ins", :force => true do |t|
     t.integer  "user_id"
     t.decimal  "latitude",   :precision => 11, :scale => 8
@@ -450,13 +443,6 @@ ActiveRecord::Schema.define(:version => 20130425201109) do
     t.boolean  "auto_checked_out",                                           :default => false
     t.datetime "last_keepalive_ping"
     t.boolean  "auto_expired",                                               :default => false
-  end
-
-  create_table "visits_caregiver_tasks", :force => true do |t|
-    t.integer  "visit_id"
-    t.integer  "caregiver_task_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
   end
 
   create_table "visits_daily_activities", :force => true do |t|
