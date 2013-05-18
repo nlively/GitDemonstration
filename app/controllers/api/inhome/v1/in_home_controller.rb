@@ -8,7 +8,6 @@ module Api::InHome::V1
 
 
 
-
     # GET /api/v1/in-home/open-visits
     def visits
       sort_string = sort_string_from_params

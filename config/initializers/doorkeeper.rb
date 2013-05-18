@@ -1,10 +1,18 @@
 Doorkeeper.configure do
 
   resource_owner_authenticator do |routes|
+
+    Rails.logger.debug routes.inspect
+    Rails.logger.debug 'hello world 2'
+
     current_user || warden.authenticate!(:scope => :user)
   end
 
   resource_owner_from_credentials do |routes|
+
+    Rails.logger.debug routes.inspect
+    Rails.logger.debug 'hello world'
+
     result = User.authenticate!(params[:username], params[:password])
   end
 
@@ -29,6 +37,6 @@ Doorkeeper.configure do
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
   default_scopes  :public
-  optional_scopes :write, :update
+  optional_scopes :client, :employee
 
 end
