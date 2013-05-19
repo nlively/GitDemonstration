@@ -1,8 +1,8 @@
-module Api::InHome::V1
+module Api::V1
   class InHomeController < ApiController
     include ResourcesHelper
 
-    doorkeeper_for :all
+    doorkeeper_for :all, :scopes => [:client]
     respond_to :json
 
 
@@ -27,6 +27,13 @@ module Api::InHome::V1
     end
 
 
+
+    # GET /api/in_home/v1/employees
+    def employees
+
+      render json: current_resource_owner.users
+
+    end
 
 
   end

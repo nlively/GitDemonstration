@@ -2,30 +2,47 @@ Doorkeeper.configure do
 
   resource_owner_authenticator do |routes|
 
-    Rails.logger.debug routes.inspect
     Rails.logger.debug 'hello world 2'
 
-    current_user || warden.authenticate!(:scope => :user)
+    case params[:user_type]
+      when 'care_recipient'
+        current_care_recipient || warden.authenticate!(:scope => :care_recipient)
+      else
+        current_user || warden.authenticate!(:scope => :user)
+    end
+
   end
 
   resource_owner_from_credentials do |routes|
 
-    Rails.logger.debug routes.inspect
     Rails.logger.debug 'hello world'
+    Rails.logger.debug params.inspect
 
-    result = User.authenticate!(params[:username], params[:password])
+    case params[:user_type]
+      when 'care_recipient'
+        result = CareRecipient.authenticate!(params[:username], params[:password])
+      else
+        result = User.authenticate!(params[:username], params[:password])
+    end
+
+    Rails.logger.debug result.inspect
+
+    result
   end
 
   # If you want to restrict the access to the web interface for
   # adding oauth authorized applications you need to declare the
   # block below
-  # admin_authenticator do |routes|
-  #   # Put your admin authentication logic here.
-  #   # If you want to use named routes from your app you need
-  #   # to call them on routes object eg.
-  #   # routes.new_admin_session_path
-  #   Admin.find_by_id(session[:admin_id]) || redirect_to(routes.new_admin_session_url)
-  # end
+  admin_authenticator do |routes|
+    # Put your admin authentication logic here.
+    # If you want to use named routes from your app you need
+    # to call them on routes object eg.
+    # routes.new_admin_session_path
+    u = authenticate_user!
+    unless u.has_role? :administrator
+      head :unauthorized
+    end
+  end
 
   # Access token expiration time (default 2 hours).
   # If you want to disable expiration, set this to nil.

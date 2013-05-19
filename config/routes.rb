@@ -3,7 +3,6 @@ BoomrDashboard::Application.routes.draw do
 
 
 
-  devise_for :care_recipients
 
   # SUPERUSER ADMIN PAGES
   match 'admin2' => 'admin2#index'
@@ -20,11 +19,6 @@ BoomrDashboard::Application.routes.draw do
   # WEB SERVICE API
   namespace :api do
 
-    namespace :inhome do
-      namespace :v1 do
-        get 'employees'
-      end
-    end
 
 
     namespace :v1 do
@@ -33,6 +27,11 @@ BoomrDashboard::Application.routes.draw do
       resources :account, :only => [:index]
       resources :check_ins, :only => [:create]
       resources :work_breaks, :only => [:create]
+
+      namespace :in_home do
+        get 'employees'
+        get 'visits'
+      end
 
       namespace :session do
         post 'photo'
@@ -200,6 +199,7 @@ BoomrDashboard::Application.routes.draw do
 
   # SIGN IN AND REGISTRATION PAGES
   devise_for :users
+  devise_for :care_recipients
 
   # OAUTH STUFF
   post "oauth/token", :to => "tokens#create"

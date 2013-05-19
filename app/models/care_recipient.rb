@@ -59,9 +59,23 @@ class CareRecipient < ActiveRecord::Base
   before_save :process_location
 
   has_attached_file :profile_photo, :styles => {
-    :profile => "93x93>",
-    :tiny => "50x50>"
+      :profile => "93x93>",
+      :tiny => "50x50>"
   }
+
+  def self.authenticate!(email, password)
+    return nil if email.blank? || password.blank?
+
+    if (care_recipient = CareRecipient.find_by_email(email))
+      return care_recipient if care_recipient.valid_password?(password)
+    end
+
+    nil
+  end
+
+  def active_for_authentication?
+    self.is_active? and not self.deleted?
+  end
 
   def default_bill_rate_formatted
     number_to_currency( default_bill_rate, :unit => "$", :precision => 2 )
@@ -90,16 +104,16 @@ class CareRecipient < ActiveRecord::Base
     location = first_location if location.nil?
 
     hash = {
-      :first_name => first_name,
-      :last_name => last_name,
-      :company_name => company_name,
-      :full_name => full_name,
-      :full_name_last_first =>full_name_last_first,
-      :photo_url => full_url(url_base, profile_photo.url(:profile)),
-      :phone => phone,
-      :sms => sms,
-      :id => id,
-      :dob => dob
+        :first_name => first_name,
+        :last_name => last_name,
+        :company_name => company_name,
+        :full_name => full_name,
+        :full_name_last_first =>full_name_last_first,
+        :photo_url => full_url(url_base, profile_photo.url(:profile)),
+        :phone => phone,
+        :sms => sms,
+        :id => id,
+        :dob => dob
     }
 
     unless location.nil?
