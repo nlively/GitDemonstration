@@ -3,9 +3,11 @@ module Api::V1
 
     def current_resource_owner
       if doorkeeper_token
-        logger.debug sprintf('Current user id for api request: %d', doorkeeper_token.resource_owner_id)
-        User.find(doorkeeper_token.resource_owner_id)
-
+        if doorkeeper_token.scopes.exists? :client
+          CareRecipient.find doorkeeper_token.resource_owner_id
+        else
+          User.find doorkeeper_token.resource_owner_id
+        end
       end
     end
 

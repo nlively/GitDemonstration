@@ -1,11 +1,33 @@
 Doorkeeper.configure do
 
   resource_owner_authenticator do |routes|
-    current_user || warden.authenticate!(:scope => :user)
+
+    Rails.logger.debug 'hello world 2'
+
+    case params[:user_type]
+      when 'care_recipient'
+        current_care_recipient || warden.authenticate!(:scope => :care_recipient)
+      else
+        current_user || warden.authenticate!(:scope => :user)
+    end
+
   end
 
   resource_owner_from_credentials do |routes|
-    result = User.authenticate!(params[:username], params[:password])
+
+    Rails.logger.debug 'hello world'
+    Rails.logger.debug params.inspect
+
+    case params[:user_type]
+      when 'care_recipient'
+        result = CareRecipient.authenticate!(params[:username], params[:password])
+      else
+        result = User.authenticate!(params[:username], params[:password])
+    end
+
+    Rails.logger.debug result.inspect
+
+    result
   end
 
   # If you want to restrict the access to the web interface for
@@ -32,6 +54,6 @@ Doorkeeper.configure do
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
   default_scopes  :public
-  optional_scopes :write, :update
+  optional_scopes :client, :employee
 
 end
