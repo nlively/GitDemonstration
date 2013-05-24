@@ -58,12 +58,12 @@ class CareRecipient < ActiveRecord::Base
 
   before_save :process_location
 
-  before_create do
-    if email.blank?
-      email = 'client' +  UUID.generate + '@boomr.com'
-      password = 'Dnk7VbcQqb35wGr'
-    end
-  end
+  #before_create do
+  #  if email.blank?
+  #    email = 'client' +  UUID.generate + '@boomr.com'
+  #    password = 'Dnk7VbcQqb35wGr'
+  #  end
+  #end
 
   has_attached_file :profile_photo, :styles => {
       :profile => "93x93>",
