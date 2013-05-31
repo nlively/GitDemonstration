@@ -31,7 +31,7 @@ class CareRecipient < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  #attr_accessible :email, :password, :password_confirmation, :remember_me
   include ActionView::Helpers::NumberHelper
   include ResourcesHelper
 
@@ -57,6 +57,13 @@ class CareRecipient < ActiveRecord::Base
   has_many :users, :through => :care_recipients_users
 
   before_save :process_location
+
+  #before_create do
+  #  if email.blank?
+  #    email = 'client' +  UUID.generate + '@boomr.com'
+  #    password = 'Dnk7VbcQqb35wGr'
+  #  end
+  #end
 
   has_attached_file :profile_photo, :styles => {
       :profile => "93x93>",

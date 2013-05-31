@@ -258,7 +258,7 @@ table.visits-week-summary {
 
       div.count {
         display: block;
-        background: url(red-sm.png) no-repeat;
+        background: url(image_path('red-sm.png')) no-repeat;
         color: #fff;
         width: 17px;
         height: 17px;
@@ -311,7 +311,7 @@ table.visits-week-summary {
       }
 
       td.label {
-        background: url(checkbox.png) no-repeat left top;
+        background: url(image_path('checkbox.png')) no-repeat left top;
         padding-left: 25px;
         min-width:200px;
       }

@@ -19,6 +19,8 @@ BoomrDashboard::Application.routes.draw do
   # WEB SERVICE API
   namespace :api do
 
+
+
     namespace :v1 do
       resources :photos, :only => :show
       resources :visits, :only => :show

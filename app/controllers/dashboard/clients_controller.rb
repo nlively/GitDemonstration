@@ -5,7 +5,7 @@ module Dashboard
 
     def prep_data
       @care_recipient = CareRecipient.find params[:id]  unless params[:id].blank?
-            @location = (@care_recipient.nil? or @care_recipient.default_location.nil?) ? Location.new : @care_recipient.default_location
+      @location = (@care_recipient.nil? or @care_recipient.default_location.nil?) ? Location.new : @care_recipient.default_location
     end
 
     def index
@@ -83,12 +83,14 @@ module Dashboard
         end
       end
 
+      @care_recipient.email = 'client' +  UUID.generate + '@boomr.com'
+      @care_recipient.password = 'Dnk7VbcQqb35wGr'
+
       respond_to do |format|
         if @care_recipient.save && location_result
           format.html { redirect_to redirect_destination(dashboard_client_path(@care_recipient)), notice: 'Client was successfully created.' }
           format.json { render json: @care_recipient, status: :created, location: @care_recipient }
         else
-          #errors = @care_recipient.errors + @location.errors
 
           format.html { render action: "new" }
           format.json { render json: @care_recipient.errors, status: :unprocessable_entity }

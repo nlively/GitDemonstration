@@ -115,18 +115,16 @@ form {
   .text {
     font-size: 12px;
     color: $bodyText;
-    //text-shadow: 0 1px 2px white;
 
     float: left;
 
     @include bold-font;
 
-    //text-shadow: 0 1px 2px white;
     margin: 0;
     padding-right: 26px;
     height: 30px;
     overflow: hidden;
-    background: transparent url(dd-select.png) no-repeat right -26px;
+    background: transparent url(image_path('dd-select.png')) no-repeat right -26px;
     position:relative;
     top: -1px;
 
@@ -136,13 +134,13 @@ form {
       margin: 6px 0 0 10px;
       width: 16px;
       height: 16px;
-      background: transparent url(loading.gif) no-repeat center center;
+      background: transparent url(image_path('loading.gif')) no-repeat center center;
     }
 
     span {
       margin: 1px 0 0 0;
       padding: 6px 0 0 10px;
-      background: transparent url(dd-select.png) no-repeat left top;
+      background: transparent url(image_path('dd-select.png')) no-repeat left top;
       display:block;
       height: 30px;
       color: $bodyText;
