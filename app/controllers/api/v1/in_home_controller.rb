@@ -7,22 +7,22 @@ module Api::V1
 
 
 
-    # GET /api/v1/in-home/open-visits
+    # GET /api/v1/in_home/visits
     def visits
-      sort_string = sort_string_from_params
-      limit= (params[:limit].blank?) ? 5 :params[:limit]
 
-      @client = CareRecipient.find params[:id]
-      if @client.users.include? current_resource_owner
-        if filter_by_my_own
-          @visits = @client.visits.where(:user_id => current_resource_owner.id).limit(limit).order(sort_string)
-        else
-          @visits = @client.visits.limit(5).order(sort_string)
-        end
+      #employees = current_resource_owner.users
+      visits = current_resource_owner.open_visits
 
-        render json: @visits.map {|m| m.web_service_format_deep(root_url)}
+      @open_visits_by_employee = {}
+
+      visits.each do |v|
+
+        @open_visits_by_employee[v.user_id] = v.web_service_format(root_url)
 
       end
+
+      render json: @open_visits_by_employee
+
     end
 
 

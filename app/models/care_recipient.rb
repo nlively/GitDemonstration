@@ -136,6 +136,10 @@ class CareRecipient < ActiveRecord::Base
 
   end
 
+  def open_visits
+    visits.where 'out_time IS NULL'
+  end
+
   def completed_visits
     visits.where 'out_time IS NOT NULL'
   end
