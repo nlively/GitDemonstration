@@ -30,7 +30,7 @@ module Api::V1
     # GET /api/in_home/v1/employees
     def employees
 
-      render json: current_resource_owner.users
+      render json: current_resource_owner.users.map {|u| u.web_service_format(root_url) }
 
     end
 

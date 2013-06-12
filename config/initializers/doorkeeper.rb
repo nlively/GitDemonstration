@@ -2,9 +2,11 @@ Doorkeeper.configure do
 
   resource_owner_authenticator do |routes|
 
+    Rails.logger.debug 'this is a test!'
+
     case params[:user_type]
       when 'care_recipient'
-        current_care_recipient || warden.authenticate!(:scope => :care_recipient)
+        current_care_recipient || warden.authenticate!(:scope => :client)
       else
         current_user || warden.authenticate!(:scope => :user)
     end

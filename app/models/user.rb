@@ -132,6 +132,7 @@ class User < ActiveRecord::Base
     hash = {
       :id => id,
       :full_name => full_name,
+      :full_name_last_first => full_name_last_first,
       :first_name => first_name,
       :last_name => last_name,
       :middle_name => middle_name,
