@@ -54,10 +54,11 @@ class Agency < ActiveRecord::Base
   belongs_to :location
 
   has_attached_file :logo, :styles => {
-    :profile => "93x93>",
-    :search_result => "45x45>",
-    :shift_preview => "25x25>",
-    :tiny => "50x50>"
+      :letterhead => '500x150>',
+      :profile => "93x93>",
+      :search_result => "45x45>",
+      :shift_preview => "25x25>",
+      :tiny => "50x50>"
   }
 
 
@@ -86,10 +87,10 @@ class Agency < ActiveRecord::Base
 
       unless name.blank? or email.blank?
         result = Braintree::Customer.create(
-          :company => self.name,
-          :email => self.email,
-          :website => self.website,
-          :phone => self.phone
+            :company => self.name,
+            :email => self.email,
+            :website => self.website,
+            :phone => self.phone
         )
 
         if result.success?
@@ -231,7 +232,7 @@ class Agency < ActiveRecord::Base
     query_sql = query + joins.join(' ') + ' WHERE ' + where_str + ' ORDER BY id DESC'
 
     ids = ActiveRecord::Base.connection.select_all(
-      ActiveRecord::Base.send("sanitize_sql_array", [query_sql, self.id, 'temporary', *params] )
+        ActiveRecord::Base.send("sanitize_sql_array", [query_sql, self.id, 'temporary', *params] )
     )
 
 

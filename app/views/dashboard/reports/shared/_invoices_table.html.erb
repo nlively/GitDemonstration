@@ -21,7 +21,11 @@
             <td><%= invoice.total_hours_string %></td>
             <td><%= invoice.total_amount_formatted %></td>
             <td><%= select_tag :status, options_from_collection_for_select(invoice_statuses, :first, :last, invoice.status), 'data-id' => invoice.id %></td>
-            <td><%=  link_to 'Re-export', dashboard_reports_billing_export_invoice_path(invoice) %></td>
+            <td>
+              <%=  link_to 'Print invoice', dashboard_reports_billing_invoice_view_path(invoice, :format => :pdf), :target => '_blank' %>
+              &nbsp;|&nbsp;
+              <%=  link_to 'Re-export', dashboard_reports_billing_export_invoice_path(invoice) %>
+            </td>
           </tr>
       <% end %>
       </tbody>

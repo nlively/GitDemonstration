@@ -5,17 +5,6 @@ GIT
     wkhtmltopdf-heroku (0.2.0)
 
 GIT
-  remote: git://github.com/thoughtbot/paperclip.git
-  revision: bc0758cae3316d45c63e3f94a0244150e33957dc
-  specs:
-    paperclip (3.4.2)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.0)
-      mime-types
-
-GIT
   remote: https://github.com/prawnpdf/prawn.git
   revision: 8028ca0cd2aae8c72df9fc4bf16388948423bcb2
   specs:
@@ -162,6 +151,11 @@ GEM
       multi_xml (~> 0.5)
       rack (~> 1.2)
     orm_adapter (0.4.0)
+    paperclip (2.4.5)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     pdf-reader (1.3.3)
       Ascii85 (~> 1.0.0)
       afm (~> 0.2.0)
@@ -287,7 +281,7 @@ DEPENDENCIES
   json (= 1.7.7)
   mysql2
   oauth2
-  paperclip!
+  paperclip (~> 2.4.5)
   prawn!
   pusher
   rails (= 3.2.11)

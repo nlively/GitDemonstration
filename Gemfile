@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-#ruby '1.9.2'
+ruby '1.9.2'
 
 gem 'rails', '3.2.11'
 gem 'json', '1.7.7'
@@ -45,7 +45,7 @@ gem 'airbrake'
 
 gem 'pusher'
 
-gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", "~> 2.4.5"
 gem 'aws-sdk'
 
 gem "geokit-rails3"
