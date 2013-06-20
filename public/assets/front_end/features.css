@@ -1,0 +1,199 @@
+/* line 4, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features .main-menu .second a {
+  font-weight: bold;
+}
+/* line 9, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #header {
+  background-image: url("/assets/gray-background-tile.jpg");
+}
+/* line 12, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #jumbo-outer {
+  background-image: url("/assets/features-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+/* line 21, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content .jumbotron {
+  height: 350px;
+  text-align: center;
+  padding-top: 65px;
+  margin-left: 245px;
+}
+/* line 26, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content .jumbotron h2 {
+  font-size: 2.1em;
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+  line-height: 25px;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+  margin-top: 30px;
+}
+/* line 34, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content .jumbotron .lead {
+  font-size: 1.7em;
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+  line-height: 25px;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+  margin-top: 30px;
+}
+/* line 42, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content .jumbotron .last {
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+}
+/* line 47, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main {
+  width: 960px;
+  margin: 0 auto;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+/* line 52, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .row {
+  border-bottom: #CCC solid 1px;
+}
+/* line 54, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .row h3 {
+  color: #8ED1D3;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+  font-size: 1.3em;
+}
+/* line 65, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .odd .para {
+  float: left;
+  width: 450px;
+}
+/* line 69, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .odd img {
+  float: right;
+}
+/* line 75, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .even .para {
+  float: right;
+  width: 450px;
+}
+/* line 79, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .even img {
+  float: left;
+}
+/* line 82, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .one .para {
+  width: 465px;
+}
+/* line 85, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .one img {
+  margin-top: -53px;
+}
+/* line 89, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .two .para {
+  margin-top: 35px;
+}
+/* line 94, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .three .para {
+  width: 450px;
+  float: left;
+  margin-top: 35px;
+}
+/* line 101, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .four .para {
+  margin-top: 45px;
+}
+/* line 105, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .five {
+  border: none;
+}
+/* line 107, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .five .row-image {
+  float: left;
+  width: 552px;
+}
+/* line 111, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .five .para {
+  width: 376px;
+  margin-top: 44px;
+}
+/* line 115, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .five .para .accepted-pay {
+  float: left;
+  margin-top: 29px;
+  margin-left: -60px;
+}
+/* line 122, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content #features-main .five img {
+  margin-top: -25px;
+}
+/* line 132, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom {
+  background-image: url("/assets/gray-background-tile.jpg");
+  padding-top: 5px;
+  padding-bottom: 60px;
+}
+/* line 136, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .inner {
+  width: 960px;
+  margin: 0 auto;
+}
+/* line 140, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box {
+  width: 915px;
+  background: white;
+  margin-top: 50px;
+  border-radius: 7px;
+  box-shadow: #909090 0px 0px 7px;
+  height: 185px;
+}
+/* line 145, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box .left {
+  float: left;
+  width: 500px;
+  color: #6D6E71;
+  border-right: #CCC solid 1px;
+  padding-right: 16px;
+  margin-right: 55px;
+  height: 185px;
+}
+/* line 154, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box .left p {
+  font-weight: normal;
+  font-family: Arial;
+}
+/* line 159, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box .left h3 {
+  color: #6D6E71;
+  line-height: 41px;
+  font-family: 'HelveticaNeue-CondensedBold';
+  font-size: 2.3em;
+  margin-top: 24px;
+}
+/* line 168, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box .right {
+  width: 320px;
+  float: left;
+}
+/* line 171, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box .right p {
+  font-weight: normal;
+  font-family: Arial;
+  font-size: 0.8em;
+  line-height: 17px;
+  color: #6D6E71;
+}
+/* line 178, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box .right .sign-up-button {
+  background-image: url("/assets/sign-up-bottom.png");
+  background-repeat: no-repeat;
+  height: 41px;
+  text-align: center;
+  width: 270px;
+  padding-top: 27px;
+  margin-top: 30px;
+}
+/* line 187, ../../../app/assets/stylesheets/front_end/features.css.scss */
+body.features #content-bottom .bottom-box .right .sign-up-button a {
+  font-size: 2.6em;
+  color: white;
+  text-shadow: #000 0px 1px 1px;
+  line-height: 9px;
+  font-family: 'HelveticaNeue-CondensedBold', Arial, sans-serif;
+}

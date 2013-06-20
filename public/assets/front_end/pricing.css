@@ -1,0 +1,55 @@
+/* line 4, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing #header {
+  background-image: url("/assets/gray-background-tile.jpg");
+}
+/* line 8, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing #content {
+  width: 990px;
+}
+/* line 11, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing #content-bottom {
+  background-image: url("/assets/gray-background-tile.jpg");
+  padding-top: 5px;
+  padding-bottom: 60px;
+}
+/* line 15, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing #content-bottom .inner {
+  margin: 0 auto;
+}
+/* line 20, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing .pricing-main {
+  text-align: center;
+}
+/* line 22, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing .pricing-main h1 {
+  color: #7F7D7D;
+  font-size: 2.8em;
+}
+/* line 26, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing .pricing-main p {
+  color: #a5a5a5;
+  font-size: 1.2em;
+}
+/* line 30, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing .pricing-main .pricing-box {
+  border: #99CCCC solid 3px;
+  border-radius: 7px;
+  width: 505px;
+  height: 150px;
+  padding: 20px;
+  color: #a5a5a5;
+  font-size: 1.2em;
+  margin: 0 auto;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding-top: 30px;
+}
+/* line 43, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing .pricing-main .pricing-box .ten {
+  color: #7F7D7D;
+  font-size: 1.8em;
+}
+/* line 52, ../../../app/assets/stylesheets/front_end/pricing.css.scss */
+body.pricing #menu .fourth a {
+  font-weight: bold;
+}
