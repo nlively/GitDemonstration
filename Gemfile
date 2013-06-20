@@ -57,8 +57,16 @@ gem "geokit-rails3"
 gem "timezone"
 gem 'chronic'
 
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+gem 'prawn', :git => "https://github.com/prawnpdf/prawn.git"
+
+
 group :production do
   gem 'thin', '1.3.1'
+  gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'
 end
 gem 'therubyracer'
 

@@ -1,0 +1,76 @@
+<% content_for :page_caption do %>
+    Invoice
+<% end %>
+
+
+<div class="summary padded-content">
+  <strong>Invoice date:</strong> <%= @invoice.invoice_date.to_formatted_s(:mdy) %><br>
+  <strong>Due date:</strong> <%= @invoice.due_date.to_formatted_s(:mdy) %><br>
+</div>
+
+<%= render 'dashboard/shared/page_caption', :caption => 'Visits' %>
+
+
+<% unless @invoice.client_invoice_line_items.empty? %>
+    <table id="invoice-visits" class="visits-table">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Employee</th>
+        <th>Bill Rate</th>
+        <th>Adj.</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Duration</th>
+        <th>Location</th>
+        <th>Total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @invoice.client_invoice_line_items.each do |line_item| %>
+          <% billrate_key = sprintf 'bill_rate[%d]', line_item.id %>
+          <tr class="visit-row edit-mode editable" date-remote="true" data-id="<%= line_item.id %>">
+            <td class="date">
+              <%= line_item.visit.date_only_formatted %>
+            </td>
+            <td class="employee" rel="<%= line_item.visit.user_id %>">
+              <%= line_item.visit.employee_label %>
+            </td>
+            <td class="billrate">
+              <%= number_to_currency line_item.bill_rate %>
+            </td>
+            <td class="adjustments">
+              <%= number_to_currency line_item.adjustments %>
+            </td>
+            <td class="in-time">
+              <%= line_item.visit.in_time_time_only %>
+            </td>
+            <td class="out-time">
+              <%= line_item.visit.out_time_time_only %>
+            </td>
+            <td class="duration">
+              <%= line_item.duration_string %>
+            </td>
+            <td class="location">
+              <span title="<%= line_item.visit.location_label %>"><%= line_item.visit.location_label %></span>
+            </td>
+            <td class="total">
+              <%= line_item.total_formatted %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th colspan="8">
+          Invoice Total:
+        </th>
+        <th class="total">
+          <%= @invoice.total_amount_formatted %>
+        </th>
+      </tr>
+      </tfoot>
+    </table>
+<% end %>
+
+

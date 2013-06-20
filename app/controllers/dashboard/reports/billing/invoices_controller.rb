@@ -199,6 +199,21 @@ module Dashboard::Reports::Billing
       @page_title = 'Invoice ' + @invoice.invoice_number_formatted + ' (' + @invoice.care_recipient.full_name + ')'
     end
 
+    # GET /dashboard/reports/billing/invoices/:id/view
+    def view
+      @invoice = ClientInvoice.find params[:id]
+      @page_title = 'Invoice #' + @invoice.invoice_number_formatted
+
+      respond_to do |format|
+        format.html { render :layout => 'layouts/invoice_pdf.html' }
+        format.pdf do
+          render :pdf => 'invoice.pdf',
+                 :orientation => 'Landscape',
+                 :layout => 'layouts/invoice_pdf.html'
+        end
+      end
+    end
+
     # POST /dashboard/reports/billing/invoices/:id
     def update
       @invoice = ClientInvoice.find params[:id]
