@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/camdez/wkhtmltopdf-heroku.git
+  revision: 09f42e0fd9cf98361343738ccd7fdf6395df7dd0
+  specs:
+    wkhtmltopdf-heroku (0.2.0)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: f28d75b81818386407f1ebd505058e0236920fd9
   specs:
@@ -9,9 +15,20 @@ GIT
       cocaine (~> 0.5.0)
       mime-types
 
+GIT
+  remote: https://github.com/prawnpdf/prawn.git
+  revision: 8028ca0cd2aae8c72df9fc4bf16388948423bcb2
+  specs:
+    prawn (1.0.0.rc2)
+      afm
+      pdf-reader (~> 1.2)
+      ruby-rc4
+      ttfunk (~> 1.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (1.0.2)
     acl9 (0.12.0)
     actionmailer (3.2.11)
       actionpack (= 3.2.11)
@@ -40,6 +57,7 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    afm (0.2.0)
     airbrake (3.1.9)
       activesupport
       builder
@@ -104,6 +122,7 @@ GEM
       rails (~> 3.0)
     haml (4.0.1)
       tilt
+    hashery (2.1.0)
     hike (1.2.1)
     httpauth (0.2.0)
     i18n (0.6.4)
@@ -142,6 +161,12 @@ GEM
       multi_xml (~> 0.5)
       rack (~> 1.2)
     orm_adapter (0.4.0)
+    pdf-reader (1.3.3)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.0)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     polyglot (0.3.3)
     pusher (0.11.3)
       multi_json (~> 1.0)
@@ -194,6 +219,7 @@ GEM
     remotipart (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ruby-rc4 (0.1.5)
     rubyzip (0.9.9)
     safe_yaml (0.9.0)
     sass (3.2.7)
@@ -223,6 +249,7 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    ttfunk (1.0.3)
     tzinfo (0.3.37)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -232,6 +259,9 @@ GEM
     uuidtools (2.1.3)
     warden (1.2.1)
       rack (>= 1.0)
+    wicked_pdf (0.9.6)
+      rails
+    wkhtmltopdf-binary (0.9.9.1)
 
 PLATFORMS
   ruby
@@ -256,6 +286,7 @@ DEPENDENCIES
   mysql2
   oauth2
   paperclip!
+  prawn!
   pusher
   rails (= 3.2.11)
   rails_admin
@@ -269,3 +300,6 @@ DEPENDENCIES
   timezone
   uglifier (>= 1.0.3)
   uuid
+  wicked_pdf
+  wkhtmltopdf-binary
+  wkhtmltopdf-heroku!

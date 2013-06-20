@@ -3,6 +3,37 @@
 
 body.dashboard {
 
+  &.pdf {
+    background: #fff !important;
+
+    #payable-to {
+      float: right;
+      width: 350px;
+    }
+
+    .title-wrapper {
+      width: 100%;
+      overflow: auto;
+      margin-left: 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid $borderColor;
+
+      .title-wrapper-inner {
+        padding-bottom: 0;
+        padding-left: 0px;
+      }
+
+      h1 {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+      }
+
+    }
+
+
+  }
+
   &.agency.new {
 
     .form-field {

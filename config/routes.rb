@@ -137,6 +137,7 @@ BoomrDashboard::Application.routes.draw do
         get 'invoices/export/batch/:guid' => 'invoices#export_batch', :as => :export_batch
         get 'invoices/export/:id' => 'invoices#export_individual', :as => :export_invoice
         post 'invoices/:id/status' => 'invoices#status', :as => :invoice_status
+        get 'invoices/:id/view' => 'invoices#view', :as => :invoice_view
 
         resources :invoices
       end
