@@ -85,8 +85,6 @@ GEM
       compass (>= 0.12.2, < 0.14)
     curb (0.8.4)
     daemons (1.1.9)
-    delayed_job (3.0.5)
-      activesupport (~> 3.0)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -272,7 +270,6 @@ DEPENDENCIES
   compass
   compass-rails
   curb
-  delayed_job
   devise
   doorkeeper (~> 0.4.2)
   geokit-rails3
