@@ -39,7 +39,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem 'delayed_job'
+#gem 'delayed_job'
 
 gem 'airbrake'
 
