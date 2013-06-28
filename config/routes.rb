@@ -58,6 +58,10 @@ BoomrDashboard::Application.routes.draw do
       get 'account/clients'
       get 'account/photos'
 
+      get 'employees/:id' => 'employees#show'
+      get 'employees/:id/visits' => 'employees#visits'
+      get 'employees/:id/photos' => 'employees#photos'
+
       get 'care-recipients/:id' => 'care_recipients#show'
       get 'care-recipients/:id/visits' => 'care_recipients#visits'
       get 'care-recipients/:id/photos' => 'care_recipients#photos'
