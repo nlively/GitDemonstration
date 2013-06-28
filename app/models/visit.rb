@@ -270,6 +270,7 @@ class Visit < ActiveRecord::Base
       :in_time_fmt_time => in_time.to_formatted_s(:hour_with_minute_meridian),
       :user_id => user.id,
       :user_full_name => user.full_name,
+      :user_full_name_last_first => user.full_name_last_first,
       :user_photo_url => full_url(url_base, user.profile_photo.url(:profile)),
       :care_recipient_id => care_recipient.id,
       :care_recipient_full_name => care_recipient.full_name,
