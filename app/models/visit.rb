@@ -57,7 +57,7 @@ class Visit < ActiveRecord::Base
 
   has_many :check_ins
   has_many :photos
-  has_one :note
+  has_many :notes
 
   has_many :work_breaks
 
@@ -294,8 +294,11 @@ class Visit < ActiveRecord::Base
       end
     end
 
-    unless note.nil?
-      hash[:note] = note.note
+    unless notes.empty?
+      hash[:notes] = [] #note.note
+      notes.each do |n|
+        hash[:notes] << n.note
+      end
     end
 
     if completed?

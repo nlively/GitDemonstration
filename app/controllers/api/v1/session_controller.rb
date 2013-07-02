@@ -4,6 +4,16 @@ module Api::V1
     doorkeeper_for :all
     respond_to :json
 
+    before_filter do
+      if params[:type] == 'inhome'
+        @care_recipient_id = current_resource_owner.id
+        @user_id = params[:user_id]
+      else
+        @care_recipient_id = params[:care_recipient_id]
+        @user_id = current_resource_owner.id
+      end
+    end
+
     # POST /api/v1/session/activities
     def activities
       unless params[:visit_id].nil? or params[:visit_id].blank? or params[:items].blank? or params[:items].empty?
@@ -75,7 +85,7 @@ module Api::V1
     # POST /api/v1/session/note
     def note
 
-      @note = Note.new :user_id => current_resource_owner.id, :note => params[:note]
+      @note = Note.new :user_id => @user_id, :note => params[:note]
 
       unless params[:visit_id].nil? or params[:visit_id].blank?
         @visit = Visit.find params[:visit_id]
@@ -95,7 +105,7 @@ module Api::V1
     def photo
       logger.debug params.inspect
 
-      @photo = Photo.new :user_id => current_resource_owner.id, :photo => params[:photo]
+      @photo = Photo.new :user_id => @user_id, :photo => params[:photo]
 
       unless params[:visit_id].nil? or params[:visit_id].blank?
         @visit = Visit.find params[:visit_id]
