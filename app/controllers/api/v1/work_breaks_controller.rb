@@ -7,7 +7,16 @@ module Api::V1
 
     # POST /api/v1/work_breaks
     def create
-      @break_checkin = WorkBreakCheckIn.new :user_id => current_resource_owner.id, :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
+
+      if params[:type] == 'inhome'
+        @care_recipient_id = current_resource_owner.id
+        @user_id = params[:user_id]
+      else
+        @care_recipient_id = params[:care_recipient_id]
+        @user_id = current_resource_owner.id
+      end
+
+      @break_checkin = WorkBreakCheckIn.new :user_id => @user_id, :latitude => params[:latitude], :longitude => params[:longitude], :in_out => params[:in_out]
 
       if params[:auto] == '1'
         @break_checkin.auto = true
