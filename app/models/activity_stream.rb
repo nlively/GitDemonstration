@@ -54,25 +54,37 @@ class ActivityStream < ActiveRecord::Base
     label_template = (check_in) ? '%s checked in with %s' : '%s checked out with %s'
 
     data = self.create!({
-      :user => visit.user,
-      :care_recipient => visit.care_recipient,
-      :agency => visit.user.agency,
-      :stream_type => (check_in) ? :check_in : :check_out,
-      :label => sprintf(label_template, visit.user.full_name, visit.care_recipient.full_name),
-      :reference_id => visit.id
-    })
+                            :user => visit.user,
+                            :care_recipient => visit.care_recipient,
+                            :agency => visit.user.agency,
+                            :stream_type => (check_in) ? :check_in : :check_out,
+                            :label => sprintf(label_template, visit.user.full_name, visit.care_recipient.full_name),
+                            :reference_id => visit.id
+                        })
     data
   end
 
   def self.create_from_photo! photo
     data = self.create!({
-      :user => photo.user,
-      :care_recipient => photo.care_recipient,
-      :agency => photo.user.agency,
-      :stream_type => :photo,
-      :label => sprintf('%s added a photo for %s', photo.user.full_name, photo.care_recipient.full_name),
-      :reference_id => photo.id
-    })
+                            :user => photo.user,
+                            :care_recipient => photo.care_recipient,
+                            :agency => photo.user.agency,
+                            :stream_type => :photo,
+                            :label => sprintf('%s added a photo for %s', photo.user.full_name, photo.care_recipient.full_name),
+                            :reference_id => photo.id
+                        })
+    data
+  end
+
+  def self.create_from_note! note
+    data = self.create!({
+                            :user => note.visit.user,
+                            :care_recipient => note.visit.care_recipient,
+                            :agency => note.visit.user.agency,
+                            :stream_type => :note,
+                            :label => sprintf('%s added notes for %s', note.visit.user.full_name, note.visit.care_recipient.full_name),
+                            :reference_id => note.id
+                        })
     data
   end
 
@@ -81,25 +93,25 @@ class ActivityStream < ActiveRecord::Base
     label_template = (check_in) ? '%s took a lunch break' : '%s came back from lunch'
 
     data = self.create!({
-      :user => work_break.user,
-      :care_recipient => work_break.visit.care_recipient,
-      :agency => work_break.user.agency,
-      :stream_type =>  (check_in) ? :work_break_start : :work_break_end,
-      :label => sprintf(label_template, work_break.user.full_name),
-      :reference_id => work_break.id
-    })
+                            :user => work_break.user,
+                            :care_recipient => work_break.visit.care_recipient,
+                            :agency => work_break.user.agency,
+                            :stream_type =>  (check_in) ? :work_break_start : :work_break_end,
+                            :label => sprintf(label_template, work_break.user.full_name),
+                            :reference_id => work_break.id
+                        })
     data
   end
 
   def self.create_from_data! visit
     data = self.create!({
-      :user => visit.user,
-      :care_recipient => visit.care_recipient,
-      :agency => visit.user.agency,
-      :stream_type => :data,
-      :label => sprintf('%s added data for %s', visit.user.full_name, visit.care_recipient.full_name),
-      :reference_id => visit.id
-    })
+                            :user => visit.user,
+                            :care_recipient => visit.care_recipient,
+                            :agency => visit.user.agency,
+                            :stream_type => :data,
+                            :label => sprintf('%s added data for %s', visit.user.full_name, visit.care_recipient.full_name),
+                            :reference_id => visit.id
+                        })
     data
   end
 

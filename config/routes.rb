@@ -34,6 +34,8 @@ BoomrDashboard::Application.routes.draw do
       end
 
       namespace :session do
+        get 'notes'
+        post 'note'
         post 'photo'
         post 'activities'
         post 'client-status', :action => :client_status

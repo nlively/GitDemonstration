@@ -55,7 +55,7 @@ module Api::V1
         end
 
         unless params[:notes].blank?
-          @note = Note.create :user_id => @user_id, :care_recipient_id => @care_recipient_id, :note => params[:notes]
+          @note = Note.create :note => params[:notes]
           @visit.notes << @note
         end
 

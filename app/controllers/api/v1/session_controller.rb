@@ -80,19 +80,23 @@ module Api::V1
       end
     end
 
+    # GET /api/v1/session/notes
+    def notes
+      @visit = Visit.find params[:visit_id]
 
+      render json: @visit.notes.order('created_at DESC').map{|n| n.web_service_format(root_url)}
+    end
 
     # POST /api/v1/session/note
     def note
 
-      @note = Note.new :user_id => @user_id, :note => params[:note]
-
-      unless params[:visit_id].nil? or params[:visit_id].blank?
-        @visit = Visit.find params[:visit_id]
-        @note.visit_id = @visit.id
-        @note.care_recipient_id = @visit.care_recipient_id
+      if params[:note_id].blank?
+        @note = Note.new :visit_id => params[:visit_id]
+      else
+        @note = Note.find params[:note_id]
       end
 
+      @note.note = params[:note]
       @note.save!
 
       activity = ActivityStream.create_from_note! @note

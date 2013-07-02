@@ -34,6 +34,7 @@
 #  location_id                :integer
 #  original_email             :string(255)
 #  auto_check_out             :boolean          default(TRUE)
+#  mapped_client_id           :integer
 #
 
 require 'test_helper'
